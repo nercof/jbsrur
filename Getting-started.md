@@ -25,7 +25,7 @@ Add dependency to your app module:
 The module is now installed. It exposes the `$breadcrumb` service and the `ncy-breadcrumb` directive.
 
 ### Configuration
-Configure the ui-router.
+Configure the ui-router (see [the ui-router project](https://github.com/angular-ui/ui-router)).
 
 Define a `ncyBreadcrumbLabel` property to each states
 ```js
@@ -51,7 +51,7 @@ $stateProvider.state('home', {
   }
 })
 ```
-will produces `State bar`. 
+... will produces `State bar`. 
 
 ### Activation
 Use the directive `ncy-breadcrumb`
