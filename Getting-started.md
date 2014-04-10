@@ -1,4 +1,3 @@
-# Getting started
 ## Installation
 angular-breadcrumb requires ui-router in minimal version *0.2.0* (when the method `$state.get` was added).
 
