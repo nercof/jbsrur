@@ -9,3 +9,32 @@ myAppModule.config(function($breadcrumbProvider) {
     });
   });
 ```
+### Template 'bootstrap2'
+```html
+<ul class="breadcrumb">
+  <li ng-repeat="step in steps | limitTo:(steps.length-1)">
+    <a href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a> 
+    <span class="divider">/</span>
+  </li>
+  <li ng-repeat="step in steps | limitTo:-1" class="active">
+    <span>{{step.ncyBreadcrumbLabel}}</span>
+  </li>
+</ul>
+```
+This template displays a list (ul/li) of links separate with slash character '/', expect for the last step which is a simple span.
+### Template 'bootstrap3' (default)
+```html
+<ol class="breadcrumb">
+  <li ng-repeat="step in steps | limitTo:(steps.length-1)">
+    <a href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>
+  </li>
+  <li ng-repeat="step in steps | limitTo:-1" class="active">
+    <span>{{step.ncyBreadcrumbLabel}}</span>
+  </li>
+</ol>
+```
+The same as above expect the `ol` element and no more separators (moved in CSS).
+
+## Custom template
+
+## External template
