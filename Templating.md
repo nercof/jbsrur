@@ -1,7 +1,7 @@
 This page presents the different ways to use the templating system.
 
 ## Predefined templates
-The directive loads 2 predefined templates which can be accessed by their name in the $breadcrumbProvider configuration. For example :
+The directive loads 2 predefined templates which can be accessed by their name in the `$breadcrumbProvider` configuration. For example :
 ```js
 myAppModule.config(function($breadcrumbProvider) {
     $breadcrumbProvider.setOptions({
@@ -36,5 +36,13 @@ This template displays a list (ul/li) of links separate with slash character '/'
 The same as above expect the `ol` element and no more separators (moved in CSS).
 
 ## Custom template
+The property `template` of the `$breadcrumbProvider` accepts HTML templates too. This inline declaration is not the proper method for templating but can be used for short and fast templates. For example :
+```js
+myAppModule.config(function($breadcrumbProvider) {
+    $breadcrumbProvider.setOptions({
+      template: '<div>My app<span ng-repeat="step in steps"> > {{step.ncyBreadcrumbLabel}}</span></div>'
+    });
+  });
+```
 
 ## External template
