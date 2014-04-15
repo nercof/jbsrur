@@ -46,3 +46,12 @@ myAppModule.config(function($breadcrumbProvider) {
 ```
 
 ## External template
+The property `templateUrl` of the `$breadcrumbProvider` defined an external template. It is directly bounded to the `templateUrl` of the DDO ([Directive Definition Object](http://docs.angularjs.org/api/ng/service/$compile)).
+```js
+myAppModule.config(function($breadcrumbProvider) {
+    $breadcrumbProvider.setOptions({
+      templateUrl: 'templates/breadcrumb.html'
+    });
+  });
+```
+
