@@ -53,6 +53,8 @@ $stateProvider.state('home', {
 ```
 ... will produces `State bar`. 
 
+Every states that can be displayed in the breadcrumb *must* defined this property. If not, a state [inherit the property from his parent](https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views#inherited-custom-data). It results a breadcrumb including 2 states with the same label...
+
 ### Activation
 Use the directive `ncy-breadcrumb`
 ```html
