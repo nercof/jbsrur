@@ -1,5 +1,13 @@
 This page presents the different ways to use the templating system.
 
+Whatever the type of template (predefined, custom or external), the unique variable accessible (attached to the directive's scope) is the array `steps`.
+The objects in array are the state objects from the ui-router configuration. These objects are extended with two properties :
+
+| Property           | Description                                                                                                                                         |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| ncyBreadcrumbLabel | Contains the interpolated value from the property of the same name in the state object. It allows to display a human-readable label for the steps.  |
+| ncyBreadcrumbLink  | Contains the URL to reach the step. Useful to display a back link for each steps in the breadcrumb.                                                 |
+
 ## Predefined templates
 The directive loads 2 predefined templates which can be accessed by their name in the `$breadcrumbProvider` configuration. For example :
 ```js
