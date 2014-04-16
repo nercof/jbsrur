@@ -62,4 +62,4 @@ Use the directive `ncy-breadcrumb`
 ```
 Let the magic begin !
 
-See the (future) reference page for all the configuration options.
+See the [[API reference]] page for all the configuration options.
