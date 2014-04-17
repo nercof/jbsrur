@@ -1,6 +1,6 @@
 This page presents the different ways to use the templating system.
 
-Whatever the type of template (predefined, custom or external), the unique variable accessible (attached to the directive's scope) is the array `steps`.
+Whatever the type of template (predefined, custom or external), the unique variable accessible (attached to the directive's scope) in templates is the array `steps`.
 The objects in array are the state objects from the ui-router configuration. These objects are extended with two properties :
 
 | Property           | Description                                                                                                                                         |
