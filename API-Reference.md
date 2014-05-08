@@ -47,7 +47,7 @@ The directive does not require attribute value. The configuration is done by the
 ## Provider $stateProvider (external)
 ### Description
 The UI-Router's [$stateProvider](http://angular-ui.github.io/ui-router/site/#/api/ui.router.state.$stateProvider) contains
-the `state-specific` configuration. The state definition allows the user to define
+the "state-specific" configuration. The state definition allows the user to define
 [customs properties](https://github.com/angular-ui/ui-router/wiki#attach-custom-data-to-state-objects) under the `data` key :
 ```js
 $stateProvider.state('home', {
@@ -105,3 +105,16 @@ $stateProvider.state('contact.detail', {
   }
 })
 ```
+
+**ncyBreadcrumbSkip** (0.2.0)
+
+When defined to `true`, the state is never included in the chain of states and never appears in the breadcrumb. It is useful when a state doesn't interfere with the main browsing (side panel, modal, ...).
+
+```js
+$stateProvider.state('contact.detail.picture', {
+  url: '/img{imgId}',
+  template: [...],
+  data: {
+    ncyBreadcrumbSkip: true // Never display this state in breadcrumb.
+  }
+})
