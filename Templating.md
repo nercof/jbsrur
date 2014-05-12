@@ -21,11 +21,11 @@ myAppModule.config(function($breadcrumbProvider) {
 ```html
 <ul class="breadcrumb">
   <li ng-repeat="step in steps | limitTo:(steps.length-1)">
-    <a href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a> 
+    <a href="{{step.ncyBreadcrumbLink}}">{{step.data.ncyBreadcrumbLabel}}</a> 
     <span class="divider">/</span>
   </li>
   <li ng-repeat="step in steps | limitTo:-1" class="active">
-    <span>{{step.ncyBreadcrumbLabel}}</span>
+    <span>{{step.data.ncyBreadcrumbLabel}}</span>
   </li>
 </ul>
 ```
@@ -34,10 +34,10 @@ This template displays a list (ul/li) of links separate with slash character '/'
 ```html
 <ol class="breadcrumb">
   <li ng-repeat="step in steps | limitTo:(steps.length-1)">
-    <a href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>
+    <a href="{{step.ncyBreadcrumbLink}}">{{step.data.ncyBreadcrumbLabel}}</a>
   </li>
   <li ng-repeat="step in steps | limitTo:-1" class="active">
-    <span>{{step.ncyBreadcrumbLabel}}</span>
+    <span>{{step.data.ncyBreadcrumbLabel}}</span>
   </li>
 </ol>
 ```
@@ -48,7 +48,7 @@ The property `template` of the `$breadcrumbProvider` accepts HTML templates too.
 ```js
 myAppModule.config(function($breadcrumbProvider) {
     $breadcrumbProvider.setOptions({
-      template: '<div>My app<span ng-repeat="step in steps"> > {{step.ncyBreadcrumbLabel}}</span></div>'
+      template: '<div>My app<span ng-repeat="step in steps"> > {{step.data.ncyBreadcrumbLabel}}</span></div>'
     });
   });
 ```
