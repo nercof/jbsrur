@@ -63,3 +63,26 @@ myAppModule.config(function($breadcrumbProvider) {
   });
 ```
 
+### Examples
+In external template, all the power of AngularJS is available. For example, it allows HTML in `ncyBreadcrumbLabel` by using [ngBindHtml](https://docs.angularjs.org/api/ng/directive/ngBindHtml) directive. Here is the 'bootstrap3' template with HTML binding:
+```html
+<ol class="breadcrumb">
+    <li ng-repeat="step in steps | limitTo:(steps.length-1)">
+        <a href="{{step.ncyBreadcrumbLink}}" ng-bind-html="step.ncyBreadcrumbLabel"></a>
+    </li>
+    <li ng-repeat="step in steps | limitTo:-1" class="active">
+        <span ng-bind-html="step.ncyBreadcrumbLabel"></span>
+    </li>
+</ol>
+```
+**WARNING** : See the usage of `ngBindHtml` requires additional dependencies. See the [documentation] (https://docs.angularjs.org/api/ng/directive/ngBindHtml) for details.
+
+Then, the property `ncyBreadcrumbLabel` can contain HTML, like: 
+```js
+$stateProvider.state('search', {
+  [...]
+  data: {
+    ncyBreadcrumbLabel: '<span class="glyphicon glyphicon-search"></span> Search'
+  }
+})
+```
