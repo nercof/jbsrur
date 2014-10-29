@@ -20,12 +20,10 @@ myAppModule.config(function($breadcrumbProvider) {
 ### Template 'bootstrap2'
 ```html
 <ul class="breadcrumb">
-  <li ng-repeat="step in steps | limitTo:(steps.length-1)">
-    <a href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a> 
-    <span class="divider">/</span>
-  </li>
-  <li ng-repeat="step in steps | limitTo:-1" class="active">
-    <span>{{step.ncyBreadcrumbLabel}}</span>
+  <li ng-repeat="step in steps" ng-switch="$last || !!step.abstract" ng-class="{active: $last}">
+    <a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>
+    <span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span>
+    <span class="divider" ng-hide="$last">/</span>
   </li>
 </ul>
 ```
@@ -33,11 +31,9 @@ This template displays a list (ul/li) of links separate with slash character '/'
 ### Template 'bootstrap3' (default)
 ```html
 <ol class="breadcrumb">
-  <li ng-repeat="step in steps | limitTo:(steps.length-1)">
-    <a href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>
-  </li>
-  <li ng-repeat="step in steps | limitTo:-1" class="active">
-    <span>{{step.ncyBreadcrumbLabel}}</span>
+  <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract">
+    <a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>
+    <span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span>
   </li>
 </ol>
 ```
