@@ -27,14 +27,14 @@ The module is now installed. It exposes the `$breadcrumb` service and the `ncy-b
 ### Configuration
 Configure the ui-router (see [the ui-router project](https://github.com/angular-ui/ui-router)).
 
-Define a `ncyBreadcrumbLabel` property to each states
+Define a `ncyBreadcrumb.label` property to each states
 ```js
 $stateProvider.state('home', {
   url: '/home',
   templateUrl: 'views/home.html',
   controller: 'HomeCtrl',
-  data: {
-    ncyBreadcrumbLabel: 'Home page'
+  ncyBreadcrumb: {
+    label: 'Home page'
   }
 })
 ```
