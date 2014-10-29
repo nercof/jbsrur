@@ -49,6 +49,19 @@ The directive asks for the state chain from the $breadcrumb service and displays
 ```
 The directive does not require attribute value. The configuration is done by the $breadcrumbProvider.
 
+## Directive ncyBreadcrumbLast
+### Description
+The directive renders the last step of the breadcrumb (generally the current state). If the last state is configured as skipped, the directive displays the previous step of the breadcrumb (if it exists).
+
+### Usage
+```html
+<span ncy-breadcrumb-last></span>
+```
+The directive can have an optional attribute value: the template of the directive. As the AngularJS directive [ngBindTemplate](https://docs.angularjs.org/api/ng/directive/ngBindTemplate), it is useful when the HTML element can't accept child element (like `title` or `option`):
+```html
+<title ncy-breadcrumb-last="Sample app: {{ncyBreadcrumbLabel}}"></title>
+```
+
 ## Provider $stateProvider (external)
 ### Description
 The UI-Router's [$stateProvider](http://angular-ui.github.io/ui-router/site/#/api/ui.router.state.$stateProvider) contains
