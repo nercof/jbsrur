@@ -140,7 +140,7 @@ $stateProvider.state('product.detail', {
   url: '/{productId}',
   views: [...],
   ncyBreadcrumb: {
-    parent: 'category.list({cat: 'product'})'
+    parent: 'category.list({cat: "product"})'
   }
 })
 ```
