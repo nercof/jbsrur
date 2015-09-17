@@ -62,6 +62,20 @@ The directive can have an optional attribute value: the template of the directiv
 <title ncy-breadcrumb-last="Sample app: {{ncyBreadcrumbLabel}}"></title>
 ```
 
+## Directive ncyBreadcrumbText
+### Description
+The directive renders the breadcrumb as text content of an element. The directive ships all the functionalities of the classic breadcrumb (label's bindings, skipped states, ...). The output text can be customized by changing the separator (default ` / `).
+
+### Usage
+```html
+<span ncy-breadcrumb-text></span>
+<!-- Render "State A / State B / State C" -->
+```
+```html
+<span ncy-breadcrumb-text ncy-breadcrumb-text-separator=" > "></span>
+<!-- Render "State A > State B > State C" -->
+```
+
 ## Provider $stateProvider (external)
 ### Description
 The UI-Router's [$stateProvider](http://angular-ui.github.io/ui-router/site/#/api/ui.router.state.$stateProvider) contains
