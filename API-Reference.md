@@ -6,9 +6,11 @@ Provider that returns an instance of $breadcrumb service. It contains the global
 
 | Property        | Default      | Details                                                                                                                                                                                                                           |
 |-----------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| prefixStateName | null         | Contains an existing state's name (usually the home page of the app). If defined, the state is the first step of the breadcrumb, whatever the current state. Not necessary if all states are children of a root "homepage" state. It can be defined with a state's name or a function returning a state's name. It accepts url params with the same syntax as the UI-router [uiSref](http://angular-ui.github.io/ui-router/site/#/api/ui.router.state.directive:ui-sref) directive. |
-| template        | 'bootstrap3' | Contains a predefined template's name (see the [template page](https://github.com/ncuillery/angular-breadcrumb/wiki/Templating) for the list) or HTML for a custom template. This property is ignored if `templateUrl` is defined.                                                                   |
+| prefixStateName | null         | Contains an existing state name (usually the home page of the app). If defined, the state is the first step of the breadcrumb, whatever the current state. Not necessary if all states are children of a root "homepage" state. It can be defined with a state's name or a function returning a state's name. It accepts url params with the same syntax as the UI-router [uiSref](http://angular-ui.github.io/ui-router/site/#/api/ui.router.state.directive:ui-sref) directive. |
+| template        | 'bootstrap3' | Contains a predefined template name (see the [template page](https://github.com/ncuillery/angular-breadcrumb/wiki/Templating) for the list) or HTML for a custom template. This property is ignored if `templateUrl` is defined.                                                                   |
 | templateUrl     | null         | Contains the path to a template file. This property takes precedence over the `template` property.                                                                                                                                |
+| templateLast    | 'default'    | Contains a predefined template for the directive `ncyBreadcrumbLast` or HTML for a custom template. This property is ignored if `templateUrl` is defined.                                                                         |
+| templateLastUrl | null         | Contains the path to a template file for the directive `ncyBreadcrumbLast`. This property takes precedence over the `templateLast` property.                                                                                      |
 | includeAbstract | false        | If true, abstract states are included in the breadcrumb. This option has a lower priority than the state-specific option `skip`                                                                                                   |
 
 See the template page for more information about template.
@@ -60,6 +62,17 @@ The directive renders the last step of the breadcrumb (generally the current sta
 The directive can have an optional attribute value: the template of the directive. As the AngularJS directive [ngBindTemplate](https://docs.angularjs.org/api/ng/directive/ngBindTemplate), it is useful when the HTML element can't accept child element (like `title` or `option`):
 ```html
 <title ncy-breadcrumb-last="Sample app: {{ncyBreadcrumbLabel}}"></title>
+```
+New in 0.5.x: For even more flexibility, you can use the global options `templateLast` and `templateLastUrl` in the same way as the main directive `ncyBreadcrumb`. It allows use of others directives, HTML, etc.:
+```js
+myAppModule.config(function($breadcrumbProvider) {
+    $breadcrumbProvider.setOptions({
+      templateLast: '<i ng-bind-html="ncyBreadcrumbLabel"></i>'
+    });
+  })
+```
+```html
+<span ncy-breadcrumb-last></span>
 ```
 
 ## Directive ncyBreadcrumbText
