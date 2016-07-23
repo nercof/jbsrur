@@ -50,6 +50,10 @@ Para acceder a una terminal del contenedor:
 
 Base de Datos
 
-Exportar base de datos
+Exportar
 
-`root@1bfb66c0ebe6:/# mysqldump --databases --user=<db_user> --password <db_name> > db_nav_header.sql`
+`mysqldump --databases --user=<db_user> --password <db_name> > <db_file>.sql`
+
+Importar
+
+`docker exec -i wpdb mysql -uroot -proot <db_name> < <db_file>.sql`
