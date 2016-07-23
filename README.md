@@ -35,8 +35,10 @@ Linkear contenedores wp + db
 
 `docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD"/wp-content:/var/www/html/wp-content -t -i --name wp-angular --link wpdb:mysql  wp-angular`
 
-Iniciar contenedores post-instalación:
+Post-instalación:
 -------------------------------------
+
+Contenedores:
 
 `docker start wpdb`
 
@@ -45,3 +47,9 @@ Iniciar contenedores post-instalación:
 Para acceder a una terminal del contenedor: 
 
 `docker exec -i -t wp-angular /bin/bash`
+
+Base de Datos
+
+Exportar base de datos
+
+`root@1bfb66c0ebe6:/# mysqldump --databases --user=<db_user> --password <db_name> > db_nav_header.sql`
