@@ -60,5 +60,5 @@ Importar
 
 Exportar fichero desde el contenedor al localhost
 
-`docker cp <containerId>:/file/path/within/container /host/path/target`
+`docker cp <containerId>:/path/<file> /path-host/<file>`
 
