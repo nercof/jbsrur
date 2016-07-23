@@ -1,0 +1,5 @@
+*.log
+wp-config.php
+wp-content/languages/
+wp-content/upgrade/
+wp-content/index.php
