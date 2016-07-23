@@ -41,4 +41,7 @@ Iniciar contenedores post-instalación:
 `docker start wpdb`
 
 `docker start wp-angular`
-`
+
+Para acceder a una terminal del contenedor: 
+
+`docker exec -i -t wp-angular /bin/bash`
