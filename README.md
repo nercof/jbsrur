@@ -57,3 +57,8 @@ Exportar
 Importar
 
 `docker exec -i wpdb mysql -uroot -proot <db_name> < <db_file>.sql`
+
+Exportar fichero desde el contenedor al localhost
+
+`docker cp <containerId>:/file/path/within/container /host/path/target`
+
