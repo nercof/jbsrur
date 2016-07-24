@@ -12,11 +12,20 @@ angular.module('jbsrurApp', ['ui.router'])
             $urlRouterProvider.otherwise('/');
             $stateProvider
             .state('home', {
-                url: 'http://jbsrur:8080/',
-                templateUrl: './partials/partial-home.html',
-                        });
+                url: '/',
+                views:{
+                    "header":{
+                         templateUrl: localized.partials + "main.html"
+                    }
+                }
+            })
+            .state('about-us', {
+                url: '/about-us',
+                views:{
+                  "header":{
+                       templateUrl: localized.partials + "quienes-somos.html"
+                  }
+                }
+            });
           }
-        .state('about', {
-
-        });
     ]);
