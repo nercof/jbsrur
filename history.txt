@@ -1,0 +1,1000 @@
+  302  map <M-Right> <c-w>l
+  303  map <M-Left> <c-w>h
+  304  map <M-Up> <c-w>k
+  305  map <M-Down> <c-w>j
+  306  imap <M-Right> <ESC><c-w>l
+  307  imap <M-Left> <ESC><c-w>h
+  308  imap <M-Up> <ESC><c-w>k
+  309  imap <M-Down> <ESC><c-w>j
+  310  " old autocomplete keyboard shortcut
+  311  imap <C-J> <C-X><C-O>
+  312  " Comment this line to enable autocompletion preview window
+  313  " (displays documentation related to the selected completion option)
+  314  " Disabled by default because preview makes the window flicker
+  315  set completeopt-=preview
+  316  " save as sudo
+  317  ca w" save as sudo w sudo apt-get upgrade tee "%"
+  318  " simple recursive grep
+  319  nmap ,r :Ack 
+  320  nmap ,wr :Ack <cword><CR>
+  321  " use 256 colors when possible
+  322  if (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256') || has('nvim')
+  323  let &t_Co = 256
+  324  else
+  325  endif
+  326  " colors for gvim
+  327  if has('gui_running')
+  328      colorscheme wombat
+  329  endif
+  330  " when scrolling, keep cursor 3 lines away from screen border
+  331  set scrolloff=3
+  332  " autocompletion of files and commands behaves like shell
+  333  " (complete only the common part, list the options that match)
+  334  set wildmode=list:longest
+  335  " better backup, swap and undos storage
+  336  set directory=~/.vim/dirs/tmp     " directory to place swap files in
+  337  set backup                        " make backup files
+  338  set backupdir=~/.vim/dirs/backups " where to put backup files
+  339  set undofile                      " persistent undos - undo after you re-open the file
+  340  set undodir=~/.vim/dirs/undos
+  341  set viminfo+=n~/.vim/dirs/viminfo
+  342  " store yankring history file there too
+  343  let g:yankring_history_dir = '~/.vim/dirs/'
+  344  " create needed directories if they don't exist
+  345      call mkdir(&backupdir, "p")
+  346  endif
+  347      call mkdir(&directory, "p")
+  348  endif
+  349      call mkdir(&undodir, "p")
+  350  endif
+  351  " ============================================================================
+  352  " Plugins settings and mappings
+  353  " Edit them as you wish.
+  354  " Tagbar ----------------------------- 
+  355  " toggle tagbar display
+  356  map <F4> :TagbarToggle<CR>
+  357  " autofocus on tagbar open
+  358  let g:tagbar_autofocus = 1
+  359  " NERDTree ----------------------------- 
+  360  " toggle nerdtree display
+  361  map <F3> :NERDTreeToggle<CR>
+  362  " open nerdtree with the current file selected
+  363  nmap ,t :NERDTreeFind<CR>
+  364  " don;t show these file types
+  365  let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+  366  " Tasklist ------------------------------
+  367  " show pending tasks list
+  368  map <F2> :TaskList<CR>
+  369  " CtrlP ------------------------------
+  370  " file finder mapping
+  371  let g:ctrlp_map = ',e'
+  372  " tags (symbols) in current file finder mapping
+  373  nmap ,g :CtrlPBufTag<CR>
+  374  " tags (symbols) in all files finder mapping
+  375  nmap ,G :CtrlPBufTagAll<CR>
+  376  " general code finder in all files mapping
+  377  nmap ,f :CtrlPLine<CR>
+  378  " recent files finder mapping
+  379  nmap ,m :CtrlPMRUFiles<CR>
+  380  " commands finder mapping
+  381  nmap ,c :CtrlPCmdPalette<CR>
+  382  " to be able to call CtrlP with default search text
+  383  function! CtrlPWithSearchText(search_text, ctrlp_command_end)
+  384      execute ':CtrlP' . a:ctrlp_command_end
+  385      call feedkeys(a:search_text)
+  386  endfunction
+  387  " same as previous mappings, but calling with current word as default text
+  388  nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
+  389  nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
+  390  nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
+  391  nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
+  392  nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
+  393  nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
+  394  nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
+  395  " don't change working directory
+  396  let g:ctrlp_working_path_mode = 0
+  397  " ignore these files and folders on file finder
+  398  let g:ctrlp_custom_ignore = {
+  399  it clone " Fisa-vim-config
+  400  " http://fisadev.github.io/fisa-vim-config/
+  401  " version: 8.2
+  402  " ============================================================================
+  403  " Vim-plug initialization
+  404  " Avoid modify this section, unless you are very sure of what you are doing
+  405  let vim_plug_just_installed = 0
+  406  let vim_plug_path = expand('~/.vim/autoload/plug.vim')
+  407  endif
+  408  " manually load vim-plug the first time
+  409  if vim_plug_just_installed
+  410      :execute 'source '.fnameescape(vim_plug_path)
+  411  endif
+  412  " Obscure hacks done, you can now modify the rest of the .vimrc as you wish :)
+  413  " ============================================================================
+  414  " Active plugins
+  415  " You can disable or add new ones here:
+  416  " this needs to be here, so vim-plug knows we are declaring the plugins we
+  417  " want to use
+  418  call plug#begin('~/.vim/plugged')
+  419  " Plugins from github repos:
+  420  " Override configs by directory 
+  421  Plug 'arielrossanigo/dir-configs-override.vim'
+  422  " Better file browser
+  423  Plug 'scrooloose/nerdtree'
+  424  " Code commenter
+  425  Plug 'scrooloose/nerdcommenter'
+  426  " Class/module browser
+  427  Plug 'majutsushi/tagbar'
+  428  " Code and files fuzzy finder
+  429  Plug 'ctrlpvim/ctrlp.vim'
+  430  " Extension to ctrlp, for fuzzy command finder
+  431  Plug 'fisadev/vim-ctrlp-cmdpalette'
+  432  " Zen coding
+  433  Plug 'mattn/emmet-vim'
+  434  " Git integration
+  435  Plug 'motemen/git-vim'
+  436  " Tab list panel
+  437  Plug 'kien/tabman.vim'
+  438  " Airline
+  439  Plug 'vim-airline/vim-airline'
+  440  Plug 'vim-airline/vim-airline-themes'
+  441  " Terminal Vim with 256 colors colorscheme
+  442  Plug 'fisadev/fisa-vim-colorscheme'
+  443  " Consoles as buffers
+  444  Plug 'rosenfeld/conque-term'
+  445  " Pending tasks list
+  446  Plug 'fisadev/FixedTaskList.vim'
+  447  " Surround
+  448  Plug 'tpope/vim-surround'
+  449  " Autoclose
+  450  Plug 'Townk/vim-autoclose'
+  451  " Indent text object
+  452  Plug 'michaeljsmith/vim-indent-object'
+  453  " Indentation based movements
+  454  Plug 'jeetsukumaran/vim-indentwise'
+  455  " Python mode (indentation, doc, refactor, lints, code checking, motion and
+  456  " operators, highlighting, run and ipdb breakpoints)
+  457  Plug 'klen/python-mode'
+  458  " Better autocompletion
+  459  Plug 'Shougo/neocomplcache.vim'
+  460  " Snippets manager (SnipMate), dependencies, and snippets repo
+  461  Plug 'MarcWeber/vim-addon-mw-utils'
+  462  Plug 'tomtom/tlib_vim'
+  463  Plug 'honza/vim-snippets'
+  464  Plug 'garbas/vim-snipmate'
+  465  " Git/mercurial/others diff icons on the side of the file lines
+  466  Plug 'mhinz/vim-signify'
+  467  " Automatically sort python imports
+  468  Plug 'fisadev/vim-isort'
+  469  " Drag visual blocks arround
+  470  Plug 'fisadev/dragvisuals.vim'
+  471  " Window chooser
+  472  Plug 't9md/vim-choosewin'
+  473  " Python and other languages code checker
+  474  Plug 'scrooloose/syntastic'
+  475  " Paint css colors with the real color
+  476  Plug 'lilydjwg/colorizer'
+  477  " Ack code search (requires ack installed in the system)
+  478  Plug 'mileszs/ack.vim'
+  479  if has('python')
+  480  " (disabled by default because is very intrusive and can't be easily toggled
+  481  " on/off. When the plugin is present, will always activate the relative 
+  482  " numbering every time you go to normal mode. Author refuses to add a setting 
+  483  " to avoid that)
+  484  " Plug 'myusuf3/numbers.vim'
+  485  " Plugins from vim-scripts repos:
+  486  " Search results counter
+  487  Plug 'IndexedSearch'
+  488  " XML/HTML tags navigation
+  489  Plug 'matchit.zip'
+  490  " Gvim colorscheme
+  491  Plug 'Wombat'
+  492  " Yank history navigation
+  493  Plug 'YankRing.vim'
+  494  " Tell vim-plug we finished declaring plugins, so it can load them
+  495  call plug#end()
+  496  " ============================================================================
+  497  " Install plugins the first time vim runs
+  498  if vim_plug_just_installed
+  499      echo "Installing Bundles, please ignore key map error messages"
+  500      :PlugInstall
+  501  endif
+  502  " ============================================================================
+  503  " Vim settings and mappings
+  504  " You can edit them as you wish
+  505  " no vi-compatible
+  506  set nocompatible
+  507  filetype plugin on
+  508  filetype indent on
+  509  " tabs and spaces handling
+  510  set expandtab
+  511  set tabstop=4
+  512  set softtabstop=4
+  513  set shiftwidth=4
+  514  " tab length exceptions on some file types
+  515  autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  516  autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  517  autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  518  " always show status bar
+  519  set ls=2
+  520  " incremental search
+  521  set incsearch
+  522  " highlighted search results
+  523  set hlsearch
+  524  " syntax highlight on
+  525  syntax on
+  526  " show line numbers
+  527  set nu
+  528  " tab navigation mappings
+  529  map tn :tabn<CR>
+  530  map tp :tabp<CR>
+  531  map tm :tabm 
+  532  map tt :tabnew 
+  533  map ts :tab split<CR>
+  534  map <C-S-Right> :tabn<CR>
+  535  imap <C-S-Right> <ESC>:tabn<CR>
+  536  map <C-S-Left> :tabp<CR>
+  537  imap <C-S-Left> <ESC>:tabp<CR>
+  538  " navigate windows with meta+arrows
+  539  map <M-Right> <c-w>l
+  540  map <M-Left> <c-w>h
+  541  map <M-Up> <c-w>k
+  542  map <M-Down> <c-w>j
+  543  imap <M-Right> <ESC><c-w>l
+  544  imap <M-Left> <ESC><c-w>h
+  545  imap <M-Up> <ESC><c-w>k
+  546  imap <M-Down> <ESC><c-w>j
+  547  " old autocomplete keyboard shortcut
+  548  imap <C-J> <C-X><C-O>
+  549  " Comment this line to enable autocompletion preview window
+  550  " (displays documentation related to the selected completion option)
+  551  " Disabled by default because preview makes the window flicker
+  552  set completeopt-=preview
+  553  " save as sudo
+  554  ca w" save as sudo w sudo apt-get upgrade tee "%"
+  555  " simple recursive grep
+  556  nmap ,r :Ack 
+  557  nmap ,wr :Ack <cword><CR>
+  558  " use 256 colors when possible
+  559  if (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256') || has('nvim')
+  560  let &t_Co = 256
+  561  else
+  562  endif
+  563  " colors for gvim
+  564  if has('gui_running')
+  565      colorscheme wombat
+  566  endif
+  567  " when scrolling, keep cursor 3 lines away from screen border
+  568  set scrolloff=3
+  569  " autocompletion of files and commands behaves like shell
+  570  " (complete only the common part, list the options that match)
+  571  set wildmode=list:longest
+  572  " better backup, swap and undos storage
+  573  set directory=~/.vim/dirs/tmp     " directory to place swap files in
+  574  set backup                        " make backup files
+  575  set backupdir=~/.vim/dirs/backups " where to put backup files
+  576  set undofile                      " persistent undos - undo after you re-open the file
+  577  set undodir=~/.vim/dirs/undos
+  578  set viminfo+=n~/.vim/dirs/viminfo
+  579  " store yankring history file there too
+  580  let g:yankring_history_dir = '~/.vim/dirs/'
+  581  " create needed directories if they don't exist
+  582      call mkdir(&backupdir, "p")
+  583  endif
+  584      call mkdir(&directory, "p")
+  585  endif
+  586      call mkdir(&undodir, "p")
+  587  endif
+  588  " ============================================================================
+  589  " Plugins settings and mappings
+  590  " Edit them as you wish.
+  591  " Tagbar ----------------------------- 
+  592  " toggle tagbar display
+  593  map <F4> :TagbarToggle<CR>
+  594  " autofocus on tagbar open
+  595  let g:tagbar_autofocus = 1
+  596  " NERDTree ----------------------------- 
+  597  " toggle nerdtree display
+  598  map <F3> :NERDTreeToggle<CR>
+  599  " open nerdtree with the current file selected
+  600  nmap ,t :NERDTreeFind<CR>
+  601  " don;t show these file types
+  602  let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+  603  " Tasklist ------------------------------
+  604  " show pending tasks list
+  605  map <F2> :TaskList<CR>
+  606  " CtrlP ------------------------------
+  607  " file finder mapping
+  608  let g:ctrlp_map = ',e'
+  609  " tags (symbols) in current file finder mapping
+  610  nmap ,g :CtrlPBufTag<CR>
+  611  " tags (symbols) in all files finder mapping
+  612  nmap ,G :CtrlPBufTagAll<CR>
+  613  " general code finder in all files mapping
+  614  nmap ,f :CtrlPLine<CR>
+  615  " recent files finder mapping
+  616  nmap ,m :CtrlPMRUFiles<CR>
+  617  " commands finder mapping
+  618  nmap ,c :CtrlPCmdPalette<CR>
+  619  " to be able to call CtrlP with default search text
+  620  function! CtrlPWithSearchText(search_text, ctrlp_command_end)
+  621      execute ':CtrlP' . a:ctrlp_command_end
+  622      call feedkeys(a:search_text)
+  623  endfunction
+  624  " same as previous mappings, but calling with current word as default text
+  625  nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
+  626  nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
+  627  nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
+  628  nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
+  629  nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
+  630  nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
+  631  nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
+  632  " don't change working directory
+  633  let g:ctrlp_working_path_mode = 0
+  634  " ignore these files and folders on file finder
+  635  let g:ctrlp_custom_ignore = {
+  636  git clone " Fisa-vim-config
+  637  " http://fisadev.github.io/fisa-vim-config/
+  638  " version: 8.2
+  639  " ============================================================================
+  640  " Vim-plug initialization
+  641  " Avoid modify this section, unless you are very sure of what you are doing
+  642  let vim_plug_just_installed = 0
+  643  let vim_plug_path = expand('~/.vim/autoload/plug.vim')
+  644  endif
+  645  " manually load vim-plug the first time
+  646  if vim_plug_just_installed
+  647      :execute 'source '.fnameescape(vim_plug_path)
+  648  endif
+  649  " Obscure hacks done, you can now modify the rest of the .vimrc as you wish :)
+  650  " ============================================================================
+  651  " Active plugins
+  652  " You can disable or add new ones here:
+  653  " this needs to be here, so vim-plug knows we are declaring the plugins we
+  654  " want to use
+  655  call plug#begin('~/.vim/plugged')
+  656  " Plugins from github repos:
+  657  " Override configs by directory 
+  658  Plug 'arielrossanigo/dir-configs-override.vim'
+  659  " Better file browser
+  660  Plug 'scrooloose/nerdtree'
+  661  " Code commenter
+  662  Plug 'scrooloose/nerdcommenter'
+  663  " Class/module browser
+  664  Plug 'majutsushi/tagbar'
+  665  " Code and files fuzzy finder
+  666  Plug 'ctrlpvim/ctrlp.vim'
+  667  " Extension to ctrlp, for fuzzy command finder
+  668  Plug 'fisadev/vim-ctrlp-cmdpalette'
+  669  " Zen coding
+  670  Plug 'mattn/emmet-vim'
+  671  " Git integration
+  672  Plug 'motemen/git-vim'
+  673  " Tab list panel
+  674  Plug 'kien/tabman.vim'
+  675  " Airline
+  676  Plug 'vim-airline/vim-airline'
+  677  Plug 'vim-airline/vim-airline-themes'
+  678  " Terminal Vim with 256 colors colorscheme
+  679  Plug 'fisadev/fisa-vim-colorscheme'
+  680  " Consoles as buffers
+  681  Plug 'rosenfeld/conque-term'
+  682  " Pending tasks list
+  683  Plug 'fisadev/FixedTaskList.vim'
+  684  " Surround
+  685  Plug 'tpope/vim-surround'
+  686  " Autoclose
+  687  Plug 'Townk/vim-autoclose'
+  688  " Indent text object
+  689  Plug 'michaeljsmith/vim-indent-object'
+  690  " Indentation based movements
+  691  Plug 'jeetsukumaran/vim-indentwise'
+  692  " Python mode (indentation, doc, refactor, lints, code checking, motion and
+  693  " operators, highlighting, run and ipdb breakpoints)
+  694  Plug 'klen/python-mode'
+  695  " Better autocompletion
+  696  Plug 'Shougo/neocomplcache.vim'
+  697  " Snippets manager (SnipMate), dependencies, and snippets repo
+  698  Plug 'MarcWeber/vim-addon-mw-utils'
+  699  Plug 'tomtom/tlib_vim'
+  700  Plug 'honza/vim-snippets'
+  701  Plug 'garbas/vim-snipmate'
+  702  " Git/mercurial/others diff icons on the side of the file lines
+  703  Plug 'mhinz/vim-signify'
+  704  " Automatically sort python imports
+  705  Plug 'fisadev/vim-isort'
+  706  " Drag visual blocks arround
+  707  Plug 'fisadev/dragvisuals.vim'
+  708  " Window chooser
+  709  Plug 't9md/vim-choosewin'
+  710  " Python and other languages code checker
+  711  Plug 'scrooloose/syntastic'
+  712  " Paint css colors with the real color
+  713  Plug 'lilydjwg/colorizer'
+  714  " Ack code search (requires ack installed in the system)
+  715  Plug 'mileszs/ack.vim'
+  716  if has('python')
+  717  " (disabled by default because is very intrusive and can't be easily toggled
+  718  " on/off. When the plugin is present, will always activate the relative 
+  719  " numbering every time you go to normal mode. Author refuses to add a setting 
+  720  " to avoid that)
+  721  " Plug 'myusuf3/numbers.vim'
+  722  " Plugins from vim-scripts repos:
+  723  " Search results counter
+  724  Plug 'IndexedSearch'
+  725  " XML/HTML tags navigation
+  726  Plug 'matchit.zip'
+  727  " Gvim colorscheme
+  728  Plug 'Wombat'
+  729  " Yank history navigation
+  730  Plug 'YankRing.vim'
+  731  " Tell vim-plug we finished declaring plugins, so it can load them
+  732  call plug#end()
+  733  " ============================================================================
+  734  " Install plugins the first time vim runs
+  735  if vim_plug_just_installed
+  736      echo "Installing Bundles, please ignore key map error messages"
+  737      :PlugInstall
+  738  endif
+  739  " ============================================================================
+  740  " Vim settings and mappings
+  741  " You can edit them as you wish
+  742  " no vi-compatible
+  743  set nocompatible
+  744  filetype plugin on
+  745  filetype indent on
+  746  " tabs and spaces handling
+  747  set expandtab
+  748  set tabstop=4
+  749  set softtabstop=4
+  750  set shiftwidth=4
+  751  " tab length exceptions on some file types
+  752  autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  753  autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  754  autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  755  " always show status bar
+  756  set ls=2
+  757  " incremental search
+  758  set incsearch
+  759  " highlighted search results
+  760  set hlsearch
+  761  " syntax highlight on
+  762  syntax on
+  763  " show line numbers
+  764  set nu
+  765  " tab navigation mappings
+  766  map tn :tabn<CR>
+  767  map tp :tabp<CR>
+  768  map tm :tabm 
+  769  map tt :tabnew 
+  770  map ts :tab split<CR>
+  771  map <C-S-Right> :tabn<CR>
+  772  imap <C-S-Right> <ESC>:tabn<CR>
+  773  map <C-S-Left> :tabp<CR>
+  774  imap <C-S-Left> <ESC>:tabp<CR>
+  775  " navigate windows with meta+arrows
+  776  map <M-Right> <c-w>l
+  777  map <M-Left> <c-w>h
+  778  map <M-Up> <c-w>k
+  779  map <M-Down> <c-w>j
+  780  imap <M-Right> <ESC><c-w>l
+  781  imap <M-Left> <ESC><c-w>h
+  782  imap <M-Up> <ESC><c-w>k
+  783  imap <M-Down> <ESC><c-w>j
+  784  " old autocomplete keyboard shortcut
+  785  imap <C-J> <C-X><C-O>
+  786  " Comment this line to enable autocompletion preview window
+  787  " (displays documentation related to the selected completion option)
+  788  " Disabled by default because preview makes the window flicker
+  789  set completeopt-=preview
+  790  " save as sudo
+  791  ca w" save as sudo w sudo apt-get upgrade tee "%"
+  792  " simple recursive grep
+  793  nmap ,r :Ack 
+  794  nmap ,wr :Ack <cword><CR>
+  795  " use 256 colors when possible
+  796  if (&term =~? 'mlterm\|xterm\|xterm-256\|screen-256') || has('nvim')
+  797  let &t_Co = 256
+  798  else
+  799  endif
+  800  " colors for gvim
+  801  if has('gui_running')
+  802      colorscheme wombat
+  803  endif
+  804  " when scrolling, keep cursor 3 lines away from screen border
+  805  set scrolloff=3
+  806  " autocompletion of files and commands behaves like shell
+  807  " (complete only the common part, list the options that match)
+  808  set wildmode=list:longest
+  809  " better backup, swap and undos storage
+  810  set directory=~/.vim/dirs/tmp     " directory to place swap files in
+  811  set backup                        " make backup files
+  812  set backupdir=~/.vim/dirs/backups " where to put backup files
+  813  set undofile                      " persistent undos - undo after you re-open the file
+  814  set undodir=~/.vim/dirs/undos
+  815  set viminfo+=n~/.vim/dirs/viminfo
+  816  " store yankring history file there too
+  817  let g:yankring_history_dir = '~/.vim/dirs/'
+  818  " create needed directories if they don't exist
+  819      call mkdir(&backupdir, "p")
+  820  endif
+  821      call mkdir(&directory, "p")
+  822  endif
+  823      call mkdir(&undodir, "p")
+  824  endif
+  825  " ============================================================================
+  826  " Plugins settings and mappings
+  827  " Edit them as you wish.
+  828  " Tagbar ----------------------------- 
+  829  " toggle tagbar display
+  830  map <F4> :TagbarToggle<CR>
+  831  " autofocus on tagbar open
+  832  let g:tagbar_autofocus = 1
+  833  " NERDTree ----------------------------- 
+  834  " toggle nerdtree display
+  835  map <F3> :NERDTreeToggle<CR>
+  836  " open nerdtree with the current file selected
+  837  nmap ,t :NERDTreeFind<CR>
+  838  " don;t show these file types
+  839  let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+  840  " Tasklist ------------------------------
+  841  " show pending tasks list
+  842  map <F2> :TaskList<CR>
+  843  " CtrlP ------------------------------
+  844  " file finder mapping
+  845  let g:ctrlp_map = ',e'
+  846  " tags (symbols) in current file finder mapping
+  847  nmap ,g :CtrlPBufTag<CR>
+  848  " tags (symbols) in all files finder mapping
+  849  nmap ,G :CtrlPBufTagAll<CR>
+  850  " general code finder in all files mapping
+  851  nmap ,f :CtrlPLine<CR>
+  852  " recent files finder mapping
+  853  nmap ,m :CtrlPMRUFiles<CR>
+  854  " commands finder mapping
+  855  nmap ,c :CtrlPCmdPalette<CR>
+  856  " to be able to call CtrlP with default search text
+  857  function! CtrlPWithSearchText(search_text, ctrlp_command_end)
+  858      execute ':CtrlP' . a:ctrlp_command_end
+  859      call feedkeys(a:search_text)
+  860  endfunction
+  861  " same as previous mappings, but calling with current word as default text
+  862  nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
+  863  nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
+  864  nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
+  865  nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
+  866  nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
+  867  nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
+  868  nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
+  869  " don't change working directory
+  870  let g:ctrlp_working_path_mode = 0
+  871  " ignore these files and folders on file finder
+  872  let g:ctrlp_custom_ignore = {
+  873  " Syntastic ------------------------------
+  874  " show list of errors and warnings on the current file
+  875  nmap <leader>e :Errors<CR>
+  876  " check also when just opened the file
+  877  let g:syntastic_check_on_open = 1
+  878  " don't put icons on the sign column (it hides the vcs status icons of signify)
+  879  let g:syntastic_enable_signs = 0
+  880  " custom icons (enable them if you use a patched font, and enable the previous 
+  881  " setting)
+  882  "let g:syntastic_error_symbol = '✗'
+  883  "let g:syntastic_warning_symbol = '⚠'
+  884  "let g:syntastic_style_error_symbol = '✗'
+  885  "let g:syntastic_style_warning_symbol = '⚠'
+  886  " Python-mode ------------------------------
+  887  " don't use linter, we use syntastic for that
+  888  let g:pymode_lint_on_write = 0
+  889  let g:pymode_lint_signs = 0
+  890  " don't fold python code on open
+  891  let g:pymode_folding = 0
+  892  " don't load rope by default. Change to 1 to use rope
+  893  let g:pymode_rope = 0
+  894  " open definitions on same window, and custom mappings for definitions and
+  895  " occurrences
+  896  let g:pymode_rope_goto_definition_bind = ',d'
+  897  let g:pymode_rope_goto_definition_cmd = 'e'
+  898  nmap ,D :tab split<CR>:PymodePython rope.goto()<CR>
+  899  nmap ,o :RopeFindOccurrences<CR>
+  900  " NeoComplCache ------------------------------
+  901  " most of them not documented because I'm not sure how they work
+  902  " (docs aren't good, had to do a lot of trial and error to make 
+  903  " it play nice)
+  904  let g:neocomplcache_enable_at_startup = 1
+  905  let g:neocomplcache_enable_ignore_case = 1
+  906  let g:neocomplcache_enable_smart_case = 1
+  907  let g:neocomplcache_enable_auto_select = 1
+  908  let g:neocomplcache_enable_fuzzy_completion = 1
+  909  let g:neocomplcache_enable_camel_case_completion = 1
+  910  let g:neocomplcache_enable_underbar_completion = 1
+  911  let g:neocomplcache_fuzzy_completion_start_length = 1
+  912  let g:neocomplcache_auto_completion_start_length = 1
+  913  let g:neocomplcache_manual_completion_start_length = 1
+  914  let g:neocomplcache_min_keyword_length = 1
+  915  let g:neocomplcache_min_syntax_length = 1
+  916  " complete with workds from any opened file
+  917  let g:neocomplcache_same_filetype_lists = {}
+  918  let g:neocomplcache_same_filetype_lists._ = '_'
+  919  " TabMan ------------------------------
+  920  " mappings to toggle display, and to focus on it
+  921  let g:tabman_toggle = 'tl'
+  922  let g:tabman_focus  = 'tf'
+  923  " Autoclose ------------------------------
+  924  " Fix to let ESC work as espected with Autoclose plugin
+  925  let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+  926  " DragVisuals ------------------------------
+  927  " mappings to move blocks in 4 directions
+  928  vmap <expr> <S-M-LEFT> DVB_Drag('left')
+  929  vmap <expr> <S-M-RIGHT> DVB_Drag('right')
+  930  vmap <expr> <S-M-DOWN> DVB_Drag('down')
+  931  vmap <expr> <S-M-UP> DVB_Drag('up')
+  932  " mapping to duplicate block
+  933  vmap <expr> D DVB_Duplicate()
+  934  " Signify ------------------------------
+  935  " this first setting decides in which order try to guess your current vcs
+  936  " UPDATE it to reflect your preferences, it will speed up opening files
+  937  let g:signify_vcs_list = [ 'git', 'hg' ]
+  938  " mappings to jump to changed blocks
+  939  nmap <leader>sn <plug>(signify-next-hunk)
+  940  nmap <leader>sp <plug>(signify-prev-hunk)
+  941  " nicer colors
+  942  highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+  943  highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+  944  highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+  945  highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+  946  highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+  947  highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+  948  " Window Chooser ------------------------------
+  949  " mapping
+  950  nmap  -  <Plug>(choosewin)
+  951  " show big letters
+  952  let g:choosewin_overlay_enable = 1
+  953  " Airline ------------------------------
+  954  let g:airline_powerline_fonts = 0
+  955  let g:airline_theme = 'bubblegum'
+  956  let g:airline#extensions#whitespace#enabled = 0
+  957  " to use fancy symbols for airline, uncomment the following lines and use a
+  958  " patched font (more info on the README.rst)
+  959  "   let g:airline_symbols = {}
+  960  "endif
+  961  "let g:airline_left_sep = '⮀'
+  962  "let g:airline_left_alt_sep = '⮁'
+  963  "let g:airline_right_sep = '⮂'
+  964  "let g:airline_right_alt_sep = '⮃'
+  965  "let g:airline_symbols.branch = '⭠'
+  966  "let g:airline_symbols.readonly = '⭤'
+  967  "let g:airline_symbols.linenr = '⭡'
+  968  git clone https://github.com/fisadev/fisa-vim-config.git
+  969  apt-get install gimp
+  970  sudo apt-get install gimp
+  971  sudo apt-get install rawstudio
+  972  sudo apt-get install raw-studio
+  973  sudo apt-get install r-base
+  974  sudo apt-get remove skype skype-bin
+  975  sudo add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+  976  sudo dpkg --add-architecture i386
+  977  sudo apt-get update
+  978  sudo apt-get install skype
+  979  docker build -t tutum/apache-php .
+  980  mkdir tutum-apache
+  981  cd tutum-apache/
+  982  cd apache-php-master/
+  983  ls
+  984  docker build -t tutum/apache-php .
+  985  curl http://localhost/
+  986  curl 
+  987  curl http://localhost/
+  988  docker run -d -p 80:80 -e ALLOW_OVERRIDE=true tutum/apache-php
+  989  la
+  990  ls
+  991  ls sample/
+  992  vim sample/index.php 
+  993  htop
+  994  sudo reboot 
+  995  cd ..
+  996  cd 
+  997  cd Projects/jb_propiedades/
+  998  ls
+  999  cd deploy/
+ 1000  ls
+ 1001  touch Dockerfile
+ 1002  vim Dockerfile 
+ 1003  cd Projects/jb_propiedades/
+ 1004  cd deploy/
+ 1005  vim Dockerfile 
+ 1006  cd ~
+ 1007  cd Projects/jb_propiedades/
+ 1008  ls
+ 1009  cd deploy/
+ 1010  ls
+ 1011  emacs -nw Dockerfile 
+ 1012  htop
+ 1013  cd ~
+ 1014  git clone --recursive git://github.com/humitos/emacs-configuration.git .emacs.d
+ 1015  rm .emacs.d
+ 1016  rm -r .emacs.d
+ 1017  git clone --recursive git://github.com/humitos/emacs-configuration.git .emacs.d
+ 1018  cd vendor/helm
+ 1019  sudo apt-get install emacs exuberant-ctags git
+ 1020  cd .emacs.d/vendor/helm
+ 1021  make
+ 1022  ls
+ 1023  cd
+ 1024  cd Projects/
+ 1025  ls
+ 1026  cd doc
+ 1027  cd jb_propiedades/
+ 1028  cd d
+ 1029  cd docs/
+ 1030  ls
+ 1031  cd
+ 1032  cd Desktop/
+ 1033  ls
+ 1034  cd ..
+ 1035  cd Desca
+ 1036  cd Downloads/
+ 1037  ls
+ 1038  cd ..
+ 1039  cd Projects/jb_propiedades/
+ 1040  ls
+ 1041  cd docs/
+ 1042  ls
+ 1043  youtube-dl -f 18 https://www.youtube.com/watch?v=1OLyXJJPBSA
+ 1044  cd Music/
+ 1045  mkdir SIN_CATALOGAR
+ 1046  cd SIN_CATALOGAR/
+ 1047  youtube-dl --extract-audio mp3 https://www.youtube.com/watch?v=GaR0MXzBJo4 
+ 1048  youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=GaR0MXzBJo4 
+ 1049  youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=3jWRrafhO7M
+ 1050  cd ..
+ 1051  cd SIN_CATALOGAR/
+ 1052  terminator 
+ 1053  htop 
+ 1054  sudo add-apt-repository ppa:webupd8team/atom
+ 1055  sudo apt-get update
+ 1056  sudo apt-get install atom
+ 1057  cd 
+ 1058  cd Projects/jb_propiedades/
+ 1059  ls
+ 1060  cd deploy/
+ 1061  ls
+ 1062  cd
+ 1063  cd Projects/
+ 1064  git clone humitos/emacs-configuration
+ 1065  git clone https://github.com/marilynpi/jbsrur.git
+ 1066  cd jbsrur/
+ 1067  ls
+ 1068  ls -a
+ 1069  ls themes/
+ 1070  cd Projects/
+ 1071  ls
+ 1072  cd
+ 1073  vim .bashrc
+ 1074  xkill
+ 1075  cd jb_propiedades/
+ 1076  ls
+ 1077  cd deploy/
+ 1078  ls
+ 1079  vim Dockerfile 
+ 1080  ls
+ 1081  cd PR
+ 1082  cd Projects/
+ 1083  ls
+ 1084  cd jb_propiedades/
+ 1085  ñs
+ 1086  ls
+ 1087  cd ..
+ 1088  htop
+ 1089  cd jb_propiedades/
+ 1090  cd deploy/
+ 1091  vim Dockerfile 
+ 1092  ls
+ 1093  rm \#Dockerfile# 
+ 1094  ls
+ 1095  vim Dockerfile 
+ 1096  ls -a
+ 1097  vim Dockerfile 
+ 1098  rm ~/.vim/dirs/tmp/Dockerfile.swp
+ 1099  vim Dockerfile 
+ 1100  cd ..
+ 1101  mkdir deploy1/
+ 1102  cd deploy1/
+ 1103  touch docker-compose.yml
+ 1104  vim docker-compose.yml 
+ 1105  docker-compose up
+ 1106  cd ..
+ 1107  cd deploy
+ 1108  cd ..
+ 1109  cd deploy2
+ 1110  ls
+ 1111  docker-compose up 
+ 1112  docker-compose 
+ 1113  docker-compose -v
+ 1114  pip install docker-compose
+ 1115  docker-compose -v
+ 1116  sudo apt-get remove docker-compose
+ 1117  pip install docker-compose
+ 1118  docker-compose -v
+ 1119  pip install --upgrade pip
+ 1120  pip install docker-compose
+ 1121  curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+ 1122  sudo curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+ 1123  sudo curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > sudo /usr/local/bin/docker-compose
+ 1124  docker-compose -v
+ 1125  chmod +x /usr/local/bin/docker-compose
+ 1126  docker -v
+ 1127  cd ..
+ 1128  cd deploy1/
+ 1129  sudo apt-cache search docker-compose
+ 1130  sudo apt-get install docker-compose
+ 1131  docker-compose uo
+ 1132  docker-compose up
+ 1133  sudo apt-get -y install python-pip
+ 1134  sudo pip install docker-compose
+ 1135  sudo apt-get install ipaddress
+ 1136  pip install -U docker-compose
+ 1137  sudo apt-get install docutils
+ 1138  sudo apt-get install python-docutils
+ 1139  docker-compose up
+ 1140  cd Projects/jb_propiedades/
+ 1141  ls
+ 1142  sudo apt-get update
+ 1143  sudo apt-get install apt-transport-https ca-certificates
+ 1144  sudo apt autoremove
+ 1145  sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+ 1146  vim /etc/apt/sources.list.d/docker.list
+ 1147  sudo rm /etc/apt/sources.list.d/docker.list
+ 1148  sudo touch /etc/apt/sources.list.d/docker.list
+ 1149  vim /etc/apt/sources.list.d/docker.list
+ 1150  sudo vim /etc/apt/sources.list.d/docker.list
+ 1151  sudo apt-get update
+ 1152  sudo apt-get purge lxc-docker
+ 1153  apt-cache policy docker-engine
+ 1154  apt-get upgrade
+ 1155  sudo apt-get upgrade
+ 1156  pip uninstall docker-compose
+ 1157  sudo apt-get install docker-compose 
+ 1158  touch install.docker
+ 1159  vim install.docker 
+ 1160  chmod +x install.docker 
+ 1161  sudo ./install.docker 
+ 1162  sudo apt-get purge docker
+ 1163  sudo apt-get remove docker
+ 1164  docker
+ 1165  docker-compose 
+ 1166  docker-compose -v
+ 1167  curl -L https://github.com/docker/compose/releases/download/1.8.0-rc1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+ 1168  sudo curl -L https://github.com/docker/compose/releases/download/1.8.0-rc1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+ 1169  sudo apt-get update 
+ 1170  sudo apt-get upgrade
+ 1171  sudo apt-get dist-upgrade
+ 1172  cd Projects/
+ 1173  mkdir tutorial_angular
+ 1174  cd tut
+ 1175  cd tutorial_angular/
+ 1176  wget -c -r https://docs.angularjs.org/tutorial/step_00
+ 1177  ls
+ 1178  cd
+ 1179  cd Downloads/
+ 1180  ls
+ 1181  youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=3jWRrafhO7M
+ 1182  youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=xpr5fdbT-fM
+ 1183  youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=8LQQBqJuK44
+ 1184  cd
+ 1185  lsblk 
+ 1186  dd if=./ubuntu-mate-16.04-desktop-amd64.iso of=/dev/sdb bs=1M
+ 1187  sudo dd if=./ubuntu-mate-16.04-desktop-amd64.iso of=/dev/sdb bs=4M && sync
+ 1188  sudo apt-get install calibre
+ 1189  sudo apt autoremove
+ 1190  sudo apt-get install calibre
+ 1191  ls
+ 1192  cd Downloads/
+ 1193  ls
+ 1194  sudo apt-get install pv
+ 1195  lsblk -d
+ 1196  lsblk 
+ 1197  lsblk -d
+ 1198  lsblk 
+ 1199  pv ubuntu-gnome-16.04-desktop-amd64.iso | sudo dd bs=4M of=/dev/sdb sync
+ 1200  pv ubuntu-gnome-16.04-desktop-amd64.iso | sudo dd bs=4M of=/dev/sdb && sync
+ 1201  lsblk 
+ 1202  apt-get install gparted
+ 1203  sudo apt-get install gparted
+ 1204  gparted
+ 1205  sudo gparted
+ 1206  cd Downloads/
+ 1207  ls
+ 1208  cd /media/nercof/Elements/Yoga/
+ 1209  ls
+ 1210  cd Videos/
+ 1211  ls
+ 1212  youtube-dl -f 18 https://www.youtube.com/watch?v=NehRxXFO4lY
+ 1213  youtube-dl -f 18 https://www.youtube.com/watch?v=ZEhDJwDyj5g
+ 1214  cd Projects/jbsrur/
+ 1215  ls
+ 1216  cd themes/
+ 1217  ls
+ 1218  cd wp-angular/
+ 1219  ls
+ 1220  cd ~/Projects/jbsrur/
+ 1221  ls
+ 1222  sudo docker ps -a
+ 1223* docker rm deploy1_wordpress_db jbsrur_wordpress_db_b jbsrur_wordpress_1 silly_spence loving_curie adoring_leavitt suspicious_meitner dreamy_khorana jbsrur_application_1 jbsrur_phpmyadmin_1 condescending_meitne thirsty_poitras determined_mayer kickass_kare
+ 1224  docker ps -a
+ 1225  history 
+ 1226  docker ps -a
+ 1227  docker ps
+ 1228  docker images
+ 1229  sudo docker run --name wpdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wp -d mysql:5.7
+ 1230  docker ps
+ 1231  docker stop jbsrur_wordpress_db_1 deploy1_wordpress_db_1
+ 1232  docker  rm jbsrur_wordpress_db_1 deploy1_wordpress_db_1
+ 1233  docker build --name wp-angular .
+ 1234  docker build --help
+ 1235  docker build -t wp-angular .
+ 1236  docker image
+ 1237  docker images
+ 1238  docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD/wp-content":/var/www/html/wp-content --name wp-angular --link wpdb:mysql wp-angular
+ 1239  docker atach wp-angular bash
+ 1240  docker attach wp-angular bash
+ 1241  docker attach bash wp-angular
+ 1242  docker attach wp-angular
+ 1243  sudo ps
+ 1244  docker ps
+ 1245  docker ps -a
+ 1246  docker start wp-angular
+ 1247  docker ps
+ 1248* 
+ 1249  ls
+ 1250  docker rmi wp-angular b5af25258e0f b5af25258e0f b5af25258e0f
+ 1251  ls
+ 1252  docker images
+ 1253  docker rm wp-angular prickly_mestorf sick_cray amazing_yonath
+ 1254  docker ps
+ 1255  docker ps -a
+ 1256  cd /home/nercof/Projects/jbsrur
+ 1257  docker build -t wp-angular .
+ 1258  docker image
+ 1259  docker images
+ 1260  docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD/wp-content":/var/www/html/wp-content --name wp-angular --link wpdb:mysql wp-angular
+ 1261  docker ps
+ 1262  docker ps -a
+ 1263  docker rm wp-angular
+ 1264  docker rmi wp-angular
+ 1265  docker build -t wp-angular .
+ 1266  docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD":/var/www/html --name wp-angular --link wpdb:mysql wp-angular
+ 1267  docker ps
+ 1268  docker attach wp-angular
+ 1269  docker start wp-angular
+ 1270  docker attach wp-angular
+ 1271  docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD":/var/www/html --name wp-angular --link wpdb:mysql -t -i wp-angular
+ 1272  docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD":/var/www/html -t -i --name wp-angular --link wpdb:mysql  wp-angular
+ 1273  docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD":/var/www/html -t -i --name wp-angular1 --link wpdb:mysql  wp-angular
+ 1274  sudo docker exec -i -t wp-content /bin/bash
+ 1275  docker exec -i -t wp-angular /bin/bash
+ 1276  docker exec -i -t wp-angular1 /bin/bash
+ 1277  docker stop
+ 1278  docker stop wp-angular
+ 1279  docker rm wp-angular
+ 1280  docker rmi wp-angular
+ 1281  docker rm wp-angular1
+ 1282  docker stop wp-angular1
+ 1283  docker rm wp-angular1
+ 1284  docker rmi wp-angular
+ 1285  ls
+ 1286  cd ..
+ 1287  sudo chmod 777 jbsrur
+ 1288  ls
+ 1289  cd jbsrur
+ 1290  ls
+ 1291  ls -l
+ 1292  cd ..
+ 1293  sudo chmod -R 777 jbsrur
+ 1294  cd jbsrur
+ 1295  docker build -t wp-angular .
+ 1296  docker run -e WORDPRESS_DB_PASSWORD=root -d -p 127.0.0.2:8080:80 -v "$PWD"/wp-content:/var/www/html/wp-content -t -i --name wp-angular --link wpdb:mysql  wp-angular
+ 1297  docker ps
+ 1298  docker exec -i -t wp-angular /bin/bash
+ 1299  docker exec -i wpdb mysql -uroot -proot wp < db.sql
+ 1300  ls
+ 1301  history > history.txt

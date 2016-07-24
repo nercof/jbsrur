@@ -52,7 +52,7 @@ function _tk_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 		) ) );
-	
+
 	/**
 	 * Make theme available for translation
 	 * Translations can be filed in the /languages/ directory
@@ -109,14 +109,21 @@ function _tk_scripts() {
 
 	// load bootstrap wp js
 	wp_enqueue_script( '_tk-bootstrapwp', get_template_directory_uri() . '/includes/js/bootstrap-wp.js', array('jquery') );
-	
+
 	//Load angular
 	wp_enqueue_script('angularjs', get_template_directory_uri() .'/node_modules/angular/angular.min.js');
-	wp_enqueue_script('angularjs-route', get_template_directory_uri() .'/node_modules/angular-route/angular-route.min.js');
-	wp_enqueue_script('scripts', get_stylesheet_directory_uri() . '/js/scripts.js', array( 'angularjs', 'angularjs-route' ));
+
+	wp_enqueue_script(
+		'angular-ui-router',
+		get_template_directory_uri() .'node_modules/angular-ui-router/release/angular-ui-router.js');
+
+	wp_enqueue_script(
+		'scripts',
+		get_stylesheet_directory_uri() . '/js/jbsrurApp.js',
+		array( 'angularjs', 'angular-ui-router' ));
 
 	wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
-	
+
 	// With get_stylesheet_directory_uri()
 	wp_localize_script('scripts', 'localized',
         array(
