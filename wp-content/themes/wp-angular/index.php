@@ -14,12 +14,7 @@
 get_header();
 ?>
     <!-- MAIN CONTENT -->
+    <div ui-view="header"></div>
 
-    <div class="container">
-    <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
-    Index Level
-
-        <div ui-view></div>
-    </div>
 <?php /** get_sidebar(); **/ ?>
 <?php get_footer(); ?>
