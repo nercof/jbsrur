@@ -33,20 +33,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="site-header-inner col-sm-12">
-
-				<?php $header_image = get_header_image();
-				if ( ! empty( $header_image ) ) { ?>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-						<img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="">
-					</a>
-				<?php } // end if ( ! empty( $header_image ) ) ?>
-
-
 				<div class="site-branding">
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-					<p class="site-description lead"><?php bloginfo( 'description' ); ?></p>
 				</div>
-
 			</div>
 		</div>
 	</div><!-- .container -->
@@ -58,34 +46,38 @@
 		<div class="row">
 			<div class="site-navigation-inner col-sm-12">
 				<div class="navbar navbar-default">
-					<div class="navbar-header">
-						<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-							<span class="sr-only"><?php _e('Toggle navigation','_tk') ?> </span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
+						<div class="navbar-header">
+							<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+							<button data-target="#navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+								<span class="sr-only">Toggle navigation </span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
 
-						<!-- Your site title as branding in the menu -->
-						<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-					</div>
+							<!-- Your site title as branding in the menu -->
+							<a rel="home" title="jbsrur" href="http://jbsrur:8080/" class="navbar-brand">jbsrur</a>
+						</div>
 
-					<!-- The WordPress Menu goes here -->
-					<?php wp_nav_menu(
-						array(
-							'theme_location' 	=> 'primary',
-							'depth'             => 2,
-							'container'         => 'div',
-							'container_id'      => 'navbar-collapse',
-							'container_class'   => 'collapse navbar-collapse',
-							'menu_class' 		=> 'nav navbar-nav',
-							'fallback_cb' 		=> 'wp_bootstrap_navwalker::fallback',
-							'menu_id'			=> 'main-menu',
-							'walker' 			=> new wp_bootstrap_navwalker()
-						)
-					); ?>
-
+						<!-- The WordPress Menu goes here -->
+						<div class="collapse navbar-collapse" id="navbar-collapse" ng-controller="menuHeaderController" >
+							<ul class="nav navbar-nav" id="main-menu">
+								<li class="menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="item in items"
+								ng-class="{ 'menu-item-has-children': item.children, 'dropdown': item.children }">
+									<a title="{{item.title}}" ui-sref="{{item.state}}" ng-if="!item.children">{{item.title}}</a>
+									<a title="{{item.title}}" ng-if="item.children"
+									data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
+										{{item.title}}
+										<span class="caret"></span>
+									</a>
+									<ul role="menu" class=" dropdown-menu" ng-if="item.children">
+											<li class="menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="child in item.children">
+												<a ui-sref="{{child.state}}" title="{{child.title}}" >{{child.title}}</a>
+											</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
 				</div><!-- .navbar -->
 			</div>
 		</div>

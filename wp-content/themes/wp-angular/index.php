@@ -14,7 +14,7 @@
 get_header();
 ?>
     <!-- MAIN CONTENT -->
-    <div ui-view="header"></div>
+    <div ui-view="main"></div>
 
 <?php /** get_sidebar(); **/ ?>
 <?php get_footer(); ?>
