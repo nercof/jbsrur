@@ -117,10 +117,14 @@ function _tk_scripts() {
 		'angular-ui-router',
 		get_template_directory_uri() .'/node_modules/angular-ui-router/release/angular-ui-router.js');
 
+//    wp_enqueue_script(
+//	    'angular-underscore',
+//	    get_template_directory_uri() .'/node_modules/underscore/underscore.js');
+
 	wp_enqueue_script(
 		'scripts',
 		get_stylesheet_directory_uri() . '/js/jbsrur.app.js',
-		array( 'angularjs', 'angular-ui-router' ));
+		array( 'angularjs', 'angular-ui-router'));
 
 	wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
 

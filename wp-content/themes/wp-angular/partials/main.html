@@ -1,9 +1,9 @@
-<h1>main</h1>
+<h1>Slider Post destacados</h1>
 <ul>
-    <li ng-repeat="post in post">
-        {{post.name}}
-        :)
+    <li ng-repeat="post in posts">
+        {{post.slug}}
     </li>
-    :)
+    <li ng-repeat="img in media">
+        <img src={{img.source_url}}></img>
+    </li>
 </ul>
-:)
