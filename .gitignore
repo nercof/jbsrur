@@ -1,5 +1,8 @@
 *.log
 wp-config.php
-wp-content/languages/
-wp-content/upgrade/
+wp-content/uploads/
 wp-content/index.php
+wp-content/themes/twentysixteen/
+wp-content/themes/twentyfourteen/
+wp-content/themes/twentyfifteen/
+wp-content/themes/wp-angular/node_modules/
