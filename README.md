@@ -63,8 +63,11 @@ Exportar fichero desde el contenedor al localhost
 `docker cp <containerId>:/path/<file> /path-host/<file>`
 
 Agregar host
+
 - Agregar la siguiente línea en /etc/hosts
+
 `127.0.0.2       jbsrur`
 
 Acceder a la app
+
 `http://jbsrur:8080`
