@@ -14,7 +14,7 @@ Base de datos
 Se utiliza [(5.7/Dockerfile)](https://hub.docker.com/_/mysql/ " (5.7/Dockerfile)")
 
 
-`sudo docker run --name wpdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wp -d mysql:5.7` 
+`sudo docker run --name wpdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wp -d mysql:5.7`
 
 
 Front+Backend del sitio
@@ -44,7 +44,7 @@ Contenedores:
 
 `docker start wp-angular`
 
-Para acceder a una terminal del contenedor: 
+Para acceder a una terminal del contenedor:
 
 `docker exec -i -t wp-angular /bin/bash`
 
@@ -62,3 +62,9 @@ Exportar fichero desde el contenedor al localhost
 
 `docker cp <containerId>:/path/<file> /path-host/<file>`
 
+Agregar host
+- Agregar la siguiente línea en /etc/hosts
+`127.0.0.2       jbsrur`
+
+Acceder a la app
+`http://jbsrur:8080`
