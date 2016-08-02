@@ -146,6 +146,16 @@ function _tk_scripts() {
 		get_stylesheet_directory_uri() . '/app/components/main/main.controller.js',
 		array( 'core' ));
 
+	wp_enqueue_script(
+		'services',
+		get_stylesheet_directory_uri() . '/app/app.services.js',
+		array( 'app' ));
+
+	wp_enqueue_script(
+		'menu-service',
+		get_stylesheet_directory_uri() . '/app/services/menu.service.js',
+		array( 'services' ));
+
 	wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	// With get_stylesheet_directory_uri()
