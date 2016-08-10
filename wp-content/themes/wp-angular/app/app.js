@@ -5,6 +5,6 @@
     return $window._; // assumes underscore has already been loaded on the page
   }])
 
-  angular.module('jbsrurApp', ['ui.router','underscore', 'app.routes', 'app.core', 'app.services']);
+  angular.module('jbsrurApp', ['ui.router','underscore', 'app.routes', 'app.core', 'app.services', 'app.factories']);
   console.log('Load app');
 }());
