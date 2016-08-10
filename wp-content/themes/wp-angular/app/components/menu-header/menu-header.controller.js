@@ -2,13 +2,11 @@
 ;(function(){
   angular
     .module('app.core')
-    .controller('menuHeaderController', function($scope, menuService){
+    .controller('menuHeaderController', function($scope, menuFactory){
           $scope.items = [];
-          menuService.getHeader().then(function(response){
-            console.log('menuHeaderController', response.items);
+          menuFactory.getHeader().then(function(response){
             $scope.items = response.items;
           });
-
-          //$scope = menuService.get('2');
+        $scope.items = menuFactory.getHeader.items;
       });
 }());
