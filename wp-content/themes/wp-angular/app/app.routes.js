@@ -6,7 +6,6 @@
 
   function config ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
-    console.log('Load router');
     $stateProvider
       .state('home', {
         url: '/',
@@ -73,6 +72,15 @@
           }
         }
     })
+    .state('tokko', {
+      url: '/tokko',
+      views:{
+        "tokko":{
+             templateUrl: localized.views + "tokko.view.html",
+             controller: 'tokkoController'
+        }
+      }
+  })
     ;
   }
 }());

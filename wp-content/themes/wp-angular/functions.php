@@ -147,6 +147,11 @@ function _tk_scripts() {
 		array( 'core' ));
 
 	wp_enqueue_script(
+		'tokko',
+		get_stylesheet_directory_uri() . '/app/components/tokko/tokko.controller.js',
+		array( 'core' ));
+
+	wp_enqueue_script(
 		'services',
 		get_stylesheet_directory_uri() . '/app/app.services.js',
 		array( 'app' ));
@@ -155,6 +160,12 @@ function _tk_scripts() {
 		'wp-service',
 		get_stylesheet_directory_uri() . '/app/services/wp.service.js',
 		array( 'services' ));
+
+	wp_enqueue_script(
+		'tokko-service',
+		get_stylesheet_directory_uri() . '/app/services/tokko.service.js',
+		array( 'services' ));
+
 	wp_enqueue_script(
 		'factories',
 		get_stylesheet_directory_uri() . '/app/app.factories.js',
@@ -167,10 +178,16 @@ function _tk_scripts() {
 		'postFactory',
 		get_stylesheet_directory_uri() . '/app/factories/post.factory.js',
 		array( 'factories', 'wp-service' ));
+
 	wp_enqueue_script(
 		'mediaFactory',
 		get_stylesheet_directory_uri() . '/app/factories/media.factory.js',
 		array( 'factories', 'wp-service' ));
+
+	wp_enqueue_script(
+			'tokkoFactory',
+			get_stylesheet_directory_uri() . '/app/factories/tokko.factory.js',
+			array( 'factories', 'wp-service' ));
 
 	wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
 
