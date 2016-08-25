@@ -161,7 +161,19 @@
         return data;
       });
     }
-
+    /**
+ * @memberof NgMap
+ * @function setDefaultOptions
+ * @param {Hash} options
+ * @example
+ *  app.config(function(NgMapProvider) {
+ *    NgMapProvider.setDefaultOptions({
+ *      marker: {
+ *        optimized: false
+ *      }
+ *    });
+ *  });
+ */
     function getPropertys(id) {
       var url = TOKKO_PROPERTY;
       url = url.replace('{id}', id);

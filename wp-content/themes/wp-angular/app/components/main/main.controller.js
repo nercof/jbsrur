@@ -2,7 +2,8 @@
 ;(function(){
   angular
     .module('app.core')
-    .controller('mainController', function($scope, $location, $http, _){
+    .controller('mainController', function($scope, $location, $http, _){})
+/*
       var init = function() {
         console.log('Load mainController');
         _.keys($scope);
@@ -46,7 +47,7 @@
       //  console.log(tests); //Tenemos vacio el valor.
         _.each(tests, function(test, index, tests) {
         //  console.log('test: ' + test);
-        });
-    })
+      });
+    })*/
   ;
 }());

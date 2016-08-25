@@ -1,6 +1,6 @@
 'use strict';
 
-angular.
+angular
 .module('app.factories')
 .factory('Barrio', ['$resource',
         function($resource) {

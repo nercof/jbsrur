@@ -123,7 +123,7 @@ function _tk_scripts() {
 
     wp_enqueue_script(
         'ng-map',
-        get_template_directory_uri() .'/node_modules/ng-map.min.js');
+        get_template_directory_uri() .'/node_modules/ngmap/build/scripts/ng-map.js');
 
     wp_enqueue_script(
         'app',
