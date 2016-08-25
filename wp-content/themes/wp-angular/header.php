@@ -18,7 +18,7 @@
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-
+	<script src="http://maps.google.com/maps/api/js"></script>
     <?php wp_head(); ?>
 <!-- Inicio: Incorporamos los script_name -->
 <!-- JS (load angular, ui-router, and our custom js file) -->

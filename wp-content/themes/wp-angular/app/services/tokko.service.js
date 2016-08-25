@@ -13,9 +13,38 @@ angular
     function tokkoService($http, $log, TOKKO_KEY) {
         console.log('tokkoService');
 
-        var data = {};
-        data.tokko_key = TOKKO_KEY;
-        console.log(TOKKO_KEY);
+        var data = {
+              'getRequest': getRequest
+            };
+
+            function getRequest(url, tag, key) {
+          var requestUrl = url + tag ;
+          console.log('tokkoService + requestUrl: ' + requestUrl);
+          console.log('tokkoService->getRequest->TOKKO_KEY: ' + key);
+
+          return $http({
+        'url': requestUrl,
+        'method': 'GET',
+        'data': '',
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': key,
+            'Accept': 'application/json',
+        },
+        'cache': true
+      }).then(function(response){
+        console.log("Auth.signin.success!");
+        console.log("Response: ");
+        console.log(response.data);
+        return response.data;
+      }).catch(dataServiceError);
+    }
+
+    function dataServiceError(errorResponse) {
+        $log.error('XHR Failed for ShowService - Tokko Service');
+        $log.error(errorResponse);
+        return errorResponse;
+    }
         return data;
     }
 })();
