@@ -36,8 +36,9 @@
     TOKKO_DEVELOPMENT_TYPE,
     TOKKO_LOCATION,
     TOKKO_PROPERTY,
-    $window){
-
+    $window
+    ){
+    console.log('Load tokko.factory.js');
     var lang = "";
     var data = {
       'listStates':  listStates,
@@ -161,19 +162,7 @@
         return data;
       });
     }
-    /**
- * @memberof NgMap
- * @function setDefaultOptions
- * @param {Hash} options
- * @example
- *  app.config(function(NgMapProvider) {
- *    NgMapProvider.setDefaultOptions({
- *      marker: {
- *        optimized: false
- *      }
- *    });
- *  });
- */
+
     function getPropertys(id) {
       var url = TOKKO_PROPERTY;
       url = url.replace('{id}', id);

@@ -1,0 +1,7 @@
+{
+  "operation_name": [
+      {"id": "1", "name": "Venta"},
+      {"id": "2", "name": "Alquiler"},
+      {"id": "3", "name": "Alquiler Temporario"}
+  ]
+}

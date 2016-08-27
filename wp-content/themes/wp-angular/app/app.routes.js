@@ -77,7 +77,7 @@
       views:{
         "tokko":{
              templateUrl: localized.views + "tokko.view.html",
-             controller: 'tokkoController'
+             controller: 'tokkoController as vm'
         }
       }
   })

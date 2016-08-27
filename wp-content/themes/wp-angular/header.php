@@ -18,7 +18,8 @@
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-	<script src="http://maps.google.com/maps/api/js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDrl-z2weSfa5LQl34kkacL2ucsPhrNrgU"
+type="text/javascript"></script>
     <?php wp_head(); ?>
 <!-- Inicio: Incorporamos los script_name -->
 <!-- JS (load angular, ui-router, and our custom js file) -->

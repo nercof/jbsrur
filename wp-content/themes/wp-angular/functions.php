@@ -125,10 +125,14 @@ function _tk_scripts() {
         'ng-map',
         get_template_directory_uri() .'/node_modules/ngmap/build/scripts/ng-map.js');
 
+        wp_enqueue_script(
+    			'angular-resource',
+    			get_template_directory_uri() .'/node_modules/angular-resource/angular-resource.js');
+
     wp_enqueue_script(
         'app',
         get_stylesheet_directory_uri() . '/app/app.js',
-        array( 'angularjs', 'angular-ui-router', 'underscore' ));
+        array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map', 'angular-resource'));
 
     wp_enqueue_script(
         'routes',
@@ -194,11 +198,12 @@ function _tk_scripts() {
         array( 'factories', 'wp-service' ));
 
     wp_enqueue_script(
-        'barrioFactory',
-        get_stylesheet_directory_uri() . '/app/factories/barrio.factory.js',
-        array( 'factories', 'wp-service' ));
+        'resourceFactory',
+        get_stylesheet_directory_uri() . '/app/factories/resource.factory.js',
+        array( 'factories', 'tokko-service' , 'tokkoFactory'));
 
     wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
+
 
     // With get_stylesheet_directory_uri()
     wp_localize_script('app', 'localized',

@@ -6,12 +6,12 @@
         .controller('tokkoController', tokkoController);
 
 
-    function tokkoController($scope, tokkoFactory, tokkoService, NgMap) {
+    function tokkoController($scope, tokkoFactory, tokkoService, NgMap, resourceFactory) {
         /**
          * @see: angular.extend
          *
          */
-        console.log('Starting tokkoController ...');
+        console.log('Load tokko.controller.js');
         var vm = this;
         vm.titleForm = "Encuentre su propiedad:";
         vm.titleFrame = "";
@@ -21,15 +21,16 @@
         vm.tokko_property_type = {};
         vm.tokko_development = {};
         vm.tokko_property_custom_tags = {}
-        vm.tokko_operation_name = []
+        vm.tokko_operation_name = {}
         vm.tokko_currency = []
         vm.tokko_dormitorios = []
         vm.tokko_location = {}
         vm.propiedades = {}
         vm.codigoPropiedad = '';
+        vm.barriosXzona = {};
 
         NgMap.getMap().then(function(map) {
-            console.log('map', map);
+            //console.log('map', map);
             vm.map = map;
         });
 
@@ -84,15 +85,22 @@
             "videos": [],
             "web_price": false,
             "zonification": ""
-        }
+        };
 
-        activate(tokkoService, vm);
+        activate(vm);
 
-        function activate(tokkoService, vm) {
+        function activate(vm) {
 
-            vm.tokko_operation_name = ["Venta", "Alquiler", "Alquiler Temporario"]
-            vm.tokko_currency = ["ARS", "USD"]
-            vm.tokko_dormitorios = ['1', '2', '3', '4', '5', '+5']
+            vm.barriosXzona = resourceFactory.query({id:'barrios_cba.json'});
+            vm.tokko_operation_name = resourceFactory.query({id:'tokko.data.json'});
+
+            console.log(vm.barriosXzona);
+            console.log(vm.tokko_operation_name);
+
+            vm.tokko_prices = [30000, 50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 1000000, 2000000, 3000000, 4000000, 5000000]
+
+            vm.tokko_currency = ["ARS", "USD"];
+            vm.tokko_dormitorios = ['1', '2', '3', '4', '5', '+5'];
 
             tokkoFactory.getState().then(function(response) {
                 vm.tokko_state = response.objects;
@@ -115,16 +123,10 @@
             });
 
             vm.tokko_location = {}
-            vm.tokko_prices = [30000, 50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 1000000, 2000000, 3000000, 4000000, 5000000]
-                // VER
-                // http://www.tokkobroker.com/api/v1/development/?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7
-                // TokkoSearch
-
         }
 
         vm.searchLocation = function() {
             tokkoFactory.getLocation(this.ciudad.id).then(function(response) {
-                console.log(response.divisions);
                 vm.tokko_location = response.divisions;
             });
         }
