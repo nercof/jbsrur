@@ -53,6 +53,49 @@ body {
 	color: #FAF3DD;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
+	font-size: 1.1em;
+	-ms-transform: scale(1, 1); /* IE 9 */
+    -webkit-transform: scale(1, 1); /* Safari */
+    transform: scale(1, 1);
+}
+#jbsrur-nav a:hover {
+	-ms-transform: scale(1.1, 1.1); /* IE 9 */
+    -webkit-transform: scale(1.1, 1.1); /* Safari */
+    transform: scale(1.1, 1.1);
+}
+#jbsrur-nav .open > a,
+#jbsrur-nav .open > a:focus {
+	background-color: transparent;
+}
+#jbsrur-nav .sub-menu-item a {
+	color: #DF0A1F;
+	padding: 0;
+	padding-bottom: 5px;
+	white-space: normal;
+	border-bottom: #FAF3DD solid 3px;
+}
+#jbsrur-nav .sub-menu-item a:hover,
+#jbsrur-nav .sub-menu-item a:focus {
+	-ms-transform: scale(1, 1); /* IE 9 */
+    -webkit-transform: scale(1, 1); /* Safari */
+    transform: scale(1, 1);
+	background: #FAF3DD;
+	border-bottom: #DF0A1F solid 3px;
+}
+#jbsrur-nav .dropdown-menu {
+	background-color: #FAF3DD;
+	width: 410px;
+	float: none;
+	top: 75px;
+	left: -130px;
+	border-radius: 0;
+	border: none;
+}
+#jbsrur-nav .dropdown-menu li{
+	display: inline-block;
+	width: 200px;
+	float: none;
+	padding: 1em 1.5em;
 }
 #jbsrur-nav .nav{
 	margin: 15px 0;

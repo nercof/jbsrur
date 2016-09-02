@@ -2,11 +2,26 @@
 ;(function(){
   angular
     .module('app.core')
-    .controller('menuHeaderController', function($scope, menuFactory){
-          $scope.items = [];
+    .controller('menuHeaderController', function($scope, menuFactory, _){
+        getMenuItems();
+
+        //#search
+
+        function getMenuItems() {
           menuFactory.getHeader().then(function(response){
             $scope.items = response.items;
+            setSearchIcon();
+            console.log($scope.items);
           });
-        $scope.items = menuFactory.getHeader.items;
+        }
+
+        function setSearchIcon() {
+            _.each($scope.items, function(e, i){
+              if(e.url === '#search'){
+                e.icon = 'fa-search';
+                e.title = '';
+              }
+            });
+        }
       });
 }());

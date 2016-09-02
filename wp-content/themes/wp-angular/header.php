@@ -65,14 +65,16 @@ type="text/javascript"></script>
 							<ul class="nav navbar-nav" id="main-menu">
 								<li class="menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="item in items"
 								ng-class="{ 'menu-item-has-children': item.children, 'dropdown': item.children }">
-									<a title="{{item.title}}" ui-sref="{{item.state}}" ng-if="!item.children">{{item.title}}</a>
+									<a title="{{item.title}}" ui-sref="{{item.state}}" ng-if="!item.children">{{item.title}}
+										<i class="fa {{item.icon}}" ng-if="item.icon"></i>
+									</a>
 									<a title="{{item.title}}" ng-if="item.children"
 									data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">
 										{{item.title}}
 										<span class="caret"></span>
 									</a>
 									<ul role="menu" class=" dropdown-menu" ng-if="item.children">
-											<li class="menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="child in item.children">
+											<li class="menu-item sub-menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="child in item.children">
 												<a ui-sref="{{child.state}}" title="{{child.title}}" >{{child.title}}</a>
 											</li>
 									</ul>
