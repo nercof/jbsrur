@@ -46,7 +46,7 @@ type="text/javascript"></script>
 	<div class="container">
 		<div class="row">
 			<div class="site-navigation-inner col-sm-12">
-				<div class="navbar navbar-default">
+				<div class="navbar navbar-default" id="jbsrur-nav">
 						<div class="navbar-header">
 							<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
 							<button data-target="#navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
@@ -57,7 +57,7 @@ type="text/javascript"></script>
 							</button>
 
 							<!-- Your site title as branding in the menu -->
-							<a rel="home" title="jbsrur" href="http://jbsrur:8080/" class="navbar-brand">jbsrur</a>
+							<a rel="home" title="jbsrur" href="http://jbsrur:8080/" class="navbar-brand logo"></a>
 						</div>
 
 						<!-- The WordPress Menu goes here -->

@@ -37,3 +37,40 @@
  * Try with giving the .container class just a background colour and have a look. ;)
  */
 .container { padding: 0 15px 15px 15px; }
+
+/* JBSRUR */
+@import 'https://fonts.googleapis.com/css?family=Lato|Montserrat';
+
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+#jbsrur-nav {
+	background-color: #DF0A1F;
+	height: 90px;
+}
+#jbsrur-nav a {
+	color: #FAF3DD;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+}
+#jbsrur-nav .nav{
+	margin: 15px 0;
+}
+#jbsrur-nav .nav li{
+    text-align: center;
+    word-wrap: normal;
+}
+#jbsrur-nav .nav .caret{
+	margin: auto;
+	text-align: center;
+	display: block;
+	margin-top: 5px;
+}
+#jbsrur-nav .logo{
+	background-image: url('../images/logo.png');
+	height: 70px;
+    width: 180px;
+	margin: 10px 20px;
+	background-size: contain;
+}
