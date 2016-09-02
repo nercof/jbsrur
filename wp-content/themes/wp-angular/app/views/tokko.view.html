@@ -8,73 +8,94 @@
     <div class="form-inline">
 
      <!-- TIPO DE OPERACION --------------------------------------------------->
+     <!-- http://ngmodules.org/modules/angular-bootstrap-checkbox -->
      <div class="checkbox checkbox-primary">
-      <label ng-repeat="operation in vm.tokko_operation_name">
+     <label ng-repeat="operacion in vm.tokko_data.operaciones">
        <input type="checkbox"
-              name="selectedOperation[]"
-              value="{{operation.name}}"
-              ng-checked="selection.indexOf(operation) > -1"
-              ng-click="toggleSelection(operation)" />
-              {{operation.name}}
+         name="selectedOperacion[]"
+         value="{{operacion.name}}"
+         ng-model="operacion.state"
+        />
+        {{operacion.name}}
      </label>
      </div>
+     </span>
+
      <!-- TIPO DE PROPIEDAD --------------------------------------------------->
      <select class="form-control" name="property_typeSelection" ng-model="vm.tokko_property_type.id" ng-selected="vm.tokko_property_type" ng-options="property_type.name for property_type in vm.tokko_property_type track by property_type.id">
      <option value="" disabled selected hidden>Tipo de Propiedad</option>
      </select>
 
      <!-- DORMITORIOS --------------------------------------------------->
-     <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="vm.tokko_dormitorios">
+     <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="vm.tokko_dormitorios.selected">
       <option value="" disabled selected hidden>Dormitorios</option>
       <option ng-repeat="dormitorio in vm.tokko_dormitorios"
               value="{{dormitorio}}">{{dormitorio}}</option>
     </select>
 
-     <!-- PROVINCIA --------------------------------------------------->
-     <select class="form-control" name="stateSelection" ng-model="vm.tokko_state.id" ng-selected="state" ng-options="state.name for state in vm.tokko_state track by state.id">
+    <!-- PROVINCIA --------------------------------------------------->
+    <!--
+    <select class="form-control" name="stateSelection" ng-model="vm.tokko_state.id" ng-selected="state" ng-options="state.name for state in vm.tokko_state track by state.id">
     <option value="" disabled selected hidden>Provincia</option>
+    -->
 
     <!-- CIUDAD --------------------------------------------------->
-    <!-- vm.tokko_state.id.divisions.id -->
+    <!--
     </select>
-     <select class="form-control" name="citySelect" ng-model="vm.ciudad" ng-selected="city" ng-change="vm.searchLocation()" ng-options="city.name for city in vm.tokko_state.id.divisions track by city.id">
+    <select class="form-control" name="citySelect" ng-model="vm.ciudad" ng-selected="city" ng-change="vm.searchLocation()" ng-options="city.name for city in vm.tokko_state.id.divisions track by city.id">
     <option value="" disabled selected hidden>Ciudad</option>
     </select>
+    -->
 
+     <!-- ZONAS --------------------------------------------------->
+     <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="vm.barriosXzona.id">
+     <option value="" disabled selected hidden>Zonas</option>
+     <option ng-repeat="zona in vm.barriosXzona"
+             value="{{zona.name}}">{{zona.name}}</option>
+     </select>
+     <br>
      <!-- BARRIO --------------------------------------------------->
-     <select class="form-control" name="barrioSelect" ng-model="vm.tokko_location.id" ng-selected="barrio" ng-options="barrio.name for barrio in vm.tokko_location track by barrio.id">
-    <option value="" disabled selected hidden>Barrio</option>
+     <!--
+     <select class="form-control" name="barrioSelect"
+             ng-model="vm.tokko_location.id"
+             ng-selected="barrio"
+             ng-options="barrio.name for barrio in vm.tokko_location track by barrio.id">
+     <option value="" disabled selected hidden>Barrio</option>
+     </select>
+     -->
+     <select class="form-control" name="repeatSelect" id="barrioSelect" ng-model="vm.barriosXzona.sel_barrio">
+     <option value="" disabled selected hidden>Barrio</option>
+     <option ng-repeat="barrio in vm.barriosXzona.id.barrios">
+             value="{{barrio.name}}">{{barrio.name}}</option>
+     </select>
+     <br>
+     Selecciono:
+     {{vm.barriosXzona.sel}}
 
-    <!-- BUSQUEDA --------------------------------------------------->
-    </select>
+     <!-- BUSQUEDA --------------------------------------------------->
      <input class="form-control" type="text" placeholder="Buscar x código" ng-model="vm.codigoPropiedad" />
-
      <button class="btn btn-default" ng-click="vm.searchTokko()">
      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar</button>
-
-
      <!-- Resultado masivo -->
-     <div ng-show="vm.codigoPropiedad == null">
-      <li class="list-group-item" ng-repeat="propiedad in vm.propiedades">
-       {{propiedad.address}}
+
+
+      <li class="list-group-item" ng-repeat="propiedad in vm.propiedades.objects">
+       {{propiedad.public_url}}
+       <!--
        <a href="" ng-click="vm.detallePropiedad()">
         <i class="glyphicon glyphicon-remove pull-right"></i>
        </a>
+       -->
       </li>
-     </div>
-
-
-
      <!-- Resultado x codigo -->
+     <!--
      <div class="row">
       <div class="col-sm-6 col-md-4">
        <div class="thumbnail">
+        <div ng-show="{{vm.propiedad}} != null">
 
-        <div ng-show="vm.propiedad != null">
-
-         <!--
          <img ng-src="{{vm.propiedad.photos[0].image}}" class="thumbnail"> <br/>
-         -->
+
          <ng-map center="{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}" zoom="15" zoom-control="true" default-style="true">
           <marker position="[{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}]" title="{{vm.propiedad.location.name}}" on-click="vm.showDetail()">
           </marker>
@@ -100,14 +121,23 @@
            </a>
          </div>
         </div>
+
        </div>
+
       </div>
      </div>
-
+-->
     </div>
     <!-- End div panel-heading       -->
    </div>
    <!-- End div panel panel-default -->
   <!-- </div> -->
   <!-- End div controller-->
+  <nav aria-label="...">
+  <ul class="pager">
+    <li><a href="#">Previous</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
+</nav>
+
 </ul>

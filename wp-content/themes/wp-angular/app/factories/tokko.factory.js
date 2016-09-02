@@ -16,10 +16,12 @@
   .constant('DEVELOPMENTS', 'development/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
   .constant('TOKKO_PROPERTY_CUSTOM_TAG', 'property_custom_tag/')
   .constant('TOKKO_DEVELOPMENT_TYPE', '/api/v1/development_type/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_PROPERTY', "property/{id}/?lang=es_ar&?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7");
+  .constant('TOKKO_PROPERTY', 'property/{id}/?lang=es_ar&?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+  .constant('TOKKO_SEARCH', 'property/search/?format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7');
   ;
 
   // @see:http://tokkobroker.com/api/playground
+  // GET /api/v1/property/search
 
   function dataFactory(tokkoService,
     BASE_TOKKO,
@@ -36,10 +38,12 @@
     TOKKO_DEVELOPMENT_TYPE,
     TOKKO_LOCATION,
     TOKKO_PROPERTY,
+    TOKKO_SEARCH,
     $window
     ){
     console.log('Load tokko.factory.js');
     var lang = "";
+
     var data = {
       'listStates':  listStates,
       'getState': getState,
@@ -49,6 +53,23 @@
       'getPropertyCustomTags': getPropertyCustomTags,
       'getLocation': getLocation,
       'getProperty': getProperty,
+      'getProperties': getProperties,
+    }
+
+    // Model Schema to search in Tokko.
+    var data_tokko = {
+      "price_to": 0,                  //"int",
+      "current_localization_type": "",//"string",
+      "current_localization_id": [],  //"List",
+      "without_tags": [],             //"list",
+      "currency": "",                 //"String",
+      "with_custom_tags": [],         //"list",
+      "without_custom_tags": "",      //"list",
+      "operation_types": "",          //"list",
+      "with_tags": [],                //"list",
+      "filter": [],                   //"list",
+      "price_from": 0,                //"int",
+      "property_types": [],           //"list"
     }
 
     function listStates() {
@@ -78,9 +99,11 @@
     }
 
     /*
-    * 'property_type/?limit=999&lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7'
+    * @FIXME: Excluir las que NO sean "tipo_propiedad", para no enviar algunas
+    * que no tienen relacion como CN- Cama Nautica.
     *
-    *
+    * "tipo_propiedad":[Indistinto, Terreno, Departamento, Departamento a Estrenar
+    *  Casa, Quinta, Oficina, Local, Edificio Comercial, Campo, Cochera, Depósito  ]
     */
     function getPropertyType(id) {
       return getPropertyTypes(id).then(function(data){
@@ -125,10 +148,10 @@
       //console.log('getPropertyCustomTagsAll url: ' + url);
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
-
     /*
     * Obtengo el lenguaje del navegador.
     *
+
     */
     function getCurrentLang(){
       lang = $window.navigator.language || $window.navigator.userLanguage;
@@ -168,6 +191,53 @@
       url = url.replace('{id}', id);
       console.log('PROPIEDAD A BUSCAR: ' + url);
       console.log('URL: ' + BASE_TOKKO + url);
+      return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
+    }
+    /**
+     *
+     * Para hacer una búsqueda el campo data podemos usar los siguientes
+     * parametros:
+     *
+     * @use: data_tokko
+     */
+
+    function getProperties(params) {
+      var url = '';
+      var aux = "";
+      var data_test = {
+        current_localization_id:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],
+        current_localization_type:"division",
+        price_from:0,
+        price_to:4500000,
+        operation_types:[1,2,3],
+        property_types:[1,2,3,4,5,6,7],
+        currency:"USD",
+        filters:[],
+        with_tags:[],
+        without_tags:[]
+      };
+
+      //{"current_localization_id":[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],"current_localization_type":"division","price_from":0,"price_to":4500000,"operation_types":[1,2,3],"property_types":[1,2,3,4,5,6,7],"currency":"USD","filters":[],"with_tags":[],"without_tags":[]}
+      var aux = JSON.stringify(data_test);
+      console.log(typeof data_test);
+      /*aux = aux.replace('}', '%7D');
+      aux = aux.replace('{', '%7B');
+      aux = aux.replace(/"/g,'%2C');*/
+
+      //url ="property/search/?format=json&data=%7B%22current_localization_id%22:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],%22current_localization_type%22:%22division%22,%22price_from%22:0,%22price_to%22:4500000,%22operation_types%22:[1,2,3],%22property_types%22:[1,2,3,4,5,6,7],%22currency%22:%22USD%22,%22filters%22:[],%22with_tags%22:[],%22without_tags%22:[]%7D&key=8fe7f17376761bada8524d0a75c8937f8a4517b7";
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      console.log('QUERY URL searchTokko:');
+      console.log(aux);
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      var url = TOKKO_SEARCH;
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      console.log('URL searchTokko:');
+      console.log(url);
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      url = url.replace('tokko_query', aux);
+      console.log('URL final:');
+      console.log(url);
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
 
