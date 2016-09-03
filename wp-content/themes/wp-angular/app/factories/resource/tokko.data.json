@@ -1,7 +1,20 @@
 {
-  "operation_name": [
+  "operaciones": [
       {"id": "1", "name": "Venta"},
-      {"id": "2", "name": "Alquiler"},
-      {"id": "3", "name": "Alquiler Temporario"}
+      {"id": "2", "name": "Alquiler"}
+  ],
+  "tipos_propiedad": [
+      {"id": "0", "name": "Indistinto"},
+      {"id": "1", "name": "Terreno"},
+      {"id": "2", "name": "Departamento"},
+      {"id": "dpto_estrenar", "name": "Departamento a Estrenar"},
+      {"id": "3", "name": "Casa"},
+      {"id": "4", "name": "Quinta"},
+      {"id": "5", "name": "Oficina"},
+      {"id": "7", "name": "Local"},
+      {"id": "8", "name": "Edificio Comercial"},
+      {"id": "9", "name": "Campo"},
+      {"id": "10", "name": "Cochera"},
+      {"id": "14", "name": "Depósito"}
   ]
 }
