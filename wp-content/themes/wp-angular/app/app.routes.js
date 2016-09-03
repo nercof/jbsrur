@@ -85,7 +85,7 @@
   .state('tokko-result', {
     url: '/tokko-result',
     views:{
-      "tokko":{
+      "tokko-result":{
            templateUrl: localized.tokko + "tokko-search-result.html",
            controller: 'tokkoController as vm'
       },
