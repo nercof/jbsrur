@@ -1,119 +1,106 @@
 /*
- *
- * Here are a few needed CSS additions to integrate bootstrap truly into WordPress,
- * We kept this slim as possible. Try to avoid any overwriting if not really needed.
- */
-
-
+*
+* Here are a few needed CSS additions to integrate bootstrap truly into WordPress,
+* We kept this slim as possible. Try to avoid any overwriting if not really needed.
+*/
 /* First fixing the dropdown menu.
- * Most stuff is handled by the walker, but some styles need to be added too.
- * Here we are removing the ">" from the original bootstrap styles, so it works for 2nd and 3rd level dropdown too..
- * (actually not cool to use more than 1 level dropdown, but if YOU or your users want to do this, it won't break the layout now ;)  */
+* Most stuff is handled by the walker, but some styles need to be added too.
+* Here we are removing the ">" from the original bootstrap styles, so it works for 2nd and 3rd level dropdown too..
+* (actually not cool to use more than 1 level dropdown, but if YOU or your users want to do this, it won't break the layout now ;)  */
+@import "https://fonts.googleapis.com/css?family=Lato|Montserrat";
 .dropdown-menu li a {
-	display: block;
-	padding: 3px 20px;
-	clear: both;
-	font-weight: normal;
-	line-height: 1.428571429;
-	color: #333;
-	white-space: nowrap;
-}
-.dropdown-menu li a:hover,
-.dropdown-menu li a:focus {
-	color: #ffffff;
-	text-decoration: none;
-	background-color: #357ebd;
-	background-image: -webkit-gradient(linear, left 0%, left 100%, from(#428bca), to(#357ebd));
-	background-image: -webkit-linear-gradient(top, #428bca, 0%, #357ebd, 100%);
-	background-image: -moz-linear-gradient(top, #428bca 0%, #357ebd 100%);
-	background-image: linear-gradient(to bottom, #428bca 0%, #357ebd 100%);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);
-}
-.dropdown-menu ul { list-style: none; }
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #333;
+  white-space: nowrap; }
+.dropdown-menu ul {
+  list-style: none; }
 
 /* Some modified padding for the bootstrap container.
- * Now you can make many styles of design easily.
- * Try with giving the .container class just a background colour and have a look. ;)
- */
-.container { padding: 0 15px 15px 15px; }
+* Now you can make many styles of design easily.
+* Try with giving the .container class just a background colour and have a look. ;)
+*/
+.container {
+  padding: 0 15px 15px 15px; }
 
 /* JBSRUR */
-@import 'https://fonts.googleapis.com/css?family=Lato|Montserrat';
-
 body {
-	font-family: 'Lato', sans-serif;
-}
-
-#jbsrur-nav {
-	background-color: #DF0A1F;
-	height: 90px;
-}
-#jbsrur-nav a {
-	color: #FAF3DD;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: bold;
-	font-size: 1.1em;
-	-ms-transform: scale(1, 1); /* IE 9 */
-    -webkit-transform: scale(1, 1); /* Safari */
-    transform: scale(1, 1);
-}
-#jbsrur-nav a:hover {
-	-ms-transform: scale(1.1, 1.1); /* IE 9 */
-    -webkit-transform: scale(1.1, 1.1); /* Safari */
-    transform: scale(1.1, 1.1);
-}
-#jbsrur-nav .open > a,
-#jbsrur-nav .open > a:focus {
-	background-color: transparent;
-}
-#jbsrur-nav .sub-menu-item a {
-	color: #DF0A1F;
-	padding: 0;
-	padding-bottom: 5px;
-	white-space: normal;
-	border-bottom: #FAF3DD solid 3px;
-}
-#jbsrur-nav .sub-menu-item a:hover,
-#jbsrur-nav .sub-menu-item a:focus {
-	-ms-transform: scale(1, 1); /* IE 9 */
-    -webkit-transform: scale(1, 1); /* Safari */
-    transform: scale(1, 1);
-	background: #FAF3DD;
-	border-bottom: #DF0A1F solid 3px;
-}
-#jbsrur-nav .dropdown-menu {
-	background-color: #FAF3DD;
-	width: 410px;
-	float: none;
-	top: 75px;
-	left: -130px;
-	border-radius: 0;
-	border: none;
-}
-#jbsrur-nav .dropdown-menu li{
-	display: inline-block;
-	width: 200px;
-	float: none;
-	padding: 1em 1.5em;
-}
-#jbsrur-nav .nav{
-	margin: 15px 0;
-}
-#jbsrur-nav .nav li{
-    text-align: center;
-    word-wrap: normal;
-}
-#jbsrur-nav .nav .caret{
-	margin: auto;
-	text-align: center;
-	display: block;
-	margin-top: 5px;
-}
-#jbsrur-nav .logo{
-	background-image: url('../images/logo.png');
-	height: 70px;
-    width: 180px;
-	margin: 10px 20px;
-	background-size: contain;
-}
+  font-family: "Lato", sans-serif;
+  background-image: url("../images/bg.png"); }
+  body #masthead {
+    height: 5px; }
+  body #jbsrur-nav {
+    background-color: #DF0A1F;
+    height: 90px;
+    padding-right: 40px;
+    border: none; }
+    body #jbsrur-nav a {
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+      font-size: 1.1em; }
+      body #jbsrur-nav a.menu-item {
+        color: #FAF3DD;
+        -ms-transform: scale(1, 1);
+        /* IE 9 */
+        -webkit-transform: scale(1, 1);
+        /* Safari */
+        transform: scale(1, 1); }
+        body #jbsrur-nav a.menu-item:hover {
+          -ms-transform: scale(1.1, 1.1);
+          /* IE 9 */
+          -webkit-transform: scale(1.1, 1.1);
+          /* Safari */
+          transform: scale(1.1, 1.1); }
+      body #jbsrur-nav a.sub-menu-item {
+        color: #DF0A1F;
+        padding: 0;
+        padding-bottom: 5px;
+        white-space: normal;
+        border-bottom: #FAF3DD solid 3px; }
+        body #jbsrur-nav a.sub-menu-item:hover, body #jbsrur-nav a.sub-menu-item:focus {
+          -ms-transform: none;
+          /* IE 9 */
+          -webkit-transform: none;
+          /* Safari */
+          transform: none;
+          padding: 0;
+          padding-bottom: 5px;
+          background: #FAF3DD;
+          border-bottom: #DF0A1F solid 3px; }
+    body #jbsrur-nav .open > a,
+    body #jbsrur-nav .open > a:focus {
+      background-color: transparent; }
+    body #jbsrur-nav .dropdown-menu {
+      background-color: #FAF3DD;
+      width: 410px;
+      float: none;
+      top: 75px;
+      left: -130px;
+      border-radius: 0;
+      border: none; }
+      body #jbsrur-nav .dropdown-menu li {
+        display: inline-block;
+        width: 200px;
+        float: none;
+        padding: 1em 1.5em; }
+    body #jbsrur-nav .navbar-nav {
+      margin: 15px 0;
+      float: right; }
+      body #jbsrur-nav .navbar-nav li {
+        text-align: center;
+        word-wrap: normal; }
+      body #jbsrur-nav .navbar-nav .caret {
+        margin: auto;
+        text-align: center;
+        display: block;
+        margin-top: 5px; }
+    body #jbsrur-nav .logo {
+      background-image: url("../images/logo.png");
+      height: 65px;
+      width: 180px;
+      margin: 10px 20px;
+      background-size: contain;
+      background-repeat: no-repeat; }
