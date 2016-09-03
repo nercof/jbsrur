@@ -5,6 +5,7 @@
     .config(config);
 
   function config ($stateProvider, $urlRouterProvider) {
+    console.log(localized.tokko);
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('home', {
@@ -76,7 +77,7 @@
       url: '/tokko',
       views:{
         "tokko":{
-             templateUrl: localized.views + "tokko.view.html",
+             templateUrl: localized.tokko + "tokko-search-input.html",
              controller: 'tokkoController as vm'
         }
       }

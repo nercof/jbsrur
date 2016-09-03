@@ -105,9 +105,9 @@
                 vm.tokko_state = response.objects;
             });
 
-            tokkoFactory.getCountry().then(function(response) {
-                vm.tokko_country = response.objects;
-            });
+            //tokkoFactory.getCountry().then(function(response) {
+            //    vm.tokko_country = response.objects;
+            //});
 
             tokkoFactory.getPropertyType().then(function(response) {
                 vm.tokko_property_type = response.objects;
