@@ -208,7 +208,8 @@ function _tk_scripts() {
     // With get_stylesheet_directory_uri()
     wp_localize_script('app', 'localized',
         array(
-            'views' => get_template_directory_uri() . '/app/views/'
+            'views' => get_template_directory_uri() . '/app/views/',
+            'tokko' => get_template_directory_uri() . '/app/views/tokko-search/'
         )
     );
 
