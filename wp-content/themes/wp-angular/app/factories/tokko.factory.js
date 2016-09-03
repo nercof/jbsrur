@@ -204,11 +204,18 @@
     function getProperties(params) {
       var url = '';
       var aux = "";
+
+      // 30864 - "full_location": "Argentina | Cordoba | Cordoba Capital ",
+      // "Otras Localidades",
+      // "31366" "La Granja",
+      // "30814" "Los Reartes",
+      // "32085" "Villa Carlos Paz"
+      // current_localization_id:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],
       var data_test = {
-        current_localization_id:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],
+        current_localization_id:[30864,31366,30814,32085],
         current_localization_type:"division",
         price_from:0,
-        price_to:4500000,
+        price_to:9999999,
         operation_types:[1,2,3],
         property_types:[1,2,3,4,5,6,7],
         currency:"USD",
