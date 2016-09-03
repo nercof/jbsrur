@@ -28,10 +28,15 @@
 
 /* JBSRUR */
 body {
-  font-family: "Lato", sans-serif; }
+  font-family: "Lato", sans-serif;
+  background-image: url("../images/bg.png"); }
+  body #masthead {
+    height: 5px; }
   body #jbsrur-nav {
     background-color: #DF0A1F;
-    height: 90px; }
+    height: 90px;
+    padding-right: 40px;
+    border: none; }
     body #jbsrur-nav a {
       font-family: "Montserrat", sans-serif;
       font-weight: bold;
@@ -81,19 +86,21 @@ body {
         width: 200px;
         float: none;
         padding: 1em 1.5em; }
-    body #jbsrur-nav .nav {
-      margin: 15px 0; }
-      body #jbsrur-nav .nav li {
+    body #jbsrur-nav .navbar-nav {
+      margin: 15px 0;
+      float: right; }
+      body #jbsrur-nav .navbar-nav li {
         text-align: center;
         word-wrap: normal; }
-      body #jbsrur-nav .nav .caret {
+      body #jbsrur-nav .navbar-nav .caret {
         margin: auto;
         text-align: center;
         display: block;
         margin-top: 5px; }
     body #jbsrur-nav .logo {
       background-image: url("../images/logo.png");
-      height: 70px;
+      height: 65px;
       width: 180px;
       margin: 10px 20px;
-      background-size: contain; }
+      background-size: contain;
+      background-repeat: no-repeat; }

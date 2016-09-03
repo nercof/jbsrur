@@ -40,13 +40,22 @@ $font-normal: 'Lato', sans-serif;
 $font-titles: 'Montserrat', sans-serif;
 $red: #DF0A1F;
 $white: #FAF3DD;
+html{
+
+}
 
 body {
       font-family: $font-normal;
+      background-image: url('../images/bg.png');
 
+      #masthead{
+            height: 5px;
+      }
       #jbsrur-nav {
             background-color: $red;
             height: 90px;
+            padding-right: 40px;
+            border:none;
 
             a {
                   font-family: $font-titles;
@@ -108,8 +117,9 @@ body {
                   }
             }
 
-            .nav {
+            .navbar-nav {
                   margin: 15px 0;
+                  float: right;
 
                   li {
                         text-align: center;
@@ -126,10 +136,11 @@ body {
 
             .logo{
                   background-image: url('../images/logo.png');
-                  height: 70px;
+                  height: 65px;
                   width: 180px;
                   margin: 10px 20px;
                   background-size: contain;
+                  background-repeat: no-repeat;
             }
       }
 }
