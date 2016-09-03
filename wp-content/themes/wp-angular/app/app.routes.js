@@ -11,9 +11,9 @@
       .state('home', {
         url: '/',
         views:{
-            "main":{
-                 templateUrl: localized.views + "main.html",
-                 controller: 'mainController'
+            "tokko-middle":{
+                 templateUrl: localized.tokko + "tokko-search-input.html",
+                 controller: 'tokkoController as vm'
             }
         }
       })
@@ -76,12 +76,24 @@
     .state('tokko', {
       url: '/tokko',
       views:{
-        "tokko":{
+        "tokko-middle":{
              templateUrl: localized.tokko + "tokko-search-input.html",
              controller: 'tokkoController as vm'
         }
       }
   })
-    ;
+  .state('tokko-result', {
+    url: '/tokko-result',
+    views:{
+      "tokko":{
+           templateUrl: localized.tokko + "tokko-search-result.html",
+           controller: 'tokkoController as vm'
+      },
+      "tokko-middle":{
+           templateUrl: localized.tokko + "tokko-search-input.html",
+           controller: 'tokkoController as vm'
+      }
+    }
+});
   }
 }());

@@ -249,7 +249,11 @@
     }
 
 // get Departamento a Estrenar
-//http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[2],%22currency%22:%22ANY%22,%22filters%22:[[%22age%22,%22=%22,0]]}
+// http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[2],%22currency%22:%22ANY%22,%22filters%22:[[%22age%22,%22=%22,0]]}
+// get Departamentos
+// http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[2],%22currency%22:%22ANY%22,%22filters%22:[[%22age%22,%22=%22,0]]}
+// get Edificios Comerciales
+// http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[8],%22currency%22:%22ANY%22,%22filters%22:[]}
 
 
     return data;
