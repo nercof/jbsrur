@@ -1,147 +1,138 @@
 <div id="exTab1" class="container">
     <ul  class="nav nav-pills">
-      <li class="active">
-        <a data-target="#1a" data-toggle="tab">
+        <li class="active">
+            <a data-target="#1a" data-toggle="tab">
 
-          <div class="col-lg-6">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div><!-- /input-group -->
-          </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
 
-        </a>
-      </li>
-      <li><a data-target="#2a" data-toggle="tab">
-        <i class="glyphicon glyphicon-home"> Busqueda Avanzada</i></a>
-      </li>
+            </a>
+        </li>
+        <li><a data-target="#2a" data-toggle="tab">
+            <i class="glyphicon glyphicon-home"> Busqueda Avanzada</i></a>
+        </li>
     </ul>
     <div class="tab-content clearfix">
-      <div class="tab-pane active" id="1a">
-      </div>
-      <div class="tab-pane" id="2a">
-        <div class="container">
-          <div class="panel panel-default">
-            <!-- Default panel contents -->
-
-            <div class="panel-body">
-              <p>{{vm.titleFrame}}</p>
-              <div class="form-inline">
-                <div class="row">
-                  <div class="col-sm-6 col-xs-12">
-                    <div class="row">
-                      <div class="col-sm-4 col-xs-12">
-                        <!-- TIPO DE OPERACION --------------------------------------------------->
-                        <!-- http://ngmodules.org/modules/angular-bootstrap-checkbox -->
-                        <div class="checkbox checkbox-primary">
-                          <label ng-repeat="operacion in vm.tokko_data.operaciones">
-                            <input type="checkbox"
-                            name="selectedOperacion[]"
-                            value="{{operacion.name}}"
-                            ng-model="operacion.state"
-                            />
-                            {{operacion.name}}
-                          </label>
-                        </div>
-
-                      </div>
-                      <div class="col-sm-4 col-xs-6">
-                        <!-- TIPO DE PROPIEDAD --------------------------------------------------->
-
-                        <!--                  <select class="form-control" name="property_typeSelection" ng-model="vm.tokko_property_type.id" ng-selected="vm.tokko_property_type" ng-options="property_type.name for property_type in vm.tokko_property_type track by property_type.id">
-                        <option value="" disabled selected hidden>Tipo de Propiedad</option>
-                      </select>
-                    -->
-                    <div class="list-group" ng-model="vm.tokko_data.tipos_propiedad.sel">
-                      <div ng-repeat="tipo_propiedad in vm.tokko_data.tipos_propiedad">
-                        <a data-target={{tipo_propiedad}} class="list-group-item">{{tipo_propiedad.name}}</a>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="col-sm-4 col-xs-6">
-                    <!-- DORMITORIOS --------------------------------------------------->
-
-                    <div class="list-group" ng-model="vm.tokko_dormitorios.selected">
-                      <div ng-repeat="dormitorio in vm.tokko_dormitorios">
-                        <!-- http://getbootstrap.com/css/#grid -->
-                        <a data-target={{dormitorio}} class="list-group-item">{{dormitorio}}</a>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-xs-12">
-                <div class="row">
-                  <div class="col-sm-4 col-xs-12">
-                    <!-- ZONAS --------------------------------------------------->
-                    <div class="list-group" ng-model="vm.barriosXzona.id">
-                      <div ng-repeat="zona in vm.barriosXzona">
-                        <!-- http://getbootstrap.com/css/#grid -->
-                        <a data-target={{zona.name}} class="list-group-item">{{zona.name}}</a>
-
-                      </div>
-                    </div>
-
-
-                  </div>
-                  <div class="col-sm-8 col-xs-12">
-
-                    <div class="list-group" ng-model="vm.barriosXzona.id">
-                      <div ng-repeat="zona in vm.barriosXzona">
-                        <!-- http://getbootstrap.com/css/#grid -->
-                        <a data-target={{zona.name}} class="list-group-item">{{zona.name}}</a>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- BARRIO --------------------------------------------------->
-          <!--
-          <select class="form-control" name="barrioSelect"
-          ng-model="vm.tokko_location.id"
-          ng-selected="barrio"
-          ng-options="barrio.name for barrio in vm.tokko_location track by barrio.id">
-          <option value="" disabled selected hidden>Barrio</option>
-        </select>
-
-        <select class="form-control" name="repeatSelect" id="barrioSelect" ng-model="vm.barriosXzona.sel_barrio">
-        <option value="" disabled selected hidden>Barrio</option>
-        <option ng-repeat="barrio in vm.barriosXzona.id.barrios">
-        value="{{barrio.name}}">{{barrio.name}}</option>
-      </select>
-      <br>
-      Selecciono:
-      {{vm.barriosXzona.sel}}
-
-
-      <input class="form-control" type="text" placeholder="Buscar x código" ng-model="vm.codigoPropiedad" />
-    -->
-    <div class="row">
-      <div class="col-sm-12 col-xs-12">
-        <a class="btn btn-default" ng-click="vm.searchTokko()"
-         href="#/tokko-result">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar</a>
+        <div class="tab-pane active" id="1a">
         </div>
-      </div>
-      <div class="col-sm-12 col-xs-12">
-      <!-- Resultado masivo -->
-      <!--
-      <li class="list-group-item" ng-repeat="propiedad in vm.propiedades.objects">
-        {{propiedad.public_url}}
-      </li>
-      </div>
-       -->
+        <div class="tab-pane" id="2a">
+            <div class="container">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+
+                    <div class="panel-body">
+
+                        <div class="form-inline">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-xs-12">
+                                            <!-- TIPO DE OPERACION --------------------------------------------------->
+                                            <!-- vm.tokko_data.operaciones"> -->
+                                            <div class="checkbox checkbox-primary">
+                                                <label ng-repeat="operacion in vm.tokko_data.op">
+                                                    <input type="checkbox"
+                                                    ng-model="vm.operation_types[operacion.id]"/>
+                                                    {{operacion.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-xs-6">
+                                            <ul class="list-group checked-list-box">
+                                                <div ng-repeat="tipo_propiedad in vm.tokko_data.tp">
+
+                                                    <input type="checkbox" ng-model="vm.property_types[tipo_propiedad.id]"> {{tipo_propiedad.name}}
+                                                </div>                                        </ul>
+                                                {{vm.property_types}}
+                                            </div>
+                                            <div class="col-sm-4 col-xs-6">
+                                                <!-- DORMITORIOS --------------------------------------------------->
+
+                                                <div class="list-group checked-list-box">
+                                                    <div ng-repeat="dormitorio in vm.tokko_data.do">
+
+                                                        <input type="checkbox"
+                                                        ng-model="vm.suite_amount[dormitorio.id]">{{dormitorio.name}}
+                                                    </div>
+                                                </div>
+                                                {{vm.suite_amount}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="row" ng-repeat="zona in vm.barriosXzona">
+                                            <div class="col-sm-4 col-xs-12">
+                                                <ul class="nav nav-tabs nav-stacked">
+
+                                                    <a ng-class="{'active': zona.active}" data-target="#{{zona.id}}" data-toggle="tab">
+                                                        {{zona.name}}
+                                                    </a>
+
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-8 col-xs-12"><!-- BARRIOS -->
+                                                <div class="tab-content">
+                                                    <div class="tab-pane"
+                                                    ng-if="!zona.hide"
+                                                    ng-class="{'active': zona.active}" id="{{zona.id}}">
+                                                    <div ng-repeat="barrio in zona.barrios">
+                                                        <input type="checkbox"
+                                                            ng-model="vm.localization_barrio_id[barrio.id]"
+                                                        >{{barrio.name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{vm.localization_barrio_id}}
+                            </div>
+                        </div>
+                        <!-- BARRIO --------------------------------------------------->
+                        <!--
+                        <select class="form-control" name="barrioSelect"
+                        ng-model="vm.tokko_location.id"
+                        ng-selected="barrio"
+                        ng-options="barrio.name for barrio in vm.tokko_location track by barrio.id">
+                        <option value="" disabled selected hidden>Barrio</option>
+                    </select>
+
+                    <select class="form-control" name="repeatSelect" id="barrioSelect" ng-model="vm.barriosXzona.sel_barrio">
+                    <option value="" disabled selected hidden>Barrio</option>
+                    <option ng-repeat="barrio in vm.barriosXzona.id.barrios">
+                    value="{{barrio.name}}">{{barrio.name}}</option>
+                </select>
+                <br>
+                Selecciono:
+                {{vm.barriosXzona.sel}}
+
+
+                <input class="form-control" type="text" placeholder="Buscar x código" ng-model="vm.codigoPropiedad" />
+            -->
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <a class="btn btn-default" ng-click="vm.searchTokko()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar</a>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <!-- Resultado masivo -->
+                    <!--
+                    <li class="list-group-item" ng-repeat="propiedad in vm.propiedades.objects">
+                    {{propiedad.public_url}}
+                </li>
+            </div>
+        -->
     </div>
     <!-- End div panel-heading       -->
-  </div>
-  <!-- End div panel panel-default -->
+</div>
+<!-- End div panel panel-default -->
 </div>
 </div><!-- div conteiner-->
 </div>
