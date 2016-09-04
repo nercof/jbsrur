@@ -9,11 +9,12 @@
 
     var data = {
       'listMedias':  listMedias,
-      'getMedia': getMedia
+      'getMedia': getMedia,
+      'getMediasByIds': getMediasByIds
     }
 
     function listMedias() {
-      return getPosts("").then(function(data){
+      return getMedias("").then(function(data){
         return data;
       });
     }
@@ -25,7 +26,11 @@
     function getMedias(id) {
       return wordpressService.getRequest(BASE_WP_URL, MEDIA_TAG, id);
     }
-
-    return data;
- }
+    function getMediasByIds(ids) {
+      return listMedias().then(function(data){
+        return _.filter(data, function(media){ return ids.indexOf(media.id) >= 0 });
+      });
+    }
+  return data;
+}
 }());

@@ -14,7 +14,8 @@
 get_header();
 ?>
     <!-- MAIN CONTENT -->
+    <div ui-view="slider-top"></div>
     <div ui-view="tokko-middle"></div>
-    <div ui-view="tokko-result"></div>
+    <div ui-view="content"></div>
 <?php /** get_sidebar(); **/ ?>
 <?php get_footer(); ?>

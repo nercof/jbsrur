@@ -48,14 +48,26 @@ body {
       font-family: $font-normal;
       background-image: url('../images/bg.png');
 
-      #masthead{
+      #masthead {
             height: 5px;
+      }
+      .site-navigation {
+
+            .container {
+                  padding-bottom: 0;
+            }
+      }
+      #myCarousel {
+            .carousel-control {
+                  width: 50px;
+            }
       }
       #jbsrur-nav {
             background-color: $red;
             height: 90px;
             padding-right: 40px;
             border:none;
+            margin-bottom: 10px;
 
             a {
                   font-family: $font-titles;

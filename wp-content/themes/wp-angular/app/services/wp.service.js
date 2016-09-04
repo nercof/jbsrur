@@ -6,7 +6,7 @@
 
   function dataService($http, $log){
     /* TO DO: Ver $log */
-    /* TO DO: Ver $log */
+
     console.log('wordpressService');
 
     var data = {

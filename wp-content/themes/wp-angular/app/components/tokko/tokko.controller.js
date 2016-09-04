@@ -43,6 +43,7 @@
         function activate(vm) {
             // https://gist.github.com/aaronksaunders/bb8416da6a829ea2fb77
             vm.tokko_data = resourceFactory.query({id:'tokko.data.json'});
+            console.log(vm.tokko_data);
             vm.barriosXzona = resourceFactory.query({id:'barrios_cba.json'});
 
             console.log(vm.barriosXzona);
