@@ -95,6 +95,7 @@
 
             // https://gist.github.com/aaronksaunders/bb8416da6a829ea2fb77
             vm.tokko_data = resourceFactory.query({id:'tokko.data.json'});
+            console.log(vm.tokko_data);
             vm.barriosXzona = resourceFactory.query({id:'barrios_cba.json'});
 
             vm.tokko_prices = [30000, 50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 1000000, 2000000, 3000000, 4000000, 5000000];

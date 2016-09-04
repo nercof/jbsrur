@@ -5,23 +5,33 @@
     .config(config);
 
   function config ($stateProvider, $urlRouterProvider) {
-    console.log(localized.tokko);
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('home', {
         url: '/',
         views:{
-            "tokko-middle":{
-                 templateUrl: localized.tokko + "tokko-search-input.html",
-                 controller: 'tokkoController as vm'
+            "slider-top":{
+                 templateUrl: localized.views + "slider-full.html",
+                 controller: 'sliderController'
             }
         }
       })
       .state('quienes-somos', {
         url: '/quienes-somos',
         views:{
-          "main":{
-               templateUrl: localized.views + "quienes-somos.html"
+          "content":{
+               templateUrl: localized.views + "quienes-somos.html",
+               controller: 'mainController as vm'
+          }
+        }
+      })
+      .state('test', {
+        url: '/test',
+        params: { data: null },
+        views:{
+          "content":{
+               templateUrl: localized.views + "catalogo.html",
+               controller: function($stateParams) { console.log($stateParams); }
           }
         }
       })
@@ -76,24 +86,12 @@
     .state('tokko', {
       url: '/tokko',
       views:{
-        "tokko-middle":{
+        "tokko":{
              templateUrl: localized.tokko + "tokko-search-input.html",
              controller: 'tokkoController as vm'
         }
       }
   })
-  .state('tokko-result', {
-    url: '/tokko-result',
-    views:{
-      "tokko-result":{
-           templateUrl: localized.tokko + "tokko-search-result.html",
-           controller: 'tokkoController as vm'
-      },
-      "tokko-middle":{
-           templateUrl: localized.tokko + "tokko-search-input.html",
-           controller: 'tokkoController as vm'
-      }
-    }
-});
+    ;
   }
 }());

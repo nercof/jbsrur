@@ -9,7 +9,8 @@
 
     var data = {
       'listPosts':  listPosts,
-      'getPost': getPost
+      'getPost': getPost,
+      'getPostByCategory': getPostByCategory,
     }
 
     function listPosts() {
@@ -25,6 +26,17 @@
     function getPosts(id) {
       return wordpressService.getRequest(BASE_WP_URL, POST_TAG, id);
     }
+    function getPostByCategory(idCategory) {
+
+      return listPosts().then(function(data){
+        return filterByCategory(idCategory, data);
+      });
+    }
+    function filterByCategory(id, data) {
+      var postFiltered = _.filter(data, function(post){return post.categories.indexOf(id) >= 0;});
+      return postFiltered;
+    }
+
     return data;
- }
+  }
 }());

@@ -32,11 +32,16 @@ body {
   background-image: url("../images/bg.png"); }
   body #masthead {
     height: 5px; }
+  body .site-navigation .container {
+    padding-bottom: 0; }
+  body #myCarousel .carousel-control {
+    width: 50px; }
   body #jbsrur-nav {
     background-color: #DF0A1F;
     height: 90px;
     padding-right: 40px;
-    border: none; }
+    border: none;
+    margin-bottom: 10px; }
     body #jbsrur-nav a {
       font-family: "Montserrat", sans-serif;
       font-weight: bold;

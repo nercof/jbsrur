@@ -160,6 +160,11 @@ function _tk_scripts() {
         array( 'core' ));
 
     wp_enqueue_script(
+        'slider',
+        get_stylesheet_directory_uri() . '/app/components/slider/slider.controller.js',
+            array( 'core', 'factories' ));
+
+    wp_enqueue_script(
         'services',
         get_stylesheet_directory_uri() . '/app/app.services.js',
         array( 'app' ));
