@@ -11,7 +11,6 @@
           menuFactory.getHeader().then(function(response){
             $scope.items = response.items;
             setSearchIcon();
-            console.log($scope.items);
           });
         }
 
