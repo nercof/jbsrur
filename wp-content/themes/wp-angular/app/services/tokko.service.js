@@ -17,7 +17,6 @@
 
         function getRequest(url, tag, key) {
             var requestUrl = url + tag ;
-            console.log(typeof requestUrl);
             return $http({
                 'url': requestUrl,
                 'method': 'GET',

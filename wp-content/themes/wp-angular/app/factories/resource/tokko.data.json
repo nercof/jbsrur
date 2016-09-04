@@ -1,20 +1,24 @@
 {
-  "operaciones": [
-      {"id": "1", "name": "Venta"},
-      {"id": "2", "name": "Alquiler"}
+  "op": [
+    {"id": "1", "name": "Venta"},
+    {"id": "2", "name": "Alquiler"}
   ],
-  "tipos_propiedad": [
-      {"id": "0", "name": "Indistinto"},
-      {"id": "1", "name": "Terreno"},
-      {"id": "2", "name": "Departamento"},
-      {"id": "dpto_estrenar", "name": "Departamento a Estrenar"},
-      {"id": "3", "name": "Casa"},
-      {"id": "4", "name": "Quinta"},
-      {"id": "5", "name": "Oficina"},
-      {"id": "7", "name": "Local"},
-      {"id": "8", "name": "Edificio Comercial"},
-      {"id": "9", "name": "Campo"},
-      {"id": "10", "name": "Cochera"},
-      {"id": "14", "name": "Depósito"}
+  "tp": [
+    {"id": "0", "name": "Todos"},
+    {"id": "1", "name": "Terreno"},
+    {"id": "2", "name": "Departamento"},
+    {"id": "3", "name": "Casa"},
+    {"id": "5", "name": "Oficina"},
+    {"id": "7", "name": "Local"},
+    {"id": "9", "name": "Campo"}
+  ],
+  "do":[
+    {"id": "0", "name":"Todos"},
+    {"id": "1", "name":"1 dormitorio"},
+    {"id": "2", "name":"2 dormitorios"},
+    {"id": "3", "name":"3 dormitorios"},
+    {"id": "4", "name":"4 dormitorios"},
+    {"id": "5", "name":"5 dormitorios"},
+    {"id": "6", "name":"+5 dormitorios"}
   ]
 }

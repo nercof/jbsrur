@@ -189,8 +189,6 @@
     function getPropertys(id) {
       var url = TOKKO_PROPERTY;
       url = url.replace('{id}', id);
-      console.log('PROPIEDAD A BUSCAR: ' + url);
-      console.log('URL: ' + BASE_TOKKO + url);
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
     /**
@@ -226,25 +224,13 @@
 
       //{"current_localization_id":[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],"current_localization_type":"division","price_from":0,"price_to":4500000,"operation_types":[1,2,3],"property_types":[1,2,3,4,5,6,7],"currency":"USD","filters":[],"with_tags":[],"without_tags":[]}
       var aux = JSON.stringify(data_test);
-      console.log(typeof data_test);
       /*aux = aux.replace('}', '%7D');
       aux = aux.replace('{', '%7B');
       aux = aux.replace(/"/g,'%2C');*/
 
       //url ="property/search/?format=json&data=%7B%22current_localization_id%22:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],%22current_localization_type%22:%22division%22,%22price_from%22:0,%22price_to%22:4500000,%22operation_types%22:[1,2,3],%22property_types%22:[1,2,3,4,5,6,7],%22currency%22:%22USD%22,%22filters%22:[],%22with_tags%22:[],%22without_tags%22:[]%7D&key=8fe7f17376761bada8524d0a75c8937f8a4517b7";
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-      console.log('QUERY URL searchTokko:');
-      console.log(aux);
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
       var url = TOKKO_SEARCH;
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-      console.log('URL searchTokko:');
-      console.log(url);
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
       url = url.replace('tokko_query', aux);
-      console.log('URL final:');
-      console.log(url);
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
 
@@ -254,7 +240,9 @@
 // http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[2],%22currency%22:%22ANY%22,%22filters%22:[[%22age%22,%22=%22,0]]}
 // get Edificios Comerciales
 // http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[8],%22currency%22:%22ANY%22,%22filters%22:[]}
-
+// get +5 dormitorioss
+// http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],%22currency%22:%22ANY%22,%22filters%22:[[%22suite_amount%22,%22%3E%22,5]]}
+// get barriosXzona CENTRO http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],%22current_localization_type%22:%22division%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],%22currency%22:%22ANY%22,%22filters%22:[]}
 
     return data;
  }
