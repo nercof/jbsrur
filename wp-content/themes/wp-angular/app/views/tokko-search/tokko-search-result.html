@@ -1,8 +1,14 @@
 <div class="col-sm-12 col-xs-12">
-  <h1 style="color:white;">RESULTADO TOKKO SEARCH</h1>
-  <!-- Resultado masivo -->
-  <li ng-if="tokkoResult.propiedades"
-      ng-repeat="propiedad in tokkoResult.propiedades" style="color:#FFF">
-    {{propiedad.fake_address}}
-  </li>
+  <div class="col-sm-2" ng-repeat="propiedad in tokkoResult.propiedades">
+    <div ng-if="tokkoResult.propiedades" style="color:#FFF">
+      {{propiedad.fake_address}}
+      <img src="{{propiedad.photos[0].image}}"></img>_
+      {{propiedad.fake_address}}
+      {{propiedad.type.name}}
+      {{propiedad.short_location}}
+      ----------------------------
+      Contactar por telefono
+      Contactar por e.mail
+    </div>
+  </div>
 </div>
