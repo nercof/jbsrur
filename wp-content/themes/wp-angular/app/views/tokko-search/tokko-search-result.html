@@ -1,7 +1,8 @@
 <div class="col-sm-12 col-xs-12">
   <h1 style="color:white;">RESULTADO TOKKO SEARCH</h1>
-<!-- Resultado masivo -->
-<li class="list-group-item" ng-repeat="propiedad in data.objects">
-  {{propiedad.public_url}}
-</li>
+  <!-- Resultado masivo -->
+  <li ng-if="tokkoResult.propiedades"
+      ng-repeat="propiedad in tokkoResult.propiedades" style="color:#FFF">
+    {{propiedad.fake_address}}
+  </li>
 </div>

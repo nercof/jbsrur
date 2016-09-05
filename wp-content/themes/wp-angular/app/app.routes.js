@@ -5,7 +5,6 @@
     .config(config);
 
   function config ($stateProvider, $urlRouterProvider) {
-    console.log(localized.tokko);
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('home', {

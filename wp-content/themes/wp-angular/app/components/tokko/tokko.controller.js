@@ -5,7 +5,7 @@
     .module('app.core')
     .controller('tokkoController', tokkoController);
 
-    function tokkoController($scope, tokkoFactory, tokkoService, NgMap, resourceFactory, $stateParams, $state) {
+    function tokkoController($scope, tokkoFactory, tokkoService, NgMap, resourceFactory, $state) {
         /**
         * @see: angular.extend
         *
@@ -43,20 +43,7 @@
         function activate(vm) {
             // https://gist.github.com/aaronksaunders/bb8416da6a829ea2fb77
             vm.tokko_data = resourceFactory.query({id:'tokko.data.json'});
-            console.log(vm.tokko_data);
             vm.barriosXzona = resourceFactory.query({id:'barrios_cba.json'});
-
-            console.log(vm.barriosXzona);
-
-            console.log('keys barriosXzona');
-            console.log(_.keys(vm.barriosXzona));
-
-            // e = elemento
-            // i = index
-            _.each(vm.tokko_data, function(e, i){
-                console.log(_.keys(e));
-            });
-
         }
 
         vm.searchLocation = function() {
@@ -67,11 +54,8 @@
 
         // Get barrio by ID
         vm.getBarrioById = function (id){
-            console.log(id);
+            //vm.localization_barrio_id = vm.tokko_data.getElementById('id');
 
-            vm.localization_barrio_id = vm.tokko_data.getElementById('id');
-
-            console.log(vm.localization_barrio_id);
         }
 
         vm.searchTokko = function() {
@@ -83,33 +67,18 @@
                 });
             }
             else {
-                var data = {
-                    "operation_types":[],
-                    "property_types":[],
-                    "suite_amount":[],
-                    "vm.current_localization_id":[]
+
+                var obj = {
+                    "operation_types": _.keys(vm.operation_types),
+                    "property_types": _.keys(vm.property_types),
+                    "suite_amount":_.keys(vm.suite_amount),
+                    "current_localization_id":_.keys(vm.localization_barrio_id)
                 }
-                console.log('- 1 - vm.property_types');
-                console.log(vm.property_types);
-
-                console.log(vm.tokko_data.tipos_propiedad)
-                console.log('- 2 - vm.operation_types');
-                console.log(vm.operation_types);
-                console.log('- 3 - vm.suite_amount');
-                console.log(vm.suite_amount);
-                console.log('- 4 - vm.current_localization_id');
-                console.log(vm.current_localization_id);
-                console.log('- 5 - vm.localization_barrio_id');
-                console.log(vm.localization_barrio_id);
-
-
+                console.log('data send TOKKO');
+                console.log(obj);
 
                 // Formar data
-
-                tokkoFactory.getProperties('').then(function(response) {
-                    vm.propiedades = response;
-                    $state.go('tokko-result', {data: 'Hola'});
-                });
+                $state.go('tokko-result', {data: obj});
             }
         }
     };// Cierre tokkoController
