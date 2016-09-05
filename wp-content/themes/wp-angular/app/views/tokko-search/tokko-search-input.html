@@ -61,7 +61,6 @@
                                                         ng-model="vm.suite_amount[dormitorio.id]">{{dormitorio.name}}
                                                     </div>
                                                 </div>
-                                                {{vm.suite_amount}}
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +82,7 @@
                                                     ng-class="{'active': zona.active}" id="{{zona.id}}">
                                                     <div ng-repeat="barrio in zona.barrios">
                                                         <input type="checkbox"
-                                                            ng-model="vm.localization_barrio_id[barrio.id]"
+                                                        ng-model="vm.localization_barrio_id[barrio.id]"
                                                         >{{barrio.name}}
                                                     </div>
                                                 </div>
@@ -91,7 +90,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{vm.localization_barrio_id}}
                             </div>
                         </div>
                         <!-- BARRIO --------------------------------------------------->
