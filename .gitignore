@@ -1,6 +1,5 @@
 *.log
 wp-config.php
-wp-content/uploads/
 wp-content/index.php
 wp-content/themes/twentysixteen/
 wp-content/themes/twentyfourteen/

@@ -14,7 +14,8 @@
     "angular-ui-router": "^0.3.1",
     "ng-resource": "^1.3.2",
     "ngmap": "^1.17.1",
-    "npm-angular-resource": "^1.3.0-build.2880"
+    "npm-angular-resource": "^1.3.0-build.2880",
+    "typicons.font": "^2.0.8"
   },
   "devDependencies": {
     "angular-underscore": "0.0.3",

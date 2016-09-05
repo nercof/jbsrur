@@ -28,7 +28,7 @@
     }
     function getMediasByIds(ids) {
       return listMedias().then(function(data){
-        return _.filter(data, function(media){ return ids.indexOf(media.id) >= 0 });
+        return _.filter(data, function(media){ return ids.indexOf(media.id) >= 0  });
       });
     }
   return data;

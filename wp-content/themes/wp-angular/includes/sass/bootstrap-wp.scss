@@ -1,3 +1,4 @@
+@import url("../../node_modules/typicons.font/src/font/typicons.css");
 /*
 *
 * Here are a few needed CSS additions to integrate bootstrap truly into WordPress,
@@ -153,6 +154,31 @@ body {
                   margin: 10px 20px;
                   background-size: contain;
                   background-repeat: no-repeat;
+            }
+      }
+      #searchForm {
+            .search-tab{
+                  width: 48%;
+            }
+            ul {
+                  background-color: $white;
+
+                  &.nav-pills {
+                        li {
+                              &.active{
+                                    background-color: $red;
+                                    a {
+                                          background: transparent;
+                                    }
+
+                              }
+                        }
+                  }
+            }
+            button {
+                  background-color: #EC7E7E;
+                  border-radius: 0;
+                  border: 0;
             }
       }
 }

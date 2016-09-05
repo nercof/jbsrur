@@ -1,27 +1,26 @@
-<div id="exTab1" class="container">
-    <ul  class="nav nav-pills">
-        <li class="active">
-            <a data-target="#1a" data-toggle="tab">
-
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div><!-- /input-group -->
-                </div><!-- /.col-lg-6 -->
-
-            </a>
-        </li>
-        <li><a data-target="#2a" data-toggle="tab">
-            <i class="glyphicon glyphicon-home"> Busqueda Avanzada</i></a>
-        </li>
-    </ul>
+<div class="container" id="searchForm">
+    <div class="row">
+        <ul class="nav nav-pills">
+            <li class="active col-md-6 search-tab">
+                <a data-target="#advancedSearch" data-toggle="tab">
+                        <div class="input-group">
+                            <label>Buscar propiedades</label>
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div><!-- /input-group -->
+                </a>
+            </li>
+            <li class="col-md-6 search-tab"><a data-target="#globalSearch" data-toggle="tab">
+                <i class="glyphicon glyphicon-home"> Busqueda Avanzada</i></a>
+            </li>
+        </ul>
+    </div>
     <div class="tab-content clearfix">
-        <div class="tab-pane active" id="1a">
+        <div class="tab-pane active" id="advancedSearch">
         </div>
-        <div class="tab-pane" id="2a">
+        <div class="tab-pane" id="globalSearch">
             <div class="container">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
@@ -83,7 +82,7 @@
                                                     ng-class="{'active': zona.active}" id="{{zona.id}}">
                                                     <div ng-repeat="barrio in zona.barrios">
                                                         <input type="checkbox"
-                                                            ng-model="vm.localization_barrio_id[barrio.id]"
+                                                        ng-model="vm.localization_barrio_id[barrio.id]"
                                                         >{{barrio.name}}
                                                     </div>
                                                 </div>

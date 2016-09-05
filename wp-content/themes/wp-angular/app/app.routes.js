@@ -14,6 +14,10 @@
             "slider-top":{
                  templateUrl: localized.views + "slider-full.html",
                  controller: 'sliderController'
+            },
+            "tokko-middle":{
+                 templateUrl: localized.tokko + "tokko-search-input.html",
+                 controller: 'tokkoController as vm'
             }
         }
       })
