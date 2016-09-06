@@ -80,7 +80,7 @@
                     "suite_amount":_.keys(vm.suite_amount),
                     "current_localization_id":_.keys(vm.localization_barrio_id)
                 }
-                console.log(vm.prop_cache);
+                //console.log(vm.prop_cache);
                 // Formar data
                 $state.go('tokko-result', {data: obj, cache: vm.prop});
             }

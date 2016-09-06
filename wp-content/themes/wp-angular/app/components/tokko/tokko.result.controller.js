@@ -20,8 +20,8 @@
         // Recive paramas views tokko-input.
         tokkoResult.data = $stateParams.data;
         tokkoResult.cache = $stateParams.cache;
-        console.log('tokkoResult.cache');
-        console.log(tokkoResult.cache);
+        //console.log('tokkoResult.cache');
+        //console.log(tokkoResult.cache);
         // Call factory to search Tokko properties.
         tokkoFactory.getProperties(tokkoResult.data).then(function(response) {
             tokkoResult.propiedades = response.objects;
