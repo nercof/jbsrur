@@ -29,7 +29,7 @@
     }
     // Re-direct to fullDetails
     tokkoResult.fullDetails = function(prop){
-        $state.go('tokko-details', {data: prop});
+        $state.go('propiedad', {data: prop , id:prop.id});
     }
 }
 })();

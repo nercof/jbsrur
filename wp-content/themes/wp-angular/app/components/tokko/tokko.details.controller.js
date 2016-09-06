@@ -5,10 +5,10 @@
         .module('app.core')
         .controller('tokkoDetailsController', tokkoDetailsController);
 
-    tokkoDetailsController.$inject = ['$state', '$stateParams'];
+    tokkoDetailsController.$inject = ['$state', '$stateParams', 'tokkoFactory'];
 
     /* @ngInject */
-    function tokkoDetailsController($state, $stateParams) {
+    function tokkoDetailsController($state, $stateParams, tokkoFactory) {
         var vm = this;
         /*
         tokkoResult.propiedad = {
@@ -68,8 +68,15 @@
         activate();
 
         function activate() {
-            vm.propiedad = $stateParams.data
-            //console.log(vm.propiedad);
+            if($stateParams.data){
+                vm.propiedad = $stateParams.data
+                //console.log(vm.propiedad);
+            }else{
+                tokkoFactory.getProperty($stateParams.id).then(function(data){
+                    vm.propiedad = data;
+                    console.log('else', vm.propiedad);
+                });
+            }
         }
     }
 })();

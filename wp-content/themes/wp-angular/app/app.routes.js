@@ -106,9 +106,9 @@
         }
       }
     })
-    .state('tokko-details', {
+    .state('propiedad', {
       params: { data:null },
-      url: '/tokko-details',
+      url: '/propiedad/:id',
       views:{
         "content":{
           templateUrl: localized.tokko + "tokko-search-details.html",
