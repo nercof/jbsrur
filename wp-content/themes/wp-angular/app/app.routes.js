@@ -97,11 +97,12 @@
       }
   })
   .state('tokko-result', {
+    params: { data:null, cache:null },
     url: '/tokko-result',
     views:{
-      "tokko-result":{
+      "content":{
            templateUrl: localized.tokko + "tokko-search-result.html",
-           controller: function ($stateParams){console.log($stateParams);},
+           controller: 'tokkoResultController as tokkoResult',
       }
     }
 });

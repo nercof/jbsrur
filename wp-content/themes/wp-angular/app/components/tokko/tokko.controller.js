@@ -33,6 +33,7 @@
         vm.suite_amount = [];
         vm.current_localization_id = [];
         vm.localization_barrio_id = [];
+        vm.prop_cache = {}
 
         NgMap.getMap().then(function(map) {
             //console.log('map', map);
@@ -44,6 +45,11 @@
             // https://gist.github.com/aaronksaunders/bb8416da6a829ea2fb77
             vm.tokko_data = resourceFactory.query({id:'tokko.data.json'});
             vm.barriosXzona = resourceFactory.query({id:'barrios_cba.json'});
+
+            // 30864 - "full_location": "Argentina | Cordoba | Cordoba Capital ",
+            tokkoFactory.getPropertyByCity().then(function(response) {
+                    vm.prop_cache = response.objects;
+            });
         }
 
         vm.searchLocation = function() {
@@ -74,11 +80,9 @@
                     "suite_amount":_.keys(vm.suite_amount),
                     "current_localization_id":_.keys(vm.localization_barrio_id)
                 }
-                console.log('data send TOKKO');
-                console.log(obj);
-
+                console.log(vm.prop_cache);
                 // Formar data
-                $state.go('tokko-result', {data: obj});
+                $state.go('tokko-result', {data: obj, cache: vm.prop});
             }
         }
     };// Cierre tokkoController

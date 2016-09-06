@@ -9,6 +9,8 @@
                                     resourceFactory, $stateParams, $state) {
     var tokkoResult = this;
     tokkoResult.data = {}
+    tokkoResult.cache = {}
+
     tokkoResult.propiedades = {};
 
     // Activamos
@@ -17,12 +19,12 @@
     function activate(tokkoResult) {
         // Recive paramas views tokko-input.
         tokkoResult.data = $stateParams.data;
-
+        tokkoResult.cache = $stateParams.cache;
+        console.log('tokkoResult.cache');
+        console.log(tokkoResult.cache);
         // Call factory to search Tokko properties.
         tokkoFactory.getProperties(tokkoResult.data).then(function(response) {
             tokkoResult.propiedades = response.objects;
-            console.log('tokkoFactory.getProperties');
-            console.log(tokkoResult.propiedades);
         });
     }
 }
