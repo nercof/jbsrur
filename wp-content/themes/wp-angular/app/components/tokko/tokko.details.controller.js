@@ -69,7 +69,7 @@
 
         function activate() {
             vm.propiedad = $stateParams.data
-            console.log(vm.propiedad);
+            //console.log(vm.propiedad);
         }
     }
 })();

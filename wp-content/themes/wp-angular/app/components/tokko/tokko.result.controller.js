@@ -29,8 +29,6 @@
     }
     // Re-direct to fullDetails
     tokkoResult.fullDetails = function(prop){
-        console.log(prop);
-
         $state.go('tokko-details', {data: prop});
     }
 }
