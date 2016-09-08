@@ -16,7 +16,8 @@
                 // Load this module in order to use $resource.
                 'ngResource',
             ])
-        .run(['$rootScope', '$state', '$stateParams',
+    // Para poder visualizar el $state en las vistas.
+    .run(['$rootScope', '$state', '$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;

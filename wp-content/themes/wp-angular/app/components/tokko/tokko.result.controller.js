@@ -22,11 +22,7 @@
                 vm.data = $stateParams.data;
                 vm.cache = $stateParams.cache;
                 vm.data = $stateParams.data;
-                if ($state.current.name != 'propiedad') {
-                    vm.state = false;
-                }
 
-                // Bandera para ocultar el resultado de propiedades
                 // Call factory to search Tokko properties.
                 tokkoFactory.getProperties(vm.data).then(function(response) {
                     vm.propiedades = response.objects;

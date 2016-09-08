@@ -14,26 +14,12 @@
         vm.state = {}
         var local_scope = $scope;
         var local_state = $state;
-        console.log('HIJO');
 
     create();
 
     function create() {
-        //$scope.state = $state;
-/*        local_scope.$parent.is_hide = true;
-        console.log(local_scope);
-        console.log(local_state);
-        vm.state = local_state;
-        console.log('vm.local_state');
-        console.log(vm.state);
-*/
-        // Bandera para ocultar el resultado de propiedades
-        //$scope.$parent.flag_propiedades = false;
-        //console.log($scope.$parent.flag_propiedades);
-
         if($stateParams.data){
             vm.propiedad = $stateParams.data
-
         }else{
             tokkoFactory.getProperty($stateParams.id).then(function(data){
                 vm.propiedad = data;
@@ -42,7 +28,7 @@
     }
 }
 })();
-/*
+/* Tokko Data dir
 tokkoResult.propiedad = {
 "address": "",
 "age": 0,

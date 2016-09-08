@@ -3,7 +3,7 @@
   angular
   .module('app.routes', ['ui.router'])
   .config(config);
-  
+
 
   function config ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -108,10 +108,7 @@
           controller: 'tokkoResultController as vm',
         }
       },
-        onEnter: function() {
-          console.log('Estoy en tokko.propiedad');
-
-        }
+      onEnter: function(){}
     })
     .state('propiedad.detalle', { //DOT Notation
       params: { data:null, flag:null},
@@ -122,9 +119,7 @@
           controller: 'tokkoDetailsController as vm',
         }
       },
-      onEnter: function() { // Constructor
-        console.log('tokko.propiedad.detalle');
-      }
+      onEnter: function(){}
     });
   }// Fin function config
 }());
