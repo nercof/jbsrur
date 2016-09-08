@@ -6,30 +6,36 @@
     .controller('tokkoResultController', tokkoResultController);
 
     function tokkoResultController( $scope, tokkoFactory, tokkoService, NgMap,
-                                    resourceFactory, $stateParams, $state) {
-    var tokkoResult = this;
-    tokkoResult.data = {}
-    tokkoResult.cache = {}
+        resourceFactory, $stateParams, $state) {
+            var vm = this;
+            vm.data = {}
+            vm.cache = {}
+            vm.propiedades = {};
+            $scope.current = $state.current
+            vm.state = true
 
-    tokkoResult.propiedades = {};
+            // Activamos
+            activate(vm);
 
-    // Activamos
-    activate(tokkoResult);
+            function activate(vm) {
+                // Recive paramas views tokko-input.
+                vm.data = $stateParams.data;
+                vm.cache = $stateParams.cache;
+                vm.data = $stateParams.data;
+                if ($state.current.name != 'propiedad') {
+                    vm.state = false;
+                }
 
-    function activate(tokkoResult) {
-        // Recive paramas views tokko-input.
-        tokkoResult.data = $stateParams.data;
-        tokkoResult.cache = $stateParams.cache;
-        //console.log('tokkoResult.cache');
-        //console.log(tokkoResult.cache);
-        // Call factory to search Tokko properties.
-        tokkoFactory.getProperties(tokkoResult.data).then(function(response) {
-            tokkoResult.propiedades = response.objects;
-        });
-    }
-    // Re-direct to fullDetails
-    tokkoResult.fullDetails = function(prop){
-        $state.go('propiedad', {data: prop , id:prop.id});
-    }
-}
-})();
+                // Bandera para ocultar el resultado de propiedades
+                // Call factory to search Tokko properties.
+                tokkoFactory.getProperties(vm.data).then(function(response) {
+                    vm.propiedades = response.objects;
+                });
+            }
+            // Re-direct to fullDetails
+            vm.fullDetails = function(prop){
+                console.log('Re-direct to fullDetails');
+                //$state.go('detalle', {data: prop , id:prop.id});
+            }
+        }
+    })();

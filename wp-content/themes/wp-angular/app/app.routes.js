@@ -3,6 +3,7 @@
   angular
   .module('app.routes', ['ui.router'])
   .config(config);
+  
 
   function config ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -88,7 +89,8 @@
       }
     })
     .state('tokko', {
-      url: '/tokko',
+      // Buscador de Propiedades
+      url: 'tokko',
       views:{
         "tokko-middle":{
           templateUrl: localized.tokko + "tokko-search-input.html",
@@ -96,26 +98,33 @@
         }
       }
     })
-    .state('tokko-result', {
-      params: { data:null, cache:null },
-      url: '/tokko-result',
+    .state('propiedad', {
+      // Resultado de Buscador de Propiedades.
+      params: { data:null, cache:null},
+      url: '/propiedades',
       views:{
         "content":{
           templateUrl: localized.tokko + "tokko-search-result.html",
-          controller: 'tokkoResultController as tokkoResult',
+          controller: 'tokkoResultController as vm',
         }
-      }
+      },
+        onEnter: function() {
+          console.log('Estoy en tokko.propiedad');
+
+        }
     })
-    .state('propiedad', {
-      params: { data:null },
-      url: '/propiedad/:id',
+    .state('propiedad.detalle', { //DOT Notation
+      params: { data:null, flag:null},
+      url: '/:id',
       views:{
-        "content":{
+        "@":{
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
         }
+      },
+      onEnter: function() { // Constructor
+        console.log('tokko.propiedad.detalle');
       }
-    })
-    ;
-  }
+    });
+  }// Fin function config
 }());
