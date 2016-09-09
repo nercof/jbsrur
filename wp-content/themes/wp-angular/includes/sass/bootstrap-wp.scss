@@ -275,6 +275,7 @@ body {
                   color: $white;
                   font-family: $font-titles;
                   font-size: 1.1em;
+                  margin: 0;
 
                   .step {
                         min-height: 62px;
@@ -440,11 +441,40 @@ body {
                   }
             }
       }
+      #global-search {
+            .search-results {
+                  background-color: $white;
+                  color: $bordo;
+                  position: absolute;
+                  z-index: 99;
+                  width: 30%;
+                  left: 20%;
+                  a {
+                  color: $bordo;
+                        text-decoration: none;
+                        font-family: $font-normal;
+                        width: 100%;
+                        display: block;
+                        padding: 3px;
+                        &:hover {
+                              background-color: $bordo;
+                              color: $white;
+                        }
+                  }
+            }
+      }
       .propiedades {
             background-color: $white;
             padding: 40px 30px;
             font-family: $font-titles;
 
+            .spinner {
+                  text-align: center;
+                  i {
+                        font-size: 2em;
+                        color: $pink;
+                  }
+            }
             .card {
                   padding: 0;
                   margin: 5px;

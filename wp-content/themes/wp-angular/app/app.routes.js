@@ -116,7 +116,7 @@
         },
         "title@propiedad":{
           template: '',
-        },
+        }
       },
       // http://christopherthielen.github.io/ui-router-extras/#/sticky
       deepStateRedirect: true,

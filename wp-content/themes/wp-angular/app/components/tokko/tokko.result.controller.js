@@ -10,7 +10,7 @@
         var vm = this;
         vm.data = {}
         vm.cache = {}
-        vm.propiedades = {};
+        vm.propiedades = false;
         $scope.current = $state.current
         vm.state = true
 
@@ -34,7 +34,11 @@
             //if (!vm.propiedades){
                 // Call factory to search Tokko properties.
                 tokkoFactory.getProperties(vm.data).then(function(response) {
-                    vm.propiedades = response.objects;
+                    if(response.objects.length > 0) {
+                        vm.propiedades = response.objects;
+                    }else {
+                        vm.error = "No se encontraron propiedades"
+                    }
                 });
             //}
         }

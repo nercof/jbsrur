@@ -2,6 +2,8 @@
 <div ui-view='title'/>
 <div ng-if="$state.current.name == 'propiedad'">
   <div class="col-sm-12 col-xs-12 propiedades">
+    <div ng-if="!vm.propiedades" class="spinner"><i class="fa fa-spinner fa-spin"></i></div>
+    <div ng-if="vm.error">{{vm.error}}</div>
     <div class="col-md-2 card" ng-repeat="propiedad in vm.propiedades" ng-class-odd="'odd'">
       <div ng-if="vm.propiedades" class="inner-card">
         <h2>{{propiedad.fake_address}}</h2>

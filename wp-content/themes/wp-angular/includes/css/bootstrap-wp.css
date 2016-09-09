@@ -187,7 +187,8 @@ body {
     border: none;
     color: #FAF3DD;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.1em; }
+    font-size: 1.1em;
+    margin: 0; }
     body #advanced-search .panel .step {
       min-height: 62px;
       background-image: url("../images/arrow-form.png");
@@ -300,10 +301,32 @@ body {
         border: none; }
         body #advanced-search .panel .search-button .btn:hover {
           opacity: 0.85; }
+  body #global-search .search-results {
+    background-color: #FAF3DD;
+    color: #90030C;
+    position: absolute;
+    z-index: 99;
+    width: 30%;
+    left: 20%; }
+    body #global-search .search-results a {
+      color: #90030C;
+      text-decoration: none;
+      font-family: "Lato", sans-serif;
+      width: 100%;
+      display: block;
+      padding: 3px; }
+      body #global-search .search-results a:hover {
+        background-color: #90030C;
+        color: #FAF3DD; }
   body .propiedades {
     background-color: #FAF3DD;
     padding: 40px 30px;
     font-family: "Montserrat", sans-serif; }
+    body .propiedades .spinner {
+      text-align: center; }
+      body .propiedades .spinner i {
+        font-size: 2em;
+        color: #EC7E7E; }
     body .propiedades .card {
       padding: 0;
       margin: 5px;
