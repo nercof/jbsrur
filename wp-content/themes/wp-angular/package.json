@@ -15,6 +15,7 @@
     "angular-ui-router": "^0.3.1",
     "ng-resource": "^1.3.2",
     "ngmap": "^1.17.1",
+    "ngstorage": "^0.3.11",
     "npm-angular-resource": "^1.3.0-build.2880",
     "typicons.font": "^2.0.8"
   },
