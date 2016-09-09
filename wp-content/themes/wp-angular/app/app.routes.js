@@ -119,6 +119,9 @@
           controller: 'tokkoDetailsController as vm',
         }
       },
+      // http://christopherthielen.github.io/ui-router-extras/#/sticky
+      deepStateRedirect: true,
+      sticky: true,
       onEnter: function(){}
     });
   }// Fin function config

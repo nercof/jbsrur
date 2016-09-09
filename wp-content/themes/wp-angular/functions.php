@@ -118,11 +118,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
             get_template_directory_uri() .'/node_modules/angular-ui-router/release/angular-ui-router.js');
 
             wp_enqueue_script(
-            'angular-ui-tabs-js',
+            'angular-ui-bt',
             get_template_directory_uri() .'/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js');
 
             wp_enqueue_script(
-            'angular-ui-tabs-tpls',
+            'angular-ui-bt-tpls',
             get_template_directory_uri() .'/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js');
 
             wp_enqueue_script(
@@ -138,9 +138,14 @@ if ( ! function_exists( '_tk_setup' ) ) :
             get_template_directory_uri() .'/node_modules/angular-resource/angular-resource.js');
 
             wp_enqueue_script(
+            'ngstorage',
+            get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.js');
+
+            wp_enqueue_script(
             'app',
             get_stylesheet_directory_uri() . '/app/app.js',
-            array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map', 'angular-resource'));
+            array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map',
+                    'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls'));
 
             wp_enqueue_script(
             'routes',
@@ -231,7 +236,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
             'resourceFactory',
             get_stylesheet_directory_uri() . '/app/factories/resource.factory.js',
             array( 'factories', 'tokko-service' , 'tokkoFactory'));
-
 
             wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
 

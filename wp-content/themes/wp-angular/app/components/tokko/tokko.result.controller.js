@@ -6,7 +6,7 @@
     .controller('tokkoResultController', tokkoResultController);
 
     function tokkoResultController( $scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state) {
+        resourceFactory, $stateParams, $state, $localStorage) {
             var vm = this;
             vm.data = {}
             vm.cache = {}
@@ -23,10 +23,20 @@
                 vm.cache = $stateParams.cache;
                 vm.data = $stateParams.data;
 
-                // Call factory to search Tokko properties.
-                tokkoFactory.getProperties(vm.data).then(function(response) {
-                    vm.propiedades = response.objects;
-                });
+                if ($localStorage.prop_cache) {
+                    // TO-DO: use prop_result to storage the cache search
+                    vm.propiedades = $localStorage.prop_cache;
+                    console.log('vm.data in tokkoResultController');
+                    console.log(vm.data);
+                }
+
+                // Sino tenemos nada en la cache vamos a buscar
+                if (!vm.propiedades){
+                    // Call factory to search Tokko properties.
+                    tokkoFactory.getProperties(vm.data).then(function(response) {
+                        vm.propiedades = response.objects;
+                    });
+                }
             }
             // Re-direct to fullDetails
             vm.fullDetails = function(prop){
