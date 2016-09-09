@@ -177,6 +177,15 @@ if ( ! function_exists( '_tk_setup' ) ) :
             get_stylesheet_directory_uri() . '/app/components/tokko/tokko.result.controller.js',
             array( 'core', 'factories' ));
 
+            wp_enqueue_script(
+            'tokkoDetails',
+            get_stylesheet_directory_uri() . '/app/components/tokko/tokko.details.controller.js',
+            array( 'core', 'factories' ));
+
+            wp_enqueue_script(
+            'cf_tokko',
+            get_stylesheet_directory_uri() . '/app/filters/cf_tokko.js',
+            array( 'core', 'factories' ));
 
             wp_enqueue_script(
             'services',

@@ -16,9 +16,15 @@
                 'ngMap',
                 // Load this module in order to use $resource.
                 'ngResource',
-            ]);
+            ])
+    // Para poder visualizar el $state en las vistas.
+    .run(['$rootScope', '$state', '$stateParams',
+        function ($rootScope, $state, $stateParams) {
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+        }]);
 
-    console.log('Loading modules...: '
+    console.log('Loading app modules...: '
             + '\n- ui.router'
             + '\n- underscore'
             + '\n- ngMap'

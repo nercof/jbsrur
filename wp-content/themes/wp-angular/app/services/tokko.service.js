@@ -9,7 +9,7 @@
 
     /* @ngInject */
     function tokkoService($http, $log, TOKKO_KEY) {
-        console.log('tokkoService');
+        console.log('Load tokko.service.js');
 
         var data = {
             'getRequest': getRequest
@@ -17,7 +17,7 @@
 
         function getRequest(url, tag, key) {
             var requestUrl = url + tag ;
-            console.log(requestUrl);
+            //console.log(requestUrl);
             return $http({
                 'url': requestUrl,
                 'method': 'GET',

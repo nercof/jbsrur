@@ -1,8 +1,22 @@
-<div class="col-sm-12 col-xs-12">
-  <h1 style="color:white;">RESULTADO TOKKO SEARCH</h1>
-  <!-- Resultado masivo -->
-  <li ng-if="tokkoResult.propiedades"
-      ng-repeat="propiedad in tokkoResult.propiedades" style="color:#FFF">
-    {{propiedad.fake_address}}
-  </li>
+<!-- Elemento padre -->
 </div>
+<div ng-if="$state.current.name == 'propiedad'">
+  <div class="col-sm-12 col-xs-12">
+    <div class="col-sm-2" ng-repeat="propiedad in vm.propiedades">
+      <div ng-if="vm.propiedades" style="color:#FFF">
+        {{propiedad.fake_address}}
+        <!--    <a ng-click="vm.fullDetails(propiedad)" class="thumb">-->
+        <a ui-sref="propiedad.detalle({data: propiedad , id:propiedad.id})" class="thumb">
+          <img ng-src="{{propiedad.photos[0].image}}"></img></a>
+          {{propiedad.fake_address}}
+          {{propiedad.type.name}}
+          {{propiedad.short_location}}
+          ----------------------------
+          Contactar por telefono
+          Contactar por e.mail
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Elemento hijo-->
+<div ui-views=""></div>
