@@ -17,7 +17,7 @@
   .constant('TOKKO_PROPERTY_CUSTOM_TAG', 'property_custom_tag/')
   .constant('TOKKO_DEVELOPMENT_TYPE', '/api/v1/development_type/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
   .constant('TOKKO_PROPERTY', 'property/{id}/?lang=es_ar&?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_SEARCH', 'property/search/?limit=20&lang=es_ar&format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7');
+  .constant('TOKKO_SEARCH', 'property/search/?limit=200&lang=es_ar&format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7');
   ;
   // limite=200
   // @see:http://tokkobroker.com/api/playground
