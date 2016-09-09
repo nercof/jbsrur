@@ -50,24 +50,28 @@
             vm.barriosXzona = resourceFactory.query({
                 id: 'barrios_cba.json'
             });
-
+            /*
             if ($localStorage.prop_cache) {
                 vm.prop_cache = $localStorage.prop_cache;
             }
-            else {
+            else {*/
+
                 // 30864 - "full_location": "Argentina | Cordoba | Cordoba Capital ",
                 tokkoFactory.getPropertyByCity().then(function(response) {
+
                     vm.prop_cache = response.objects;
 
                     // Vamos a mandar la caché de propiedades al $storage
                     // prop_cache: Todas las propiedades de Córdoba y alrededores
                     // prop_result: Todas las propiedades excluidas por search
-                    $scope.$storage = $localStorage.$default({
-                        prop_cache: vm.prop_cache,
-                        prop_result: {}
-                    });
+
+                //    $scope.$storage = $localStorage.$default({
+                //        prop_cache: vm.prop_cache,
+                //        prop_result: {}
+                //    });
+
                 });
-            }
+            //}
         }
 
         vm.searchLocation = function() {

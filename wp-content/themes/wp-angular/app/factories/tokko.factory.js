@@ -221,7 +221,11 @@
         data_test.operation_types = params.operation_types;
         data_test.property_types = params.property_types;
       }
-      if (!data_test.current_localization_id) {
+      console.log(params);
+      console.log(data_test);
+      
+      if (data_test.current_localization_id.length == 0) {
+
         // DEFAULT VALUES
         // 30864 - "full_location": "Argentina | Cordoba | Cordoba Capital ",
         // "Otras Localidades",
@@ -231,10 +235,10 @@
         data_test.current_localization_id = [30864,31366,30814,32085];
       }
 
-      if(!data_test.operation_types){
+      if(data_test.operation_types.length == 0){
         data_test.operation_types = [1,2,3];
       }
-      if (!data_test.property_types) {
+      if (data_test.property_types.length == 0) {
         data_test.property_types = [1,2,3,4,5,6,7];
       }
 
