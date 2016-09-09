@@ -16,7 +16,7 @@
                   padding: 3px 20px;
                   clear: both;
                   font-weight: normal;
-                  line-height: 1.428571429;
+                  line-height: 1.4;
                   color: #333;
                   white-space: nowrap;
             }
@@ -41,6 +41,7 @@ $font-normal: 'Lato', sans-serif;
 $font-titles: 'Montserrat', sans-serif;
 $red: #DF0A1F;
 $white: #FAF3DD;
+$pink: #EC7E7E;
 html{
 
 }
@@ -157,28 +158,215 @@ body {
             }
       }
       #searchForm {
+            padding-bottom: 0;
+
             .search-tab{
-                  width: 48%;
+                  width: 50%;
+                  margin: 0;
             }
             ul {
                   background-color: $white;
 
                   &.nav-pills {
                         li {
-                              &.active{
+                              background-color: $pink;
+                              label,
+                              a {
+                                    text-transform: uppercase;
+                                    font-family: $font-titles;
+                                    padding: 8px 0;
+                                    color: $red;
+
+                                    button {
+                                          border-radius: 0;
+                                          border: 0;
+
+                                    }
+                                    i {
+                                          height: 35px;
+                                          width: 35px;
+                                          font-size: 26px;
+                                    }
+                                    .form-control {
+                                          border-radius: 0;
+                                          border: none;
+                                    }
+                              }
+                              &.active,
+                              &:hover {
                                     background-color: $red;
+                                    label {
+                                          color: $white;
+                                    }
                                     a {
                                           background: transparent;
                                     }
+                              }
+                              &.global-search {
+                                    .input-group {
+                                          width: 96%;
+                                          .form-control {
+                                                float: right;
+                                                width: 55%;
+                                                margin-left: 1em;
+                                                margin-right: 0;
+                                                height: 35px;
+                                                border-radius: 0;
+                                          }
+                                          .input-group-btn {
+                                                float: right;
+                                                button {
+                                                      height: 35px;
+                                                      width: 35px;
+                                                      padding: 4px 1px;
+                                                      border-radius: 0;
+                                                      border: 0;
+                                                      background-color: $pink;
+                                                      border:none;
 
+                                                      i {
+                                                            height: 35px;
+                                                            width: 35px;
+                                                            font-size: 26px;
+                                                            color: $red;
+                                                      }
+                                                }
+                                          }
+                                    }
+                              }
+                              &.advanced-search {
+                                    &.active,
+                                    &:hover {
+                                          a {
+                                                i {
+                                                      color: $white;
+                                                }
+                                          }
+                                    }
+                                    a {
+                                          i {
+                                                vertical-align: bottom;
+                                                font-size: 24px;
+                                          }
+                                    }
                               }
                         }
                   }
             }
-            button {
-                  background-color: #EC7E7E;
+      }
+      #advanced-search {
+            .panel {
+                  background-color: $red;
                   border-radius: 0;
-                  border: 0;
+                  border: none;
+                  color: $white;
+                  font-family: $font-titles;
+                  font-size: 1.1em;
+
+                  .step {
+                        min-height: 62px;
+                        background-image: url('../images/arrow-form.png');
+                        background-repeat: no-repeat;
+                        background-position: right 5px;
+
+                        &.step-checkbox {
+                              .checkbox {
+                                    display: block;
+                                    margin: 10px 5px;
+
+                                    input[type="checkbox"] {
+                                          display:none;
+                                          &+ label span{
+                                                display:inline-block;
+                                                width:20px;
+                                                height:20px;
+                                                margin:-1px 4px 0 0;
+                                                vertical-align:middle;
+                                                background-image: url('../images/checkbox.png');
+                                                cursor:pointer;
+                                          }
+                                          &:checked + label span{
+                                                background-image: url('../images/checkbox-active.png');
+                                          }
+                                    }
+                              }
+                        }
+                        &.step-list {
+                              .checkbox {
+                                    display: block;
+                                    margin: 10px 5px;
+
+                                    input[type="checkbox"] {
+                                          display:none;
+                                          &+ label span{
+                                                vertical-align:middle;
+                                                color: $white;
+                                                background-color: $red;
+                                                cursor:pointer;
+                                                padding: 5px 10px;
+                                                width: 135px;
+                                                display: block;
+                                          }
+                                          &:checked + label span {
+                                                color: $red;
+                                                background-color: $white;
+                                          }
+                                    }
+                              }
+                        }
+                        &.step-tabs {
+                              margin-top: 5px;
+
+                              .nav-pills {
+                                    display: inline-block;
+                                    margin: 5px 5px;
+                                    border: none;
+                                    width: 30%;
+
+                                    a {
+                                          vertical-align:middle;
+                                          color: $white;
+                                          background-color: $red;
+                                          cursor:pointer;
+                                          padding: 5px 10px;
+                                          display: block;
+                                    }
+                              }
+                              .tab-content {
+                                    width: 65%;
+                                    display: inline-block;
+                                    vertical-align: top;
+                                    background-color: #E5404B;
+                                    padding: 10px;
+
+                                    .cb-pills {
+                                          display: inline-block;
+                                          width: 30%;
+                                          margin: 0 5px;
+                                          input[type="checkbox"] {
+                                                display:none;
+                                                &+ label span{
+                                                      display:inline-block;
+                                                      cursor:pointer;
+                                                      font-weight: 400;
+                                                      padding: 5px;
+                                                      font-size: 0.86em;
+                                                      vertical-align: middle;
+                                                      color:$white;
+                                                }
+                                                &:checked + label span{
+                                                      background-color: $white;
+                                                      border-radius: 5px;
+                                                      color:$red;
+                                                }
+                                          }
+                                    }
+                              }
+                        }
+                        &.nobg {
+                              background: none;
+                        }
+                  }
             }
       }
 }

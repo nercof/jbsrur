@@ -8,6 +8,7 @@
     angular.module('jbsrurApp',
             [   'ui.router',
                 'underscore',
+                'ui.bootstrap',
                 'app.routes',
                 'app.core',
                 'app.services',

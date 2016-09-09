@@ -14,7 +14,7 @@
   padding: 3px 20px;
   clear: both;
   font-weight: normal;
-  line-height: 1.428571429;
+  line-height: 1.4;
   color: #333;
   white-space: nowrap; }
 .dropdown-menu ul {
@@ -110,15 +110,149 @@ body {
       margin: 10px 20px;
       background-size: contain;
       background-repeat: no-repeat; }
-  body #searchForm .search-tab {
-    width: 48%; }
-  body #searchForm ul {
-    background-color: #FAF3DD; }
-    body #searchForm ul.nav-pills li.active {
-      background-color: #DF0A1F; }
-      body #searchForm ul.nav-pills li.active a {
-        background: transparent; }
-  body #searchForm button {
-    background-color: #EC7E7E;
+  body #searchForm {
+    padding-bottom: 0; }
+    body #searchForm .search-tab {
+      width: 50%;
+      margin: 0; }
+    body #searchForm ul {
+      background-color: #FAF3DD; }
+      body #searchForm ul.nav-pills li {
+        background-color: #EC7E7E; }
+        body #searchForm ul.nav-pills li label,
+        body #searchForm ul.nav-pills li a {
+          text-transform: uppercase;
+          font-family: "Montserrat", sans-serif;
+          padding: 8px 0;
+          color: #DF0A1F; }
+          body #searchForm ul.nav-pills li label button,
+          body #searchForm ul.nav-pills li a button {
+            border-radius: 0;
+            border: 0; }
+          body #searchForm ul.nav-pills li label i,
+          body #searchForm ul.nav-pills li a i {
+            height: 35px;
+            width: 35px;
+            font-size: 26px; }
+          body #searchForm ul.nav-pills li label .form-control,
+          body #searchForm ul.nav-pills li a .form-control {
+            border-radius: 0;
+            border: none; }
+        body #searchForm ul.nav-pills li.active, body #searchForm ul.nav-pills li:hover {
+          background-color: #DF0A1F; }
+          body #searchForm ul.nav-pills li.active label, body #searchForm ul.nav-pills li:hover label {
+            color: #FAF3DD; }
+          body #searchForm ul.nav-pills li.active a, body #searchForm ul.nav-pills li:hover a {
+            background: transparent; }
+        body #searchForm ul.nav-pills li.global-search .input-group {
+          width: 96%; }
+          body #searchForm ul.nav-pills li.global-search .input-group .form-control {
+            float: right;
+            width: 55%;
+            margin-left: 1em;
+            margin-right: 0;
+            height: 35px;
+            border-radius: 0; }
+          body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn {
+            float: right; }
+            body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button {
+              height: 35px;
+              width: 35px;
+              padding: 4px 1px;
+              border-radius: 0;
+              border: 0;
+              background-color: #EC7E7E;
+              border: none; }
+              body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button i {
+                height: 35px;
+                width: 35px;
+                font-size: 26px;
+                color: #DF0A1F; }
+        body #searchForm ul.nav-pills li.advanced-search.active a i, body #searchForm ul.nav-pills li.advanced-search:hover a i {
+          color: #FAF3DD; }
+        body #searchForm ul.nav-pills li.advanced-search a i {
+          vertical-align: bottom;
+          font-size: 24px; }
+  body #advanced-search .panel {
+    background-color: #DF0A1F;
     border-radius: 0;
-    border: 0; }
+    border: none;
+    color: #FAF3DD;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1em; }
+    body #advanced-search .panel .step {
+      min-height: 62px;
+      background-image: url("../images/arrow-form.png");
+      background-repeat: no-repeat;
+      background-position: right 5px; }
+      body #advanced-search .panel .step.step-checkbox .checkbox {
+        display: block;
+        margin: 10px 5px; }
+        body #advanced-search .panel .step.step-checkbox .checkbox input[type="checkbox"] {
+          display: none; }
+          body #advanced-search .panel .step.step-checkbox .checkbox input[type="checkbox"] + label span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: -1px 4px 0 0;
+            vertical-align: middle;
+            background-image: url("../images/checkbox.png");
+            cursor: pointer; }
+          body #advanced-search .panel .step.step-checkbox .checkbox input[type="checkbox"]:checked + label span {
+            background-image: url("../images/checkbox-active.png"); }
+      body #advanced-search .panel .step.step-list .checkbox {
+        display: block;
+        margin: 10px 5px; }
+        body #advanced-search .panel .step.step-list .checkbox input[type="checkbox"] {
+          display: none; }
+          body #advanced-search .panel .step.step-list .checkbox input[type="checkbox"] + label span {
+            vertical-align: middle;
+            color: #FAF3DD;
+            background-color: #DF0A1F;
+            cursor: pointer;
+            padding: 5px 10px;
+            width: 135px;
+            display: block; }
+          body #advanced-search .panel .step.step-list .checkbox input[type="checkbox"]:checked + label span {
+            color: #DF0A1F;
+            background-color: #FAF3DD; }
+      body #advanced-search .panel .step.step-tabs {
+        margin-top: 5px; }
+        body #advanced-search .panel .step.step-tabs .nav-pills {
+          display: inline-block;
+          margin: 5px 5px;
+          border: none;
+          width: 30%; }
+          body #advanced-search .panel .step.step-tabs .nav-pills a {
+            vertical-align: middle;
+            color: #FAF3DD;
+            background-color: #DF0A1F;
+            cursor: pointer;
+            padding: 5px 10px;
+            display: block; }
+        body #advanced-search .panel .step.step-tabs .tab-content {
+          width: 65%;
+          display: inline-block;
+          vertical-align: top;
+          background-color: #E5404B;
+          padding: 10px; }
+          body #advanced-search .panel .step.step-tabs .tab-content .cb-pills {
+            display: inline-block;
+            width: 30%;
+            margin: 0 5px; }
+            body #advanced-search .panel .step.step-tabs .tab-content .cb-pills input[type="checkbox"] {
+              display: none; }
+              body #advanced-search .panel .step.step-tabs .tab-content .cb-pills input[type="checkbox"] + label span {
+                display: inline-block;
+                cursor: pointer;
+                font-weight: 400;
+                padding: 5px;
+                font-size: 0.86em;
+                vertical-align: middle;
+                color: #FAF3DD; }
+              body #advanced-search .panel .step.step-tabs .tab-content .cb-pills input[type="checkbox"]:checked + label span {
+                background-color: #FAF3DD;
+                border-radius: 5px;
+                color: #DF0A1F; }
+      body #advanced-search .panel .step.nobg {
+        background: none; }
