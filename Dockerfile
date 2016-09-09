@@ -76,9 +76,9 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
     && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
     && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc \
     && npm install -g npm@"$NPM_VERSION" \
-    && npm cache clear /
-	&& apt-get install ruby-full /
-	&& apt-get install rubygems /
+    && npm cache clear \
+	&& apt-get install ruby-full \
+	&& apt-get install rubygems \
 	&& gem install sass
 
 # Copy /app folder <APP>- Theme & Plugin
