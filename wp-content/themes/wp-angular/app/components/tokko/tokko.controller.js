@@ -51,7 +51,7 @@
                 id: 'barrios_cba.json'
             });
 
-            if ($localStorage.prop_cache[0] != null) {
+            if ($localStorage.prop_cache) {
                 vm.prop_cache = $localStorage.prop_cache;
             }
             else {
