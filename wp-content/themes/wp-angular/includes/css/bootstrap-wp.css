@@ -37,12 +37,20 @@ body {
     padding-bottom: 0; }
   body #myCarousel .carousel-control {
     width: 50px; }
+  body h1.title {
+    background-color: #90030C;
+    font-family: "Montserrat", sans-serif;
+    color: #FAF3DD;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 20px;
+    font-size: 1.2em; }
   body #jbsrur-nav {
     background-color: #DF0A1F;
     height: 90px;
     padding-right: 40px;
     border: none;
-    margin-bottom: 10px; }
+    margin-bottom: 0px; }
     body #jbsrur-nav a {
       font-family: "Montserrat", sans-serif;
       font-weight: bold;
@@ -292,3 +300,56 @@ body {
         border: none; }
         body #advanced-search .panel .search-button .btn:hover {
           opacity: 0.85; }
+  body .propiedades {
+    background-color: #FAF3DD;
+    padding: 40px 30px;
+    font-family: "Montserrat", sans-serif; }
+    body .propiedades .card {
+      padding: 0;
+      margin: 5px;
+      width: 19%;
+      float: none;
+      display: inline-table;
+      background-color: #735753; }
+      body .propiedades .card .inner-card {
+        padding: 5px;
+        text-align: center;
+        color: #FAF3DD; }
+        body .propiedades .card .inner-card h2 {
+          color: #FAF3DD;
+          background-color: #90030C;
+          font-size: 1.1em;
+          line-height: 1.2em;
+          margin: 0;
+          padding: 5px;
+          height: 45px;
+          text-align: left; }
+        body .propiedades .card .inner-card .pic {
+          width: 195px;
+          height: 130px;
+          background-size: contain;
+          margin-bottom: 10px; }
+        body .propiedades .card .inner-card .line {
+          width: 85%;
+          height: 1px;
+          background-color: #FAF3DD;
+          margin: auto;
+          margin: 8px auto;
+          text-align: left; }
+        body .propiedades .card .inner-card i {
+          font-size: 2em;
+          padding: 0 5px;
+          display: inline-table;
+          vertical-align: middle; }
+        body .propiedades .card .inner-card p {
+          text-align: left;
+          display: inline-table;
+          width: 75%;
+          vertical-align: middle;
+          margin: 0; }
+        body .propiedades .card .inner-card .dire {
+          display: table;
+          width: 100%;
+          padding-bottom: 5px; }
+      body .propiedades .card.odd {
+        background-color: #DF0A1F; }

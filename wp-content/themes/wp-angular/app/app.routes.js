@@ -88,16 +88,6 @@
         }
       }
     })
-    .state('tokko', {
-      // Buscador de Propiedades
-      url: 'tokko',
-      views:{
-        "tokko-middle":{
-          templateUrl: localized.tokko + "tokko-search-input.html",
-          controller: 'tokkoController as vm'
-        }
-      }
-    })
     .state('propiedad', {
       // Resultado de Buscador de Propiedades.
       params: { data:null, cache:null},
@@ -106,6 +96,13 @@
         "content":{
           templateUrl: localized.tokko + "tokko-search-result.html",
           controller: 'tokkoResultController as vm',
+        },
+        "title@propiedad":{
+          template: '<h1 class="title">Propiedades</h1>',
+        },
+        "tokko-middle":{
+          templateUrl: localized.tokko + "tokko-search-input.html",
+          controller: 'tokkoController as vm'
         }
       },
       onEnter: function(){}
@@ -117,7 +114,10 @@
         "@":{
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
-        }
+        },
+        "title@propiedad":{
+          template: '',
+        },
       },
       // http://christopherthielen.github.io/ui-router-extras/#/sticky
       deepStateRedirect: true,

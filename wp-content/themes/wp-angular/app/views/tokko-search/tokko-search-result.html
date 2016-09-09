@@ -1,22 +1,20 @@
 <!-- Elemento padre -->
-</div>
+<div ui-view='title'/>
 <div ng-if="$state.current.name == 'propiedad'">
-  <div class="col-sm-12 col-xs-12">
-    <div class="col-sm-2" ng-repeat="propiedad in vm.propiedades">
-      <div ng-if="vm.propiedades" style="color:#FFF">
-        {{propiedad.fake_address}}
+  <div class="col-sm-12 col-xs-12 propiedades">
+    <div class="col-md-2 card" ng-repeat="propiedad in vm.propiedades" ng-class-odd="'odd'">
+      <div ng-if="vm.propiedades" class="inner-card">
+        <h2>{{propiedad.fake_address}}</h2>
         <!--    <a ng-click="vm.fullDetails(propiedad)" class="thumb">-->
         <a ui-sref="propiedad.detalle({data: propiedad , id:propiedad.id})" class="thumb">
-          <img ng-src="{{propiedad.photos[0].image}}"></img></a>
-          {{propiedad.fake_address}}
-          {{propiedad.type.name}}
-          {{propiedad.short_location}}
-          ----------------------------
-          Contactar por telefono
-          Contactar por e.mail
+          <div class="pic" style="background-image: url('{{propiedad.photos[0].image}}')"></div></a>
+          <div class="dire"><i class="typcn typcn-location-outline"></i><p>{{propiedad.fake_address}}</p></div>
+          <div class="dire"><i class="typcn typcn-home-outline"></i><p>{{propiedad.type.name}}</p></div>
+          <div class="dire"><i class="typcn typcn-location-arrow-outline"></i><p>{{propiedad.location.short_location}}</p></div>
+          <div class="line"></div>
+          <div class="dire"><i class="typcn typcn-phone-outline"></i><p>Contactar por telefono</p></div>
+          <div class="dire"><i class="typcn typcn-mail"></i><p>Contactar por e.mail</p></div>
         </div>
       </div>
     </div>
   </div>
-<!-- Elemento hijo-->
-<div ui-views=""></div>

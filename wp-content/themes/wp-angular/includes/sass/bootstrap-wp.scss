@@ -42,6 +42,8 @@ $font-titles: 'Montserrat', sans-serif;
 $red: #DF0A1F;
 $white: #FAF3DD;
 $pink: #EC7E7E;
+$bordo: #90030C;
+$grey: #735753;
 html{
 
 }
@@ -64,12 +66,23 @@ body {
                   width: 50px;
             }
       }
+      h1 {
+            &.title{
+                  background-color:$bordo;
+                  font-family: $font-titles;
+                  color: $white;
+                  text-transform: uppercase;
+                  margin: 0;
+                  padding: 20px;
+                  font-size: 1.2em;
+            }
+      }
       #jbsrur-nav {
             background-color: $red;
             height: 90px;
             padding-right: 40px;
             border:none;
-            margin-bottom: 10px;
+            margin-bottom: 0px;
 
             a {
                   font-family: $font-titles;
@@ -424,6 +437,72 @@ body {
                                     opacity: 0.85;
                               }
                         }
+                  }
+            }
+      }
+      .propiedades {
+            background-color: $white;
+            padding: 40px 30px;
+            font-family: $font-titles;
+
+            .card {
+                  padding: 0;
+                  margin: 5px;
+                  width: 19%;
+                  float: none;
+                  display: inline-table;
+                  background-color: $grey;
+
+                  .inner-card{
+                        padding: 5px;
+                        text-align: center;
+                        color: $white;
+                        h2 {
+                              color: $white;
+                              background-color: $bordo;
+                              font-size: 1.1em;
+                              line-height: 1.2em;
+                              margin: 0;
+                              padding: 5px;
+                              height: 45px;
+                              text-align: left;
+                        }
+                        .pic {
+                              width: 195px;
+                              height: 130px;
+                              background-size: contain;
+                              margin-bottom: 10px;
+                        }
+                        .line {
+                              width: 85%;
+                              height: 1px;
+                              background-color: $white;
+                              margin: auto;
+                              margin: 8px auto;
+                              text-align: left;
+                        }
+                        i {
+                              font-size: 2em;
+                              padding: 0 5px;
+                              display: inline-table;
+                              vertical-align: middle;
+                        }
+                        p {
+                              text-align: left;
+                              display: inline-table;
+                              width: 75%;
+                              vertical-align: middle;
+                              margin: 0;
+                        }
+                        .dire {
+                              display: table;
+                              width: 100%;
+                              padding-bottom: 5px;
+                        }
+                  }
+
+                  &.odd{
+                        background-color: $red;
                   }
             }
       }
