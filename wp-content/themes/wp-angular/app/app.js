@@ -13,15 +13,24 @@
                 'app.services',
                 'app.factories',
                 'ngMap',
-                // Load this module in order to use $resource.
-                'ngResource',
+                'ngResource', // Load this module in order to use $resource.
+                'ngStorage',  // localStorage and sessionStorage done right for AngularJS
             ])
     // Para poder visualizar el $state en las vistas.
     .run(['$rootScope', '$state', '$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
-        }]);
+        }])
+        // Empleamos $localstorage para buscar las propiedades en caché
+            // TODO: add f(x) to retrive values and put into service.
+            .config(['$localStorageProvider',
+                function($localStorageProvider) {
+                    var aux = $localStorageProvider.get('prop_cache');
+                    console.log('Prop cache: ');
+                    console.log(aux);
+                }
+            ]);
 
     console.log('Loading app modules...: '
             + '\n- ui.router'
@@ -32,5 +41,6 @@
             + '\n- app.routes'
             + '\n- app.services'
             + '\n- app.factories'
+            + '\n- ngStorage'
             );
 }());

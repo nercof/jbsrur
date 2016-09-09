@@ -25,24 +25,28 @@
     }
 
     function addStates(menu) {
-      menu.items.forEach(function(item){
-        if(!item.children){
-          item.state = item.url.substr(1);
+      if (menu.items) {
+        menu.items.forEach(function(item){
+          if(!item.children){
+            item.state = item.url.substr(1);
           }else {
             item.children.forEach(function(child){
-            child.state = child.url.substr(1);
-          });
-        }
-      });
+              child.state = child.url.substr(1);
+            });
+          }
+        });
+      }
     }
 
     function formatUrls(menu) {
-      menu.items.forEach(function(item){
-        if(item.children){
-          item.url = "#";
-        }
-      })
+      if (menu.items) {
+        menu.items.forEach(function(item){
+          if(item.children){
+            item.url = "#";
+          }
+        })
+      }
     }
     return data;
- }
+  }
 }());

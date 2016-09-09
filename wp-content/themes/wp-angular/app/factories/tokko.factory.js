@@ -118,8 +118,6 @@
       TOKKO_LANG + lang   +
       TOKKO_FORMAT        +
       TOKKO_KEYC + TOKKO_KEY;
-      //console.log('getPropertyTypes url: ' + url);
-      //console.log('getPropertyTypes constant: ' + TOKKO_PROPERTY_TYPE);
       return tokkoService.getRequest(BASE_TOKKO, TOKKO_PROPERTY_TYPE, TOKKO_KEY);
     }
 
@@ -152,7 +150,6 @@
     /*
     * Obtengo el lenguaje del navegador.
     *
-
     */
     function getCurrentLang(){
       lang = $window.navigator.language || $window.navigator.userLanguage;

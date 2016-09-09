@@ -2,14 +2,14 @@
     'use strict';
 
     angular
-    .module('app.core')
-    .controller('tokkoController', tokkoController);
+        .module('app.core')
+        .controller('tokkoController', tokkoController);
 
-    function tokkoController($scope, tokkoFactory, tokkoService, NgMap, resourceFactory, $state) {
+    function tokkoController($scope, tokkoFactory, tokkoService, NgMap, resourceFactory, $state, $localStorage) {
         /**
-        * @see: angular.extend
-        *
-        */
+         * @see: angular.extend
+         *
+         */
         console.log('Load tokko.controller.js');
         var vm = this;
         vm.titleForm = "Encuentre su propiedad:";
@@ -41,15 +41,33 @@
         });
 
         activate(vm);
+
         function activate(vm) {
             // https://gist.github.com/aaronksaunders/bb8416da6a829ea2fb77
-            vm.tokko_data = resourceFactory.query({id:'tokko.data.json'});
-            vm.barriosXzona = resourceFactory.query({id:'barrios_cba.json'});
-
-            // 30864 - "full_location": "Argentina | Cordoba | Cordoba Capital ",
-            tokkoFactory.getPropertyByCity().then(function(response) {
-                    vm.prop_cache = response.objects;
+            vm.tokko_data = resourceFactory.query({
+                id: 'tokko.data.json'
             });
+            vm.barriosXzona = resourceFactory.query({
+                id: 'barrios_cba.json'
+            });
+
+            if ($localStorage.prop_cache) {
+                vm.prop_cache = $localStorage.prop_cache;
+            }
+            else {
+                // 30864 - "full_location": "Argentina | Cordoba | Cordoba Capital ",
+                tokkoFactory.getPropertyByCity().then(function(response) {
+                    vm.prop_cache = response.objects;
+
+                    // Vamos a mandar la caché de propiedades al $storage
+                    // prop_cache: Todas las propiedades de Córdoba y alrededores
+                    // prop_result: Todas las propiedades excluidas por search
+                    $scope.$storage = $localStorage.$default({
+                        prop_cache: vm.prop_cache,
+                        prop_result: {}
+                    });
+                });
+            }
         }
 
         vm.searchLocation = function() {
@@ -59,11 +77,12 @@
         }
 
         // Get barrio by ID
-        vm.getBarrioById = function (id){
-            //vm.localization_barrio_id = vm.tokko_data.getElementById('id');
+        vm.getBarrioById = function(id) {}
 
-        }
-
+        /**
+         * description
+         *
+         */
         vm.searchTokko = function() {
             // Codigo TOKKO: xej: 37588; 152749, 235422
             if (vm.codigoPropiedad != '') {
@@ -73,16 +92,20 @@
                 });
             }
             else {
-
+                // Parameters by user
                 var obj = {
-                    "operation_types": _.keys(vm.operation_types),
-                    "property_types": _.keys(vm.property_types),
-                    "suite_amount":_.keys(vm.suite_amount),
-                    "current_localization_id":_.keys(vm.localization_barrio_id)
-                }
-                // Formar data
-                $state.go('propiedad', {data: obj, cache: vm.prop_cache});
+                        "operation_types": _.keys(vm.operation_types),
+                        "property_types": _.keys(vm.property_types),
+                        "suite_amount": _.keys(vm.suite_amount),
+                        "current_localization_id": _.keys(vm.localization_barrio_id)
+                    }
+
+                // Re-direct to state propiedad
+                $state.go('propiedad', {
+                    data: obj,
+                    cache: vm.prop_cache
+                });
             }
         }
-    };// Cierre tokkoController
+    }; // Cierre tokkoController
 }());

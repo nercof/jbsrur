@@ -130,9 +130,13 @@ if ( ! function_exists( '_tk_setup' ) ) :
             get_template_directory_uri() .'/node_modules/angular-resource/angular-resource.js');
 
             wp_enqueue_script(
+            'ngstorage',
+            get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.js');
+
+            wp_enqueue_script(
             'app',
             get_stylesheet_directory_uri() . '/app/app.js',
-            array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map', 'angular-resource'));
+            array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map', 'angular-resource', 'ngstorage'));
 
             wp_enqueue_script(
             'routes',

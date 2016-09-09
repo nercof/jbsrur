@@ -26,8 +26,11 @@
                 <div ng-if="search_query && vm.prop_cache">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <div class="col-sm-2" ng-repeat="prop in vm.prop_cache | filter: search_query">
+                            <!-- <div class="col-sm-2" ng-repeat="prop in vm.prop_cache | filter: search_query"> -->
+                            <div class="col-sm-2" ng-repeat="prop in vm.prop_cache | cf_tokko: search_query">
                                 <div style="color:#FFF">
+                                <a ui-sref="propiedad.detalle({data: prop , id:prop.id})" class="thumb">
+                                    <img ng-src="{{prop.photos[0].image}}"></img></a>
                                     {{prop.fake_address}}
                                     {{prop.location.full_location}}
                                     {{prop.type.name}}
