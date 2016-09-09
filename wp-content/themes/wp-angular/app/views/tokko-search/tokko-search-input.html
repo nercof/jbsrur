@@ -26,10 +26,7 @@
         <div class="tab-pane" id="advanced-search">
             <div class="container">
                 <div class="panel panel-default">
-                    <!-- Default panel contents -->
-
                     <div class="panel-body">
-
                         <div class="form-inline">
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
@@ -42,7 +39,7 @@
                                                 <label for="{{operacion.name + operacion.id}}" name="{{operacion.name}}"><span></span> {{operacion.name}} </label>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4 col-xs-6 step step-list" ng-if="showTP">
+                                        <div class="col-sm-4 col-xs-6 step step-list" >
                                             <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.tokko_data.tp">
                                                 <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}"  ng-model="vm.property_types[tipo_propiedad.id]">
                                                 <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span>{{tipo_propiedad.name}}</span></label>
@@ -50,16 +47,19 @@
                                         </div>
                                         <div class="col-sm-4 col-xs-6 step step-list">
                                             <div class="checkbox checkbox-primary" ng-repeat="dormitorio in vm.tokko_data.do">
-                                                <input type="checkbox" id="{{dormitorio.name + dormitorio.id}}" ng-model="vm.suite_amount[dormitorio.id]">
-                                                <label for="{{dormitorio.name + dormitorio.id}}" name="{{dormitorio.name}}"><span>{{dormitorio.name}}</span></label>
+                                                <input type="checkbox" id="{{dormitorio.name + dormitorio.id}}+do" ng-model="vm.suite_amount[dormitorio.id]">
+                                                <label for="{{dormitorio.name + dormitorio.id}}+do" name="{{dormitorio.name}}"><span>{{dormitorio.name}}</span></label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12 step step-tabs nobg" >
-                                    <uib-tabset vertical="true" type="pills" >
-                                        <uib-tab ng-repeat="zona in vm.barriosXzona" heading="{{zona.name}}">
-                                            <div ng-if="!zona.hide">
+                                    <uib-tabset vertical="true" type="pills" active="-1">
+                                        <uib-tab ng-repeat="zona in vm.barriosXzona" heading="{{zona.name}}" classes="{{zona.name}}">
+                                            <uib-tab-heading>
+                                                {{zona.name}} <i class="fa fa-caret-right"></i>
+                                            </uib-tab-heading>
+                                            <div ng-if="!zona.hide" class="conteiner-barrios">
                                                 <div ng-repeat="barrio in zona.barrios" class="cb-pills">
                                                     <input type="checkbox" id="{{barrio.name + barrio.id}}"  ng-model="vm.localization_barrio_id[barrio.id]">
                                                     <label for="{{barrio.name + barrio.id}}" name="{{barrio.name}}"><span>{{barrio.name}}</span></label>
@@ -67,72 +67,19 @@
                                             </div>
                                         </uib-tab>
                                     </uib-tabset>
-                                        <!-- <div class="row" ng-repeat="zona in vm.barriosXzona">
-                                        <div class="col-sm-4 col-xs-12 barrios">
-                                            <ul class="nav nav-tabs nav-stacked">
-                                                <li ng-class="{'active': zona.active}" data-target="#{{zona.id}}" data-toggle="tab">
-                                                    <a>
-                                                        {{zona.name}}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-8 col-xs-12">
-                                            <div class="tab-content">
-                                                <div class="tab-pane"
-                                                ng-class="{'active': zona.active}" id="{{zona.id}}" class="tab-pane fade in">
-                                                <div ng-if="!zona.hide">
-                                                    <div ng-repeat="barrio in zona.barrios">
-                                                        <input type="checkbox"
-                                                        ng-model="vm.localization_barrio_id[barrio.id]"
-                                                        >{{barrio.name}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 search-button">
+                                    <a class="btn btn-default" ng-click="vm.searchTokko()">
+                                        Buscar
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- BARRIO --------------------------------------------------->
-                <!--
-                <select class="form-control" name="barrioSelect"
-                ng-model="vm.tokko_location.id"
-                ng-selected="barrio"
-                ng-options="barrio.name for barrio in vm.tokko_location track by barrio.id">
-                <option value="" disabled selected hidden>Barrio</option>
-            </select>
-
-            <select class="form-control" name="repeatSelect" id="barrioSelect" ng-model="vm.barriosXzona.sel_barrio">
-            <option value="" disabled selected hidden>Barrio</option>
-            <option ng-repeat="barrio in vm.barriosXzona.id.barrios">
-            value="{{barrio.name}}">{{barrio.name}}</option>
-        </select>
-        <br>
-        Selecciono:
-        {{vm.barriosXzona.sel}}
-
-
-        <input class="form-control" type="text" placeholder="Buscar x código" ng-model="vm.codigoPropiedad" />
-    -->
-    <div class="row">
-        <div class="col-sm-12 col-xs-12">
-            <a class="btn btn-default" ng-click="vm.searchTokko()">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar</a>
             </div>
         </div>
-        <div class="col-sm-12 col-xs-12">
-            <!-- Resultado masivo -->
-            <!--
-            <li class="list-group-item" ng-repeat="propiedad in vm.propiedades.objects">
-            {{propiedad.public_url}}
-        </li>
     </div>
--->
-</div>
-<!-- End div panel-heading       -->
 </div>

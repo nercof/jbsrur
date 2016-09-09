@@ -198,6 +198,8 @@ body {
             vertical-align: middle;
             background-image: url("../images/checkbox.png");
             cursor: pointer; }
+            body #advanced-search .panel .step.step-checkbox .checkbox input[type="checkbox"] + label span:hover {
+              background-image: url("../images/checkbox-active.png"); }
           body #advanced-search .panel .step.step-checkbox .checkbox input[type="checkbox"]:checked + label span {
             background-image: url("../images/checkbox-active.png"); }
       body #advanced-search .panel .step.step-list .checkbox {
@@ -213,6 +215,9 @@ body {
             padding: 5px 10px;
             width: 135px;
             display: block; }
+            body #advanced-search .panel .step.step-list .checkbox input[type="checkbox"] + label span:hover {
+              color: #DF0A1F;
+              background-color: #FAF3DD; }
           body #advanced-search .panel .step.step-list .checkbox input[type="checkbox"]:checked + label span {
             color: #DF0A1F;
             background-color: #FAF3DD; }
@@ -222,37 +227,68 @@ body {
           display: inline-block;
           margin: 5px 5px;
           border: none;
-          width: 30%; }
-          body #advanced-search .panel .step.step-tabs .nav-pills a {
-            vertical-align: middle;
-            color: #FAF3DD;
-            background-color: #DF0A1F;
-            cursor: pointer;
-            padding: 5px 10px;
-            display: block; }
+          width: 32%; }
+          body #advanced-search .panel .step.step-tabs .nav-pills li {
+            margin-bottom: 10px; }
+            body #advanced-search .panel .step.step-tabs .nav-pills li a {
+              vertical-align: middle;
+              color: #FAF3DD;
+              background-color: #DF0A1F;
+              cursor: pointer;
+              padding: 5px 10px;
+              display: block;
+              border-radius: 0; }
+              body #advanced-search .panel .step.step-tabs .nav-pills li a i {
+                margin-left: 5px; }
+            body #advanced-search .panel .step.step-tabs .nav-pills li.active a,
+            body #advanced-search .panel .step.step-tabs .nav-pills li.active i, body #advanced-search .panel .step.step-tabs .nav-pills li:hover a,
+            body #advanced-search .panel .step.step-tabs .nav-pills li:hover i {
+              color: #DF0A1F;
+              background-color: #FAF3DD; }
+          body #advanced-search .panel .step.step-tabs .nav-pills .Todos i {
+            display: none; }
+          body #advanced-search .panel .step.step-tabs .nav-pills .Todos .tab-content {
+            display: none; }
         body #advanced-search .panel .step.step-tabs .tab-content {
           width: 65%;
           display: inline-block;
           vertical-align: top;
-          background-color: #E5404B;
-          padding: 10px; }
-          body #advanced-search .panel .step.step-tabs .tab-content .cb-pills {
-            display: inline-block;
-            width: 30%;
-            margin: 0 5px; }
-            body #advanced-search .panel .step.step-tabs .tab-content .cb-pills input[type="checkbox"] {
-              display: none; }
-              body #advanced-search .panel .step.step-tabs .tab-content .cb-pills input[type="checkbox"] + label span {
-                display: inline-block;
-                cursor: pointer;
-                font-weight: 400;
-                padding: 5px;
-                font-size: 0.86em;
-                vertical-align: middle;
-                color: #FAF3DD; }
-              body #advanced-search .panel .step.step-tabs .tab-content .cb-pills input[type="checkbox"]:checked + label span {
-                background-color: #FAF3DD;
-                border-radius: 5px;
-                color: #DF0A1F; }
+          background-color: #E5404B; }
+          body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios {
+            padding: 10px; }
+            body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills {
+              display: inline-block;
+              width: 30%;
+              margin: 0 5px; }
+              body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"] {
+                display: none; }
+                body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"] + label span {
+                  display: inline-block;
+                  cursor: pointer;
+                  font-weight: 400;
+                  padding: 5px;
+                  font-size: 0.86em;
+                  vertical-align: middle;
+                  color: #FAF3DD; }
+                  body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"] + label span:hover {
+                    background-color: #FAF3DD;
+                    border-radius: 5px;
+                    color: #DF0A1F; }
+                body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"]:checked + label span {
+                  background-color: #FAF3DD;
+                  border-radius: 5px;
+                  color: #DF0A1F; }
       body #advanced-search .panel .step.nobg {
         background: none; }
+    body #advanced-search .panel .search-button {
+      text-align: right; }
+      body #advanced-search .panel .search-button .btn {
+        background-color: #FAF3DD;
+        border-radius: 20px;
+        color: #DF0A1F;
+        padding: 20px 15px;
+        font-size: 1em;
+        text-transform: uppercase;
+        border: none; }
+        body #advanced-search .panel .search-button .btn:hover {
+          opacity: 0.85; }
