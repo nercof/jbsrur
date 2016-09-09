@@ -108,7 +108,6 @@
           controller: 'tokkoResultController as vm',
         }
       },
-      onEnter: function(){}
     })
     .state('propiedad.detalle', { //DOT Notation
       params: { data:null, flag:null},

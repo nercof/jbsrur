@@ -22,9 +22,10 @@
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
-        }])
+        }]);
+        /*
         // Empleamos $localstorage para buscar las propiedades en caché
-            // TODO: add f(x) to retrive values and put into service.
+        // TODO: add f(x) to retrive values and put into service.
             .config(['$localStorageProvider',
                 function($localStorageProvider) {
                     var aux = $localStorageProvider.get('prop_cache');
@@ -32,7 +33,7 @@
                     console.log(aux);
                 }
             ]);
-
+        */
     console.log('Loading app modules...: '
             + '\n- ui.router'
             + '\n- underscore'
