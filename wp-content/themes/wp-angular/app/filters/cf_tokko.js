@@ -12,6 +12,7 @@
             // Declaracion de variables
             var keys_word, prop_filtered = [];
             var full_text = "";
+            var all_prop_copy = all_prop;
 
             // Valores a filtrar separados por espacio
             var keys_word = i_query.split(' ');
@@ -23,8 +24,8 @@
             console.log(i_query, keys_word);
 
             // Filtrado
-            _.each(all_prop, function(prop) {
-                // prop.description +
+            _.each(all_prop, function(prop, key) {
+
                 console.log(prop);
                 full_text = prop.fake_address   + ' ' +
                             prop.operations[0].operation_type + ' ' + // "Alquiler"
@@ -38,7 +39,14 @@
                     console.log('esta en full_text: ' + full_text);
                     // Consultamos
                     if (full_text.indexOf(words)) {
+                        console.log('VERDADERO');
                         prop_filtered.push(prop);
+                    }
+                    else{
+                        console.log('VERDADERO');
+
+                        // Borramos para ir achicando la busqueda
+                        //delete all_prop[key];
                     }
                 })
             });
