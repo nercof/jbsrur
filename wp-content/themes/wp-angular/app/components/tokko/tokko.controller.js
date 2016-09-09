@@ -33,7 +33,7 @@
         vm.suite_amount = [];
         vm.current_localization_id = [];
         vm.localization_barrio_id = [];
-        vm.prop_cache = {}
+        vm.prop_cache = false;
 
         NgMap.getMap().then(function(map) {
             //console.log('map', map);

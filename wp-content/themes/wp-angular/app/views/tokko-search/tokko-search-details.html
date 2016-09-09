@@ -1,35 +1,36 @@
-<div class="row" ng-if="vm.propiedad">
+
+<div class="row" ng-if="vm.propiedad" ng-hide=true>
     <div class="col-sm-12 col-xs-12">
-        <h1>{{vm.propiedad.fake_address}}</h>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-            <img ng-src="{{vm.propiedad.photos[0].image}}"></img></a>
-            <h2>Descripción de la propiedad</h2>
-            <p>{{vm.propiedad.description}}</p>
-            <h2>Principales características</h2>
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <div class="col-sm-2" ng-repeat="tag in vm.propiedad.tags">
-                        {{vm.propiedad.tag.name}}
-                    </div>
+        <h1>{{vm.propiedad.fake_address}}</h1>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+        <img ng-src="{{vm.propiedad.photos[0].image}}"></img></a>
+        <h2>Descripción de la propiedad</h2>
+        <p>{{vm.propiedad.description}}</p>
+        <h2>Principales características</h2>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="col-sm-2" ng-repeat="tag in vm.propiedad.tags">
+                    {{vm.propiedad.tag.name}}
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xs-12">
-            {{vm.propiedad.geo_lat}}
-            {{vm.propiedad.geo_long}}
-            <ng-map center="[{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}]">
-                <marker position="{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}"></marker>
-            </ng-map>
-            <span>Formulario de contacto.</span><br>
-            <span>Centro de atención: {{vm.propiedad.branch.name}} {{vm.propiedad.branch.phone}}</span><br>
-            <span>Código de referencia: {{vm.propiedad.reference_code}}</span><br>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+        {{vm.propiedad.geo_lat}}
+        {{vm.propiedad.geo_long}}
+        <ng-map center="[{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}]">
+            <marker position="{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}"></marker>
+        </ng-map>
+        <span>Formulario de contacto.</span><br>
+        <span>Centro de atención: {{vm.propiedad.branch.name}} {{vm.propiedad.branch.phone}}</span><br>
+        <span>Código de referencia: {{vm.propiedad.reference_code}}</span><br>
+    </div>
+</div>
+<div class="row" ng-hide=true>
+    <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-2" ng-repeat="img in vm.propiedad.photos">
+            <img ng-src="{{img.image}}"></img></a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 col-xs-12">
-            <div class="col-sm-2" ng-repeat="img in vm.propiedad.photos">
-                <img ng-src="{{img.image}}"></img></a>
-            </div>
-        </div>
-    </div>
+</div>
