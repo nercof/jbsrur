@@ -18,13 +18,16 @@
     create();
 
     function create() {
-        if($stateParams.data){
+        if( $stateParams.data ){
             vm.propiedad = $stateParams.data
         }else{
+            // Buscamos la propiedad en TOKKO
             tokkoFactory.getProperty($stateParams.id).then(function(data){
                 vm.propiedad = data;
             });
         }
+        console.log('{{photo.image}}');
+        console.log(vm.propiedad);
     }
 }
 })();

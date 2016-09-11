@@ -376,3 +376,24 @@ body {
           padding-bottom: 5px; }
       body .propiedades .card.odd {
         background-color: #DF0A1F; }
+  body .detalle {
+    background-color: #FAF3DD;
+    padding: 40px 30px;
+    font-family: "Montserrat", sans-serif; }
+    body .detalle h1 {
+      font-titles: "Montserrat", sans-serif;
+      color: #90030C;
+      border: 2.2px #90030C solid; }
+    body .detalle h2 {
+      font-titles: "Lato", sans-serif;
+      color: #FAF3DD;
+      border: 2.2px #90030C solid;
+      background-color: #90030C; }
+    body .detalle .descripcion p {
+      background-color: #735753; }
+    body .detalle .referencia {
+      border-color: #131515;
+      border: 1.5px solid; }
+    body .detalle .caracteristicas {
+      background-color: #735753;
+      color: #FAF3DD; }

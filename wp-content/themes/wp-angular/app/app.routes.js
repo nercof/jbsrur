@@ -99,26 +99,21 @@
         },
         "title@propiedad":{
           template: '<h1 class="title">Propiedades</h1>',
-        },
-        "tokko-middle":{
-          templateUrl: localized.tokko + "tokko-search-input.html",
-          controller: 'tokkoController as vm'
         }
       },
     })
     .state('propiedad.detalle', { //DOT Notation
-      params: { data:null, flag:null},
+      params: { data:null },
       url: '/:id',
       views:{
-        "@":{
+        "detalle@propiedad":{
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
         },
         "title@propiedad":{
-          template: '',
+          template: 'laaalala',
         }
       },
-      // http://christopherthielen.github.io/ui-router-extras/#/sticky
       deepStateRedirect: true,
       sticky: true,
       onEnter: function(){}
