@@ -55,6 +55,7 @@
       'getProperty': getProperty,
       'getProperties': getProperties,
       'getPropertyByCity': getPropertyByCity,
+      'getNameOT':getNameOT,
     }
 
     // Model Schema to search in Tokko.
@@ -273,6 +274,18 @@
     url = url.replace('tokko_query', aux);
 
     return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
+  }
+
+  /**
+  * oper() permite retornar si es Alquiler o Venta el tipo de operacion.
+  * Utilazo para el filtrado de datos.
+  */
+  function getNameOT(oper){
+    if (_.values(oper) == 1) {
+      return "Venta";
+    } else {
+      return "Alquiler";
+    }
   }
 
   // get Departamento a Estrenar
