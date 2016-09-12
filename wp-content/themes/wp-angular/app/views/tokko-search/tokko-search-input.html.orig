@@ -1,0 +1,149 @@
+<div class="row"  ng-if="vm.prop_cache">
+    <div class="container" id="searchForm">
+        <ul class="nav nav-pills">
+            <li class="active col-md-6 search-tab global-search">
+                <a data-target="#global-search" data-toggle="tab">
+                    <div class="input-group">
+                        <label>Buscar propiedades</label>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                        </span>
+                        <input type="text" class="form-control" ng-model="search_query" ng-trim="false" placeholder="">
+                    </div><!-- /input-group -->
+                </a>
+            </li>
+            <li class="col-md-6 search-tab advanced-search">
+                <a data-target="#advanced-search" data-toggle="tab">
+                    <i class="glyphicon glyphicon-home"></i>
+                    <label>Busqueda Avanzada</label>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content clearfix">
+        <div class="tab-pane active" id="global-search">
+            <!-- PANEL RESULTADO PROP-CACHE -->
+            <div ng-if="search_query && vm.prop_cache">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="col-sm-2" ng-repeat="prop in vm.prop_cache | filter: search_query">
+                            <div style="color:#FFF">
+                                {{prop.fake_address}}
+                                {{prop.location.full_location}}
+                                {{prop.type.name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<<<<<<< HEAD
+        <div class="tab-pane" id="advanced-search">
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-inline">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-xs-12 step step-checkbox">
+                                            <!-- TIPO DE OPERACION --------------------------------------------------->
+                                            <!-- vm.tokko_data.operaciones"> -->
+                                            <div class="checkbox checkbox-primary" ng-repeat="operacion in vm.tokko_data.op">
+                                                <input type="checkbox" id="{{operacion.name + operacion.id}}" ng-model="vm.operation_types[operacion.id]" ngChange="showTP = !showTP"/>
+                                                <label for="{{operacion.name + operacion.id}}" name="{{operacion.name}}"><span></span> {{operacion.name}} </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-xs-6 step step-list" >
+                                            <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.tokko_data.tp">
+                                                <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}"  ng-model="vm.property_types[tipo_propiedad.id]">
+                                                <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span>{{tipo_propiedad.name}}</span></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-xs-6 step step-list">
+                                            <div class="checkbox checkbox-primary" ng-repeat="dormitorio in vm.tokko_data.do">
+                                                <input type="checkbox" id="{{dormitorio.name + dormitorio.id}}+do" ng-model="vm.suite_amount[dormitorio.id]">
+                                                <label for="{{dormitorio.name + dormitorio.id}}+do" name="{{dormitorio.name}}"><span>{{dormitorio.name}}</span></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 step step-tabs nobg" >
+                                    <uib-tabset vertical="true" type="pills" active="-1">
+                                        <uib-tab ng-repeat="zona in vm.barriosXzona" heading="{{zona.name}}" classes="{{zona.name}}">
+                                            <uib-tab-heading>
+                                                {{zona.name}} <i class="fa fa-caret-right"></i>
+                                            </uib-tab-heading>
+                                            <div ng-if="!zona.hide" class="conteiner-barrios">
+                                                <div ng-repeat="barrio in zona.barrios" class="cb-pills">
+                                                    <input type="checkbox" id="{{barrio.name + barrio.id}}"  ng-model="vm.localization_barrio_id[barrio.id]">
+                                                    <label for="{{barrio.name + barrio.id}}" name="{{barrio.name}}"><span>{{barrio.name}}</span></label>
+                                                </div>
+                                            </div>
+                                        </uib-tab>
+                                    </uib-tabset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 search-button">
+                                    <a class="btn btn-default" ng-click="vm.searchTokko()">
+                                        Buscar
+                                    </a>
+=======
+        <div class="tab-content clearfix">
+            <div class="tab-pane" id="advanced-search">
+                <div class="container">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-inline">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-sm-4 col-xs-12 step step-checkbox">
+                                                <div class="checkbox checkbox-primary" ng-repeat="operacion in vm.tokko_data.op">
+                                                    <input type="checkbox" id="{{operacion.name + operacion.id}}" ng-model="vm.operation_types[operacion.id]" ngChange="showTP = !showTP"/>
+                                                    <label for="{{operacion.name + operacion.id}}" name="{{operacion.name}}"><span></span> {{operacion.name}} </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-xs-6 step step-list">
+                                                <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.tokko_data.tp">
+                                                    <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}"  ng-model="vm.property_types[tipo_propiedad.id]">
+                                                    <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span>{{tipo_propiedad.name}}</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-xs-6 step step-list">
+                                                <div class="checkbox checkbox-primary" ng-repeat="dormitorio in vm.tokko_data.do">
+                                                    <input type="checkbox" id="{{dormitorio.name + dormitorio.id}}" ng-model="vm.suite_amount[dormitorio.id]">
+                                                    <label for="{{dormitorio.name + dormitorio.id}}" name="{{dormitorio.name}}"><span>{{dormitorio.name}}</span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 step step-tabs nobg" >
+                                        <uib-tabset vertical="true" type="pills" >
+                                            <uib-tab ng-repeat="zona in vm.barriosXzona" heading="{{zona.name}}">
+                                                <div ng-if="!zona.hide">
+                                                    <div ng-repeat="barrio in zona.barrios" class="cb-pills">
+                                                        <input type="checkbox" id="{{barrio.name + barrio.id}}"  ng-model="vm.localization_barrio_id[barrio.id]">
+                                                        <label for="{{barrio.name + barrio.id}}" name="{{barrio.name}}"><span>{{barrio.name}}</span></label>
+                                                    </div>
+                                                </div>
+                                            </uib-tab>
+                                        </uib-tabset>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <a class="btn btn-default" ng-click="vm.searchTokko()">
+                                            Buscar</a>
+                                    </div>
+>>>>>>> 0f985ec127d5b99557890979751299ca49de265c
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

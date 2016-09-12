@@ -11,11 +11,11 @@
     .state('home', {
       url: '/',
       views:{
-        "slider-top":{
+        "header":{
           templateUrl: localized.views + "slider-full.html",
           controller: 'sliderController'
         },
-        "tokko-middle":{
+        "sub-header":{
           templateUrl: localized.tokko + "tokko-search-input.html",
           controller: 'tokkoController as vm'
         }
@@ -43,7 +43,7 @@
     .state('ventas', {
       url: '/ventas',
       views:{
-        "main":{
+        "content":{
           templateUrl: localized.views + "catalogo.html"
         }
       }
@@ -51,7 +51,7 @@
     .state('alquileres', {
       url: '/alquileres',
       views:{
-        "main":{
+        "content":{
           templateUrl: localized.views + "catalogo.html"
         }
       }
@@ -59,7 +59,7 @@
     .state('nuestros-emprendimientos', {
       url: '/nuestros-emprendimientos',
       views:{
-        "main":{
+        "content":{
           templateUrl: localized.views + "emprendimientos.html"
         }
       }
@@ -67,7 +67,7 @@
     .state('otros-emprendimientos', {
       url: '/otros-emprendimientos',
       views:{
-        "main":{
+        "content":{
           templateUrl: localized.views + "emprendimientos.html"
         }
       }
@@ -75,7 +75,7 @@
     .state('novedades', {
       url: '/novedades',
       views:{
-        "main":{
+        "content":{
           templateUrl: localized.views + "novedades.html"
         }
       }
@@ -83,7 +83,7 @@
     .state('contacto', {
       url: '/contacto',
       views:{
-        "main":{
+        "content":{
           templateUrl: localized.views + "contacto.html"
         }
       }
@@ -96,9 +96,6 @@
         "content":{
           templateUrl: localized.tokko + "tokko-search-result.html",
           controller: 'tokkoResultController as vm',
-        },
-        "title@propiedad":{
-          template: '<h1 class="title">Propiedades</h1>',
         }
       },
     })
@@ -111,7 +108,7 @@
           controller: 'tokkoDetailsController as vm',
         },
         "title@propiedad":{
-          template: 'laaalala',
+          template: '',
         }
       },
       deepStateRedirect: true,

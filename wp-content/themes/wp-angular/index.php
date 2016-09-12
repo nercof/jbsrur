@@ -14,8 +14,8 @@
 get_header();
 ?>
     <!-- MAIN CONTENT -->
-    <div ui-view="slider-top"></div>
-    <div ui-view="tokko-middle"></div>
+    <div ui-view="header"></div>
+    <div ui-view="sub-header"></div>
     <div ui-view="content"></div>
     <!-- Vistas hijos-->
     <div ui-view></div>
