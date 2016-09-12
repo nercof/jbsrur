@@ -27,28 +27,45 @@
                     vm.propiedades = $stateParams.cache;
                 }
                 else {
+
                     // Consultamos si tenemos valores en la cache
                     if ($localStorage.prop_cache.length > 0) {
+                        // Tenemos que consultar el valor de $stateParams.data
                         // TO-DO: use prop_result to storage the cache search
-                        vm.propiedades = $localStorage.prop_cache;
+
+                        if (vm.data                              &&
+                            ( vm.data.operation_types.length  == 0 || vm.data.operation_types.length  == 2 ) &&
+                            ( vm.data.property_types.length   == 0 || vm.data.property_types[0] == "0")  &&
+                            ( vm.data.suite_amount.length     == 0 || vm.data.suite_amount[0] == "0" ) &&
+                            vm.data.current_localization_id == 0 ) {
+                                //console.log('Test 1: all properties');
+                                vm.propiedades = $localStorage.prop_cache;
+                            }
+                            // Filtramos por Tipo de propiedad
+                            else if (vm.data && vm.data.operation_types.length == 1) {
+                                //console.log("Test 2: all prop by operation_types");
+                                //vm.propiedades = _.where($localStorage.prop_cache,
+                                //    {operations: vm.data.operation_types[0]});
+                            }
+                        }
+                    }
+                    // Sino tenemos nada en la cache vamos a buscar
+                    if (vm.propiedades || vm.propiedades.length == 0){
+                        // Call factory to search Tokko properties.
+                        tokkoFactory.getProperties(vm.data).then(function(response) {
+                            if(response.objects.length > 0) {
+                                vm.propiedades = response.objects;
+                            }else {
+                                vm.error = "No se encontraron propiedades"
+                            }
+                        });
+                    }else {
+                        //vm.error = "No se encontraron propiedades"
                     }
                 }
-
-                // Sino tenemos nada en la cache vamos a buscar
-                if (!vm.propiedades){
-                    // Call factory to search Tokko properties.
-                    tokkoFactory.getProperties(vm.data).then(function(response) {
-                        if(response.objects.length > 0) {
-                            vm.propiedades = response.objects;
-                        }else {
-                            vm.error = "No se encontraron propiedades"
-                        }
-                    });
+                // Re-direct to fullDetails
+                vm.fullDetails = function(prop) {
+                    //$state.go('detalle', {data: prop , id:prop.id});
                 }
             }
-            // Re-direct to fullDetails
-            vm.fullDetails = function(prop) {
-                //$state.go('detalle', {data: prop , id:prop.id});
-            }
-        }
-    })();
+        })();
