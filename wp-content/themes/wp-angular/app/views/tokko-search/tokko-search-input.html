@@ -26,7 +26,7 @@
             <div ng-if="search_query && vm.prop_cache">
                 <div class="col-xs-12">
                     <div class="col-sm-6 col-xs-6 search-results">
-                        <div ng-repeat="prop in vm.prop_cache | filter:filter:search_query:strict | limitTo : 20" >
+                        <div ng-repeat="prop in vm.prop_cache | filter:search_query | limitTo : 20" >
                             <div>
                                 <a ui-sref="propiedad.detalle({data: prop , id:prop.id})">
                                     <b>{{prop.fake_address}}: </b>

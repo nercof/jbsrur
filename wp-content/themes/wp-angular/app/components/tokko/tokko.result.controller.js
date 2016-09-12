@@ -10,9 +10,10 @@
             var vm = this;
             vm.data = {}
             vm.cache = {}
-            vm.propiedades = {};
-            $scope.current = $state.current
-            vm.state = true
+            //vm.propiedades = {}; para que funcione el spinner
+            $scope.current = $state.current;
+            vm.state = true;
+            vm.error = false;
 
             // Activamos
             activate(vm);
@@ -50,12 +51,13 @@
                         }
                     }
                     // Sino tenemos nada en la cache vamos a buscar
-                    if (vm.propiedades || vm.propiedades.length == 0){
+                    if (vm.propiedades && vm.propiedades.length == 0){
                         // Call factory to search Tokko properties.
                         tokkoFactory.getProperties(vm.data).then(function(response) {
                             if(response.objects.length > 0) {
                                 vm.propiedades = response.objects;
-                            }else {
+                            } else {
+                                console.log(response.objects);
                                 vm.error = "No se encontraron propiedades"
                             }
                         });

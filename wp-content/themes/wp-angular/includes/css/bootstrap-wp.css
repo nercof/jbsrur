@@ -73,7 +73,7 @@ body {
         padding: 0;
         padding-bottom: 5px;
         white-space: normal;
-        border-bottom: #FAF3DD solid 3px; }
+        border-bottom: transparent solid 3px; }
         body #jbsrur-nav a.sub-menu-item:hover, body #jbsrur-nav a.sub-menu-item:focus {
           -ms-transform: none;
           /* IE 9 */
@@ -82,13 +82,13 @@ body {
           transform: none;
           padding: 0;
           padding-bottom: 5px;
-          background: #FAF3DD;
+          background: transparent;
           border-bottom: #DF0A1F solid 3px; }
     body #jbsrur-nav .open > a,
     body #jbsrur-nav .open > a:focus {
       background-color: transparent; }
     body #jbsrur-nav .dropdown-menu {
-      background-color: #FAF3DD;
+      background-color: rgba(250, 243, 221, 0.8);
       width: 410px;
       float: none;
       top: 75px;
@@ -302,22 +302,23 @@ body {
         body #advanced-search .panel .search-button .btn:hover {
           opacity: 0.85; }
   body #global-search .search-results {
-    background-color: #FAF3DD;
-    color: #90030C;
+    background-color: rgba(250, 243, 221, 0.8);
+    color: #131515;
     position: absolute;
     z-index: 99;
     width: 30%;
-    left: 20%; }
+    left: 20%;
+    border-bottom: 1px #131515 solid; }
     body #global-search .search-results a {
-      color: #90030C;
+      color: #131515;
       text-decoration: none;
       font-family: "Lato", sans-serif;
       width: 100%;
       display: block;
-      padding: 3px; }
+      padding: 3px;
+      border-bottom: 1px #735753 solid; }
       body #global-search .search-results a:hover {
-        background-color: #90030C;
-        color: #FAF3DD; }
+        color: #DF0A1F; }
   body .propiedades {
     background-color: #FAF3DD;
     padding: 40px 30px;
