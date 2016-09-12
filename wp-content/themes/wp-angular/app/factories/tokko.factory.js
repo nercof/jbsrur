@@ -221,8 +221,6 @@
         data_test.operation_types = params.operation_types;
         data_test.property_types = params.property_types;
       }
-      console.log(params);
-      console.log(data_test);
 
       if (data_test.current_localization_id.length == 0) {
 

@@ -6,7 +6,7 @@
                     <div class="input-group">
                         <label>Buscar propiedades</label>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-default" type="button"><i class="fa fa-search" ng-click="vm.searchFilter()"></i></button>
                         </span>
                         <input type="text" class="form-control" ng-model="search_query" ng-trim="false" placeholder="" ng-disabled="!vm.prop_cache">
                     </div><!-- /input-group -->
@@ -26,7 +26,7 @@
             <div ng-if="search_query && vm.prop_cache">
                 <div class="col-xs-12">
                     <div class="col-sm-6 col-xs-6 search-results">
-                        <div ng-repeat="prop in vm.prop_cache | filter: search_query | limitTo : 20" >
+                        <div ng-repeat="prop in vm.prop_cache | filter:search_query | limitTo : 20" >
                             <div>
                                 <a ui-sref="propiedad.detalle({data: prop , id:prop.id})">
                                     <b>{{prop.fake_address}}: </b>

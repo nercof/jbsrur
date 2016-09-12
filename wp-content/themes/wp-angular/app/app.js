@@ -29,8 +29,7 @@
             .config(['$localStorageProvider',
                 function($localStorageProvider) {
                     var aux = $localStorageProvider.get('prop_cache');
-                    console.log('Prop cache: ');
-                    console.log(aux);
+                    
                 }
             ]);
 
