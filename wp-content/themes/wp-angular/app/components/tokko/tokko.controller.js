@@ -36,6 +36,7 @@
 
             activate(vm);
 
+
             function activate(vm) {
                 // Load repository local objects
                 vm.tokko_data = resourceFactory.query({
@@ -65,33 +66,52 @@
                         })
                     }
                 }// Fin activate
-                $scope.$watch('search_query', function(val)
-                {
-                    vm.prop_search = $filter('filter')(vm.prop_cache, val);
 
+                /**
+                * $watch('search_query') permite generar el two-data-binding
+                * sobre el input search_query.
+                *
+                * vm.prop_search: Listado de propiedades filtradas.
+                */
+                $scope.$watch('search_query', function(val){
+                    if (!_.isEmpty(vm.prop_cache)) {
+                        vm.prop_search = $filter('filter')(vm.prop_cache, val);
+                    }
                 });
 
+                /**
+                * searchLocation() permite obtener las propiedades
+                * asociadas al id pasado por referencia.
+                *
+                * Para Tokko ese valor es current_localization_id.
+                */
                 vm.searchLocation = function() {
                     tokkoFactory.getLocation(this.ciudad.id).then(function(response) {
                         vm.tokko_location = response.divisions;
                     });
                 }
 
-                // Get barrio by ID
-                vm.getBarrioById = function(id) {}
-
+                /**
+                * searchFilter() permite redireccionar el flujo al estado
+                * propiedad con la lista de propiedades filtradas por la
+                * funcion $watch.
+                *
+                * @data: null. Porque no hubo interaccion Advanced Search.
+                */
                 vm.searchFilter = function (){
                     // Re-direct to state propiedad
                     $state.go('propiedad', {
-                        data: null,
-                        cache: vm.prop_search
+                        data: null, cache: vm.prop_search
                     });
-
                 }
 
                 /**
-                * description
+                * searchTokko() permite redireccionar el flujo al estado
+                * propiedad con la lista de filtros seleccionados en Advanced
+                * Search input.
                 *
+                * @data: Filtros de exclusion.
+                * @cache: Propiedades en el localStorage
                 */
                 vm.searchTokko = function() {
                     // Codigo TOKKO: xej: 37588; 152749, 235422

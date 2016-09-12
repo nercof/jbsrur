@@ -25,7 +25,7 @@
 
                 if ($state.current.name == 'propiedad.detalle') {}
                 else {
-                    
+
                     // Venimos del filtrado Predictivo.
                     if (!$stateParams.data && $stateParams.cache) {
                         vm.propiedades = $stateParams.cache;
@@ -46,15 +46,33 @@
                                 }
                                 // Filtramos por Tipo de propiedad
                                 else if (vm.data && vm.data.operation_types.length == 1) {
-                                    //console.log("Test 2: all prop by operation_types");
-                                    //vm.propiedades = _.where($localStorage.prop_cache,
-                                    //    {operations: vm.data.operation_types[0]});
+                                    console.log("Test 2: all prop by operation_types");
+
+                                    // Re-factorizar
+                                    var l_value;
+                                    if (_.values(vm.data.operation_types) == 1) {
+                                        l_value = "Venta";
+                                    }
+                                    else {
+                                        l_value = "Alquiler";
+                                    }
+
+                                    vm.propiedades = _.filter($localStorage.prop_cache, function(prop) {
+                                        return _.some(prop.operations, function(oper) {
+                                            return oper.operation_type == l_value;
+                                        });
+                                    });
+
                                 }
                             }
                         }
                     }
-                    // Sino tenemos nada en la cache vamos a buscar
-                    if (vm.propiedades && vm.propiedades.length == 0){
+                    /**
+                    * Flujo de contingencia
+                    * Objetivo: Sino tenemos nada en la cache vamos a buscar
+                    */
+                    if (_.isEmpty(vm.propiedades)) {
+                        console.log('Sin valores en cache, buscar en TOKKO');
                         // Call factory to search Tokko properties.
                         tokkoFactory.getProperties(vm.data).then(function(response) {
                             if(response.objects.length > 0) {
