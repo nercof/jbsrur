@@ -26,8 +26,6 @@
                 vm.propiedad = data;
             });
         }
-        console.log('{{photo.image}}');
-        console.log(vm.propiedad);
     }
 }
 })();

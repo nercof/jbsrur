@@ -23,30 +23,33 @@
                 vm.data = $stateParams.data;
                 vm.cache = $stateParams.cache;
 
-                // Venimos del filtrado Predictivo.
-                if (!$stateParams.data && $stateParams.cache) {
-                    vm.propiedades = $stateParams.cache;
-                }
+                if ($state.current.name == 'propiedad.detalle') {}
                 else {
 
-                    // Consultamos si tenemos valores en la cache
-                    if ($localStorage.prop_cache.length > 0) {
-                        // Tenemos que consultar el valor de $stateParams.data
-                        // TO-DO: use prop_result to storage the cache search
+                    // Venimos del filtrado Predictivo.
+                    if (!$stateParams.data && $stateParams.cache) {
+                        vm.propiedades = $stateParams.cache;
+                    }
+                    else {
 
-                        if (vm.data                              &&
-                            ( vm.data.operation_types.length  == 0 || vm.data.operation_types.length  == 2 ) &&
-                            ( vm.data.property_types.length   == 0 || vm.data.property_types[0] == "0")  &&
-                            ( vm.data.suite_amount.length     == 0 || vm.data.suite_amount[0] == "0" ) &&
-                            vm.data.current_localization_id == 0 ) {
-                                //console.log('Test 1: all properties');
-                                vm.propiedades = $localStorage.prop_cache;
-                            }
-                            // Filtramos por Tipo de propiedad
-                            else if (vm.data && vm.data.operation_types.length == 1) {
-                                //console.log("Test 2: all prop by operation_types");
-                                //vm.propiedades = _.where($localStorage.prop_cache,
-                                //    {operations: vm.data.operation_types[0]});
+                        // Consultamos si tenemos valores en la cache
+                        if ($localStorage.prop_cache.length > 0) {
+                            // Tenemos que consultar el valor de $stateParams.data
+                            // TO-DO: use prop_result to storage the cache search
+                            if (vm.data                              &&
+                                ( vm.data.operation_types.length  == 0 || vm.data.operation_types.length  == 2 ) &&
+                                ( vm.data.property_types.length   == 0 || vm.data.property_types[0] == "0")  &&
+                                ( vm.data.suite_amount.length     == 0 || vm.data.suite_amount[0] == "0" ) &&
+                                vm.data.current_localization_id == 0 ) {
+                                    //console.log('Test 1: all properties');
+                                    vm.propiedades = $localStorage.prop_cache;
+                                }
+                                // Filtramos por Tipo de propiedad
+                                else if (vm.data && vm.data.operation_types.length == 1) {
+                                    //console.log("Test 2: all prop by operation_types");
+                                    //vm.propiedades = _.where($localStorage.prop_cache,
+                                    //    {operations: vm.data.operation_types[0]});
+                                }
                             }
                         }
                     }
