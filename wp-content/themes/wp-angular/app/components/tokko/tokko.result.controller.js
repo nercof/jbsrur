@@ -61,7 +61,7 @@
                         vm.data.current_localization_id == 0 ) {
                             //console.log('Test 1: all properties');
                             vm.propiedades = $localStorage.prop_cache;
-                        } else {
+                        } else if (!_.isEmpty(vm.data)){
                             /**
                             * Objetivo: Filtrado en cascada.
                             *
@@ -69,8 +69,8 @@
                             * para filtrar, pero por cada criterio de busqueda ingresado
                             * se filtrara desde vm.propiedades.
                             */
-                            // Caso 1: Filtrar por tipo de Operacion
-                            if (vm.data && vm.data.operation_types.length == 1) {
+                            // Caso 1.1: Filtrar por tipo de Operacion ()
+                            if (vm.data.operation_types.length == 1) {
                                 console.log("Test 2: all prop by operation_types");
 
                                 var type;
@@ -86,8 +86,25 @@
                                         return oper.operation_type == type;
                                     });
                                 });
+                            } else if (vm.data.operation_types.length == 2) {
+                                // Caso 1.1: Filtrar por tipo de Operacion (Todos)
+                                vm.propiedades = $localStorage.prop_cache;
                             }
+                            console.log(vm.propiedades[0]);
                             // Caso 2: Filtrar por tipo de propiedad
+                            if (_.contains(_.values(vm.data.property_types), "0")){
+                                // Si el tipo_propiedad es 0: Todos NO FILTRAR.
+                            } else {
+                                // Se filtra por los tipos seleccionados
+                                vm.propiedades = _.filter(
+                                    vm.propiedades, function(prop){
+                                        return _.some(_.values(vm.data.property_types), function(ptype) {
+                                            return prop.type.id == ptype;
+                                        });
+                                    }
+                                );
+                            }
+                            
                         }
 
                     }// else Advanced search with
