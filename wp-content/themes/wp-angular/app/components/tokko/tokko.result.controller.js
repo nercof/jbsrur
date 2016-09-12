@@ -24,7 +24,7 @@
 
                 if ($state.current.name == 'propiedad.detalle') {}
                 else {
-
+                    
                     // Venimos del filtrado Predictivo.
                     if (!$stateParams.data && $stateParams.cache) {
                         vm.propiedades = $stateParams.cache;
