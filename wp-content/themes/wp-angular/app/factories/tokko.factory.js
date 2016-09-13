@@ -246,7 +246,11 @@
 
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
   }
-
+  
+  /**
+   * getPropertyByCity() permite obtener las propiedades de Cordoba y alrededores
+   * haciendo un GET a tocko con current_localization_id fijo
+   */
   function getPropertyByCity() {
     var url = '';
     var aux = "";
