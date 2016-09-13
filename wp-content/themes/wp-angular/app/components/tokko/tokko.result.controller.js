@@ -37,6 +37,8 @@
                 vm.data = $stateParams.data;
                 vm.cache = $stateParams.cache;
 
+                console.log($state);
+                
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
                 // Venimos del filtrado Predictivo.
                 if ($state.current.name == 'propiedad.detalle'){
@@ -45,7 +47,7 @@
                 } else {
                     console.log("Advanced search with: ");
                     // Consultamos si tenemos valores en la cache
-                    if ($localStorage.prop_cache.length > 0) {
+                    if (!_.isEmpty($localStorage.prop_cache)) {
                         // Tenemos que consultar el valor de $stateParams.data
                         // TO-DO: use prop_result to storage the cache search
                         console.log(vm.data);
@@ -59,7 +61,6 @@
                         ( vm.data.suite_amount.length     == 0 || vm.data.suite_amount[0] == "0" ) &&
                         // Zona/Barrio: 0: Todos
                         vm.data.current_localization_id == 0 ) {
-                            //console.log('Test 1: all properties');
                             vm.propiedades = $localStorage.prop_cache;
                         } else if (!_.isEmpty(vm.data)){
                             /**
@@ -71,8 +72,6 @@
                             */
                             // Caso 1.1: Filtrar por tipo de Operacion ()
                             if (vm.data.operation_types.length == 1) {
-                                console.log("Test 2: all prop by operation_types");
-
                                 var type;
                                 if (_.values(vm.data.operation_types) == 1) {
                                     type =  "Venta";
@@ -90,7 +89,9 @@
                                 // Caso 1.1: Filtrar por tipo de Operacion (Todos)
                                 vm.propiedades = $localStorage.prop_cache;
                             }
-                            console.log(vm.propiedades[0]);
+                            // Uncomment only for Test
+                            // console.log(vm.propiedades[0]);
+
                             // Caso 2: Filtrar por tipo de propiedad
                             if (_.contains(_.values(vm.data.property_types), "0")){
                                 // Si el tipo_propiedad es {0: Todos} NO FILTRAR.
@@ -130,7 +131,6 @@
                                 );
                             }
                         }
-
                     }// else Advanced search with
                 }
                 /**
@@ -151,6 +151,10 @@
                 }else {
                     //vm.error = "No se encontraron propiedades"
                 }
+
+                // prop_search: Todas las propiedades excluidas por search
+                $localStorage.prop_search = vm.propiedades;
+                console.log($localStorage)
             }
 
             // Re-direct to fullDetails

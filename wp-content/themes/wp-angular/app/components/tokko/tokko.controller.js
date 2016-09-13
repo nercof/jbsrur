@@ -57,11 +57,10 @@
                             vm.prop_cache = response.objects;
                             // Vamos a mandar la caché de propiedades al $storage
                             // prop_cache: Todas las propiedades de Córdoba y alrededores
-                            // prop_result: Todas las propiedades excluidas por search
 
                             $scope.$storage = $localStorage.$default({
                                 prop_cache: vm.prop_cache,
-                                prop_search: {}
+                                prop_search: {},
                             });
                         })
                     }
