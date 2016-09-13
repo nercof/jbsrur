@@ -37,21 +37,18 @@
                 vm.data = $stateParams.data;
                 vm.cache = $stateParams.cache;
 
-                console.log($state);
-                
+                //console.log($state);
+
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
                 // Venimos del filtrado Predictivo.
                 if ($state.current.name == 'propiedad.detalle'){
-                    console.log("Predictive search");
+                    //console.log("Predictive search");
                     vm.propiedades = $stateParams.cache;
                 } else {
-                    console.log("Advanced search with: ");
+                    //console.log("Advanced search with: ");
                     // Consultamos si tenemos valores en la cache
                     if (!_.isEmpty($localStorage.prop_cache)) {
-                        // Tenemos que consultar el valor de $stateParams.data
-                        // TO-DO: use prop_result to storage the cache search
-                        console.log(vm.data);
-                        // Caso Base de busqueda
+                        // Caso 0: Base de busqueda
                         if (!_.isEmpty(vm.data)                    &&
                         // Tipo de Operacion: 0,2: Todos/Ambos
                         ( vm.data.operation_types.length  == 0 || vm.data.operation_types.length  == 2 ) &&
@@ -138,13 +135,12 @@
                 * Objetivo: Sino tenemos nada en la cache vamos a buscar
                 */
                 if (_.isEmpty(vm.propiedades)) {
-                    console.log('Sin valores en cache, buscar en TOKKO');
+                    //console.log('Sin valores en cache, buscar en TOKKO');
                     // Call factory to search Tokko properties.
                     tokkoFactory.getProperties(vm.data).then(function(response) {
                         if(response.objects.length > 0) {
                             vm.propiedades = response.objects;
                         } else {
-                            console.log(response.objects);
                             vm.error = "No se encontraron propiedades"
                         }
                     });
@@ -154,7 +150,7 @@
 
                 // prop_search: Todas las propiedades excluidas por search
                 $localStorage.prop_search = vm.propiedades;
-                console.log($localStorage)
+                //console.log($localStorage)
             }
 
             // Re-direct to fullDetails
