@@ -93,7 +93,7 @@
                             console.log(vm.propiedades[0]);
                             // Caso 2: Filtrar por tipo de propiedad
                             if (_.contains(_.values(vm.data.property_types), "0")){
-                                // Si el tipo_propiedad es 0: Todos NO FILTRAR.
+                                // Si el tipo_propiedad es {0: Todos} NO FILTRAR.
                             } else {
                                 // Se filtra por los tipos seleccionados
                                 vm.propiedades = _.filter(
@@ -104,7 +104,31 @@
                                     }
                                 );
                             }
-                            
+                            // Caso 3: Filtrar por dormitorios: suite_amount
+                            if (_.contains(_.values(vm.data.suite_amount), "0")){
+                                // Si el suite_amount es {0: Todos} NO FILTRAR.
+                            } else {
+                                vm.propiedades = _.filter(
+                                    vm.propiedades, function(prop){
+                                        return _.some(_.values(vm.data.suite_amount), function(pdorm) {
+                                            return prop.suite_amount == pdorm;
+                                        });
+                                    }
+                                );
+                            }
+                            // Caso 4: Filtrar por zonas-barrios
+                            // Caso 3: Filtrar por dormitorios: suite_amount
+                            if (_.contains(_.values(vm.data.current_localization_id), "0")){
+                                // Si el current_localization_id es {0: Todos} NO FILTRAR.
+                            } else {
+                                vm.propiedades = _.filter(
+                                    vm.propiedades, function(prop){
+                                        return _.some(_.values(vm.data.current_localization_id), function(plocation) {
+                                            return prop.location.id == plocation;
+                                        });
+                                    }
+                                );
+                            }
                         }
 
                     }// else Advanced search with
