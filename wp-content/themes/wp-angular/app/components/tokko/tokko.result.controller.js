@@ -115,7 +115,6 @@
                                 );
                             }
                             // Caso 4: Filtrar por zonas-barrios
-                            // Caso 3: Filtrar por dormitorios: suite_amount
                             if (_.contains(_.values(vm.data.current_localization_id), "0")){
                                 // Si el current_localization_id es {0: Todos} NO FILTRAR.
                             } else {

@@ -186,7 +186,22 @@ if ( ! function_exists( '_tk_setup' ) ) :
             'tokkoDetails',
             get_stylesheet_directory_uri() . '/app/components/tokko/tokko.details.controller.js',
             array( 'core', 'factories' ));
-
+            
+            wp_enqueue_script(
+            'secondFooter',
+            get_stylesheet_directory_uri() . '/app/components/footer/second.footer.controller.js',
+            array( 'core', 'factories'));
+            
+            wp_enqueue_script(
+            'mainFooter',
+            get_stylesheet_directory_uri() . '/app/components/footer/main.footer.controller.js',
+            array( 'core', 'factories'));
+            
+            wp_enqueue_script(
+            'novedades',
+            get_stylesheet_directory_uri() . '/app/components/novedades/novedades.controller.js',
+            array( 'core', 'factories'));
+            
             wp_enqueue_script(
             'cf_tokko',
             get_stylesheet_directory_uri() . '/app/filters/cf_tokko.js',

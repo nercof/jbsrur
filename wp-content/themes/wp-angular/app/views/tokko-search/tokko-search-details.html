@@ -36,11 +36,13 @@
     </div>
     <div class="col-sm-12 col-xs-12">
         <h2>Principales características</h2>
-        <div class="col-sm-3 caracteristicas">
-            <i class="typcn typcn-plus"></i>Dormitorio: {{vm.propiedad.suite_amount}}
-            <i class="typcn typcn-plus"></i>Baños: {{vm.propiedad.bathroom_amount}}
+    </div>
+    <div class="col-sm-12 col-xs-12 caracteristicas">
+        <div class="col-sm-3">
+            <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s 
+            <i class="typcn typcn-plus"></i>{{vm.propiedad.bathroom_amount}} Baño/s
         </div>
-        <div class="col-sm-3 caracteristicas" ng-repeat="tag in vm.propiedad.tags">
+        <div class="col-sm-3" ng-repeat="tag in vm.propiedad.tags">
             <i class="typcn typcn-plus"></i>{{tag.name}}
         </div>
     </div>
