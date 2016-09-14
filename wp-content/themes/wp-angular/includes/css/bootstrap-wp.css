@@ -416,5 +416,16 @@ body {
     background-color: #DF0A1F;
     border-radius: 0;
     margin: 0; }
+  body #novedades {
+    background-color: #735753;
+    border-radius: 0;
+    margin: 0; }
+    body #novedades h1 {
+      font-titles: "Montserrat", sans-serif;
+      color: #FAF3DD;
+      background-color: #DF0A1F; }
+    body #novedades h2 {
+      font-titles: "Lato", sans-serif;
+      color: #FAF3DD; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */

@@ -4,7 +4,8 @@
     .module('app.factories')
     .factory('postFactory', dataFactory)
     .constant('POST_TAG', 'posts')
-    .constant('POST_CAT', '?filter[category_name]=');
+    .constant('POST_CAT', '?filter[category_name]=')
+    .constant('TAGS', 'tags');
 
   function dataFactory(wordpressService, POST_TAG, BASE_WP_URL, _, POST_CAT) {
 
@@ -13,6 +14,7 @@
       'getPost': getPost,
       'getPostByCategory': getPostByCategory,
       'getPostByCategoryName': getPostByCategoryName,
+      'getIdTagsByName': getIdTagsByName,
     }
 
     function listPosts() {

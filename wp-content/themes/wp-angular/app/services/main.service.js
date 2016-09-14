@@ -27,37 +27,3 @@
       'getHeader': getHeader
     }
 }})();
-
-            //this.getData = function(onSuccess,onError){
-            //          $http.get('books.json').then(
-            //                                onSuccess,onError);
-            //      }
-/*
-            var init = function() {
-                console.log('Load mainController');
-                _.keys($scope);
-            }
-            init();
-
-            // Variable de la aplicacion
-            var api = {};
-            $scope.posts = []; //setted as blank
-            $scope.media = []; //setted as blank
-
-            api.posts = 'http://jbsrur:8080/wp-json/wp/v2/posts'
-                $http.get(api.posts).success(function(response){
-                    $scope.posts = response;
-                    console.log($scope.posts);
-                    var aux = $scope.posts;
-                    _.each(aux, function(a, index, aux) {
-                        console.log('aux: ' + a);
-                    });
-
-                    var niches = _.pluck(Tuts, 'niche');
-                    console.log(niches);
-                });
-
-
-        }
-    )}
-    ());
