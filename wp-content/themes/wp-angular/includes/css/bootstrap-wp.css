@@ -379,12 +379,21 @@ body {
         background-color: #DF0A1F; }
   body .detalle {
     background-color: #FAF3DD;
-    padding: 40px 30px;
-    font-family: "Montserrat", sans-serif; }
+    font-family: "Montserrat", sans-serif;
+    margin: 0; }
     body .detalle h1 {
       font-titles: "Montserrat", sans-serif;
       color: #90030C;
-      border: 2.2px #90030C solid; }
+      border: 2.3px #90030C solid;
+      padding: 10px 5px; }
+      body .detalle h1 .round-border {
+        border-radius: 100%;
+        border: 1px #90030C solid;
+        display: inline-block; }
+        body .detalle h1 .round-border i {
+          border-radius: 100%;
+          border: 1px #90030C solid;
+          margin: 10px; }
     body .detalle h2 {
       font-titles: "Lato", sans-serif;
       color: #FAF3DD;

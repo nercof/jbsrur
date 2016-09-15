@@ -542,13 +542,26 @@ body {
       }
       .detalle {
             background-color: $white;
-            padding: 40px 30px;
             font-family: $font-titles;
+            margin:0;
 
             h1 {
                   font-titles: $font-titles;
                   color: $bordo;
-                  border: 2.2px $bordo solid;
+                  border: 2.3px $bordo solid;
+                  padding: 10px 5px;
+
+                  .round-border{
+                        border-radius: 100%;
+                        border: 1px $bordo solid;
+                        display: inline-block;
+
+                        i {
+                              border-radius: 100%;
+                              border: 1px $bordo solid;
+margin: 10px;
+                        }
+                  }
             }
             h2 {
                   font-titles: $font-normal;
@@ -593,7 +606,7 @@ body {
             background-color: $grey;
             border-radius: 0;
             margin: 0;
-            
+
             h1 {
                   font-titles: $font-titles;
                   color: $white;
@@ -603,7 +616,7 @@ body {
                   font-titles: $font-normal;
                   color: $white;
             }
-            
+
             .destacados{}
             .otros{}
       }
