@@ -5,7 +5,7 @@
         .module('app.core')
         .controller('novedadesDestacadasController', novedadesDestacadasController);
 
-    novedadesController.$inject = ['postFactory', '$scope'];
+    novedadesDestacadasController.$inject = ['postFactory', '$scope'];
 
     /**
      * novedadesController: Gestión de últimos post con category:Novedades.
