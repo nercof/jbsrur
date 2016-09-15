@@ -4,8 +4,7 @@
     .module('app.factories')
     .factory('postFactory', dataFactory)
     .constant('POST_TAG', 'posts')
-    .constant('POST_CAT', '?filter[category_name]=')
-    .constant('TAGS', 'tags');
+    .constant('POST_CAT', '?filter[category_name]=');
 
   function dataFactory(wordpressService, POST_TAG, BASE_WP_URL, _, POST_CAT) {
 
@@ -14,7 +13,6 @@
       'getPost': getPost,
       'getPostByCategory': getPostByCategory,
       'getPostByCategoryName': getPostByCategoryName,
-      'getIdTagsByName': getIdTagsByName,
     }
 
     function listPosts() {
@@ -64,7 +62,7 @@
      * API: wp-json/wp/v2/posts?filter[category_name]=pName
      */
     function filterPostByCategoryName(pName, pCloud) {
-      // Arma url 
+      // Arma url
       var tag = POST_CAT + pName;
 
       return wordpressService.getRequest(BASE_WP_URL, POST_TAG + tag, "");

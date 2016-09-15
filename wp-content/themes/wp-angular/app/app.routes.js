@@ -77,7 +77,7 @@
       views:{
         "content":{
           templateUrl: localized.views + "novedades.html",
-          controller: 'novedadesController as vm',
+          controller: 'novedadesDestacadasController as vm',
         }
       }
     })

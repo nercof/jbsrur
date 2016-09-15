@@ -3,7 +3,7 @@
 
     angular
         .module('app.core')
-        .controller('novedadesController', novedadesController);
+        .controller('novedadesDestacadasController', novedadesDestacadasController);
 
     novedadesController.$inject = ['postFactory', '$scope'];
 
@@ -11,20 +11,20 @@
      * novedadesController: Gestión de últimos post con category:Novedades.
      *  - @view: content
      */
-    function novedadesController(postFactory, $scopee) {
+    function novedadesDestacadasController(postFactory, $scope) {
         var vm = this;
         vm.novedades = {}
 
         create();
 
         /**
-         * create() Coleccion de Novedades del sitio. 
+         * create() Coleccion de Novedades del sitio.
          *
          * Se instancia desde:
-         *  - menú Novedades: 
+         *  - menú Novedades:
          *    Muestra el detalle de los últimos post con category:novedades.
          *
-         * Atributos a tener en cuenta:    
+         * Atributos a tener en cuenta:
          *  {object.novedad}.excerpt.rendered: descripciones de un post
          *  {object.novedad}.title.rendered:The title for the object
          *  {object.novedad}.author (?)
@@ -35,11 +35,11 @@
             // Buscamos las novedades.
             vm.novedades = postFactory.getPostByCategoryName("novedades").then(function(data) {
                 vm.novedades = data;
-            
+
             // Podriamos tener dos listas
             // vm.novedades_tag_destacados
             // vm.novedades_tag_otros
-            
+
             console.log(vm.novedades);
             });
         }
