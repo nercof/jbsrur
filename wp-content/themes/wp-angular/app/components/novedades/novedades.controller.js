@@ -5,7 +5,7 @@
         .module('app.core')
         .controller('novedadesDestacadasController', novedadesDestacadasController);
 
-    novedadesController.$inject = ['postFactory', '$scope'];
+    novedadesDestacadasController.$inject = ['postFactory', '$scope'];
 
     /**
      * novedadesController: Gestión de últimos post con category:Novedades.
@@ -33,8 +33,9 @@
          */
         function create() {
             // Buscamos las novedades.
-            vm.novedades = postFactory.getPostByCategoryName("novedades").then(function(data) {
+            vm.novedades = postFactory.getPostByCategoryName("contacto").then(function(data) {
                 vm.novedades = data;
+
 
             // Podriamos tener dos listas
             // vm.novedades_tag_destacados
