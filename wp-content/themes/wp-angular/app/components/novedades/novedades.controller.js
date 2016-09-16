@@ -33,7 +33,7 @@
          */
         function create() {
             // Buscamos las novedades.
-            vm.novedades = postFactory.getPostByCategoryName("contacto").then(function(data) {
+            postFactory.getPostByCategoryName("novedades").then(function(data) {
                 vm.novedades = data;
 
 

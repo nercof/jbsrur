@@ -542,9 +542,10 @@ body {
       }
       .detalle {
             background-color: $white;
+            padding: 40px 30px;
             font-family: $font-titles;
-            margin:0;
-
+            margin: 0px;
+            
             h1 {
                   font-titles: $font-titles;
                   color: $bordo;
@@ -563,6 +564,10 @@ margin: 10px;
                         }
                   }
             }
+            h1 icon {
+                  background-image: url('../images/icon-house.png');
+            }
+            
             h2 {
                   font-titles: $font-normal;
                   color: $white;
@@ -570,6 +575,19 @@ margin: 10px;
                   background-color: $bordo;
                   text-align: center;
                   font-size:large;
+            }
+            .galeria {
+                  padding-right: 0%;
+            }
+            .galeria img{
+                  height: 300px;
+            }
+            .contacto{
+                  background-color: $red;
+            }
+            .contacto h2 {
+                  font-titles: $font-normal;
+                  color: $white;
             }
             .descripcion p{
                   background-color: $grey;
@@ -592,6 +610,7 @@ margin: 10px;
                   background-color: $black;
                   color: $white;
             }
+            
       }
       #secondFooter{
             background-color: $bordo;
@@ -606,7 +625,7 @@ margin: 10px;
             background-color: $grey;
             border-radius: 0;
             margin: 0;
-
+            
             h1 {
                   font-titles: $font-titles;
                   color: $white;
@@ -616,7 +635,7 @@ margin: 10px;
                   font-titles: $font-normal;
                   color: $white;
             }
-
+            
             .destacados{}
             .otros{}
       }
