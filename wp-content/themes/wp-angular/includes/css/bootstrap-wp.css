@@ -392,6 +392,8 @@ body {
       font-titles: "Montserrat", sans-serif;
       color: #90030C;
       border: 2.2px #90030C solid; }
+    body .detalle h1 icon {
+      background-image: url("../images/icon-house.png"); }
     body .detalle h2 {
       font-titles: "Lato", sans-serif;
       color: #FAF3DD;
@@ -401,7 +403,11 @@ body {
       background-color: #735753; }
     body .detalle .referencia {
       border-color: #131515;
-      border: 1.5px solid; }
+      border: 1.5px solid;
+      color: #DF0A1F;
+      margin: 0;
+      padding: 15px;
+      font-size: 1.2em; }
     body .detalle .caracteristicas {
       background-color: #735753;
       color: #FAF3DD; }
@@ -416,3 +422,24 @@ body {
     box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, 0px 125px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; }
   100% {
     box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, 0px 125px 0 2px #DF0A1F, 120px 40px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; } }
+    body .detalle .caracteristicas div {
+      background-color: #131515;
+      color: #FAF3DD; }
+  body #secondFooter {
+    background-color: #90030C;
+    border-radius: 0; }
+  body #mainFooter {
+    background-color: #DF0A1F;
+    border-radius: 0;
+    margin: 0; }
+  body #novedades {
+    background-color: #735753;
+    border-radius: 0;
+    margin: 0; }
+    body #novedades h1 {
+      font-titles: "Montserrat", sans-serif;
+      color: #FAF3DD;
+      background-color: #DF0A1F; }
+    body #novedades h2 {
+      font-titles: "Lato", sans-serif;
+      color: #FAF3DD; }

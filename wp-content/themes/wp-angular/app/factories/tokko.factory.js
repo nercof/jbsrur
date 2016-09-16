@@ -17,7 +17,7 @@
   .constant('TOKKO_PROPERTY_CUSTOM_TAG', 'property_custom_tag/')
   .constant('TOKKO_DEVELOPMENT_TYPE', '/api/v1/development_type/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
   .constant('TOKKO_PROPERTY', 'property/{id}/?lang=es_ar&?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_SEARCH', 'property/search/?limit=50&lang=es_ar&format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7');
+  .constant('TOKKO_SEARCH', 'property/search/?limit=200&lang=es_ar&format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7');
   ;
   // limite=200
   // @see:http://tokkobroker.com/api/playground
@@ -55,6 +55,7 @@
       'getProperty': getProperty,
       'getProperties': getProperties,
       'getPropertyByCity': getPropertyByCity,
+      'getNameOT':getNameOT,
     }
 
     // Model Schema to search in Tokko.
@@ -245,7 +246,11 @@
 
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
   }
-
+  
+  /**
+   * getPropertyByCity() permite obtener las propiedades de Cordoba y alrededores
+   * haciendo un GET a tocko con current_localization_id fijo
+   */
   function getPropertyByCity() {
     var url = '';
     var aux = "";
@@ -273,6 +278,18 @@
     url = url.replace('tokko_query', aux);
 
     return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
+  }
+
+  /**
+  * oper() permite retornar si es Alquiler o Venta el tipo de operacion.
+  * Utilazo para el filtrado de datos.
+  */
+  function getNameOT(oper){
+    if (_.values(oper) == 1) {
+      return "Venta";
+    } else {
+      return "Alquiler";
+    }
   }
 
   // get Departamento a Estrenar

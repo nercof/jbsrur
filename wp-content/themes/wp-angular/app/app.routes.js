@@ -18,7 +18,7 @@
         "sub-header":{
           templateUrl: localized.tokko + "tokko-search-input.html",
           controller: 'tokkoController as vm'
-        }
+        },
       }
     })
     .state('quienes-somos', {
@@ -76,7 +76,8 @@
       url: '/novedades',
       views:{
         "content":{
-          templateUrl: localized.views + "novedades.html"
+          templateUrl: localized.views + "novedades.html",
+          controller: 'novedadesDestacadasController as vm',
         }
       }
     })

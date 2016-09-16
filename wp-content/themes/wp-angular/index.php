@@ -19,5 +19,7 @@ get_header();
     <div ui-view="content"></div>
     <!-- Vistas hijos-->
     <div ui-view></div>
+    <div ui-view="second-footer"></div>
+    <div ui-view="main-footer"></div>
 <?php /** get_sidebar(); **/ ?>
 <?php get_footer(); ?>
