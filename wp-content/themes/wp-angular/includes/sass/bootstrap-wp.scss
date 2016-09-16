@@ -556,7 +556,20 @@ body {
             h1 {
                   font-titles: $font-titles;
                   color: $bordo;
-                  border: 2.2px $bordo solid;
+                  border: 2.3px $bordo solid;
+                  padding: 10px 5px;
+
+                  .round-border{
+                        border-radius: 100%;
+                        border: 1px $bordo solid;
+                        display: inline-block;
+
+                        i {
+                              border-radius: 100%;
+                              border: 1px $bordo solid;
+margin: 10px;
+                        }
+                  }
             }
             h1 icon {
                   background-image: url('../images/icon-house.png');

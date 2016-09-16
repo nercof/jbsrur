@@ -35,6 +35,8 @@
             // Buscamos las novedades.
             postFactory.getPostByCategoryName("novedades").then(function(data) {
                 vm.novedades = data;
+
+
             // Podriamos tener dos listas
             // vm.novedades_tag_destacados
             // vm.novedades_tag_otros
