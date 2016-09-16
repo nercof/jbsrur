@@ -1,13 +1,13 @@
 <div class="row detalle" ng-if="vm.propiedad">
     <div class="col-sm-12 col-xs-12">
-
-        <h1><i class="typcn typcn-home-outline"></i> {{vm.propiedad.fake_address}}</h1>
+        <!-- <i class="typcn typcn-home-outline"></i> -->    
+        <h1><i class="icon"></i>{{vm.propiedad.fake_address}}</h1>
     </div>
     <div class="col-sm-12 col-xs-12">
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-6 col-xs-12 galeria">
             <div uib-carousel active="active" ng-if="vm.propiedad.photos">
                 <div uib-slide ng-repeat="photo in vm.propiedad.photos" active="active" index="$index">
-                    <img ng-src="{{photo.image}}" style="margin:auto;">
+                    <img ng-src="{{photo.image}}">
                 </div>
             </div>
         </div>
@@ -22,8 +22,10 @@
             <h2> <i class="typcn typcn-clipboard"></i>Descripción de la propiedad</h2>
             <p>{{vm.propiedad.description}}</p>
         </div>
-        <div class="col-sm-6 col-xs-12">
-            <h2>Formulario de contacto</a>
+        <div class="col-sm-6 col-xs-12 contacto">
+            <h2>Contacto</h2>
+            <!-- @import: Contact Form 7 plugin  -->
+            <div id="jbsrur_contact_form"></div>
         </div>
     </div>
     <div class="col-sm-12 col-xs-12">
@@ -39,7 +41,7 @@
     </div>
     <div class="col-sm-12 col-xs-12 caracteristicas">
         <div class="col-sm-3">
-            <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s 
+            <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s
             <i class="typcn typcn-plus"></i>{{vm.propiedad.bathroom_amount}} Baño/s
         </div>
         <div class="col-sm-3" ng-repeat="tag in vm.propiedad.tags">

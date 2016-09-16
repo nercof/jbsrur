@@ -544,12 +544,17 @@ body {
             background-color: $white;
             padding: 40px 30px;
             font-family: $font-titles;
-
+            margin: 0px;
+            
             h1 {
                   font-titles: $font-titles;
                   color: $bordo;
                   border: 2.2px $bordo solid;
             }
+            h1 icon {
+                  background-image: url('../images/icon-house.png');
+            }
+            
             h2 {
                   font-titles: $font-normal;
                   color: $white;
@@ -557,6 +562,19 @@ body {
                   background-color: $bordo;
                   text-align: center;
                   font-size:large;
+            }
+            .galeria {
+                  padding-right: 0%;
+            }
+            .galeria img{
+                  height: 300px;
+            }
+            .contacto{
+                  background-color: $red;
+            }
+            .contacto h2 {
+                  font-titles: $font-normal;
+                  color: $white;
             }
             .descripcion p{
                   background-color: $grey;
@@ -579,6 +597,7 @@ body {
                   background-color: $black;
                   color: $white;
             }
+            
       }
       #secondFooter{
             background-color: $bordo;
