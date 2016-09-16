@@ -16,7 +16,6 @@
                 'ngMap',
                 'ngResource', // Load this module in order to use $resource.
                 'ngStorage',  // localStorage and sessionStorage done right for AngularJS
-                'ngSanitize', // inject html content ( external) into my app
             ])
     // Para poder visualizar el $state en las vistas.
     .run(['$rootScope', '$state', '$stateParams',
@@ -30,7 +29,7 @@
             .config(['$localStorageProvider',
                 function($localStorageProvider) {
                     var aux = $localStorageProvider.get('prop_cache');
-                    
+
                 }
             ]);
 

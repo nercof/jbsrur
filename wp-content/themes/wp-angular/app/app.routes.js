@@ -108,9 +108,10 @@
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
         },
-        "title@propiedad":{
-          template: '',
-        }
+        "second-footer":{
+          templateUrl: localized.tokko + "tokko-search-input.html",
+          controller: 'tokkoController as vm'
+        },
       },
       deepStateRedirect: true,
       sticky: true,

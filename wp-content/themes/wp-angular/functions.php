@@ -39,7 +39,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
         * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
         */
         add_theme_support( 'post-thumbnails' );
-        
+
         function register_recipes_post_type() {
     $args = array( 'public' => true, 'label' => 'Recipes' );
     register_post_type( 'recipe', $args );
@@ -50,19 +50,19 @@ add_action( 'init', 'register_recipes_post_type' );
         * Enable support for Post Formats
         */
         add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'recipe' ) );
-        
+
         /**
          * Rename format in order to change to custom format
-         * 
+         *
          */
-        
+
         function rename_post_formats( $safe_text ) {
             if ( $safe_text == 'Aside' )
                 return 'Tip';
 
             return $safe_text;
         }
-        
+
         add_filter( 'esc_html', 'rename_post_formats' );
 
         //rename Aside in posts list table
@@ -83,9 +83,9 @@ add_action( 'init', 'register_recipes_post_type' );
         <?php }
         }
         add_action('admin_head', 'live_rename_formats');
-        
-        
-        
+
+
+
         /**
         * Setup the WordPress core custom background feature.
         */
@@ -182,10 +182,6 @@ add_action( 'init', 'register_recipes_post_type' );
             'ngstorage',
             get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.js');
 
-            wp_enqueue_script(
-            'angular-sanitize',
-            get_template_directory_uri() .'/node_modules/angular-sanitize/angular-sanitize.js');
-            
             wp_enqueue_script(
             'app',
             get_stylesheet_directory_uri() . '/app/app.js',
