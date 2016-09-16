@@ -141,11 +141,14 @@ body {
           body #searchForm ul.nav-pills li a i {
             height: 35px;
             width: 35px;
-            font-size: 26px; }
+            font-size: 22px; }
           body #searchForm ul.nav-pills li label .form-control,
           body #searchForm ul.nav-pills li a .form-control {
             border-radius: 0;
             border: none; }
+          body #searchForm ul.nav-pills li label label,
+          body #searchForm ul.nav-pills li a label {
+            padding: 8px 5px; }
         body #searchForm ul.nav-pills li.active, body #searchForm ul.nav-pills li:hover {
           background-color: #DF0A1F; }
           body #searchForm ul.nav-pills li.active label, body #searchForm ul.nav-pills li:hover label {
@@ -167,20 +170,24 @@ body {
               height: 35px;
               width: 35px;
               padding: 4px 1px;
-              border-radius: 0;
+              border-radius: 50%;
               border: 0;
-              background-color: #EC7E7E;
-              border: none; }
+              background-color: #DF0A1F;
+              border: none;
+              box-shadow: 60px -60px 0 2px #FAF3DD, -60px -60px 0 2px #FAF3DD, -60px 60px 0 2px #FAF3DD, 60px 60px 0 2px #FAF3DD, 0 0 0 2px #DF0A1F; }
               body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button i {
-                height: 35px;
-                width: 35px;
-                font-size: 26px;
-                color: #DF0A1F; }
+                color: #FAF3DD; }
+              body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button:hover {
+                animation: border .4s ease 1 forwards; }
         body #searchForm ul.nav-pills li.advanced-search.active a i, body #searchForm ul.nav-pills li.advanced-search:hover a i {
-          color: #FAF3DD; }
+          color: #FAF3DD;
+          border: 1px solid #FAF3DD; }
         body #searchForm ul.nav-pills li.advanced-search a i {
-          vertical-align: bottom;
-          font-size: 24px; }
+          border: 1px solid #DF0A1F;
+          border-radius: 100%;
+          font-size: 22px;
+          padding: 5px;
+          vertical-align: middle; }
   body #advanced-search .panel {
     background-color: #DF0A1F;
     border-radius: 0;
@@ -398,3 +405,14 @@ body {
     body .detalle .caracteristicas {
       background-color: #735753;
       color: #FAF3DD; }
+@keyframes border {
+  0% {
+    box-shadow: 60px -60px 0 2px #DF0A1F, -60px -60px 0 2px #DF0A1F, -60px 60px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #DF0A1F; }
+  25% {
+    box-shadow: 0 -125px 0 2px #DF0A1F, -60px -60px 0 2px #DF0A1F, -60px 60px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; }
+  50% {
+    box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, -60px 60px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; }
+  75% {
+    box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, 0px 125px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; }
+  100% {
+    box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, 0px 125px 0 2px #DF0A1F, 120px 40px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; } }

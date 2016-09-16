@@ -47,10 +47,6 @@ $bordo: #90030C;
 $grey: #735753;
 $black: #131515;
 
-html{
-
-}
-
 body {
       font-family: $font-normal;
       background-image: url('../images/bg.png');
@@ -201,11 +197,14 @@ body {
                                     i {
                                           height: 35px;
                                           width: 35px;
-                                          font-size: 26px;
+                                          font-size: 22px;
                                     }
                                     .form-control {
                                           border-radius: 0;
                                           border: none;
+                                    }
+                                    label {
+                                          padding: 8px 5px;
                                     }
                               }
                               &.active,
@@ -235,16 +234,20 @@ body {
                                                       height: 35px;
                                                       width: 35px;
                                                       padding: 4px 1px;
-                                                      border-radius: 0;
+                                                      border-radius: 50%;
                                                       border: 0;
-                                                      background-color: $pink;
+                                                      background-color: $red;
                                                       border:none;
+                                                      box-shadow: 60px -60px 0 2px $white, -60px -60px 0 2px $white, -60px 60px 0 2px $white, 60px 60px 0 2px $white, 0 0 0 2px $red;
 
                                                       i {
-                                                            height: 35px;
-                                                            width: 35px;
-                                                            font-size: 26px;
-                                                            color: $red;
+                                                            //height: 35px;
+                                                            //width: 35px;
+                                                            //font-size: 26px;
+                                                            color: $white;
+                                                      }
+                                                      &:hover {
+                                                            animation: border .4s ease 1 forwards;
                                                       }
                                                 }
                                           }
@@ -256,13 +259,17 @@ body {
                                           a {
                                                 i {
                                                       color: $white;
+                                                      border: 1px solid $white;
                                                 }
                                           }
                                     }
                                     a {
                                           i {
-                                                vertical-align: bottom;
-                                                font-size: 24px;
+                                                border: 1px solid $red;
+                                                border-radius: 100%;
+                                                font-size: 22px;
+                                                padding: 5px;
+                                                vertical-align: middle;
                                           }
                                     }
                               }
@@ -566,6 +573,23 @@ body {
             .caracteristicas {
                   background-color: $grey;
                   color: $white;
+            }
+      }
+      @keyframes border{
+            0% {
+                  box-shadow: 60px -60px 0 2px $red, -60px -60px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $red;
+            }
+            25% {
+                  box-shadow: 0 -125px 0 2px $red, -60px -60px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
+            }
+            50% {
+                  box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
+            }
+            75% {
+                  box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, 0px 125px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
+            }
+            100% {
+                  box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, 0px 125px 0 2px $red, 120px 40px 0 2px $red, 0 0 0 2px $white;
             }
       }
 }
