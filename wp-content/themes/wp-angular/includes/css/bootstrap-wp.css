@@ -30,7 +30,24 @@
 /* JBSRUR */
 body {
   font-family: "Lato", sans-serif;
-  background-image: url("../images/bg.png"); }
+  background-image: url("../images/bg.png");
+  /*@keyframes border{
+        0% {
+              box-shadow: 60px -60px 0 2px $red, -60px -60px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $red;
+        }
+        25% {
+              box-shadow: 0 -125px 0 2px $red, -60px -60px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
+        }
+        50% {
+              box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
+        }
+        75% {
+              box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, 0px 125px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
+        }
+        100% {
+              box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, 0px 125px 0 2px $red, 120px 40px 0 2px $red, 0 0 0 2px $white;
+        }
+  }*/ }
   body #masthead {
     height: 5px; }
   body .site-navigation .container {
@@ -45,6 +62,25 @@ body {
     margin: 0;
     padding: 20px;
     font-size: 1.2em; }
+  body .carousel {
+    background-color: #735753;
+    padding-bottom: 2.5em; }
+    body .carousel a.carousel-control {
+      text-shadow: none;
+      color: #FAF3DD; }
+      body .carousel a.carousel-control.right, body .carousel a.carousel-control.left {
+        background-image: none; }
+        body .carousel a.carousel-control.right .glyphicon-chevron-left, body .carousel a.carousel-control.left .glyphicon-chevron-left {
+          left: 20%; }
+        body .carousel a.carousel-control.right .glyphicon-chevron-right, body .carousel a.carousel-control.left .glyphicon-chevron-right {
+          right: 20%; }
+      body .carousel a.carousel-control:hover {
+        color: #FAF3DD;
+        text-shadow: none; }
+    body .carousel .carousel-indicators {
+      top: 93%; }
+      body .carousel .carousel-indicators li {
+        margin: 1px 4px; }
   body #jbsrur-nav {
     background-color: #DF0A1F;
     height: 90px;
@@ -386,22 +422,28 @@ body {
         background-color: #DF0A1F; }
   body .detalle {
     background-color: #FAF3DD;
-    padding: 40px 30px;
     font-family: "Montserrat", sans-serif;
     margin: 0px; }
+    body .detalle .col {
+      padding: 0; }
+    body .detalle .carousel {
+      background-color: #735753; }
     body .detalle h1 {
-      font-titles: "Montserrat", sans-serif;
+      font-style: "Montserrat", sans-serif;
       color: #90030C;
-      border: 2.3px #90030C solid;
-      padding: 10px 5px; }
+      border: 3px #90030C solid;
+      padding: 10px 20px;
+      font-size: 2.8em;
+      margin-top: 0; }
       body .detalle h1 .round-border {
         border-radius: 100%;
-        border: 1px #90030C solid;
+        border: 2px #90030C solid;
         display: inline-block; }
         body .detalle h1 .round-border i {
           border-radius: 100%;
-          border: 1px #90030C solid;
-          margin: 10px; }
+          border: 2px #90030C solid;
+          margin: 10px;
+          padding: 0.3em; }
     body .detalle h1 icon {
       background-image: url("../images/icon-house.png"); }
     body .detalle h2 {
@@ -412,9 +454,12 @@ body {
       text-align: center;
       font-size: large; }
     body .detalle .galeria {
-      padding-right: 0%; }
+      padding-right: 0%;
+      height: 395px; }
     body .detalle .galeria img {
-      height: 300px; }
+      height: 360px; }
+    body .detalle .mapa {
+      height: 395px; }
     body .detalle .contacto {
       background-color: #DF0A1F; }
     body .detalle .contacto h2 {
@@ -455,16 +500,5 @@ body {
     body #novedades h2 {
       font-titles: "Lato", sans-serif;
       color: #FAF3DD; }
-@keyframes border {
-  0% {
-    box-shadow: 60px -60px 0 2px #DF0A1F, -60px -60px 0 2px #DF0A1F, -60px 60px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #DF0A1F; }
-  25% {
-    box-shadow: 0 -125px 0 2px #DF0A1F, -60px -60px 0 2px #DF0A1F, -60px 60px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; }
-  50% {
-    box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, -60px 60px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; }
-  75% {
-    box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, 0px 125px 0 2px #DF0A1F, 60px 60px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; }
-  100% {
-    box-shadow: 0 -125px 0 2px #DF0A1F, -125px 0px 0 2px #DF0A1F, 0px 125px 0 2px #DF0A1F, 120px 40px 0 2px #DF0A1F, 0 0 0 2px #FAF3DD; } }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */

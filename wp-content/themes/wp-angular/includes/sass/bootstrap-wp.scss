@@ -76,6 +76,35 @@ body {
                   font-size: 1.2em;
             }
       }
+      .carousel {
+            background-color: $grey;
+            padding-bottom: 2.5em;
+            a.carousel-control {
+                  text-shadow: none;
+                  color: $white;
+                  &.right,
+                  &.left {
+                        background-image: none;
+                        .glyphicon-chevron-left {
+                              left:20%;
+                        }
+                        .glyphicon-chevron-right {
+                              right: 20%;
+                        }
+                  }
+                  &:hover {
+                        color: $white;
+                        text-shadow: none;
+                  }
+
+            }
+            .carousel-indicators{
+                  top: 93%;
+                  li {
+                        margin: 1px 4px;
+                  }
+            }
+      }
       #jbsrur-nav {
             background-color: $red;
             height: 90px;
@@ -549,32 +578,39 @@ body {
       }
       .detalle {
             background-color: $white;
-            padding: 40px 30px;
             font-family: $font-titles;
             margin: 0px;
-            
+            .col {
+                  padding: 0;
+            }
+            .carousel {
+                  background-color: $grey;
+            }
             h1 {
-                  font-titles: $font-titles;
+                  font-style: $font-titles;
                   color: $bordo;
-                  border: 2.3px $bordo solid;
-                  padding: 10px 5px;
+                  border: 3px $bordo solid;
+                  padding: 10px 20px;
+                  font-size: 2.8em;
+                  margin-top: 0;
 
                   .round-border{
                         border-radius: 100%;
-                        border: 1px $bordo solid;
+                        border: 2px $bordo solid;
                         display: inline-block;
 
                         i {
                               border-radius: 100%;
-                              border: 1px $bordo solid;
-margin: 10px;
+                              border: 2px $bordo solid;
+                              margin: 10px;
+                              padding: 0.3em;
                         }
                   }
             }
             h1 icon {
                   background-image: url('../images/icon-house.png');
             }
-            
+
             h2 {
                   font-titles: $font-normal;
                   color: $white;
@@ -585,9 +621,13 @@ margin: 10px;
             }
             .galeria {
                   padding-right: 0%;
+                  height: 395px;
             }
             .galeria img{
-                  height: 300px;
+                  height: 360px;
+            }
+            .mapa {
+                  height: 395px;
             }
             .contacto{
                   background-color: $red;
@@ -617,7 +657,7 @@ margin: 10px;
                   background-color: $black;
                   color: $white;
             }
-            
+
       }
       #secondFooter{
             background-color: $bordo;
@@ -632,7 +672,7 @@ margin: 10px;
             background-color: $grey;
             border-radius: 0;
             margin: 0;
-            
+
             h1 {
                   font-titles: $font-titles;
                   color: $white;
@@ -642,11 +682,11 @@ margin: 10px;
                   font-titles: $font-normal;
                   color: $white;
             }
-            
+
             .destacados{}
             .otros{}
       }
-      @keyframes border{
+      /*@keyframes border{
             0% {
                   box-shadow: 60px -60px 0 2px $red, -60px -60px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $red;
             }
@@ -662,5 +702,5 @@ margin: 10px;
             100% {
                   box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, 0px 125px 0 2px $red, 120px 40px 0 2px $red, 0 0 0 2px $white;
             }
-      }
+      }*/
 }
