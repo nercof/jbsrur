@@ -20,7 +20,7 @@
 
         /**
          * create() Detalle de la propiedad pasada por parametro o consultando
-         * a la API de TOKKO con su id directamente. 
+         * a la API de TOKKO con su id directamente.
          *
          * Se instancia desde:
          *  - predictive search:
@@ -47,8 +47,9 @@
             postFactory.getPostByCategoryName("contacto").then(
                 function(data) {
                     // slug: "formulario-de-contacto"
-                    vm.contact_form = _.find(data, {slug:"formulario-de-contacto"});
-
+                    console.log(data);
+                    vm.contact_form = _.find(data, {slug:"contacto"});
+                    console.log(vm.contact_form);
                     // Usando la magia de jQuery para obtener el objeto con id
                     // que generamos e incorporarle el trozo html del formulario
                     // generado desde Wordpress.
