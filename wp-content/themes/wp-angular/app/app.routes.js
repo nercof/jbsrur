@@ -108,7 +108,7 @@
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
         },
-        "second-footer":{
+        "search@propiedad":{
           templateUrl: localized.tokko + "tokko-search-input.html",
           controller: 'tokkoController as vm'
         },

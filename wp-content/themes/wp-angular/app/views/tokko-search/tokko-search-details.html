@@ -1,9 +1,9 @@
 <div class="row detalle" ng-if="vm.propiedad">
-    <div class="col-sm-12 col-xs-12">
+    <div class="col-sm-12 col-xs-12 col">
 
         <h1>
             <div class="round-border">
-                <i class="typcn typcn-home-outline"></i>
+                <i class="glyphicon glyphicon-home"></i>
             </div>
             {{vm.propiedad.fake_address}}
         </h1>
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-sm-6 col-xs-12">
-            <ng-map center="[{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}]">
+            <ng-map class="mapa" center="[{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}]">
                 <marker position="{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}"></marker>
             </ng-map>
         </div>
