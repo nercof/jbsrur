@@ -663,7 +663,6 @@ body {
                         padding: 4px;
                         float: left;
                   }
-
                   i {
                         border-radius: 100%;
                         border: 1px $white solid;
@@ -671,13 +670,11 @@ body {
                         padding:0px;
                   }
             }
-
             .descripcion p{
                   background-color: $grey;
                   color: $white;
                   font-size:small;
             }
-
             .referencia span{
                   border-color: $black;
                   border: 1.5px solid;
@@ -703,6 +700,7 @@ body {
             background-color: $bordo;
             border-radius: 0;
       }
+
       #mainFooter{
             background-color: $red;
             border-radius: 0;
