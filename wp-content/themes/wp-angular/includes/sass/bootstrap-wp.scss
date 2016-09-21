@@ -637,6 +637,7 @@ body {
                   background-color: $bordo;
                   text-align: center;
                   font-size:large;
+                  padding: 5px;
             }
             .galeria {
                   padding-right: 0%;
@@ -648,40 +649,58 @@ body {
             .mapa {
                   height: 395px;
             }
-            .contacto{
+            #contacto{
                   background-color: $red;
-            }
-            .contacto h2 {
-                  font-titles: $font-normal;
-                  color: $white;
+                  margin: 20px 0;
+
+                  h2 {
+                        font-titles: $font-normal;
+                        color: $white;
+                        background-color:$red;
+                        border: none;
+                        letter-spacing: 1px;
+                        margin: 20px 0;
+                        padding: 4px;
+                        float: left;
+                  }
+                  i {
+                        border-radius: 100%;
+                        border: 1px $white solid;
+                        margin: 10px;
+                        padding:0px;
+                  }
             }
             .descripcion p{
                   background-color: $grey;
                   color: $white;
                   font-size:small;
             }
-            .referencia {
+            .referencia span{
                   border-color: $black;
                   border: 1.5px solid;
                   color:$red;
-                  margin: 0;
-                  padding: 15px;
-                  font-size: 1.2em;
+                  padding: 5px 10px;
+                  font-size: 0.9em;
             }
             .caracteristicas {
                   background-color: $grey;
                   color: $white;
-            }
-            .caracteristicas div{
-                  background-color: $black;
-                  color: $white;
-            }
 
+                  .col-sm-3 {
+                        background-color: $black;
+                        color: $white;
+                        margin: 10px 10px 10px 0px;
+                        display: block;
+                        text-align: center;
+                  }
+            }
       }
+
       #secondFooter{
             background-color: $bordo;
             border-radius: 0;
       }
+
       #mainFooter{
             background-color: $red;
             border-radius: 0;
