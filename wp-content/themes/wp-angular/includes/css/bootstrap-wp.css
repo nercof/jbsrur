@@ -30,24 +30,7 @@
 /* JBSRUR */
 body {
   font-family: "Lato", sans-serif;
-  background-image: url("../images/bg.png");
-  /*@keyframes border{
-        0% {
-              box-shadow: 60px -60px 0 2px $red, -60px -60px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $red;
-        }
-        25% {
-              box-shadow: 0 -125px 0 2px $red, -60px -60px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
-        }
-        50% {
-              box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, -60px 60px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
-        }
-        75% {
-              box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, 0px 125px 0 2px $red, 60px 60px 0 2px $red, 0 0 0 2px $white;
-        }
-        100% {
-              box-shadow: 0 -125px 0 2px $red, -125px 0px 0 2px $red, 0px 125px 0 2px $red, 120px 40px 0 2px $red, 0 0 0 2px $white;
-        }
-  }*/ }
+  background-image: url("../images/bg.png"); }
   body #masthead {
     height: 5px; }
   body .site-navigation .container {
@@ -62,25 +45,22 @@ body {
     margin: 0;
     padding: 20px;
     font-size: 1.2em; }
-  body .carousel {
-    background-color: #735753;
-    padding-bottom: 2.5em; }
-    body .carousel a.carousel-control {
-      text-shadow: none;
-      color: #FAF3DD; }
-      body .carousel a.carousel-control.right, body .carousel a.carousel-control.left {
-        background-image: none; }
-        body .carousel a.carousel-control.right .glyphicon-chevron-left, body .carousel a.carousel-control.left .glyphicon-chevron-left {
-          left: 20%; }
-        body .carousel a.carousel-control.right .glyphicon-chevron-right, body .carousel a.carousel-control.left .glyphicon-chevron-right {
-          right: 20%; }
-      body .carousel a.carousel-control:hover {
-        color: #FAF3DD;
-        text-shadow: none; }
-    body .carousel .carousel-indicators {
-      top: 93%; }
-      body .carousel .carousel-indicators li {
-        margin: 1px 4px; }
+  body .carousel a.carousel-control {
+    text-shadow: none;
+    color: #FAF3DD; }
+    body .carousel a.carousel-control.right, body .carousel a.carousel-control.left {
+      background-image: none; }
+      body .carousel a.carousel-control.right .glyphicon-chevron-left, body .carousel a.carousel-control.left .glyphicon-chevron-left {
+        left: 20%; }
+      body .carousel a.carousel-control.right .glyphicon-chevron-right, body .carousel a.carousel-control.left .glyphicon-chevron-right {
+        right: 20%; }
+    body .carousel a.carousel-control:hover {
+      color: #FAF3DD;
+      text-shadow: none; }
+  body .carousel .carousel-indicators {
+    top: 93%; }
+    body .carousel .carousel-indicators li {
+      margin: 1px 4px; }
   body #jbsrur-nav {
     background-color: #DF0A1F;
     height: 90px;
@@ -167,7 +147,7 @@ body {
         body #searchForm ul.nav-pills li a {
           text-transform: uppercase;
           font-family: "Montserrat", sans-serif;
-          padding: 8px 0;
+          padding: 8px 0 0;
           color: #DF0A1F; }
           body #searchForm ul.nav-pills li label button,
           body #searchForm ul.nav-pills li a button {
@@ -191,8 +171,10 @@ body {
             color: #FAF3DD; }
           body #searchForm ul.nav-pills li.active a, body #searchForm ul.nav-pills li:hover a {
             background: transparent; }
+        body #searchForm ul.nav-pills li.global-search a {
+          margin-top: 3px; }
         body #searchForm ul.nav-pills li.global-search .input-group {
-          width: 96%; }
+          width: 90%; }
           body #searchForm ul.nav-pills li.global-search .input-group .form-control {
             float: right;
             width: 55%;
@@ -203,27 +185,40 @@ body {
           body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn {
             float: right; }
             body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button {
-              height: 35px;
-              width: 35px;
-              padding: 4px 1px;
               border-radius: 50%;
-              border: 0;
-              background-color: #DF0A1F;
-              border: none;
-              box-shadow: 60px -60px 0 2px #FAF3DD, -60px -60px 0 2px #FAF3DD, -60px 60px 0 2px #FAF3DD, 60px 60px 0 2px #FAF3DD, 0 0 0 2px #DF0A1F; }
+              height: 35px;
+              margin: 0 5px;
+              margin-left: 20px;
+              padding: 4px 6px;
+              text-align: left;
+              width: 35px; }
               body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button i {
-                color: #FAF3DD; }
+                color: #FAF3DD;
+                height: 35px;
+                width: 35px;
+                font-size: 22px;
+                color: #DF0A1F; }
               body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button:hover {
-                animation: border .4s ease 1 forwards; }
-        body #searchForm ul.nav-pills li.advanced-search.active a i, body #searchForm ul.nav-pills li.advanced-search:hover a i {
-          color: #FAF3DD;
-          border: 1px solid #FAF3DD; }
-        body #searchForm ul.nav-pills li.advanced-search a i {
-          border: 1px solid #DF0A1F;
-          border-radius: 100%;
-          font-size: 22px;
-          padding: 5px;
-          vertical-align: middle; }
+                border: 1px solid #FAF3DD;
+                background-color: #DF0A1F; }
+                body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn button:hover i {
+                  color: #FAF3DD; }
+        body #searchForm ul.nav-pills li.global-search.active button {
+          border: 1px solid #FAF3DD;
+          background-color: #DF0A1F; }
+          body #searchForm ul.nav-pills li.global-search.active button i {
+            color: #FAF3DD; }
+        body #searchForm ul.nav-pills li.advanced-search {
+          padding-bottom: 3px; }
+          body #searchForm ul.nav-pills li.advanced-search.active a i, body #searchForm ul.nav-pills li.advanced-search:hover a i {
+            color: #FAF3DD;
+            border: 1px solid #FAF3DD; }
+          body #searchForm ul.nav-pills li.advanced-search a i {
+            border: 1px solid #DF0A1F;
+            border-radius: 100%;
+            font-size: 22px;
+            padding: 5px;
+            vertical-align: middle; }
   body #advanced-search .panel {
     background-color: #DF0A1F;
     border-radius: 0;
@@ -427,7 +422,8 @@ body {
     body .detalle .col {
       padding: 0; }
     body .detalle .carousel {
-      background-color: #735753; }
+      background-color: #735753;
+      padding-bottom: 2.5em; }
     body .detalle h1 {
       font-style: "Montserrat", sans-serif;
       color: #90030C;
