@@ -452,7 +452,8 @@ body {
       border: 2.2px #90030C solid;
       background-color: #90030C;
       text-align: center;
-      font-size: large; }
+      font-size: large;
+      padding: 5px; }
     body .detalle .galeria {
       padding-right: 0%;
       height: 395px; }
@@ -460,28 +461,42 @@ body {
       height: 360px; }
     body .detalle .mapa {
       height: 395px; }
-    body .detalle .contacto {
-      background-color: #DF0A1F; }
-    body .detalle .contacto h2 {
-      font-titles: "Lato", sans-serif;
-      color: #FAF3DD; }
+    body .detalle #contacto {
+      background-color: #DF0A1F;
+      margin: 20px 0; }
+      body .detalle #contacto h2 {
+        font-titles: "Lato", sans-serif;
+        color: #FAF3DD;
+        background-color: #DF0A1F;
+        border: none;
+        letter-spacing: 1px;
+        margin: 20px 0;
+        padding: 4px;
+        float: left; }
+      body .detalle #contacto i {
+        border-radius: 100%;
+        border: 1px #FAF3DD solid;
+        margin: 10px;
+        padding: 0px; }
     body .detalle .descripcion p {
       background-color: #735753;
       color: #FAF3DD;
       font-size: small; }
-    body .detalle .referencia {
+    body .detalle .referencia span {
       border-color: #131515;
       border: 1.5px solid;
       color: #DF0A1F;
-      margin: 0;
-      padding: 15px;
-      font-size: 1.2em; }
+      padding: 5px 10px;
+      font-size: 0.9em; }
     body .detalle .caracteristicas {
       background-color: #735753;
       color: #FAF3DD; }
-    body .detalle .caracteristicas div {
-      background-color: #131515;
-      color: #FAF3DD; }
+      body .detalle .caracteristicas .col-sm-3 {
+        background-color: #131515;
+        color: #FAF3DD;
+        margin: 10px 10px 10px 0px;
+        display: block;
+        text-align: center; }
   body #secondFooter {
     background-color: #90030C;
     border-radius: 0; }

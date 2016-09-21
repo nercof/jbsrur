@@ -1,13 +1,11 @@
 <div class="row detalle" ng-if="vm.propiedad">
     <div class="col-sm-12 col-xs-12 col">
-
         <h1>
             <div class="round-border">
                 <i class="glyphicon glyphicon-home"></i>
             </div>
             {{vm.propiedad.fake_address}}
         </h1>
-
     </div>
     <div class="col-sm-12 col-xs-12">
         <div class="col-sm-6 col-xs-12 galeria">
@@ -28,8 +26,8 @@
             <h2> <i class="typcn typcn-clipboard"></i>Descripción de la propiedad</h2>
             <p>{{vm.propiedad.description}}</p>
         </div>
-        <div class="col-sm-6 col-xs-12 contacto">
-            <h2>Contacto</h2>
+        <div class="col-sm-6 col-xs-12" id="contacto">
+            <h2><i class="typcn typcn-user-outline"></i>Contacto</h2>
             <!-- @import: Contact Form 7 plugin  -->
             <div id="jbsrur_contact_form"></div>
         </div>
@@ -43,15 +41,17 @@
         </div>
     </div>
     <div class="col-sm-12 col-xs-12">
-        <h2>Principales características</h2>
+        <h2><i class="typcn typcn-th-menu"></i>Principales características</h2>
     </div>
-    <div class="col-sm-12 col-xs-12 caracteristicas">
-        <div class="col-sm-3">
-            <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s
-            <i class="typcn typcn-plus"></i>{{vm.propiedad.bathroom_amount}} Baño/s
-        </div>
+    <div class="col-sm-12 col-xs-12 caracteristicas" >
         <div class="col-sm-3" ng-repeat="tag in vm.propiedad.tags">
             <i class="typcn typcn-plus"></i>{{tag.name}}
+        </div>
+        <div class="col-sm-3" ng-if="vm.propiedad.suite_amount">
+            <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s
+        </div>
+        <div class="col-sm-3" ng-if="vm.propiedad.bathroom_amount">
+            <i class="typcn typcn-plus"></i>{{vm.propiedad.bathroom_amount}} Baño/s
         </div>
     </div>
 </div>
