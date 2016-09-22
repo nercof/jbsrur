@@ -84,11 +84,20 @@ body {
                   &.right,
                   &.left {
                         background-image: none;
-                        .glyphicon-chevron-left {
-                              left:20%;
-                        }
-                        .glyphicon-chevron-right {
-                              right: 20%;
+                        .glyphicon {
+                              font-family: "typicons";
+                              &.glyphicon-chevron-left {
+                                    left:20%;
+                                    &:before {
+                                          content: '\e047';
+                                    }
+                              }
+                              &.glyphicon-chevron-right {
+                                    right: 20%;
+                                    &:before {
+                                          content: '\e049';
+                                    }
+                              }
                         }
                   }
                   &:hover {
@@ -101,6 +110,11 @@ body {
                   top: 93%;
                   li {
                         margin: 1px 4px;
+                        border-color: $white-a;
+                        &.active{
+                              background-color: $white-a;
+                              border-color: none;
+                        }
                   }
             }
       }
@@ -217,7 +231,8 @@ body {
                                     padding: 8px 0 0;
                                     color: $red;
 
-                                    button {
+                                    button,
+                                    .button {
                                           border-radius: 0;
                                           border: 0;
 
@@ -242,7 +257,14 @@ body {
                                           color: $white;
                                     }
                                     a {
-                                          background: transparent;
+                                          background: $red;
+                                    }
+                                    .button {
+                                          border: 1px solid $white;
+                                          background-color: $red;
+                                          i {
+                                                color: $white;
+                                          }
                                     }
                               }
                               &.global-search {
@@ -261,8 +283,8 @@ body {
                                           }
                                           .input-group-btn {
                                                 float: right;
-                                                button {
-
+                                                .button {
+                                                      background-color: $pink;
                                                       border-radius: 50%;
                                                       height: 35px;
                                                       margin: 0 5px;
@@ -270,31 +292,35 @@ body {
                                                       padding: 4px 6px;
                                                       text-align: left;
                                                       width: 35px;
+                                                      border: 1px solid $red;
 
                                                       i {
-                                                            color: $white;
+                                                            color: $red;
                                                             height: 35px;
                                                             width: 35px;
                                                             font-size: 22px;
-                                                            color: $red;
                                                       }
-                                                      &:hover {
-                                                            border: 1px solid $white;
-                                                            background-color: $red;
-                                                            i {
-                                                                  color: $white;
-                                                            }
+                                                      &:focus,
+                                                      &:active,
+                                                      &::-moz-focus-inner,
+                                                       {
+                                                            outline: none;
+                                                            border: 0;
+                                                            padding: 0;
                                                       }
 
                                                 }
                                           }
                                     }
-                                    &.active {
-                                          button {
-                                                border: 1px solid $white;
-                                                background-color: $red;
-                                                i {
-                                                      color: $white;
+                                    &.active,
+                                    :hover {
+                                          .input-group-btn {
+                                                .button {
+                                                      border: 1px solid $white;
+                                                      background-color: $red;
+                                                      i {
+                                                            color: $white;
+                                                      }
                                                 }
                                           }
                                     }
@@ -640,11 +666,10 @@ body {
                   padding: 5px;
             }
             .galeria {
-                  padding-right: 0%;
                   height: 395px;
-            }
-            .galeria img{
-                  height: 360px;
+                  img {
+                        height: 360px;
+                  }
             }
             .mapa {
                   height: 395px;
@@ -652,35 +677,63 @@ body {
             #contacto{
                   background-color: $red;
                   margin: 20px 0;
+                  padding: 0px 30px;
 
                   h2 {
-                        font-titles: $font-normal;
+                        font-family: $font-normal;
                         color: $white;
                         background-color:$red;
                         border: none;
                         letter-spacing: 1px;
-                        margin: 20px 0;
+                        margin: 5px 0;
                         padding: 4px;
-                        float: left;
+                        text-align: left;
+                        text-transform: uppercase;
+                        font-weight: 600;
+
+                        i {
+                              border-radius: 50%;
+                              border: 2px $white solid;
+                              margin: 10px 10px 10px 0px;
+                              padding: 2px 5px;
+                              width: 35px;
+                              height: 35px;
+                              display: inline-block;
+                              font-size: 22px;
+                        }
                   }
-                  i {
-                        border-radius: 100%;
-                        border: 1px $white solid;
-                        margin: 10px;
-                        padding:0px;
+                  form {
+                        .wpcf7-form-control-wrap {
+                              width: 100%;
+                              display: block;
+                              input {
+                                    width: 90%;
+                                    border: none;
+                                    padding: 10px;
+
+                                    &:focus,
+                                    &:active {
+                                          border: none;
+                                    }
+                              }
+                        }
                   }
             }
-            .descripcion p{
-                  background-color: $grey;
-                  color: $white;
-                  font-size:small;
+            .descripcion {
+                  p {
+                        font-size:1em;
+                        font-family: $font-normal;
+                        padding: 2em 1em;
+                  }
             }
-            .referencia span{
-                  border-color: $black;
-                  border: 1.5px solid;
-                  color:$red;
-                  padding: 5px 10px;
-                  font-size: 0.9em;
+            .referencia {
+                  span {
+                        border-color: $black;
+                        border: 1.5px solid;
+                        color:$red;
+                        padding: 5px 10px;
+                        font-size: 0.9em;
+                  }
             }
             .caracteristicas {
                   background-color: $grey;
@@ -705,6 +758,7 @@ body {
             background-color: $red;
             border-radius: 0;
             margin: 0;
+            color: $white;
       }
       #novedades{
             background-color: $grey;

@@ -16,14 +16,13 @@
 	<?php // substitute the class "container-fluid" below if you want a wider content area ?>
 	<div class="container">
 		<div class="row">
-			<div class="site-footer-inner col-sm-12 col-xs-12 col" ng-controller="mainFooterController as vm">
-				<div class="col-sm-6 col-xs-12" id="mainFooter">
+			<div class="site-footer-inner col-sm-12" id="mainFooter" ng-controller="mainFooterController as vm">
+				<div class="col-sm-6 col-xs-12 left">
 					<p>{{vm.title}}</p>
 					<p>{{vm.subtitle}}</p>
 					<a href="mailto:">{{vm.email}}</a>
 				</div>
-				<div class="col-sm-6 col-xs-12" id="secondFooter" ng-repeat="link in vm.links">
-					
+				<div class="col-sm-6 col-xs-12 right" ng-repeat="link in vm.links">
 					{{link}}
 
 				</div>
