@@ -13,7 +13,9 @@
      */
     function novedadesDestacadasController(postFactory, $scope) {
         var vm = this;
-        vm.novedades = {}
+        vm.novedades = {};
+        vm.slides = [];
+        vm.iconos_format = {};
 
         create();
 
@@ -36,12 +38,23 @@
             postFactory.getPostByCategoryName("novedades").then(function(data) {
                 vm.novedades = data;
 
+                // Cada tipo de post debe tener asociado un icono en la views.
+                vm.iconos_format = {
+                    "standard":"typcn typcn-camera-outline",
+                    "video":"typcn typcn-video-outline",
+                    "post": "typcn typcn-calendar-outline",
+                };
 
-            // Podriamos tener dos listas
-            // vm.novedades_tag_destacados
-            // vm.novedades_tag_otros
-
-            console.log(vm.novedades);
+                // Recorremos las novedades para poder dividir en grupos de 4.
+                _.each(vm.novedades, function(novedad, i){
+                    var actived = (i == 0 ? true : false );
+                    novedad.active = actived;
+                    if(i % 4 == 0) {
+                        // creamos slides de 4 novedades
+                        vm.slides.push( vm.novedades.slice(i, i + 4) );
+                    }
+                })
+                console.log(vm.slides, vm.iconos_format);
             });
         }
     }
