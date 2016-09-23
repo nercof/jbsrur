@@ -532,9 +532,24 @@ body {
     border-radius: 0; }
   body #mainFooter {
     background-color: #DF0A1F;
-    border-radius: 0;
-    margin: 0;
-    color: #FAF3DD; }
+    color: #FAF3DD;
+    padding-right: 40px;
+    font-size: small;
+    padding: 15px 10px; }
+    body #mainFooter p .title {
+      font-weight: bold; }
+    body #mainFooter a {
+      color: inherit; }
+    body #mainFooter ul.dashed-list li {
+      list-style-type: none; }
+    body #mainFooter i {
+      width: 1.1em;
+      height: 1em;
+      font-size: 1.1em;
+      padding: 0px 1px; }
+    body #mainFooter .container {
+      padding-bottom: 0;
+      padding: 0px; }
   body #novedades {
     background-color: #735753;
     border-radius: 0;

@@ -15,6 +15,7 @@
                 <div class="item" ng-class="{ 'active': novedad[$index].active }" ng-repeat="novedad in vm.slides">
                     {{novedad[$index].title.rendered}}
                     <i class="vm.iconos_format[novedad[$index].format]"></i><!-- icon -->
+                    <img src="{{novedad[$index].guid.rendered}}">
                 </div>
             </div>
 

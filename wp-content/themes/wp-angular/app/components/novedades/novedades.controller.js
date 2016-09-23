@@ -32,6 +32,7 @@
          *  {object.novedad}.author (?)
          *  {object.novedad}.format: {standard, video, post, ...}
          *  {object.novedad}.tags: {5:destacados, 6:otros} -> @see:http://v2.wp-api.org/reference/tags/
+         *  {object.novedad}.featured_media: que se tiene que buscar en {object.novedad}.guid.rendered
          */
         function create() {
             // Buscamos las novedades.
