@@ -19,15 +19,16 @@
 			<div class="site-footer-inner col-sm-12" ng-controller="mainFooterController as vm">
 				<div class="col-sm-6 col-xs-12 left">
 					<p class="title">{{vm.title}}</p>
-					<p>
-					{{vm.subtitle}}<br>
-					<i class="typcn typcn-social-twitter"></i>
-					<i class="typcn typcn-social-facebook"></i>
+					<p class="subtitle">{{vm.subtitle}}</p>
+					<a href="{{vm.fb}}"><i class="typcn typcn-social-twitter"></i></a>
+					<a href="{{vm.twitter}}"><i class="typcn typcn-social-facebook"></i></a>
 					<a href="mailto:{{vm.email}}"><i class="typcn typcn-mail"></i></a>
 					</p>
 				</div>
 				<div class="col-sm-6 col-xs-12 right">
-					<ul class="dashed-list"><li ng-repeat="link in vm.links">{{link}}</li></ul>
+					<ul class="dashed-list">
+						<li ng-repeat="link in vm.links">{{link}}</li>
+					</ul>
 				</div>
 			</div>
 		</div>

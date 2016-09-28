@@ -770,8 +770,11 @@ body {
                   .title {
                         font-weight: bold;
                   }
+                  .subtitle {
+                        font-style: italic;
+                  }
             }
-
+            // color: inherit; Hereda el color del padre.
             a { color: inherit; }
 
             ul.dashed-list li {

@@ -15,6 +15,8 @@
         var vm = this;
         vm.title = false;
         vm.email = false;
+        vm.fb = false;
+        vm.twitter = false;
         vm.subtitle = false;
         vm.links = [];
 
@@ -28,6 +30,8 @@
             vm.title = "JBSRUR";
             vm.subtitle = "La inmobiliaria de Córdoba";
             vm.email = "info@jbsrur.com.ar";
+            vm.fb = "";
+            vm.twitter = "";
             vm.links = ["Ventas", "Alquiler",
             "Administracion", "Quienes somos", "Nuestros emprendimientos",
             "Novedades"];
