@@ -710,11 +710,15 @@ body {
                                     width: 90%;
                                     border: none;
                                     padding: 10px;
-
-                                    &:focus,
-                                    &:active {
-                                          border: none;
-                                    }
+                              }
+                              ::-webkit-input-placeholder,
+                              ::-moz-placeholder,
+                              :-ms-input-placeholder,
+                              :-moz-placeholder {
+                                    color: $red;
+                                    font-weight: 400;
+                                    font-style: italic;
+                                    border: none;
                               }
                         }
                   }
