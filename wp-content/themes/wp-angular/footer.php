@@ -14,20 +14,25 @@
 
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<?php // substitute the class "container-fluid" below if you want a wider content area ?>
-	<div class="container">
+	<div class="container" id="mainFooter">
 		<div class="row">
-			<div class="site-footer-inner col-sm-12" id="mainFooter" ng-controller="mainFooterController as vm">
+			<div class="site-footer-inner col-sm-12" ng-controller="mainFooterController as vm">
 				<div class="col-sm-6 col-xs-12 left">
-					<p>{{vm.title}}</p>
-					<p>{{vm.subtitle}}</p>
-					<a href="mailto:">{{vm.email}}</a>
+					<p class="title">{{vm.title}}</p>
+					<p class="subtitle">{{vm.subtitle}}</p>
+					<a href="{{vm.fb}}"><i class="typcn typcn-social-twitter"></i></a>
+					<a href="{{vm.twitter}}"><i class="typcn typcn-social-facebook"></i></a>
+					<a href="mailto:{{vm.email}}"><i class="typcn typcn-mail"></i></a>
+					</p>
 				</div>
-				<div class="col-sm-6 col-xs-12 right" ng-repeat="link in vm.links">
-					{{link}}
+				<div class="col-sm-6 col-xs-12 right">
+					<ul class="dashed-list">
+						<li ng-repeat="link in vm.links">{{link}}</li>
+					</ul>
 				</div>
 			</div>
 		</div>
-	</div><!-- close .container -->
+	 </div><!-- close .container -->
 </footer><!-- close #colophon -->
 
 <?php wp_footer(); ?>
