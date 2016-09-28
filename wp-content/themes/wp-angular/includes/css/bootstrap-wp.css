@@ -506,8 +506,14 @@ body {
           width: 90%;
           border: none;
           padding: 10px; }
-          body .detalle #contacto form .wpcf7-form-control-wrap input:focus, body .detalle #contacto form .wpcf7-form-control-wrap input:active {
-            border: none; }
+        body .detalle #contacto form .wpcf7-form-control-wrap ::-webkit-input-placeholder,
+        body .detalle #contacto form .wpcf7-form-control-wrap ::-moz-placeholder,
+        body .detalle #contacto form .wpcf7-form-control-wrap :-ms-input-placeholder,
+        body .detalle #contacto form .wpcf7-form-control-wrap :-moz-placeholder {
+          color: #DF0A1F;
+          font-weight: 400;
+          font-style: italic;
+          border: none; }
     body .detalle .descripcion p {
       font-size: 1em;
       font-family: "Lato", sans-serif;
