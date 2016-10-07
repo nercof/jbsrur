@@ -449,7 +449,9 @@ body {
       border: 3px #90030C solid;
       padding: 10px 20px;
       font-size: 2.8em;
-      margin-top: 0; }
+      margin-top: 0;
+      border-right: none;
+      border-left: none; }
       body .detalle h1 .round-border {
         border-radius: 100%;
         border: 2px #90030C solid;
@@ -544,6 +546,8 @@ body {
     padding: 15px 10px; }
     body #mainFooter p .title {
       font-weight: bold; }
+    body #mainFooter p .subtitle {
+      font-style: italic; }
     body #mainFooter a {
       color: inherit; }
     body #mainFooter ul.dashed-list li {
