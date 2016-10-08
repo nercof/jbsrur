@@ -24,7 +24,8 @@
             vm.current_localization_id = [];
             vm.localization_barrio_id = [];
             vm.prop_cache = {};
-            vm.prop_search = {}
+            vm.prop_search = {};
+            vm.search_query = '';
 
             /*
             * Permite cargar el mapa
@@ -71,13 +72,14 @@
                 * sobre el input search_query.
                 *
                 * vm.prop_search: Listado de propiedades filtradas.
-                */
-                $scope.$watch('search_query', function(val){
+
+                $scope.$watch('vm.search_query', function(val){
+                    console.log("Pasandooooo.....");
                     if (!_.isEmpty(vm.prop_cache)) {
                         vm.prop_search = $filter('filter')(vm.prop_cache, val);
                     }
                 });
-
+*/
                 /**
                 * searchLocation() permite obtener las propiedades
                 * asociadas al id pasado por referencia.
@@ -103,6 +105,44 @@
                         data: null, cache: vm.prop_search
                     });
                 }
+
+                /**
+                * ignoreAccents()
+                *
+                * @data: item. User input on quircker search index.
+                */
+                vm.ignoreAccents = function(actual, expected) {
+                    console.log("ESTOY ACA");
+                    if (angular.isObject(actual)) return false;
+                    function removeAccents(value) {
+                        return value.toString()
+                                    .replace(/á/g, 'a')
+                                    .replace(/é/g, 'e')
+                                    .replace(/í/g, 'i')
+                                    .replace(/ó/g, 'o')
+                                    .replace(/ú/g, 'u')
+                                    .replace(/ñ/g, 'n')
+                                    .replace(/á/g, 'a')
+                                    .replace(/â/g, 'a')
+                                    .replace(/é/g, 'e')
+                                    .replace(/è/g, 'e')
+                                    .replace(/ê/g, 'e')
+                                    .replace(/í/g, 'i')
+                                    .replace(/ï/g, 'i')
+                                    .replace(/ì/g, 'i')
+                                    .replace(/ó/g, 'o')
+                                    .replace(/ô/g, 'o')
+                                    .replace(/ú/g, 'u')
+                                    .replace(/ü/g, 'u')
+                                    .replace(/ç/g, 'c')
+                                    .replace(/ß/g, 's');
+                    }
+                    actual = removeAccents(angular.lowercase('' + actual));
+                    expected = removeAccents(angular.lowercase('' + expected));
+
+                    return actual.indexOf(expected) !== -1;
+                }
+
 
                 /**
                 * searchTokko() permite redireccionar el flujo al estado

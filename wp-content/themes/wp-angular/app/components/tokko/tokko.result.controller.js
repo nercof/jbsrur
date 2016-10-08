@@ -36,7 +36,7 @@
                 // Recive paramas views tokko-input.
                 vm.data = $stateParams.data;
                 vm.cache = $stateParams.cache;
-                
+
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
                 // Venimos del filtrado Predictivo.
                 if ($state.current.name == 'propiedad.detalle'){
