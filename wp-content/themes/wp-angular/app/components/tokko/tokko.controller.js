@@ -107,44 +107,6 @@
                 }
 
                 /**
-                * ignoreAccents()
-                *
-                * @data: item. User input on quircker search index.
-                */
-                vm.ignoreAccents = function(actual, expected) {
-                    console.log("ESTOY ACA");
-                    if (angular.isObject(actual)) return false;
-                    function removeAccents(value) {
-                        return value.toString()
-                                    .replace(/á/g, 'a')
-                                    .replace(/é/g, 'e')
-                                    .replace(/í/g, 'i')
-                                    .replace(/ó/g, 'o')
-                                    .replace(/ú/g, 'u')
-                                    .replace(/ñ/g, 'n')
-                                    .replace(/á/g, 'a')
-                                    .replace(/â/g, 'a')
-                                    .replace(/é/g, 'e')
-                                    .replace(/è/g, 'e')
-                                    .replace(/ê/g, 'e')
-                                    .replace(/í/g, 'i')
-                                    .replace(/ï/g, 'i')
-                                    .replace(/ì/g, 'i')
-                                    .replace(/ó/g, 'o')
-                                    .replace(/ô/g, 'o')
-                                    .replace(/ú/g, 'u')
-                                    .replace(/ü/g, 'u')
-                                    .replace(/ç/g, 'c')
-                                    .replace(/ß/g, 's');
-                    }
-                    actual = removeAccents(angular.lowercase('' + actual));
-                    expected = removeAccents(angular.lowercase('' + expected));
-
-                    return actual.indexOf(expected) !== -1;
-                }
-
-
-                /**
                 * searchTokko() permite redireccionar el flujo al estado
                 * propiedad con la lista de filtros seleccionados en Advanced
                 * Search input.
@@ -169,6 +131,9 @@
                             "current_localization_id": _.keys(vm.localization_barrio_id)
                         }
 
+                        console.log("Custom filter: << tokkoController() >>");
+                        console.log(obj);
+                        
                         // Re-direct to state propiedad
                         $state.go('propiedad', {
                             data: obj,
