@@ -28,6 +28,7 @@
                 "current_localization_id": [],//_.keys(vm.localization_barrio_id)
             }
 
+            /*
             console.log("Custom filter: << all_prop >>");
             console.log(all_prop);
 
@@ -39,6 +40,7 @@
 
             console.log("Custom filter: << vm >>");
             console.log(vm);
+            */
 
             isOperationTypes(value_search, vm);
             isProperty_types(value_search, vm.property_types);
@@ -72,17 +74,18 @@
         */
         function isOperationTypes(value_search, tokkoController){
             console.log("Custom filter: << isOperationTypes() >>");
-            console.log(tokkoController);
 
-            if (!_.isEmpty(value_search)) {
-                if (value_search == "alquiler") {
-                    operation_types.push(1);
-                } else if (value_search == "venta") {
-                    operation_types.push(2);
-                }
+            console.log(_.values(tokkoController.tokko_data.op));
+
+            if (!_.isEmpty(value_search) &&
+            _.contains(_.values(tokkoController.tokko_data.op), value_search)){
+                console.log(_.keys(tokkoController.tokko_data.op));
             }
         }
 
+        /**
+        * @param: query_search: input to replace
+        */
         function removeEspecialChar(query_search){
             return query_search.replace(/á/g, 'a')
             .replace(/â/g, 'a')
