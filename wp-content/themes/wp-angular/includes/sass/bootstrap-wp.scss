@@ -423,7 +423,7 @@ body {
                         &.step-tabs {
                               margin-top: 5px;
                               margin-bottom: -10%;
-                              
+
                               .nav-pills {
                                     display: inline-block;
                                     margin: 5px 5px;
@@ -471,8 +471,8 @@ body {
                                                 margin: 0 5px;
                                                 input[type="checkbox"] {
                                                       position: absolute;
-                                                	z-index: -1;
-                                                	opacity: 0;
+                                                      z-index: -1;
+                                                      opacity: 0;
                                                       &+ span {
                                                             color:$white;
                                                             font-size: 0.86em;

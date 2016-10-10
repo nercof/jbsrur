@@ -3,7 +3,7 @@
                 "id": "0",
                 "name": "Todos",
                 "active": true,
-                "ocultarBarrio": "true",
+                "ocultarBarrio": true,
                 "barrios":[
                         {"id":"51827", "name": "Nueva Cordoba"},
                         {"id":"30951", "name": "Cofico"},
@@ -103,8 +103,8 @@
                 "barrios": [
                         {"id":"51827", "name": "Nueva Cordoba"}
                 ],
-                "unBarrio": "true",
-                "ocultarBarrio": "true"
+                "unBarrio": true,
+                "ocultarBarrio": true
         },
         "zc": {
                 "id":"1",

@@ -93,7 +93,6 @@
                 /**
                 * seleccionarBarrio() selecciona automáticamente el barrio
                 * cuando la zona tiene un solo barrio
-                * @esUnico: boolean . true si la zona tiene un solo barrio
                 * @zona: object. objeto zona.
                 */
                 vm.seleccionarBarrio = function (zona){
@@ -101,7 +100,6 @@
                     vm.localization_barrio_id = [];
                     if(zona.unBarrio) {
                         $timeout(function() {
-                            console.log(angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input'));
                             angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input').trigger('click').attr('checked',true);
                         });
                     }
