@@ -422,7 +422,8 @@ body {
                         }
                         &.step-tabs {
                               margin-top: 5px;
-
+                              margin-bottom: -10%;
+                              
                               .nav-pills {
                                     display: inline-block;
                                     margin: 5px 5px;
@@ -453,49 +454,44 @@ body {
                                           }
 
                                     }
-                                    .Todos {
-                                          i {
-                                                display: none;
-                                          }
-                                          .tab-content{
-                                                display: none;
-                                          }
-                                    }
                               }
                               .tab-content {
                                     width: 65%;
                                     display: inline-block;
                                     vertical-align: top;
                                     background-color: #E5404B;
+                                    margin-bottom: 38%;
                                     .conteiner-barrios{
                                           padding: 10px;
-
-                                          .cb-pills {
-                                                display: inline-block;
+                                          .control {
+                                          	position: relative;
+                                          	display: inline-block;
+                                          	cursor: pointer;
                                                 width: 30%;
                                                 margin: 0 5px;
                                                 input[type="checkbox"] {
-                                                      display:none;
-                                                      &+ label span {
-                                                            display:inline-block;
-                                                            cursor:pointer;
+                                                      position: absolute;
+                                                	z-index: -1;
+                                                	opacity: 0;
+                                                      &+ span {
+                                                            color:$white;
+                                                            font-size: 0.86em;
                                                             font-weight: 400;
                                                             padding: 5px;
-                                                            font-size: 0.86em;
                                                             vertical-align: middle;
-                                                            color:$white;
-
-                                                            &:hover {
-                                                                  background-color: $white;
-                                                                  border-radius: 5px;
-                                                                  color:$red;
-                                                            }
+                                                            display: inline-block;
                                                       }
-                                                      &:checked + label span{
+                                                      &:checked + span{
                                                             background-color: $white;
                                                             border-radius: 5px;
                                                             color:$red;
                                                       }
+                                                }
+                                                &:hover input[type="checkbox"] + span,
+                                                {
+                                                      background-color: $white;
+                                                      border-radius: 5px;
+                                                      color:$red;
                                                 }
                                           }
                                     }
@@ -507,6 +503,8 @@ body {
                   }
                   .search-button {
                         text-align: right;
+                        float: right;
+                        margin-top: -35%;
 
                         .btn {
                               background-color: $white;

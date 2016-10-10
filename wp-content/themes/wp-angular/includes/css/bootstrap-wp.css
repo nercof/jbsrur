@@ -288,7 +288,8 @@ body {
             color: #DF0A1F;
             background-color: #FAF3DD; }
       body #advanced-search .panel .step.step-tabs {
-        margin-top: 5px; }
+        margin-top: 5px;
+        margin-bottom: -10%; }
         body #advanced-search .panel .step.step-tabs .nav-pills {
           display: inline-block;
           margin: 5px 5px;
@@ -311,43 +312,45 @@ body {
             body #advanced-search .panel .step.step-tabs .nav-pills li:hover i {
               color: #DF0A1F;
               background-color: #FAF3DD; }
-          body #advanced-search .panel .step.step-tabs .nav-pills .Todos i {
-            display: none; }
-          body #advanced-search .panel .step.step-tabs .nav-pills .Todos .tab-content {
-            display: none; }
         body #advanced-search .panel .step.step-tabs .tab-content {
           width: 65%;
           display: inline-block;
           vertical-align: top;
-          background-color: #E5404B; }
+          background-color: #E5404B;
+          margin-bottom: 38%; }
           body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios {
             padding: 10px; }
-            body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills {
+            body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .control {
+              position: relative;
               display: inline-block;
+              cursor: pointer;
               width: 30%;
               margin: 0 5px; }
-              body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"] {
-                display: none; }
-                body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"] + label span {
-                  display: inline-block;
-                  cursor: pointer;
+              body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .control input[type="checkbox"] {
+                position: absolute;
+                z-index: -1;
+                opacity: 0; }
+                body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .control input[type="checkbox"] + span {
+                  color: #FAF3DD;
+                  font-size: 0.86em;
                   font-weight: 400;
                   padding: 5px;
-                  font-size: 0.86em;
                   vertical-align: middle;
-                  color: #FAF3DD; }
-                  body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"] + label span:hover {
-                    background-color: #FAF3DD;
-                    border-radius: 5px;
-                    color: #DF0A1F; }
-                body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .cb-pills input[type="checkbox"]:checked + label span {
+                  display: inline-block; }
+                body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .control input[type="checkbox"]:checked + span {
                   background-color: #FAF3DD;
                   border-radius: 5px;
                   color: #DF0A1F; }
+              body #advanced-search .panel .step.step-tabs .tab-content .conteiner-barrios .control:hover input[type="checkbox"] + span {
+                background-color: #FAF3DD;
+                border-radius: 5px;
+                color: #DF0A1F; }
       body #advanced-search .panel .step.nobg {
         background: none; }
     body #advanced-search .panel .search-button {
-      text-align: right; }
+      text-align: right;
+      float: right;
+      margin-top: -35%; }
       body #advanced-search .panel .search-button .btn {
         background-color: #FAF3DD;
         border-radius: 20px;

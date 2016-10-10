@@ -49,7 +49,7 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12 step step-checkbox">
                                             <div class="checkbox checkbox-primary" ng-repeat="operacion in vm.tokko_data.op">
-                                                <input type="checkbox" id="{{operacion.name + operacion.id}}" ng-model="vm.operation_types[operacion.id]" ngChange="showTP = !showTP" data-error="Before you wreck yourself" required/>
+                                                <input type="checkbox" id="{{operacion.name + operacion.id}}" ng-model="vm.operation_types[operacion.id]" ng-change="showTP = !showTP" data-error="Before you wreck yourself" required/>
                                                 <label for="{{operacion.name + operacion.id}}" name="{{operacion.name}}"><span></span> {{operacion.name}} </label>
                                             </div>
                                         </div>
@@ -69,27 +69,28 @@
                                 </div>
                                 <div class="col-sm-6 col-xs-12 step step-tabs nobg" >
                                     <uib-tabset vertical="true" type="pills" active="-1">
-                                        <uib-tab ng-repeat="zona in vm.barriosXzona" heading="{{zona.name}}" classes="{{zona.name}}">
+                                        <uib-tab ng-repeat="zona in vm.barriosXzona" heading="{{zona.name}}" classes="{{zona.name}}" select="vm.seleccionarBarrio(zona)">
                                             <uib-tab-heading>
-                                                {{zona.name}} <i class="fa fa-caret-right"></i>
+                                                {{zona.name}} <i class="fa fa-caret-right" ng-hide="zona.ocultarBarrio"></i>
                                             </uib-tab-heading>
-                                            <div ng-if="!zona.hide" class="conteiner-barrios">
-                                                <div ng-repeat="barrio in zona.barrios" class="cb-pills">
-                                                    <input type="checkbox" id="{{barrio.name + barrio.id}}"  ng-model="vm.localization_barrio_id[barrio.id]">
-                                                    <label for="{{barrio.name + barrio.id}}" name="{{barrio.name}}"><span>{{barrio.name}}</span></label>
-                                                </div>
+                                            <div class="conteiner-barrios control-group" ng-hide="zona.ocultarBarrio">
+                                                <label ng-repeat="barrio in zona.barrios" class="cb-pills control control--checkbox {{barrio.id}}" for="{{barrio.name + barrio.id}}" name="{{barrio.name}}">
+                                                	<input type="checkbox" id="{{barrio.name + barrio.id}}" ng-model="vm.localization_barrio_id[barrio.id]">
+                                                    <span class="control__indicator">{{barrio.name}}</span>
+                                                </label>
                                             </div>
                                         </uib-tab>
                                     </uib-tabset>
+                                    <div class="col-sm-6 col-xs-6 search-button">
+                                        <a class="btn btn-default" ng-click="vm.searchTokko()">
+                                            Buscar
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-xs-12 search-button">
-                                <a class="btn btn-default" ng-click="vm.searchTokko()">
-                                    Buscar
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                 </div>

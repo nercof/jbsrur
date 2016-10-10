@@ -6,7 +6,7 @@
     .controller('tokkoController', tokkoController);
 
     function tokkoController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $state, $localStorage, $filter) {
+        resourceFactory, $state, $localStorage, $filter, $timeout) {
             /**
             * @see: angular.extend
             *
@@ -17,6 +17,7 @@
             // Re-modeling
             vm.codigoPropiedad = '';
             vm.barriosXzona = {};
+            vm.zonas = {};
             vm.tokko_data = {};
             vm.property_types = [];
             vm.operation_types = [];
@@ -45,7 +46,6 @@
                 vm.barriosXzona = resourceFactory.query({
                     id: 'barrios_cba.json'
                 });
-
                 if ($localStorage.prop_cache &&
                     $localStorage.prop_cache.length > 0) {
                         vm.prop_cache = $localStorage.prop_cache;
@@ -88,6 +88,24 @@
                     tokkoFactory.getLocation(this.ciudad.id).then(function(response) {
                         vm.tokko_location = response.divisions;
                     });
+                }
+
+                /**
+                * seleccionarBarrio() selecciona automáticamente el barrio
+                * cuando la zona tiene un solo barrio
+                * @esUnico: boolean . true si la zona tiene un solo barrio
+                * @zona: object. objeto zona.
+                */
+                vm.seleccionarBarrio = function (zona){
+                    console.log(zona);
+                    vm.localization_barrio_id = [];
+                    if(zona.unBarrio) {
+                        $timeout(function() {
+                            console.log(angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input'));
+                            angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input').trigger('click').attr('checked',true);
+                        });
+                    }
+                    /**/
                 }
 
                 /**
