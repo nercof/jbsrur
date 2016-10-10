@@ -26,6 +26,7 @@
             vm.prop_cache = {};
             vm.prop_search = {};
             vm.search_query = '';
+            vm.barriosXzonaArray = [];
 
             /*
             * Permite cargar el mapa
@@ -45,6 +46,13 @@
                 });
                 vm.barriosXzona = resourceFactory.query({
                     id: 'barrios_cba.json'
+                });
+                console.log(vm.barriosXzona);
+
+                // Formamos un array de barrios @FIXME
+                _.each(vm.barriosXzona, function(zona) {
+                    console.log(zona);
+                    vm.barriosXzonaArray.push(zona.barrios);
                 });
 
                 if ($localStorage.prop_cache &&
@@ -67,19 +75,6 @@
                     }
                 }// Fin activate
 
-                /**
-                * $watch('search_query') permite generar el two-data-binding
-                * sobre el input search_query.
-                *
-                * vm.prop_search: Listado de propiedades filtradas.
-
-                $scope.$watch('vm.search_query', function(val){
-                    console.log("Pasandooooo.....");
-                    if (!_.isEmpty(vm.prop_cache)) {
-                        vm.prop_search = $filter('filter')(vm.prop_cache, val);
-                    }
-                });
-*/
                 /**
                 * searchLocation() permite obtener las propiedades
                 * asociadas al id pasado por referencia.
@@ -133,7 +128,7 @@
 
                         console.log("Custom filter: << tokkoController() >>");
                         console.log(obj);
-                        
+
                         // Re-direct to state propiedad
                         $state.go('propiedad', {
                             data: obj,

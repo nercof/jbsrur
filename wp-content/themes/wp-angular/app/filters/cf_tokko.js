@@ -18,8 +18,16 @@
         * @param: query_search: input data from user views
         */
         return function( all_prop, query_search, vm) {
+            // Var for test
             var filtered = [];
-            var value_search = removeEspecialChar(query_search).toLowerCase();
+            // var words separate by space
+            var value_search = [];
+            var words = [];
+
+            words = removeEspecialChar(query_search).toLowerCase();
+            value_search = words.split(/(\s+)/).filter(
+                function(e) { return e.trim().length > 0; }
+            );
 
             var obj = {
                 "operation_types": [],//_.keys(vm.operation_types),
@@ -28,23 +36,16 @@
                 "current_localization_id": [],//_.keys(vm.localization_barrio_id)
             }
 
-            /*
-            console.log("Custom filter: << all_prop >>");
-            console.log(all_prop);
-
-            console.log("Custom filter: << query_search >>");
-            console.log(query_search);
-
-            console.log("Custom filter: << value_search >>");
-            console.log(value_search);
-
-            console.log("Custom filter: << vm >>");
-            console.log(vm);
-            */
-
+            // activate object operation_types if correspond
             isOperationTypes(value_search, vm);
-            isProperty_types(value_search, vm.property_types);
-            isNeighborhood(value_search, vm.current_localization_id);
+
+            // activate object property_types with if correspond
+            isProperty_types(value_search, vm);
+
+            // activate object current_localization_id if correspond
+            isNeighborhood(value_search, vm);
+
+            console.log(vm);
 
             return filtered;
         }
@@ -54,8 +55,21 @@
         * @param: value_search:
         * @param: operation_types
         */
-        function isProperty_types(value_search, property_types){
-            console.log("Custom filter: << isProperty_types() >>");
+        function isProperty_types(value_search, pController){
+            //console.log("Custom filter: << isProperty_types() >>");
+            // Si el usuario ingresa param in the quieck search.
+            if (!_.isEmpty(value_search)){
+                _.each(value_search, function(value){
+                    // Por cada tipo de operacion
+                    _.each(pController.tokko_data.tp, function(ptype){
+                        if( _.isEqual((ptype.name).toLowerCase(), value) &&
+                            !_.contains(_.values(pController.property_types), ptype)){
+                            // @FIXME: Add dictionary with abreviation.
+                            pController.property_types.push(ptype);
+                        }
+                    });
+                });
+            }
         }
 
         /**
@@ -63,8 +77,17 @@
         * @param: value_search:
         * @param: operation_types
         */
-        function isNeighborhood(value_search, current_localization_id){
+        function isNeighborhood(value_search, pController){
             console.log("Custom filter: << isNeighborhood() >>");
+            console.log(pController.barriosXzonaArray);
+            // Si el usuario ingresa param in the quieck search.
+            if (!_.isEmpty(value_search)){
+                console.log(value_search);
+
+                _.each(value_search, function(value){
+                    _.intersection();
+                });
+            }
         }
 
         /**
@@ -72,14 +95,20 @@
         * @param: value_search:
         * @param: operation_types
         */
-        function isOperationTypes(value_search, tokkoController){
-            console.log("Custom filter: << isOperationTypes() >>");
+        function isOperationTypes(value_search, pController){
 
-            console.log(_.values(tokkoController.tokko_data.op));
-
-            if (!_.isEmpty(value_search) &&
-            _.contains(_.values(tokkoController.tokko_data.op), value_search)){
-                console.log(_.keys(tokkoController.tokko_data.op));
+            // Si el usuario ingresa param in the quieck search.
+            if (!_.isEmpty(value_search)){
+            //    console.log("<< Proceso búsqueda type operations >>");
+                _.each(value_search, function(value){
+                    // Por cada tipo de operacion
+                    _.each(pController.tokko_data.op, function(type){
+                        if( _.isEqual((type.name).toLowerCase(), value) &&
+                        !_.contains(_.values(pController.operation_types), type)){
+                            pController.operation_types.push(type);
+                        }
+                    });
+                });
             }
         }
 
