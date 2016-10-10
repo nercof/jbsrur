@@ -17,7 +17,6 @@
             // Re-modeling
             vm.codigoPropiedad = '';
             vm.barriosXzona = {};
-            vm.zonas = {};
             vm.tokko_data = {};
             vm.property_types = [];
             vm.operation_types = [];
