@@ -15,8 +15,8 @@
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<?php // substitute the class "container-fluid" below if you want a wider content area ?>
 	<div class="container" id="mainFooter">
-		<div class="row">
-			<div class="site-footer-inner col-sm-12" ng-controller="mainFooterController as vm">
+		<div class="col-sm-12">
+			<div class="site-footer-inner row" ng-controller="mainFooterController as vm">
 				<div class="col-sm-6 col-xs-12 left">
 					<p class="title">{{vm.title}}</p>
 					<p class="subtitle">{{vm.subtitle}}</p>

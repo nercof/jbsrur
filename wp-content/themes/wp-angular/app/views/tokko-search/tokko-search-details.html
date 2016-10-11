@@ -24,7 +24,7 @@
     <div class="col-sm-12 col-xs-12">
         <div class="col-sm-6 col-xs-12 descripcion">
             <!--<h2> <i class="typcn typcn-clipboard"></i>Descripción</h2> -->
-            <p>{{vm.propiedad.description}}</p>
+            <p><pre>{{vm.propiedad.description}}</pre></p>
         </div>
         <div class="col-sm-6 col-xs-12" id="contacto">
             <h2><i class="typcn typcn-user"></i>Contacto</h2>
@@ -33,25 +33,27 @@
         </div>
     </div>
     <div class="col-sm-12 col-xs-12">
-        <div class="col-sm-6 col-xs-12 referencia">
-            <span>Código de referencia: {{vm.propiedad.reference_code}}</span><br>
-        </div>
-        <div class="col-sm-6 col-xs-12 referencia">
-            <span>Centro de atención: {{vm.propiedad.branch.name}} {{vm.propiedad.branch.phone}}</span><br>
+        <h2><i class="typcn typcn-pin"></i>Principales características</h2>
+    </div>
+    <div class="col-sm-12 col-xs-12" >
+        <div class="caracteristicas row col-sm-12">
+            <div class="col-sm-3" ng-repeat="tag in vm.propiedad.tags">
+                <i class="typcn typcn-plus"></i>{{tag.name}}
+            </div>
+            <div class="col-sm-3" ng-if="vm.propiedad.suite_amount">
+                <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s
+            </div>
+            <div class="col-sm-3" ng-if="vm.propiedad.bathroom_amount">
+                <i class="typcn typcn-plus"></i>{{vm.propiedad.bathroom_amount}} Baño/s
+            </div>
         </div>
     </div>
     <div class="col-sm-12 col-xs-12">
-        <h2><i class="typcn typcn-th-menu"></i>Principales características</h2>
-    </div>
-    <div class="col-sm-12 col-xs-12 caracteristicas" >
-        <div class="col-sm-3" ng-repeat="tag in vm.propiedad.tags">
-            <i class="typcn typcn-document-add"></i>{{tag.name}}
+        <div class="col-sm-6 col-xs-12 referencia" ng-if="vm.propiedad.reference_code">
+            <div>Código de referencia: {{vm.propiedad.reference_code}}</div>
         </div>
-        <div class="col-sm-3" ng-if="vm.propiedad.suite_amount">
-            <i class="typcn typcn-document-add"></i>{{vm.propiedad.suite_amount}} Dormitorio/s
-        </div>
-        <div class="col-sm-3" ng-if="vm.propiedad.bathroom_amount">
-            <i class="typcn typcn-document-add"></i>{{vm.propiedad.bathroom_amount}} Baño/s
+        <div class="col-sm-6 col-xs-12 referencia" ng-if="vm.propiedad.branch.phone">
+            <div>Centro de atención: {{vm.propiedad.branch.name}} {{vm.propiedad.branch.phone}}</div>
         </div>
     </div>
 </div>
