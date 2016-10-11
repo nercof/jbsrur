@@ -4,7 +4,7 @@
   <div class="col-sm-12 col-xs-12 propiedades">
     <div ng-if="!vm.propiedades" class="spinner"><i class="fa fa-spinner fa-spin"></i></div>
     <div ng-if="vm.error">{{vm.error}}</div>
-    <div class="col-md-2 card" ng-repeat="propiedad in vm.propiedades" ng-class-odd="'odd'">
+    <div class="col-md-3 card" ng-repeat="propiedad in vm.propiedades" ng-class-odd="'odd'">
       <div ng-if="vm.propiedades" class="inner-card">
         <h2>{{propiedad.fake_address}}</h2>
         <!--    <a ng-click="vm.fullDetails(propiedad)" class="thumb">-->
@@ -13,9 +13,27 @@
           <div class="dire"><i class="typcn typcn-location-outline"></i><p>{{propiedad.fake_address}}</p></div>
           <div class="dire"><i class="typcn typcn-home-outline"></i><p>{{propiedad.type.name}}</p></div>
           <div class="dire"><i class="typcn typcn-location-arrow-outline"></i><p>{{propiedad.location.short_location}}</p></div>
-          <div class="line"></div>
-          <div class="dire"><i class="typcn typcn-phone-outline"></i><p>Contactar por telefono</p></div>
-          <div class="dire"><i class="typcn typcn-mail"></i><p>Contactar por e.mail</p></div>
+          <uib-tabset vertical="false" type="pills" active="-1" class="prop-contacto">
+              <uib-tab ng-repeat="tab in vm.tabsContacto" heading="{{tab.titulo}}" classes="{{tab.type}}">
+                  <uib-tab-heading>
+                      <div ng-if="!tab.isLink">
+                        <a href="{{tab.href}}">
+                          <i class="{{tab.icon}}"></i>
+                        </a>
+                      </div>
+                      <div ng-if="tab.isLink">
+                        <a ui-sref="propiedad.detalle({data: propiedad , id:propiedad.id})">
+                          <i class="{{tab.icon}}"></i>
+                        </a>
+                      </div>
+                  </uib-tab-heading>
+                  <div class="control-group" ng-if="!tab.isLink">
+                      <label class="">
+                        {{tab.text}}
+                      </label>
+                  </div>
+              </uib-tab>
+          </uib-tabset>
         </div>
       </div>
     </div>
