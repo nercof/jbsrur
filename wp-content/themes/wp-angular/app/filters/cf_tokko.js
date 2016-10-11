@@ -1,4 +1,4 @@
-(function() {
+    (function() {
     'use strict';
     /**
     * cf_tokko: Custom filter.
@@ -42,19 +42,25 @@
             // activate object current_localization_id if correspond
             if (isSpace && value_search.length > 1) {
                 isNeighborhood(value_search, vm);
+                var cadena = "";
 
                 filtered = _.filter(
                     all_prop,
                     function (prop) {
                         console.log(prop);
-                        console.log(vm.operation_types);
-                        console.log(_.contains(_.pluck(vm.operation_types, 'name'), prop.operations.operation_types));
+                        console.log(vm.property_types);
+                        console.log(_.contains(_.pluck(vm.property_types,  'id'), prop.type.id.toString()));
+
+                        cadena = cadena +   prop.address +
+                                            prop.description +
+                                            prop.fake_address +
+                                            prop.publication_title.
                         return (
-                            // @FIXME: 
+                            // @FIXME:
                             _.contains(_.pluck(vm.current_localization_id, 'id'), prop.location.id.toString()) ||
                             _.contains(_.pluck(vm.operation_types, 'name'), prop.operations.operation_types) ||
-                            _.contains(_.pluck(vm.operation_types,  'name'), prop.operations.operation_types) ||
-
+                            _.contains(_.pluck(vm.property_types,  'id'), prop.type.id.toString()) ||
+                            _.intersection(cadena, value_search).length === value_search.length
                         );
                     }
                 );
