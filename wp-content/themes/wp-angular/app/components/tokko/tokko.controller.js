@@ -24,7 +24,7 @@
             vm.current_localization_id = [];
             vm.localization_barrio_id = [];
             vm.prop_cache = {};
-            vm.prop_search = {}
+            vm.prop_search = {};
 
             /*
             * Permite cargar el mapa

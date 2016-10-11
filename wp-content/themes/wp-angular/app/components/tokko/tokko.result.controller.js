@@ -18,7 +18,11 @@
             $scope.current = $state.current;
             vm.state = true;
             vm.error = false;
-
+            vm.tabsContacto = [
+                { "titulo": "Telefono" , "href":"tel:+543514608800", "text":"(0351) 4608800", "type":"tel", "icon":"typcn typcn-phone-outline" },
+                { "titulo": "Correo" , "href":"mailto:centro@jbsrur.com.ar", "text":"centro@jbsrur.com.ar", "type":"email", "icon":"typcn typcn-mail" },
+                { "titulo": "Ver Más" , "href":"#", "type":"link", "icon":"typcn typcn-plus", "isLink": true }
+            ];
             // Activamos
             activate(vm);
 
@@ -36,7 +40,7 @@
                 // Recive paramas views tokko-input.
                 vm.data = $stateParams.data;
                 vm.cache = $stateParams.cache;
-                
+
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
                 // Venimos del filtrado Predictivo.
                 if ($state.current.name == 'propiedad.detalle'){
