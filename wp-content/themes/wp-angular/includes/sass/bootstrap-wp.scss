@@ -31,7 +31,10 @@
 * Try with giving the .container class just a background colour and have a look. ;)
 */
 .container {
-      padding: 0 15px 15px 15px;
+      padding: 0 15px 0 15px;
+}
+#content {
+      padding-bottom: 0;
 }
 
 /* JBSRUR */
@@ -40,6 +43,7 @@
 $font-normal: 'Lato', sans-serif;
 $font-titles: 'Montserrat', sans-serif;
 $red: #DF0A1F;
+$red-a: rgba(223, 10, 31, 0.5);
 $white: #FAF3DD;
 $white-a: rgba(250, 243, 221, 0.8);
 $pink: #EC7E7E;
@@ -50,6 +54,7 @@ $black: #131515;
 body {
       font-family: $font-normal;
       background-image: url('../images/bg.png');
+      font-size: 10px;
 
       #masthead {
             height: 5px;
@@ -169,7 +174,7 @@ body {
             }
 
             .dropdown-menu {
-                  background-color: $white-a;
+                  background-color: $white;
                   width: 410px;
                   float: none;
                   top: 75px;
@@ -566,6 +571,11 @@ body {
                         padding: 10px 20px;
                         text-align: center;
                         color: $black;
+                        a.thum .pic {
+                              &:hover {
+                                    background-color: $red-a;
+                              }
+                        }
                         h2 {
                               color: $white;
                               background-color: $red;
@@ -635,6 +645,7 @@ body {
                                                 }
                                                 label {
                                                       margin: 15px 0px;
+                                                      padding: 5px;
 
                                                 }
                                                 &:hover a{
@@ -667,22 +678,20 @@ body {
             }
             h1 {
                   font-style: $font-titles;
-                  color: $bordo;
-                  border: 3px $bordo solid;
+                  color: $red;
+                  border-bottom: 3px $red solid;
                   padding: 10px 20px;
                   font-size: 2.8em;
                   margin-top: 0;
-                  border-right: none;
-                  border-left: none;
 
                   .round-border{
                         border-radius: 100%;
-                        border: 2px $bordo solid;
+                        border: 2px $red solid;
                         display: inline-block;
 
                         i {
                               border-radius: 100%;
-                              border: 2px $bordo solid;
+                              border: 2px $red solid;
                               margin: 10px;
                               padding: 0.3em;
                         }
@@ -693,13 +702,21 @@ body {
             }
 
             h2 {
-                  font-titles: $font-normal;
+                  font-family: $font-normal;
                   color: $white;
                   border: 2.2px $bordo solid;
                   background-color: $bordo;
-                  text-align: center;
+                  text-align: left;
                   font-size:large;
-                  padding: 5px;
+                  padding: 10px;
+                  i {
+                        border: 1px solid $white;
+                        border-radius: 100%;
+                        font-size: 22px;
+                        padding: 2px 4px;
+                        vertical-align: middle;
+                        margin: 5px 10px 5px 0px;
+                  }
             }
             .galeria {
                   height: 395px;
@@ -742,49 +759,113 @@ body {
                         .wpcf7-form-control-wrap {
                               width: 100%;
                               display: block;
-                              input {
+                              input,
+                              textarea {
                                     width: 90%;
                                     border: none;
                                     padding: 10px;
-                              }
-                              ::-webkit-input-placeholder,
-                              ::-moz-placeholder,
-                              :-ms-input-placeholder,
-                              :-moz-placeholder {
-                                    color: $red;
                                     font-weight: 400;
                                     font-style: italic;
-                                    border: none;
+                                    color: $red;
+                                    font-size: 1.2em;
+                                    &::-webkit-input-placeholder,
+                                    &::-moz-placeholder,
+                                    &:-ms-input-placeholder,
+                                    &:-moz-placeholder {
+                                          font-weight: 400;
+                                          font-style: italic;
+                                          border: none;
+                                    }
+                                    &:focus,
+                                    &:active {
+                                          border: none;
+                                          outline: 0;
+                                    }
                               }
+                              &.sucursal {
+                                    display: inline;
+                                    padding: 0 15px;
+                                    select {
+                                          color: $red;
+                                          background-color: $white;
+                                          padding: 10px;
+                                          border: 0;
+                                          &:focus,
+                                          &:active {
+                                                border: none;
+                                                outline: 0;
+                                          }
+                                    }
+                              }
+                        }
+                  }
+                  label {
+                        color: $white;
+                        font-size: 1.2em;
+                        font-weight: 400;
+                        font-style: italic;
+                        width: 100%;
+                        padding-bottom: 15px;
+                  }
+                  .wpcf7-submit {
+                        background-color: $white;
+                        border-radius: 20px;
+                        color:$red;
+                        padding: 20px 15px;
+                        font-size: 1em;
+                        text-transform: uppercase;
+                        border: none;
+                        margin: 5px 50px 20px 5px;
+                        float: right;
+                        &:hover {
+                              opacity: 0.85;
+                        }
+                        &:focus,
+                        &:active {
+                              border: none;
+                              outline: 0;
+                              opacity: 0.85;
                         }
                   }
             }
             .descripcion {
-                  p {
-                        font-size:1em;
+                  pre {
+                        font-size:1.1em;
                         font-family: $font-normal;
-                        padding: 2em 1em;
+                        padding: 0em 2em 0em 0em;
+                        background-color: transparent;
+                        border: none;
+                        white-space: pre-wrap;       /* css-3 */
+                        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+                        white-space: -pre-wrap;      /* Opera 4-6 */
+                        white-space: -o-pre-wrap;    /* Opera 7 */
+                        word-break: break-word;
                   }
             }
             .referencia {
-                  span {
-                        border-color: $black;
-                        border: 1.5px solid;
-                        color:$red;
-                        padding: 5px 10px;
-                        font-size: 0.9em;
+                  padding: 10px 0;
+                  div {
+                        background-color: $pink;
+                        color: $red;
+                        padding: 15px;
+                        font-size: 1.2em;
                   }
             }
             .caracteristicas {
                   background-color: $grey;
                   color: $white;
-
+                  width: 100%;
+                  margin: auto;
+                  i {
+                        padding-right: 10px;
+                  }
                   .col-sm-3 {
-                        background-color: $black;
                         color: $white;
                         margin: 10px 10px 10px 0px;
                         display: block;
-                        text-align: center;
+                        text-align: left;
+                        padding: 0;
+                        width: 23%;
                   }
             }
       }
@@ -795,23 +876,45 @@ body {
       }
 
       #mainFooter{
-            background-color: $red;
-            color: $white;
-            padding-right: 40px;
-            font-size: small;
-            padding: 15px 10px;
-            //padding-bottom: 0;
+            .site-footer-inner {
+                  color: $white;
+                  font-size: 1.1em;
+                  font-family: $font-normal;
 
+                  .left {
+                        padding: 15px 30px;
+                        background-color: $red;
+                        display: inline-block;
+                        height: 120px;
+                  }
+                  .right {
+                        padding: 15px 10px;
+                        background-color: $bordo;
+                        display: inline-block;
+                        height: 120px;
+                        ul {
+                              width: 100%;
+                              li{
+                                    width: 48%;
+                                    display: inline-block;
+                              }
+                        }
+                  }
+            }
             p {
-                  .title {
+                  &.title {
                         font-weight: bold;
                   }
-                  .subtitle {
+                  &.subtitle {
                         font-style: italic;
                   }
             }
             // color: inherit; Hereda el color del padre.
-            a { color: inherit; }
+            a {
+                  color: inherit;
+                  font-size: 1.1em;
+                  font-family: $font-normal;
+            }
 
             ul.dashed-list li {
                 list-style-type: none;

@@ -25,12 +25,16 @@
 * Try with giving the .container class just a background colour and have a look. ;)
 */
 .container {
-  padding: 0 15px 15px 15px; }
+  padding: 0 15px 0 15px; }
+
+#content {
+  padding-bottom: 0; }
 
 /* JBSRUR */
 body {
   font-family: "Lato", sans-serif;
-  background-image: url("../images/bg.png"); }
+  background-image: url("../images/bg.png");
+  font-size: 10px; }
   body #masthead {
     height: 5px; }
   body .site-navigation .container {
@@ -114,7 +118,7 @@ body {
     body #jbsrur-nav .open > a:focus {
       background-color: transparent; }
     body #jbsrur-nav .dropdown-menu {
-      background-color: rgba(250, 243, 221, 0.8);
+      background-color: #FAF3DD;
       width: 410px;
       float: none;
       top: 75px;
@@ -396,6 +400,8 @@ body {
         padding: 10px 20px;
         text-align: center;
         color: #131515; }
+        body .propiedades .card .inner-card a.thum .pic:hover {
+          background-color: rgba(223, 10, 31, 0.5); }
         body .propiedades .card .inner-card h2 {
           color: #FAF3DD;
           background-color: #DF0A1F;
@@ -453,7 +459,8 @@ body {
               body .propiedades .card .inner-card .prop-contacto .nav-pills li.active a i {
                 color: #FAF3DD; }
             body .propiedades .card .inner-card .prop-contacto .nav-pills li.active label {
-              margin: 15px 0px; }
+              margin: 15px 0px;
+              padding: 5px; }
             body .propiedades .card .inner-card .prop-contacto .nav-pills li.active:hover a {
               background-color: #DF0A1F; }
             body .propiedades .card .inner-card .prop-contacto .nav-pills li:hover a {
@@ -469,32 +476,37 @@ body {
       padding-bottom: 2.5em; }
     body .detalle h1 {
       font-style: "Montserrat", sans-serif;
-      color: #90030C;
-      border: 3px #90030C solid;
+      color: #DF0A1F;
+      border-bottom: 3px #DF0A1F solid;
       padding: 10px 20px;
       font-size: 2.8em;
-      margin-top: 0;
-      border-right: none;
-      border-left: none; }
+      margin-top: 0; }
       body .detalle h1 .round-border {
         border-radius: 100%;
-        border: 2px #90030C solid;
+        border: 2px #DF0A1F solid;
         display: inline-block; }
         body .detalle h1 .round-border i {
           border-radius: 100%;
-          border: 2px #90030C solid;
+          border: 2px #DF0A1F solid;
           margin: 10px;
           padding: 0.3em; }
     body .detalle h1 icon {
       background-image: url("../images/icon-house.png"); }
     body .detalle h2 {
-      font-titles: "Lato", sans-serif;
+      font-family: "Lato", sans-serif;
       color: #FAF3DD;
       border: 2.2px #90030C solid;
       background-color: #90030C;
-      text-align: center;
+      text-align: left;
       font-size: large;
-      padding: 5px; }
+      padding: 10px; }
+      body .detalle h2 i {
+        border: 1px solid #FAF3DD;
+        border-radius: 100%;
+        font-size: 22px;
+        padding: 2px 4px;
+        vertical-align: middle;
+        margin: 5px 10px 5px 0px; }
     body .detalle .galeria {
       height: 395px; }
       body .detalle .galeria img {
@@ -528,62 +540,138 @@ body {
       body .detalle #contacto form .wpcf7-form-control-wrap {
         width: 100%;
         display: block; }
-        body .detalle #contacto form .wpcf7-form-control-wrap input {
+        body .detalle #contacto form .wpcf7-form-control-wrap input,
+        body .detalle #contacto form .wpcf7-form-control-wrap textarea {
           width: 90%;
           border: none;
-          padding: 10px; }
-        body .detalle #contacto form .wpcf7-form-control-wrap ::-webkit-input-placeholder,
-        body .detalle #contacto form .wpcf7-form-control-wrap ::-moz-placeholder,
-        body .detalle #contacto form .wpcf7-form-control-wrap :-ms-input-placeholder,
-        body .detalle #contacto form .wpcf7-form-control-wrap :-moz-placeholder {
-          color: #DF0A1F;
+          padding: 10px;
           font-weight: 400;
           font-style: italic;
-          border: none; }
-    body .detalle .descripcion p {
-      font-size: 1em;
+          color: #DF0A1F;
+          font-size: 1.2em; }
+          body .detalle #contacto form .wpcf7-form-control-wrap input::-webkit-input-placeholder, body .detalle #contacto form .wpcf7-form-control-wrap input::-moz-placeholder, body .detalle #contacto form .wpcf7-form-control-wrap input:-ms-input-placeholder, body .detalle #contacto form .wpcf7-form-control-wrap input:-moz-placeholder,
+          body .detalle #contacto form .wpcf7-form-control-wrap textarea::-webkit-input-placeholder,
+          body .detalle #contacto form .wpcf7-form-control-wrap textarea::-moz-placeholder,
+          body .detalle #contacto form .wpcf7-form-control-wrap textarea:-ms-input-placeholder,
+          body .detalle #contacto form .wpcf7-form-control-wrap textarea:-moz-placeholder {
+            font-weight: 400;
+            font-style: italic;
+            border: none; }
+          body .detalle #contacto form .wpcf7-form-control-wrap input:focus, body .detalle #contacto form .wpcf7-form-control-wrap input:active,
+          body .detalle #contacto form .wpcf7-form-control-wrap textarea:focus,
+          body .detalle #contacto form .wpcf7-form-control-wrap textarea:active {
+            border: none;
+            outline: 0; }
+        body .detalle #contacto form .wpcf7-form-control-wrap.sucursal {
+          display: inline;
+          padding: 0 15px; }
+          body .detalle #contacto form .wpcf7-form-control-wrap.sucursal select {
+            color: #DF0A1F;
+            background-color: #FAF3DD;
+            padding: 10px;
+            border: 0; }
+            body .detalle #contacto form .wpcf7-form-control-wrap.sucursal select:focus, body .detalle #contacto form .wpcf7-form-control-wrap.sucursal select:active {
+              border: none;
+              outline: 0; }
+      body .detalle #contacto label {
+        color: #FAF3DD;
+        font-size: 1.2em;
+        font-weight: 400;
+        font-style: italic;
+        width: 100%;
+        padding-bottom: 15px; }
+      body .detalle #contacto .wpcf7-submit {
+        background-color: #FAF3DD;
+        border-radius: 20px;
+        color: #DF0A1F;
+        padding: 20px 15px;
+        font-size: 1em;
+        text-transform: uppercase;
+        border: none;
+        margin: 5px 50px 20px 5px;
+        float: right; }
+        body .detalle #contacto .wpcf7-submit:hover {
+          opacity: 0.85; }
+        body .detalle #contacto .wpcf7-submit:focus, body .detalle #contacto .wpcf7-submit:active {
+          border: none;
+          outline: 0;
+          opacity: 0.85; }
+    body .detalle .descripcion pre {
+      font-size: 1.1em;
       font-family: "Lato", sans-serif;
-      padding: 2em 1em; }
-    body .detalle .referencia span {
-      border-color: #131515;
-      border: 1.5px solid;
-      color: #DF0A1F;
-      padding: 5px 10px;
-      font-size: 0.9em; }
+      padding: 0em 2em 0em 0em;
+      background-color: transparent;
+      border: none;
+      white-space: pre-wrap;
+      /* css-3 */
+      white-space: -moz-pre-wrap;
+      /* Mozilla, since 1999 */
+      white-space: -pre-wrap;
+      /* Opera 4-6 */
+      white-space: -o-pre-wrap;
+      /* Opera 7 */
+      word-break: break-word; }
+    body .detalle .referencia {
+      padding: 10px 0; }
+      body .detalle .referencia div {
+        background-color: #EC7E7E;
+        color: #DF0A1F;
+        padding: 15px;
+        font-size: 1.2em; }
     body .detalle .caracteristicas {
       background-color: #735753;
-      color: #FAF3DD; }
+      color: #FAF3DD;
+      width: 100%;
+      margin: auto; }
+      body .detalle .caracteristicas i {
+        padding-right: 10px; }
       body .detalle .caracteristicas .col-sm-3 {
-        background-color: #131515;
         color: #FAF3DD;
         margin: 10px 10px 10px 0px;
         display: block;
-        text-align: center; }
+        text-align: left;
+        padding: 0;
+        width: 23%; }
   body #secondFooter {
     background-color: #90030C;
     border-radius: 0; }
-  body #mainFooter {
-    background-color: #DF0A1F;
+  body #mainFooter .site-footer-inner {
     color: #FAF3DD;
-    padding-right: 40px;
-    font-size: small;
-    padding: 15px 10px; }
-    body #mainFooter p .title {
-      font-weight: bold; }
-    body #mainFooter p .subtitle {
-      font-style: italic; }
-    body #mainFooter a {
-      color: inherit; }
-    body #mainFooter ul.dashed-list li {
-      list-style-type: none; }
-    body #mainFooter i {
-      width: 1.1em;
-      height: 1em;
-      font-size: 1.1em;
-      padding: 0px 1px; }
-    body #mainFooter .container {
-      padding-bottom: 0;
-      padding: 0px; }
+    font-size: 1.1em;
+    font-family: "Lato", sans-serif; }
+    body #mainFooter .site-footer-inner .left {
+      padding: 15px 30px;
+      background-color: #DF0A1F;
+      display: inline-block;
+      height: 120px; }
+    body #mainFooter .site-footer-inner .right {
+      padding: 15px 10px;
+      background-color: #90030C;
+      display: inline-block;
+      height: 120px; }
+      body #mainFooter .site-footer-inner .right ul {
+        width: 100%; }
+        body #mainFooter .site-footer-inner .right ul li {
+          width: 48%;
+          display: inline-block; }
+  body #mainFooter p.title {
+    font-weight: bold; }
+  body #mainFooter p.subtitle {
+    font-style: italic; }
+  body #mainFooter a {
+    color: inherit;
+    font-size: 1.1em;
+    font-family: "Lato", sans-serif; }
+  body #mainFooter ul.dashed-list li {
+    list-style-type: none; }
+  body #mainFooter i {
+    width: 1.1em;
+    height: 1em;
+    font-size: 1.1em;
+    padding: 0px 1px; }
+  body #mainFooter .container {
+    padding-bottom: 0;
+    padding: 0px; }
   body #novedades {
     background-color: #735753;
     border-radius: 0;

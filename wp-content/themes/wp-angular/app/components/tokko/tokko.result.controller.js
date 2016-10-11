@@ -15,6 +15,7 @@
             vm.data = {}
             vm.cache = {}
             //vm.propiedades = {}; para que funcione el spinner
+            vm.spinner = true;
             $scope.current = $state.current;
             vm.state = true;
             vm.error = false;
@@ -61,6 +62,7 @@
                         // Zona/Barrio: 0: Todos
                         vm.data.current_localization_id == 0 ) {
                             vm.propiedades = $localStorage.prop_cache;
+                            vm.spinner = false;
                         } else if (!_.isEmpty(vm.data)){
                             /**
                             * Objetivo: Filtrado en cascada.
@@ -141,6 +143,7 @@
                     tokkoFactory.getProperties(vm.data).then(function(response) {
                         if(response.objects.length > 0) {
                             vm.propiedades = response.objects;
+                            vm.spinner = false;
                         } else {
                             vm.error = "No se encontraron propiedades"
                         }
