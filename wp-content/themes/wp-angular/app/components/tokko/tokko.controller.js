@@ -25,6 +25,7 @@
             vm.localization_barrio_id = [];
             vm.prop_cache = {};
             vm.prop_search = {};
+
             vm.search_query = '';
             vm.barrios = [];
 
@@ -51,7 +52,6 @@
                 function(data){
                     vm.barrios = data.to.barrios;
                 });
-
                 if ($localStorage.prop_cache &&
                     $localStorage.prop_cache.length > 0) {
                         vm.prop_cache = $localStorage.prop_cache;
@@ -146,13 +146,36 @@
             else {
 
                 console.log("Custom filter: << tokkoController() >>");
-
                 // Parameters by user
                 var obj = {
                     "operation_types": _.keys(vm.operation_types),
                     "property_types": _.keys(vm.property_types),
                     "suite_amount": _.keys(vm.suite_amount),
                     "current_localization_id": _.keys(vm.localization_barrio_id)
+                /**
+                * seleccionarBarrio() selecciona automáticamente el barrio
+                * cuando la zona tiene un solo barrio
+                * @zona: object. objeto zona.
+                */
+                vm.seleccionarBarrio = function (zona){
+                    vm.localization_barrio_id = [];
+                    if(zona.unBarrio) {
+                        angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input').trigger('click').attr('checked',true);
+                    }
+                }
+
+                /**
+                * searchFilter() permite redireccionar el flujo al estado
+                * propiedad con la lista de propiedades filtradas por la
+                * funcion $watch.
+                *
+                * @data: null. Porque no hubo interaccion Advanced Search.
+                */
+                vm.searchFilter = function (){
+                    // Re-direct to state propiedad
+                    $state.go('propiedad', {
+                        data: null, cache: vm.prop_search
+                    });
                 }
 
                 //console.log(obj);

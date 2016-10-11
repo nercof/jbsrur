@@ -3,7 +3,7 @@
                 "id": "0",
                 "name": "Todos",
                 "active": true,
-                "hide": true,
+                "ocultarBarrio": true,
                 "barrios":[
                         {"id":"51827", "name": "Nueva Cordoba"},
                         {"id":"30951", "name": "Cofico"},
@@ -96,12 +96,21 @@
                         {"id": "32085", "name": "Villa Carlos Paz"}
                 ]
         },
+        "nc": {
+                "id":"5",
+                "name": "Nueva Cordoba",
+                "active": false,
+                "barrios": [
+                        {"id":"51827", "name": "Nueva Cordoba"}
+                ],
+                "unBarrio": true,
+                "ocultarBarrio": true
+        },
         "zc": {
                 "id":"1",
                 "name": "Zona Centro",
                 "active": false,
                 "barrios": [
-                        {"id":"51827", "name": "Nueva Cordoba"},
                         {"id":"30951", "name": "Cofico"},
                         {"id":"30884", "name": "Alta Cordoba"},
                         {"id":"30994", "name": "General Paz"},

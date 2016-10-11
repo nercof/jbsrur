@@ -422,6 +422,7 @@ body {
                         }
                         &.step-tabs {
                               margin-top: 5px;
+                              margin-bottom: -10%;
 
                               .nav-pills {
                                     display: inline-block;
@@ -453,49 +454,44 @@ body {
                                           }
 
                                     }
-                                    .Todos {
-                                          i {
-                                                display: none;
-                                          }
-                                          .tab-content{
-                                                display: none;
-                                          }
-                                    }
                               }
                               .tab-content {
                                     width: 65%;
                                     display: inline-block;
                                     vertical-align: top;
                                     background-color: #E5404B;
+                                    margin-bottom: 38%;
                                     .conteiner-barrios{
                                           padding: 10px;
-
-                                          .cb-pills {
-                                                display: inline-block;
+                                          .control {
+                                          	position: relative;
+                                          	display: inline-block;
+                                          	cursor: pointer;
                                                 width: 30%;
                                                 margin: 0 5px;
                                                 input[type="checkbox"] {
-                                                      display:none;
-                                                      &+ label span {
-                                                            display:inline-block;
-                                                            cursor:pointer;
+                                                      position: absolute;
+                                                      z-index: -1;
+                                                      opacity: 0;
+                                                      &+ span {
+                                                            color:$white;
+                                                            font-size: 0.86em;
                                                             font-weight: 400;
                                                             padding: 5px;
-                                                            font-size: 0.86em;
                                                             vertical-align: middle;
-                                                            color:$white;
-
-                                                            &:hover {
-                                                                  background-color: $white;
-                                                                  border-radius: 5px;
-                                                                  color:$red;
-                                                            }
+                                                            display: inline-block;
                                                       }
-                                                      &:checked + label span{
+                                                      &:checked + span{
                                                             background-color: $white;
                                                             border-radius: 5px;
                                                             color:$red;
                                                       }
+                                                }
+                                                &:hover input[type="checkbox"] + span,
+                                                {
+                                                      background-color: $white;
+                                                      border-radius: 5px;
+                                                      color:$red;
                                                 }
                                           }
                                     }
@@ -507,6 +503,8 @@ body {
                   }
                   .search-button {
                         text-align: right;
+                        float: right;
+                        margin-top: -35%;
 
                         .btn {
                               background-color: $white;
@@ -549,8 +547,8 @@ body {
       }
       .propiedades {
             background-color: $white;
-            padding: 40px 30px;
-            font-family: $font-titles;
+            padding: 20px 30px;
+            font-family: $font-normal;
 
             .spinner {
                   text-align: center;
@@ -561,50 +559,53 @@ body {
             }
             .card {
                   padding: 0;
-                  margin: 5px;
-                  width: 19%;
                   float: none;
                   display: inline-table;
-                  background-color: $grey;
 
                   .inner-card{
-                        padding: 5px;
+                        padding: 10px 20px;
                         text-align: center;
-                        color: $white;
+                        color: $black;
                         h2 {
                               color: $white;
-                              background-color: $bordo;
+                              background-color: $red;
                               font-size: 1.1em;
                               line-height: 1.2em;
                               margin: 0;
-                              padding: 5px;
-                              height: 45px;
-                              text-align: left;
+                              padding: 10px;
+                              height: 55px;
+                              text-align: center;
+                              padding-bottom: 15px;
+                              text-transform: uppercase;
+                              font-weight: bold;
                         }
                         .pic {
-                              width: 195px;
-                              height: 130px;
-                              background-size: contain;
-                              margin-bottom: 10px;
+                              height: 180px;
+                              background-size: cover;
+                              background-repeat: no-repeat;
+                              margin: 0px 0px 20px 0px;
+                              background-position: center top;
                         }
                         .line {
                               width: 85%;
                               height: 1px;
-                              background-color: $white;
+                              background-color: $red;
                               margin: auto;
                               margin: 8px auto;
                               text-align: left;
                         }
                         i {
-                              font-size: 2em;
-                              padding: 0 5px;
-                              display: inline-table;
+                              font-size: 1.5em;
+                              padding: 0 5px 0px 0px;
+                              display: inline;
                               vertical-align: middle;
+                              color: $red;
+                              text-align: left !important;
                         }
                         p {
                               text-align: left;
-                              display: inline-table;
-                              width: 75%;
+                              display: inline-block;
+                              width: 80%;
                               vertical-align: middle;
                               margin: 0;
                         }
@@ -613,10 +614,43 @@ body {
                               width: 100%;
                               padding-bottom: 5px;
                         }
+                        .prop-contacto {
+                              .nav-pills{
+                                    width: 100%;
+                                    li {
+                                          float: none;
+                                          width: 32%;
+                                          padding: 0px;
+                                          display: inline-block;
+                                          margin: auto;
+
+                                          &.active {
+                                                a{
+                                                      color: $white;
+                                                      background-color: $red;
+                                                      margin: 5px 0px;
+                                                      i {
+                                                            color: $white;
+                                                      }
+                                                }
+                                                label {
+                                                      margin: 15px 0px;
+
+                                                }
+                                                &:hover a{
+                                                      background-color: $red;
+                                                }
+                                          }
+                                          &:hover a{
+                                                background-color: $pink;
+                                          }
+                                    }
+                              }
+                        }
                   }
 
                   &.odd{
-                        background-color: $red;
+
                   }
             }
       }
