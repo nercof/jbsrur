@@ -6,7 +6,7 @@
                     <div class="input-group">
                         <label>Buscar propiedades</label>
                         <span class="input-group-btn">
-                            <div class="button btn btn-default" type="button" ng-click="vm.searchTokko()"><i class="fa fa-search"></i></div>
+                            <div class="button btn btn-default" type="button" ng-click="vm.searchFilter()"><i class="fa fa-search"></i></div>
                         </span>
                         <input type="text" class="form-control" ng-model="search_query" ng-trim="false" placeholder="" ng-disabled="!vm.prop_cache">
                     </div><!-- /input-group -->
@@ -26,7 +26,7 @@
             <div ng-if="search_query && vm.prop_cache">
                 <div class="col-xs-12">
                     <div class="col-sm-6 col-xs-6 search-results">
-                        <div ng-repeat="prop in vm.prop_cache | cf_tokko:search_query:vm" >
+                        <div ng-repeat="prop in vm.prop_cache | cf_tokko:search_query:vm " >
                             <div>
                                 <a ui-sref="propiedad.detalle({data: prop , id:prop.id})">
                                     <b>{{prop.fake_address}}: </b>
