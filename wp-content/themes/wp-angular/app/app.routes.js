@@ -107,11 +107,7 @@
         "detalle@propiedad":{
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
-        },
-        "search@propiedad":{
-          templateUrl: localized.tokko + "tokko-search-input.html",
-          controller: 'tokkoController as vm'
-        },
+        }
       },
       deepStateRedirect: true,
       sticky: true,

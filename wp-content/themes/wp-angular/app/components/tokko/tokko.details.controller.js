@@ -13,8 +13,8 @@
      */
     function tokkoDetailsController($state, $stateParams, tokkoFactory, $scope, $rootScope, postFactory) {
         var vm = this;
-        vm.propiedad = {}
-        vm.contact_form = {}
+        vm.propiedad = {};
+        vm.contact_form = {};
 
         create();
 
