@@ -158,10 +158,25 @@
             * @data: null. Porque no hubo interaccion Advanced Search.
             */
             vm.searchFilter = function (){
+                console.log("Custom filter: << tokkoController:searchFilter() >>");
+                // Parameters by user
+                var obj = {
+                    "operation_types": _.keys(vm.operation_types),
+                    "property_types": _.keys(vm.property_types),
+                    "suite_amount": _.keys(vm.suite_amount),
+                    "current_localization_id": _.keys(vm.localization_barrio_id)
+                }
+                console.log(vm.prop_search);
+                console.log(obj);
+                console.log($state);
+                if($state.current.name != 'propiedad.detalle'){
+                    vm.propiedades = vm.prop_search
+                }
+
                 // Re-direct to state propiedad
                 $state.go('propiedad', {
-                    data: null, cache: vm.prop_search
+                    data: obj, cache: vm.prop_search
                 });
-            }    
+            }
         }; // Cierre tokkoController
     }());

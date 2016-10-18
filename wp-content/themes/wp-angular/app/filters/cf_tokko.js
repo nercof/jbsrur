@@ -70,7 +70,8 @@
                         }// end function prop
                     )
                     console.log("{<< filtered >>}")
-                    console.log(filtered);
+                    vm.prop_search = filtered;
+                    console.log(vm.prop_search);
                     return filtered;
                 }// end activate object current_localization_id if correspond
             }
@@ -82,7 +83,7 @@
             function isProperty_types(value_search, pController, plist, pfilter){
                 //console.log("Custom filter: << isProperty_types() >>");
                 // Si el usuario ingresa param in the quieck search.
-                console.log(plist);
+
                 if (!_.isEmpty(value_search)){
                     _.each(value_search, function(value){
                         // Por cada tipo de operacion
@@ -103,7 +104,7 @@
             * @param: operation_types
             */
             function isNeighborhood(value_search, pController){
-                console.log("Custom filter: << isNeighborhood() >>");
+                //console.log("Custom filter: << isNeighborhood() >>");
                 var bname = [];
                 // Si el usuario ingresa param in the quieck search.
                 if (!_.isEmpty(value_search)){
