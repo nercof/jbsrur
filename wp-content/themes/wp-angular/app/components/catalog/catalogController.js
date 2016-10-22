@@ -10,8 +10,7 @@
     *  - @view: tokko-search-result
     */
     function catalogController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state, $localStorage,
-        TIPO_VENTA, TIPO_ALQUILER) {
+        resourceFactory, $stateParams, $state, $localStorage) {
             console.log('<< Loading catalogController >>');
             var vm = this;
 
