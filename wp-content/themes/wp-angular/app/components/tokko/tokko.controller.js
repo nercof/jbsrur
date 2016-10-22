@@ -89,17 +89,12 @@
                 console.log("Quick search filter: << tokkoController() >>");
                 // Re-direct to state propiedad
 
-                // Parameters by user
-                console.log(vm);
-
                 var obj = {
                     "operation_types": _.pluck(vm.operation_types, 'id'),
                     "property_types": _.pluck(vm.property_types, 'id'),
                     "suite_amount": _.pluck(vm.suite_amount, 'id'),
                     "current_localization_id": _.pluck(vm.current_localization_id, 'id')
                 }
-                console.log("Quick search filter: << obj >>");
-                console.log(obj);
 
                 $state.go('propiedad', {
                     data: obj, cache: vm.prop_cache
@@ -166,9 +161,7 @@
                     "suite_amount": _.keys(vm.suite_amount),
                     "current_localization_id": _.keys(vm.localization_barrio_id)
                 }
-                console.log(vm.prop_search);
-                console.log(obj);
-                console.log($state);
+
                 if($state.current.name != 'propiedad.detalle'){
                     vm.propiedades = vm.prop_search
                 }
