@@ -89,17 +89,12 @@
                 console.log("Quick search filter: << tokkoController() >>");
                 // Re-direct to state propiedad
 
-                // Parameters by user
-                console.log(vm);
-
                 var obj = {
                     "operation_types": _.pluck(vm.operation_types, 'id'),
                     "property_types": _.pluck(vm.property_types, 'id'),
                     "suite_amount": _.pluck(vm.suite_amount, 'id'),
                     "current_localization_id": _.pluck(vm.current_localization_id, 'id')
                 }
-                console.log("Quick search filter: << obj >>");
-                console.log(obj);
 
                 $state.go('propiedad', {
                     data: obj, cache: vm.prop_cache

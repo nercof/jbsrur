@@ -42,18 +42,12 @@
                 vm.data = $stateParams.data;
                 vm.cache = $stateParams.cache;
 
-                console.log("ia CASI (?): ");
-                console.log($state);
-                console.log($stateParams.data);
-
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
                 // Venimos del filtrado Predictivo.
                 if ($state.current.name == 'propiedad.detalle'){
-                    console.log("Predictive search");
                     vm.propiedades = $stateParams.data;
                 }else if ($state.current.name == 'propiedad') {;
                     vm.propiedades = vm.cache;
-                    console.log(vm.propiedades);
                 }
                 else {
                     // Consultamos si tenemos valores en la cache

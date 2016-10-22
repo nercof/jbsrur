@@ -11,7 +11,7 @@
     */
     function catalogController($scope, tokkoFactory, tokkoService, NgMap,
         resourceFactory, $stateParams, $state, $localStorage,
-        VENTA, ALQUILER) {
+        TIPO_VENTA, TIPO_ALQUILER) {
             console.log('<< Loading catalogController >>');
             var vm = this;
 
@@ -24,7 +24,7 @@
             // @see: http://stackoverflow.com/questions/34775157/angular-ui-bootstrap-pagination-ng-model-not-updating
             vm.totalItems = false;
             vm.currentPage = 1;
-            vm.itemsPerPage = 15;
+            vm.itemsPerPage = 16;
             vm.properties = {};
 
             // controla el estado de la consulta.
@@ -51,19 +51,10 @@
                     vm.barrios = data.to.barrios;
                 });
 
-                // var auxiliar para la busqueda de filtrado.
-                var type;
-                if ($state.current.name == 'ventas') {
-                    type = VENTA;
-                }
-                else {
-                    type = ALQUILER;
-                }
-
                 // Filtramos por tipo de Operacion
                 vm.allProperties = _.filter($localStorage.prop_cache, function(prop) {
                     return _.some(prop.operations, function(oper) {
-                        return oper.operation_type == type;
+                        return oper.operation_type == $stateParams.type;
                     });
                 });
 
