@@ -32,9 +32,33 @@
             vm.email = "info@jbsrur.com.ar";
             vm.fb = "";
             vm.twitter = "";
-            vm.links = ["Ventas", "Alquiler",
-            "Administracion", "Quienes somos", "Nuestros emprendimientos",
-            "Novedades"];
+            vm.links =
+                [
+                    {
+                        name: "Ventas",
+                        url: "http://jbsrur:8080/#/ventas",
+                    },
+                    {
+                        name: "Alquiler",
+                        url: "http://jbsrur:8080/#/alquileres",
+                    },
+                    {
+                        name: "Administracion",
+                        url: "",
+                    },
+                    {
+                        name: "Quienes somos",
+                        url: "",
+                    },
+                    {
+                        name: "Nuestros emprendimientos",
+                        url: "",
+                    },
+                    {
+                        name: "Novedades",
+                        url: "",
+                    }
+                ];
         }
     }
 })();

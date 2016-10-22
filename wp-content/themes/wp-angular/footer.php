@@ -27,7 +27,9 @@
 				</div>
 				<div class="col-sm-6 col-xs-12 right">
 					<ul class="dashed-list">
-						<li ng-repeat="link in vm.links">{{link}}</li>
+						<li ng-repeat="link in vm.links">
+							<a href='{{link.url}}'>{{link.name}}</a>
+						</li>
 					</ul>
 				</div>
 			</div>

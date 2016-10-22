@@ -51,8 +51,7 @@
                 if ($state.current.name == 'propiedad.detalle'){
                     console.log("Predictive search");
                     vm.propiedades = $stateParams.data;
-                }else if ($state.current.name == 'propiedad') {
-                    console.log("<< pasando ... >>");
+                }else if ($state.current.name == 'propiedad') {;
                     vm.propiedades = vm.cache;
                     console.log(vm.propiedades);
                 }

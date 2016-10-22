@@ -166,9 +166,7 @@
                     "suite_amount": _.keys(vm.suite_amount),
                     "current_localization_id": _.keys(vm.localization_barrio_id)
                 }
-                console.log(vm.prop_search);
-                console.log(obj);
-                console.log($state);
+
                 if($state.current.name != 'propiedad.detalle'){
                     vm.propiedades = vm.prop_search
                 }

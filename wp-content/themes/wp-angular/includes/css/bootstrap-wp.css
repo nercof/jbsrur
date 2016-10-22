@@ -660,7 +660,6 @@ body {
     font-style: italic; }
   body #mainFooter a {
     color: inherit;
-    font-size: 1.1em;
     font-family: "Lato", sans-serif; }
   body #mainFooter ul.dashed-list li {
     list-style-type: none; }

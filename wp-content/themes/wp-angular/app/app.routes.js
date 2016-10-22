@@ -42,17 +42,25 @@
     })
     .state('ventas', {
       url: '/ventas',
+      params: {
+        title_view: 'Ventas'
+      },
       views:{
         "content":{
-          templateUrl: localized.views + "catalogo.html"
+          templateUrl: localized.views + "catalogo.html",
+          controller: 'catalogController as vm',
         }
       }
     })
     .state('alquileres', {
       url: '/alquileres',
+      params: {
+        title_view: 'Alquileres'
+      },
       views:{
         "content":{
-          templateUrl: localized.views + "catalogo.html"
+          templateUrl: localized.views + "catalogo.html",
+          controller: 'catalogController as vm',
         }
       }
     })
