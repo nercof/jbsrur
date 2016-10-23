@@ -199,6 +199,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'app' ));
 
                 wp_enqueue_script(
+                'config',
+                get_stylesheet_directory_uri() . '/app/app.conf.js',
+                array( 'app' ));
+
+                wp_enqueue_script(
                 'menu-header',
                 get_stylesheet_directory_uri() . '/app/components/menu-header/menu-header.controller.js',
                 array( 'core' ));

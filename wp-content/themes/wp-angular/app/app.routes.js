@@ -1,17 +1,15 @@
 'use strict';
 ;(function(){
   angular
-  .module('app.routes', ['ui.router', 'app.core'])
+  .module('app.routes', ['ui.router', 'app.config', 'app.core'])
   .config(config);
 
   function config ($stateProvider, $urlRouterProvider,
     // Constantes
-    STATE_HO, STATE_VE, STATE_AL, STATE_QS, STATE_NE, STATE_OE,
-    STATE_NO, STATE_CO, STATE_PO, STATE_PD, TIPO_VENTA, TIPO_ALQUILER,
-    TITULO_CATALOGO_ALQUILER, TITULO_CATALOGO_VENTA) {
+    STATE, TYPE, TITULO) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
-    .state(STATE_HO, {
+    .state(STATE.HO, {
       url: '/',
       views:{
         "header":{
@@ -24,8 +22,8 @@
         },
       }
     })
-    .state(STATE_QS, {
-      url: '/' + STATE_QS,
+    .state(STATE.QS, {
+      url: '/' + STATE.QS,
       views:{
         "content":{
           templateUrl: localized.views + "quienes-somos.html",
@@ -43,11 +41,11 @@
         }
       }
     })
-   .state(STATE_VE, {
-      url: '/' + STATE_VE,
+   .state(STATE.VE, {
+      url: '/' + STATE.VE,
       params: {
-        title_view: TITULO_CATALOGO_VENTA,
-        type: TIPO_VENTA
+        title_view: TITULO.CATALOGO_VENTA,
+        type: TYPE.VE
       },
       views:{
         "content":{
@@ -56,11 +54,11 @@
         }
       }
     })
-    .state(STATE_AL, {
-      url: '/' + STATE_AL,
+    .state(STATE.AL, {
+      url: '/' + STATE.AL,
       params: {
-        title_view: TITULO_CATALOGO_ALQUILER,
-        type: TIPO_ALQUILER
+        title_view: TITULO.CATALOGO_ALQUILER,
+        type: TYPE.AL
       },
       views:{
         "content":{
@@ -69,24 +67,24 @@
         }
       }
     })
-    .state(STATE_NE, {
-      url: '/' + STATE_NE,
+    .state(STATE.NE, {
+      url: '/' + STATE.NE,
       views:{
         "content":{
           templateUrl: localized.views + "emprendimientos.html"
         }
       }
     })
-    .state(STATE_OE, {
-      url: '/' + STATE_OE,
+    .state(STATE.OE, {
+      url: '/' + STATE.OE,
       views:{
         "content":{
           templateUrl: localized.views + "emprendimientos.html"
         }
       }
     })
-    .state(STATE_NO, {
-      url: '/' + STATE_NO,
+    .state(STATE.NO, {
+      url: '/' + STATE.NO,
       views:{
         "content":{
           templateUrl: localized.views + "novedades.html",
@@ -94,18 +92,18 @@
         }
       }
     })
-    .state(STATE_CO, {
-      url: '/' + STATE_CO,
+    .state(STATE.CO, {
+      url: '/' + STATE.CO,
       views:{
         "content":{
           templateUrl: localized.views + "contacto.html"
         }
       }
     })
-    .state(STATE_PO, {
+    .state(STATE.PO, {
       // Resultado de Buscador de Propiedades.
       params: { data:null, cache:null},
-      url: '/' + STATE_PO,
+      url: '/' + STATE.PO,
       views:{
         "content":{
           templateUrl: localized.tokko + "tokko-search-result.html",
@@ -113,7 +111,7 @@
         }
       },
     })
-    .state(STATE_PD, { //DOT Notation
+    .state(STATE.PD, { //DOT Notation
       params: { data:null },
       url: '/:id',
       views:{
