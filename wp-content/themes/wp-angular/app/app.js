@@ -9,6 +9,7 @@
             [   'ui.router',
                 'underscore',
                 'ui.bootstrap',
+                'app.config',
                 'app.routes',
                 'app.core',
                 'app.services',
@@ -39,6 +40,7 @@
             + '\n- ngMap'
             + '\n- ngResource'
             + '\n- app.core'
+            + '\n- app.config'
             + '\n- app.routes'
             + '\n- app.services'
             + '\n- app.factories'
