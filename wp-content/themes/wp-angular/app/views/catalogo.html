@@ -37,13 +37,13 @@
           </uib-tabset>
         </div>
       </div>
-  </div>
-  <div class="col-sm-12 col-xs-12">
-    <ul uib-pagination boundary-links = true
-      total-items = "vm.totalItems" items-per-page = "vm.itemsPerPage"
-      ng-model="vm.currentPage" ng-change="vm.pageChanged()" boundary-links="true"
-      previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-      last-text="&raquo;" ></ul>
+    <div class="col-sm-12 col-xs-12 paginador">
+      <ul uib-pagination boundary-links = true
+        total-items = "vm.totalItems" items-per-page = "vm.itemsPerPage"
+        ng-model="vm.currentPage" ng-change="vm.pageChanged()" boundary-links="true"
+        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+        last-text="&raquo;" ></ul>
+    </div>
   </div>
 </div>
 <div ui-view="detalle"/>

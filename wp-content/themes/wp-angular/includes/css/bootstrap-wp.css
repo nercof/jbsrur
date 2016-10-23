@@ -392,6 +392,34 @@ body {
       body .propiedades .spinner i {
         font-size: 2em;
         color: #EC7E7E; }
+    body .propiedades .paginador {
+      text-align: center;
+      background: #90030C;
+      margin: 30px 0; }
+      body .propiedades .paginador .pagination {
+        margin: 20px auto; }
+        body .propiedades .paginador .pagination li a {
+          background-color: #90030C;
+          color: #FAF3DD;
+          border: 0;
+          font-family: "Lato", sans-serif;
+          font-weight: bold;
+          border-radius: 50%;
+          margin: 0 5px; }
+          body .propiedades .paginador .pagination li a:hover {
+            color: #90030C;
+            background-color: rgba(250, 243, 221, 0.8); }
+        body .propiedades .paginador .pagination li.disabled a {
+          color: rgba(250, 243, 221, 0.5); }
+          body .propiedades .paginador .pagination li.disabled a:hover {
+            color: rgba(250, 243, 221, 0.5);
+            background-color: #90030C; }
+        body .propiedades .paginador .pagination li.active a {
+          color: #90030C;
+          background-color: rgba(250, 243, 221, 0.8); }
+        body .propiedades .paginador .pagination li.pagination-first a:hover, body .propiedades .paginador .pagination li.pagination-prev a:hover, body .propiedades .paginador .pagination li.pagination-last a:hover, body .propiedades .paginador .pagination li.pagination-next a:hover {
+          background-color: #90030C;
+          color: #FAF3DD; }
     body .propiedades .card {
       padding: 0;
       float: none;

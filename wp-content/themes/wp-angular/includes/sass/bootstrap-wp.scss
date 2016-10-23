@@ -1,4 +1,5 @@
 @import url("../../node_modules/typicons.font/src/font/typicons.css");
+
 /*
 *
 * Here are a few needed CSS additions to integrate bootstrap truly into WordPress,
@@ -46,6 +47,7 @@ $red: #DF0A1F;
 $red-a: rgba(223, 10, 31, 0.5);
 $white: #FAF3DD;
 $white-a: rgba(250, 243, 221, 0.8);
+$white-ab: rgba(250, 243, 221, 0.5);
 $pink: #EC7E7E;
 $bordo: #90030C;
 $grey: #735753;
@@ -562,6 +564,56 @@ body {
                         color: $pink;
                   }
             }
+            .paginador {
+                  text-align: center;
+                  background: $bordo;
+                  margin: 30px 0;
+
+                  .pagination {
+                        margin: 20px auto;
+                        li {
+                              a {
+                                    background-color: $bordo;
+                                    color: $white;
+                                    border: 0;
+                                    font-family: $font-normal;
+                                    font-weight: bold;
+                                    border-radius: 50%;
+                                    margin: 0 5px;
+                                    &:hover{
+                                          color: $bordo;
+                                          background-color: $white-a;
+                                    }
+                              }
+                              &.disabled {
+                                    a {
+                                          color: $white-ab;
+                                          &:hover{
+                                                color: $white-ab;
+                                                background-color: $bordo;
+                                          }
+                                    }
+                              }
+                              &.active {
+                                    a {
+                                          color: $bordo;
+                                          background-color: $white-a;
+                                    }
+                              }
+                              &.pagination-first,
+                              &.pagination-prev,
+                              &.pagination-last,
+                              &.pagination-next {
+                                    a {
+                                          &:hover{
+                                                background-color: $bordo;
+                                                color: $white;
+                                          }
+                                    }
+                              }
+                        }
+                  }
+            }
             .card {
                   padding: 0;
                   float: none;
@@ -909,7 +961,7 @@ body {
                         font-style: italic;
                   }
             }
-            
+
             a {
                   color: inherit;
                   font-family: $font-normal;
