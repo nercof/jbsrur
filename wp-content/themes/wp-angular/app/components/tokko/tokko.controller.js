@@ -74,8 +74,7 @@
                     });
                 }
                 // Tenemos que parsear el objeto antes de asignarlo
-                parsedOperationTypes(vm.prop_cache);
-                console.log(vm.prop_cache);
+                parsedOperationTypes(vm.prop_cache);                
             }// Fin activate
             /**
             * Permite filtrar elementos del tipo

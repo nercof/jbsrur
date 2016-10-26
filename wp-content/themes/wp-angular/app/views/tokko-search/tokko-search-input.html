@@ -23,10 +23,10 @@
     <div class="tab-content clearfix">
         <div class="tab-pane active" id="global-search">
             <!-- PANEL RESULTADO PROP-CACHE -->
-            <div ng-if="search_query && vm.prop_cache">
+            <div ng-if="value_search && vm.prop_cache">
                 <div class="col-xs-12">
                     <div class="col-sm-6 col-xs-6 search-results">
-                        <div ng-repeat="prop in vm.prop_cache | cf_tokko:search_query:vm " >
+                        <div ng-repeat="prop in vm.prop_cache | cf_psearch:value_search:vm " >
                             <div>
                                 <a ui-sref="propiedades.detalle({data: prop , id:prop.id})">
                                     <b>{{prop.fake_address}}: </b>
