@@ -21,7 +21,7 @@
             vm.barriosXzona = {};
             vm.tokko_data = {};
             vm.universo = [];
-            
+
             vm.property_types = [];
             vm.operation_types = [];
             vm.suite_amount = [];
@@ -73,7 +73,32 @@
                         });
                     });
                 }
+                // Tenemos que parsear el objeto antes de asignarlo
+                parsedOperationTypes(vm.prop_cache);
+                console.log(vm.prop_cache);
             }// Fin activate
+            /**
+            * Permite filtrar elementos del tipo
+            * "operations": [{  "operation_type": "Rent",
+            *                    "prices": [{
+            *                        "currency": "ARS",
+            *                        "period": 0,
+            *                        "price": 500
+            *                    }]
+            *                }],
+            * "operationsParsed":["Rent", "Sales"]
+            */
+            function parsedOperationTypes(pPropiedades) {
+                // Por cada propiedad
+                _.each(pPropiedades, function(propiedad) {
+                    propiedad.operationsParsed = [];
+
+                    // Por cada tipo de propiedad
+                    _.each(propiedad.operations, function (operation) {
+                        propiedad.operationsParsed.push(operation.operation_type);
+                    });
+                });
+            }
 
             /**
             * searchLocation() permite obtener las propiedades
