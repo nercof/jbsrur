@@ -16,8 +16,12 @@
             vm.titleForm = "Encuentre su propiedad:";
             // Re-modeling
             vm.codigoPropiedad = '';
+
+            // Variables con los datos de carga auxiliares para todo el proceso.
             vm.barriosXzona = {};
             vm.tokko_data = {};
+            vm.universo = [];
+            
             vm.property_types = [];
             vm.operation_types = [];
             vm.suite_amount = [];
@@ -39,12 +43,17 @@
 
             function activate(vm) {
                 // Load repository local objects
+                // 1. Datos comunes para API Tokko
                 vm.tokko_data = resourceFactory.query({id: 'tokko.data.json'});
 
+                //  2. Listado de barrios de Córdoba y alrededores
                 vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
                 function(data){
                     vm.barrios = data.to.barrios;
                 });
+
+                // 3. Universo de palabras conocidos y sus correspondiente valor.
+                vm.universo = resourceFactory.query_universo({id: 'universo.json'});
 
                 if ($localStorage.prop_cache && $localStorage.prop_cache.length > 0) {
                     vm.prop_cache = $localStorage.prop_cache;
@@ -96,7 +105,7 @@
                     "current_localization_id": _.pluck(vm.current_localization_id, 'id')
                 }
 
-                $state.go('propiedad', {
+                $state.go('propiedades', {
                     data: obj, cache: vm.prop_cache
                 });
             }
@@ -119,7 +128,7 @@
                 }
                 else {
 
-                    console.log("Custom filter: << tokkoController() >>");
+                    console.log("vm.searchTokko: << tokkoController() >>");
                     // Parameters by user
                     var obj = {
                         "operation_types": _.keys(vm.operation_types),
@@ -128,7 +137,7 @@
                         "current_localization_id": _.keys(vm.localization_barrio_id)
                     }
 
-                    $state.go('propiedad', {
+                    $state.go('propiedades', {
                         data: obj, cache: vm.prop_cache
                     });
                 }
@@ -162,12 +171,12 @@
                     "current_localization_id": _.keys(vm.localization_barrio_id)
                 }
 
-                if($state.current.name != 'propiedad.detalle'){
+                if($state.current.name != 'propiedades.detalle'){
                     vm.propiedades = vm.prop_search
                 }
 
                 // Re-direct to state propiedad
-                $state.go('propiedad', {
+                $state.go('propiedades', {
                     data: obj, cache: vm.prop_search
                 });
             }

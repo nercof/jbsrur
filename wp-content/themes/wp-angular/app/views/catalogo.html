@@ -9,7 +9,7 @@
       <div ng-if="vm.properties" class="inner-card">
         <h2>{{propiedad.fake_address}}</h2>
         <!--    <a ng-click="vm.fullDetails(propiedad)" class="thumb">-->
-        <a ui-sref="propiedad.detalle({data: propiedad , id:propiedad.id})" class="thumb">
+        <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" class="thumb">
           <div class="pic" style="background-image: url('{{propiedad.photos[0].image}}')"></div></a>
           <div class="dire"><i class="typcn typcn-location-outline"></i><p>{{propiedad.fake_address}}</p></div>
           <div class="dire"><i class="typcn typcn-home-outline"></i><p>{{propiedad.type.name}}</p></div>
@@ -23,7 +23,7 @@
                         </a>
                       </div>
                       <div ng-if="tab.isLink">
-                        <a ui-sref="propiedad.detalle({data: propiedad , id:propiedad.id})">
+                        <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})">
                           <i class="{{tab.icon}}"></i>
                         </a>
                       </div>
