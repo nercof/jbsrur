@@ -46,10 +46,13 @@
             // Obtener el universo con palbras == true
             filterUniverso = getPalabrasBuscadas();
 
-            // Aplicar filtros anteriores
+            // Aplicar filtros anteriores por cada palabra clave.
             _.each(filterUniverso, function(obj){
                 if (obj.field == "property_types") {
-                    // {...}
+                    filtered = _.filter(filtered, function(prop){
+                        // @FIXME: Pre-procesar en tokkoController prop.operations
+                        return _.contains(prop.operations, obj.word);
+                    });
                 }
             });
 
