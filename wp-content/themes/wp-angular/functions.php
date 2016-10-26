@@ -254,8 +254,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
-                'cf_tokko',
-                get_stylesheet_directory_uri() . '/app/filters/cf_tokko.js',
+                'cf_psearch',
+                get_stylesheet_directory_uri() . '/app/filters/cf_psearch.js',
                 array( 'core', 'factories' ));
 
                 wp_enqueue_script(

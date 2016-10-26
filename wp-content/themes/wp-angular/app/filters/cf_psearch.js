@@ -7,21 +7,22 @@
     * Objetivo: removeAccents and filter properties.
     */
     angular
-    .module('module')
-    .filter('cf_psearch', filter);
+    .module('app.core')
+    .filter('cf_psearch', cf_psearch);
 
-    function filter() {
+    function cf_psearch() {
         console.log("Custom filter: << cf_psearch >>");
-        return filterFilter
+        return filterProps;
 
-        **
+        /**
         * vm.prop_search = properties filtered
         *
         * @param: all_prop: All properties in localStorage.prop_cache{}
         * @param: value_search: input data from user views
         * @param: vm: tokkoController (utilizar vm.universo)
         */
-        function filterFilter(all_prop, value_search, vm) {
+        function filterProps(all_prop, value_search, vm) {
+            console.log("Custom filter: << cf_psearch >>");
             // Variables a utilizar.
             var filtered = [];      // Todas las propiedades.
             var query_search = [];  // Array de busqueda.
@@ -51,13 +52,14 @@
                 if (obj.field == "property_types") {
                     filtered = _.filter(filtered, function(prop){
                         // @FIXME: Pre-procesar en tokkoController prop.operations
-                        return _.contains(prop.operations, obj.word);
+                        return _.contains(prop.operationsParsed, obj.word);
                     });
                 }
             });
 
             return filtered;
         }
+
         /**
         * Setear en true la palabra del universo si es igual a word.
         * Setear en pending si falta parte de la palabra.
@@ -76,7 +78,7 @@
                     pPalabra.status = "pending";
                 }
             }
-        });
+        );
     }
 
     /**
