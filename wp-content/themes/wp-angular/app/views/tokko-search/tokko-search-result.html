@@ -1,7 +1,7 @@
 <!-- Elemento padre -->
 <div ui-view="search"/>
 <div ui-view='title'><h1 class="title">Propiedades</h1></div>
-<div ng-if="$state.current.name == 'propiedad'">
+<div ng-if="$state.current.name == 'propiedades'">
   <div class="col-sm-12 col-xs-12 propiedades">
     <div ng-show="vm.spinner" class="spinner" ng-if="!vm.propiedades"><i class="fa fa-spinner fa-spin"></i></div>
     <div ng-if="vm.error">{{vm.error}}</div>
@@ -9,7 +9,7 @@
       <div ng-if="vm.propiedades" class="inner-card">
         <h2>{{propiedad.fake_address}}</h2>
         <!--    <a ng-click="vm.fullDetails(propiedad)" class="thumb">-->
-        <a ui-sref="propiedad.detalle({data: propiedad , id:propiedad.id})" class="thumb">
+        <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" class="thumb">
           <div class="pic" style="background-image: url('{{propiedad.photos[0].image}}')"></div></a>
           <div class="dire"><i class="typcn typcn-location-outline"></i><p>{{propiedad.fake_address}}</p></div>
           <div class="dire"><i class="typcn typcn-home-outline"></i><p>{{propiedad.type.name}}</p></div>
@@ -23,7 +23,7 @@
                         </a>
                       </div>
                       <div ng-if="tab.isLink">
-                        <a ui-sref="propiedad.detalle({data: propiedad , id:propiedad.id})">
+                        <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})">
                           <i class="{{tab.icon}}"></i>
                         </a>
                       </div>

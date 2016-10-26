@@ -28,7 +28,7 @@
                     <div class="col-sm-6 col-xs-6 search-results">
                         <div ng-repeat="prop in vm.prop_cache | cf_tokko:search_query:vm " >
                             <div>
-                                <a ui-sref="propiedad.detalle({data: prop , id:prop.id})">
+                                <a ui-sref="propiedades.detalle({data: prop , id:prop.id})">
                                     <b>{{prop.fake_address}}: </b>
                                     {{prop.type.name}}
                                 </a>

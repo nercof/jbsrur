@@ -16,7 +16,7 @@
         'NO':'novedades',
         'CO':'contacto',
         'PO':'propiedades',
-        'PD':'propiedad.detalle'
+        'PD':'propiedades.detalle'
     })
     .constant('TYPE', {
         'AL': 'Alquiler',

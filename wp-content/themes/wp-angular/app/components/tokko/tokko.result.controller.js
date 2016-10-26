@@ -13,7 +13,7 @@
         resourceFactory, $stateParams, $state, $localStorage) {
             var vm = this;
             vm.data = {}
-            vm.cache = {}
+            vm.cache_propiedades_propiedades = {}
             //vm.propiedades = {}; para que funcione el spinner
             vm.spinner = true;
             $scope.current = $state.current;
@@ -40,18 +40,19 @@
             function activate(vm) {
                 // Recive paramas views tokko-input.
                 vm.data = $stateParams.data;
-                vm.cache = $stateParams.cache;
+                vm.cache_propiedades = $stateParams.cache;
 
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
                 // Venimos del filtrado Predictivo.
-                if ($state.current.name == 'propiedad.detalle'){
-                    vm.propiedades = $stateParams.data;
-                }else if ($state.current.name == 'propiedad') {;
-                    vm.propiedades = vm.cache;
-                }
+                if ($state.current.name == 'propiedades.detalle'){
+                    vm.propiedades = $localStorage.prop_search;
+                }//else if ($state.current.name == 'propiedad') {;
+                //    vm.propiedades = vm.cache;
+                //}
+                // Busqueda avanzada.
                 else {
                     // Consultamos si tenemos valores en la cache
-                    if (!_.isEmpty($localStorage.prop_cache) && _.isEmpty(vm.prop_search)) {
+                    if (!_.isEmpty(vm.cache_propiedades)) { //&& _.isEmpty(vm.prop_search)) {
                         // Caso 0: Base de busqueda
                         if (!_.isEmpty(vm.data)                    &&
                         // Tipo de Operacion: 0,2: Todos/Ambos

@@ -10,6 +10,12 @@ angular
           method: 'GET',
           params: {id: '@id'},
           isArray: false
+        },
+        query_universo
+        : {
+          method: 'GET',
+          params: {id: '@id'},
+          isArray: true
         }
       });
     }
