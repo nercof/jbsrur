@@ -39,7 +39,7 @@
             // Recorremos las palabras ingresadas.
             _.each(query_search, function(word){
                 // Setear a true la palabra conocida si corresponde.
-                buscarEnUniverso(word, vm.universo);
+                buscarEnUniverso(word, vm.universo, query_search.length);
             });
 
             console.log("buscarEnUniverso():");
@@ -47,6 +47,9 @@
 
             // Obtener el universo con palbras == true
             filterUniverso = getPalabrasBuscadas();
+
+            console.log(" << getPalabrasBuscadas() >>");
+            console.log(filterUniverso);
 
             // Aplicar filtros anteriores por cada palabra clave.
             _.each(filterUniverso, function(obj){
@@ -67,19 +70,23 @@
         *
         * @param: word: string de busqueda.
         */
-        function buscarEnUniverso(pWord, pUniverso){
+        function buscarEnUniverso(pWord, pUniverso, pSizeUserInput){
             console.log(pWord, pUniverso);
             _.each(pUniverso, function(pPalabra){
                 // Si la palabra es igual setear en true.       - Status true
-                if (pPalabra.word == pWord) {
+                if (pPalabra.word.toLowerCase() == pWord) {
                     pPalabra.status = true;
                 } else if (pPalabra.word.search(pWord) > 0) {
                     pPalabra.status = "pending";
-                    pPalabra.pAnterior.push(pWord);
+                    if (pSizeUserInput >= 2) {
+                        pPalabra.pAnterior.push(pWord);
+                    }
                 } else if (pPalabra.word.length > pWord.length) {
                     // Sino es igual consultamos si pertenece o no  - Status pending
                     pPalabra.status = "pending";
-                    pPalabra.pAnterior.push(pWord);
+                    if (pSizeUserInput >= 2) {
+                        pPalabra.pAnterior.push(pWord);
+                    }
                 }
             }
         );
