@@ -3,60 +3,60 @@
     "word": "Venta",
     "status": false,
     "field": "operation_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Alquiler",
     "status": false,
     "field": "operation_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Terreno",
     "status": false,
     "field": "property_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Departamento",
     "status": false,
     "field": "property_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Casa",
     "status": false,
     "field": "property_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Oficina",
     "status": false,
     "field": "property_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Local",
     "status": false,
     "field": "property_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Campo",
     "status": false,
     "field": "property_types",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "1 dormitorio",
     "status": false,
     "field": "suite_amount",
-    "pAnterior": false
+    "pAnterior": []
   },
   {
     "word": "Nueva Cordoba",
     "status": false,
     "field": "current_localization_id",
-    "pAnterior": false
+    "pAnterior": []
   }
 ]
