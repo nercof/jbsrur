@@ -116,7 +116,7 @@
       params: { data:null },
       url: '/:id',
       views:{
-        "detalle@propiedad":{
+        "detalle@propiedades":{
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
         }

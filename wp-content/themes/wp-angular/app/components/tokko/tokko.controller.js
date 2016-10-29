@@ -60,7 +60,7 @@
 
                 if ($localStorage.prop_cache && $localStorage.prop_cache.length > 0) {
                     vm.prop_cache = $localStorage.prop_cache;
-                    vm.prop_search = vm.prop_cache;
+                    vm.prop_search = $localStorage.prop_search;
                 }
                 else {
 
@@ -78,19 +78,17 @@
                 }
                 // Tenemos que parsear el objeto antes de asignarlo
                 parsedOperationTypes(vm.prop_cache);
+
                 //
                 _.each(vm.prop_cache, function (propiedad) {
                     var obj = _.pick(propiedad, 'id', 'address',
                     'description', 'fake_address', 'publication_title',
-                    'type', 'operations_types', 'location');
+                    'type', 'operations_types');
                     obj.type = obj.type.name;
-                    obj.barrio = obj.location.name;
                     vm.universoPropiedades.push(obj);
                 });
 
-
             }// Fin activate
-            
             /**
             * Permite filtrar elementos del tipo
             * "operations": [{  "operation_type": "Rent",
@@ -126,14 +124,6 @@
                 tokkoFactory.getLocation(this.ciudad.id).then(function(response) {
                     vm.tokko_location = response.divisions;
                 });
-            }
-
-            /**
-            * onSelect() evento que se llama al seleccionar
-            * una propiedad en el buscador global
-            */
-            vm.onSelect = function(item) {
-                $state.go('propiedades.detalle', { id: item.id });
             }
 
             /**

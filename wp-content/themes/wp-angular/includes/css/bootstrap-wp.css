@@ -468,6 +468,8 @@ body {
           padding-bottom: 15px;
           text-transform: uppercase;
           font-weight: bold; }
+        body .propiedades .card .inner-card a {
+          text-decoration: none; }
         body .propiedades .card .inner-card .pic {
           height: 180px;
           background-size: cover;
