@@ -96,7 +96,8 @@
       url: '/' + STATE.CO,
       views:{
         "content":{
-          templateUrl: localized.views + "contacto.html"
+          templateUrl: localized.views + "contacto.html",
+          controller: 'tokkoController as vm'
         }
       }
     })

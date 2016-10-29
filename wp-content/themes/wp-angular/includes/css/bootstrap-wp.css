@@ -224,6 +224,50 @@ body {
                 outline: none;
                 border: 0;
                 padding: 0; }
+          body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu {
+            background-color: rgba(250, 243, 221, 0.8);
+            color: #131515;
+            z-index: 99;
+            width: 55%;
+            border-radius: 0; }
+            body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li {
+              background: transparent;
+              border-bottom: 1px #DF0A1F solid; }
+              body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a {
+                color: #131515;
+                text-decoration: none;
+                font-family: "Lato", sans-serif;
+                width: 100%;
+                display: block;
+                text-transform: none;
+                padding: 3px;
+                background: transparent;
+                padding-bottom: 10px; }
+                body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .address {
+                  display: block;
+                  font-weight: bold;
+                  color: #735753; }
+                  body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .address strong {
+                    font-weight: 900; }
+                body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .description {
+                  white-space: normal;
+                  display: block;
+                  color: #735753;
+                  padding: 5px 0;
+                  font-size: 0.9em; }
+                body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .tag {
+                  background-color: #735753;
+                  color: #FAF3DD;
+                  border-radius: 10px;
+                  padding: 2px 5px 2px 5px;
+                  font-size: 0.9em;
+                  margin: 1px; }
+                body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a:hover .description {
+                  color: #DF0A1F; }
+                body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a:hover .address {
+                  color: #DF0A1F; }
+              body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li:last-child {
+                border: none; }
         body #searchForm ul.nav-pills li.global-search.active .input-group-btn .button,
         body #searchForm ul.nav-pills li.global-search :hover .input-group-btn .button {
           border: 1px solid #FAF3DD;
@@ -365,24 +409,6 @@ body {
         border: none; }
         body #advanced-search .panel .search-button .btn:hover {
           opacity: 0.85; }
-  body #global-search .search-results {
-    background-color: rgba(250, 243, 221, 0.8);
-    color: #131515;
-    position: absolute;
-    z-index: 99;
-    width: 30%;
-    left: 20%;
-    border-bottom: 1px #131515 solid; }
-    body #global-search .search-results a {
-      color: #131515;
-      text-decoration: none;
-      font-family: "Lato", sans-serif;
-      width: 100%;
-      display: block;
-      padding: 3px;
-      border-bottom: 1px #735753 solid; }
-      body #global-search .search-results a:hover {
-        color: #DF0A1F; }
   body .propiedades {
     background-color: #FAF3DD;
     padding: 20px 30px;
