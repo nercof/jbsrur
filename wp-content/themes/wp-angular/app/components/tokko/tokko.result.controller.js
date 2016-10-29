@@ -149,11 +149,15 @@
                 // Consultamos si es necesario almacenar el resultado de la
                 // busqueda en el storage.
                 if (_.isEmpty($localStorage.prop_search)) {
+                    console.log(vm.propiedades);
+                    $localStorage.prop_search =
                     $scope.$storage = $localStorage.$default({
                         prop_search: vm.propiedades,
                     });
+                    $localStorage.prop_search = (_.isEmpty($localStorage.prop_search)) ? vm.propiedades : $localStorage.prop_search;
                 }
-
+                console.log($localStorage.prop_search);
+                console.log($localStorage.prop_cache);
                 /**
                 * Flujo de contingencia
                 * Objetivo: Sino tenemos nada en la cache vamos a buscar
@@ -178,7 +182,7 @@
                     vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
                 }
             }
-            
+
             /**
             * Setea lista propiedades x pagina
             * El listado de propiedades depende del parametro page pasado.
