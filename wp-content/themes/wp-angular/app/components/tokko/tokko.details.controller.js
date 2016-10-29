@@ -34,8 +34,8 @@
          */
         function create() {
             // Generamos el modelo Propiedad
-            if ($stateParams.data) {
-                vm.propiedad = $stateParams.data
+            if (!_.isEmpty($stateParams.data)) {
+                vm.propiedad = $stateParams.data;
             }
             else {
                 // Buscamos la propiedad en TOKKO
@@ -47,14 +47,13 @@
             postFactory.getPostByCategoryName("contacto").then(
                 function(data) {
                     // slug: "formulario-de-contacto"
-                    console.log(data);
                     vm.contact_form = _.find(data, {slug:"contacto"});
-                    console.log(vm.contact_form);
                     // Usando la magia de jQuery para obtener el objeto con id
                     // que generamos e incorporarle el trozo html del formulario
                     // generado desde Wordpress.
                     angular.element('#jbsrur_contact_form').append(vm.contact_form.content.rendered);
                 });
+
         }
     }
 })();

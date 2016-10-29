@@ -10,7 +10,7 @@
     *  - @view: tokko-search-result
     */
     function tokkoResultController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state, $localStorage) {
+        resourceFactory, $stateParams, $state, $localStorage, STATE) {
             var vm = this;
             vm.data = {}
             vm.cache_propiedades_propiedades = {}
@@ -24,6 +24,14 @@
                 { "titulo": "Correo" , "href":"mailto:centro@jbsrur.com.ar", "text":"centro@jbsrur.com.ar", "type":"email", "icon":"typcn typcn-mail" },
                 { "titulo": "Ver Más" , "href":"#", "type":"link", "icon":"typcn typcn-plus", "isLink": true }
             ];
+
+            //
+            // Empleadas para la paginacion de propiedades.
+            vm.totalItems = false;
+            vm.currentPage = 1;
+            vm.itemsPerPage = 16;
+            vm.properties = {};
+
             // Activamos
             activate(vm);
 
@@ -43,16 +51,19 @@
                 vm.cache_propiedades = $stateParams.cache;
 
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
-                // Venimos del filtrado Predictivo.
-                if ($state.current.name == 'propiedades.detalle'){
+                if (_.isEqual($state.current.name,STATE.PD) ||
+                    _.isEqual($state.current.name,STATE.VE) ||
+                    _.isEqual($state.current.name,STATE.AL)){
                     vm.propiedades = $localStorage.prop_search;
-                }//else if ($state.current.name == 'propiedad') {;
-                //    vm.propiedades = vm.cache;
-                //}
-                // Busqueda avanzada.
+                }
+                /**
+                * Busqueda avanzada.
+                *
+                */
                 else {
+                    console.log("Searching properties: << tokkoResultController() >>");
                     // Consultamos si tenemos valores en la cache
-                    if (!_.isEmpty(vm.cache_propiedades)) { //&& _.isEmpty(vm.prop_search)) {
+                    if (!_.isEmpty(vm.cache_propiedades)) {
                         // Caso 0: Base de busqueda
                         if (!_.isEmpty(vm.data)                    &&
                         // Tipo de Operacion: 0,2: Todos/Ambos
@@ -63,7 +74,7 @@
                         ( vm.data.suite_amount.length     == 0 || vm.data.suite_amount[0] == "0" ) &&
                         // Zona/Barrio: 0: Todos
                         vm.data.current_localization_id == 0 ) {
-                            vm.propiedades = $localStorage.prop_cache;
+                            vm.propiedades = vm.cache_propiedades;
                             vm.spinner = false;
                         } else if (!_.isEmpty(vm.data)){
                             /**
@@ -83,14 +94,14 @@
                                 }
 
                                 // Filtramos por tipo de Operacion
-                                vm.propiedades = _.filter($localStorage.prop_cache, function(prop) {
+                                vm.propiedades = _.filter(vm.cache_propiedades, function(prop) {
                                     return _.some(prop.operations, function(oper) {
                                         return oper.operation_type == type;
                                     });
                                 });
                             } else if (vm.data.operation_types.length == 2) {
                                 // Caso 1.1: Filtrar por tipo de Operacion (Todos)
-                                vm.propiedades = $localStorage.prop_cache;
+                                vm.propiedades = vm.cache_propiedades;
                             }
                             // Uncomment only for Test
                             // console.log(vm.propiedades[0]);
@@ -135,12 +146,19 @@
                         }
                     }// else Advanced search with
                 }
+                // Consultamos si es necesario almacenar el resultado de la
+                // busqueda en el storage.
+                if (_.isEmpty($localStorage.prop_search)) {
+                    $scope.$storage = $localStorage.$default({
+                        prop_search: vm.propiedades,
+                    });
+                }
+
                 /**
                 * Flujo de contingencia
                 * Objetivo: Sino tenemos nada en la cache vamos a buscar
                 */
                 if (_.isEmpty(vm.propiedades)) {
-                    //console.log('Sin valores en cache, buscar en TOKKO');
                     // Call factory to search Tokko properties.
                     tokkoFactory.getProperties(vm.data).then(function(response) {
                         if(response.objects.length > 0) {
@@ -150,18 +168,33 @@
                             vm.error = "No se encontraron propiedades"
                         }
                     });
-                }else {
-                    //vm.error = "No se encontraron propiedades"
                 }
+                else{
+                    // Variables auxiliares para el paginador.
+                    vm.totalItems = vm.propiedades.length;
+                    vm.spinner = false;
 
-                // prop_search: Todas las propiedades excluidas por search
-                $localStorage.prop_search = vm.propiedades;
-                //console.log($localStorage)
+                    // Iniciamos las propiedades filtradas para la paginacion inicial.
+                    vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                }
+            }
+            
+            /**
+            * Setea lista propiedades x pagina
+            * El listado de propiedades depende del parametro page pasado.
+            *
+            * @param {int} page - Pagina actual
+            */
+            vm.setPagingData = function (page) {
+                vm.properties =  vm.propiedades.slice((page - 1) * vm.itemsPerPage, page * vm.itemsPerPage);
             }
 
-            // Re-direct to fullDetails
-            vm.fullDetails = function(prop) {
-                //$state.go('detalle', {data: prop , id:prop.id});
+            /**
+            * Funcion guia para cambiar la pagina seleccionada.
+            *
+            */
+            vm.pageChanged = function(){
+                vm.setPagingData(vm.currentPage);
             }
         } // Fin controller
     })();
