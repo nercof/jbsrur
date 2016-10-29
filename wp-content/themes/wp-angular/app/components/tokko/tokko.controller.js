@@ -60,7 +60,7 @@
 
                 if ($localStorage.prop_cache && $localStorage.prop_cache.length > 0) {
                     vm.prop_cache = $localStorage.prop_cache;
-                    vm.prop_search = vm.prop_cache;
+                    vm.prop_search = $localStorage.prop_search;
                 }
                 else {
 
@@ -87,8 +87,6 @@
                     obj.type = obj.type.name;
                     vm.universoPropiedades.push(obj);
                 });
-
-                console.log(vm.universoPropiedades);
 
             }// Fin activate
             /**

@@ -10,7 +10,7 @@
     *  - @view: tokko-search-result
     */
     function tokkoResultController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state, $localStorage) {
+        resourceFactory, $stateParams, $state, $localStorage, STATE) {
             var vm = this;
             vm.data = {}
             vm.cache_propiedades_propiedades = {}
@@ -43,16 +43,15 @@
                 vm.cache_propiedades = $stateParams.cache;
 
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
-                // Venimos del filtrado Predictivo.
-                if ($state.current.name == 'propiedades.detalle'){
+                if (_.isEqual($state.current.name,STATE.PD) ||
+                    _.isEqual($state.current.name,STATE.VE) ||
+                    _.isEqual($state.current.name,STATE.AL)){
                     vm.propiedades = $localStorage.prop_search;
-                }//else if ($state.current.name == 'propiedad') {;
-                //    vm.propiedades = vm.cache;
-                //}
+                }
                 // Busqueda avanzada.
                 else {
                     // Consultamos si tenemos valores en la cache
-                    if (!_.isEmpty(vm.cache_propiedades)) { //&& _.isEmpty(vm.prop_search)) {
+                    if (!_.isEmpty(vm.cache_propiedades)) {
                         // Caso 0: Base de busqueda
                         if (!_.isEmpty(vm.data)                    &&
                         // Tipo de Operacion: 0,2: Todos/Ambos
@@ -135,12 +134,16 @@
                         }
                     }// else Advanced search with
                 }
+                // prop_search: Todas las propiedades excluidas por search
+                if (_.isEmpty($localStorage.prop_search)) {
+                    $localStorage.prop_search = vm.propiedades;
+                }
+
                 /**
                 * Flujo de contingencia
                 * Objetivo: Sino tenemos nada en la cache vamos a buscar
                 */
-                if (_.isEmpty(vm.propiedades)) {
-                    //console.log('Sin valores en cache, buscar en TOKKO');
+                if (_.isEmpty(vm.propiedades) && _.isEmpty(vm.data)) {
                     // Call factory to search Tokko properties.
                     tokkoFactory.getProperties(vm.data).then(function(response) {
                         if(response.objects.length > 0) {
@@ -153,15 +156,6 @@
                 }else {
                     //vm.error = "No se encontraron propiedades"
                 }
-
-                // prop_search: Todas las propiedades excluidas por search
-                $localStorage.prop_search = vm.propiedades;
-                //console.log($localStorage)
-            }
-
-            // Re-direct to fullDetails
-            vm.fullDetails = function(prop) {
-                //$state.go('detalle', {data: prop , id:prop.id});
             }
         } // Fin controller
     })();

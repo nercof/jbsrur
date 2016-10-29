@@ -33,9 +33,10 @@
          *
          */
         function create() {
+            console.log('<< tokkoDetailsController() >>');
             // Generamos el modelo Propiedad
-            if ($stateParams.data) {
-                vm.propiedad = $stateParams.data
+            if (!_.isEmpty($stateParams.data)) {
+                vm.propiedad = $stateParams.data;                
             }
             else {
                 // Buscamos la propiedad en TOKKO
@@ -55,6 +56,7 @@
                     // generado desde Wordpress.
                     angular.element('#jbsrur_contact_form').append(vm.contact_form.content.rendered);
                 });
+
         }
     }
 })();

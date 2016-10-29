@@ -96,7 +96,8 @@
       url: '/' + STATE.CO,
       views:{
         "content":{
-          templateUrl: localized.views + "contacto.html"
+          templateUrl: localized.views + "contacto.html",
+          controller: 'tokkoController as vm'
         }
       }
     })
@@ -115,7 +116,7 @@
       params: { data:null },
       url: '/:id',
       views:{
-        "detalle@propiedad":{
+        "detalle@propiedades":{
           templateUrl: localized.tokko + "tokko-search-details.html",
           controller: 'tokkoDetailsController as vm',
         }

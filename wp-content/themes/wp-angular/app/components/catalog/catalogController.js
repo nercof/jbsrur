@@ -41,14 +41,8 @@
             function activate(vm) {
                 // Título de la vista
                 vm.title_view = $stateParams.title_view;
-
-                // @TODO: comment this, it's only for test btree
-                vm.barriosXzona = resourceFactory.query({
-                    id: 'barrios_cba.json'
-                },
-                function(data) {
-                    vm.barrios = data.to.barrios;
-                });
+                console.log($stateParams);
+                console.log($localStorage.prop_cache);
 
                 // Filtramos por tipo de Operacion
                 vm.allProperties = _.filter($localStorage.prop_cache, function(prop) {
@@ -60,12 +54,20 @@
                 if(_.isEmpty(vm.allProperties)){
                     vm.error = true;
                 }
+
+                // Variables auxiliares para el paginador.
                 vm.totalItems = vm.allProperties.length;
                 vm.spinner = false;
 
                 // Iniciamos las propiedades filtradas para la paginacion inicial.
                 vm.properties = vm.allProperties.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
 
+                // Almacenamos el resultado de la búsqueda.
+                $scope.$storage = $localStorage.$default({
+                    prop_search: vm.properties,
+                });
+                console.log(vm.properties);
+                console.log('<< FIN activate() catalog >>');
             } // fin activate()
 
             /**

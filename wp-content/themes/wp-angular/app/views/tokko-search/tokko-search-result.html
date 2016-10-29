@@ -8,35 +8,33 @@
     <div class="col-md-3 card" ng-repeat="propiedad in vm.propiedades" ng-class-odd="'odd'">
       <div ng-if="vm.propiedades" class="inner-card">
         <h2>{{propiedad.fake_address}}</h2>
-        <!--    <a ng-click="vm.fullDetails(propiedad)" class="thumb">-->
         <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" class="thumb">
           <div class="pic" style="background-image: url('{{propiedad.photos[0].image}}')"></div></a>
-          <div class="dire"><i class="typcn typcn-location-outline"></i><p>{{propiedad.fake_address}}</p></div>
+          <div class="dire"><i class="typcn typcn-location-outline"></i><p>{{propiedad.location.short_location}}</p></div>
           <div class="dire"><i class="typcn typcn-home-outline"></i><p>{{propiedad.type.name}}</p></div>
-          <div class="dire"><i class="typcn typcn-location-arrow-outline"></i><p>{{propiedad.location.short_location}}</p></div>
           <uib-tabset vertical="false" type="pills" active="-1" class="prop-contacto">
-              <uib-tab ng-repeat="tab in vm.tabsContacto" heading="{{tab.titulo}}" classes="{{tab.type}}">
-                  <uib-tab-heading>
-                      <div ng-if="!tab.isLink">
-                        <a href="{{tab.href}}">
-                          <i class="{{tab.icon}}"></i>
-                        </a>
-                      </div>
-                      <div ng-if="tab.isLink">
-                        <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})">
-                          <i class="{{tab.icon}}"></i>
-                        </a>
-                      </div>
-                  </uib-tab-heading>
-                  <div class="control-group" ng-if="!tab.isLink">
-                      <label class="">
-                        {{tab.text}}
-                      </label>
-                  </div>
-              </uib-tab>
+            <uib-tab ng-repeat="tab in vm.tabsContacto" heading="{{tab.titulo}}" classes="{{tab.type}}">
+              <uib-tab-heading>
+                <div ng-if="!tab.isLink">
+                  <a href="{{tab.href}}">
+                    <i class="{{tab.icon}}"></i>
+                  </a>
+                </div>
+                <div ng-if="tab.isLink">
+                  <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})">
+                    <i class="{{tab.icon}}"></i>
+                  </a>
+                </div>
+              </uib-tab-heading>
+              <div class="control-group" ng-if="!tab.isLink">
+                <label class="">
+                  {{tab.text}}
+                </label>
+              </div>
+            </uib-tab>
           </uib-tabset>
         </div>
       </div>
     </div>
   </div>
-<div ui-view="detalle"/>
+  <div ui-view="detalle"/>
