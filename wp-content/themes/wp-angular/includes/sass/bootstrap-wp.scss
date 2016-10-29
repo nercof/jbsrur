@@ -318,6 +318,60 @@ body {
 
                                                 }
                                           }
+                                          .dropdown-menu {
+                                                background-color: $white-a;
+                                                color: $black;
+                                                z-index: 99;
+                                                width: 55%;
+                                                border-radius: 0;
+                                                li {
+                                                      background: transparent;
+                                                      border-bottom: 1px $red solid;
+                                                      a {
+                                                            color: $black;
+                                                            text-decoration: none;
+                                                            font-family: $font-normal;
+                                                            width: 100%;
+                                                            display: block;
+                                                            text-transform: none;
+                                                            padding: 3px;
+                                                            background: transparent;
+                                                            padding-bottom: 10px;
+                                                            .address {
+                                                                  display: block;
+                                                                  font-weight: bold;
+                                                                  color: $grey;
+                                                                  strong {
+                                                                        font-weight: 900;
+                                                                  }
+                                                            }
+                                                            .description {
+                                                                  white-space: normal;
+                                                                  display: block;
+                                                                  color: $grey;
+                                                                  padding: 5px 0;
+                                                                  font-size: 0.9em;
+                                                            }
+                                                            .tag {
+                                                                  background-color: $grey;
+                                                                  color: $white;
+                                                                  border-radius: 10px;
+                                                                  padding: 2px 5px 2px 5px;
+                                                                  font-size: 0.9em;
+                                                                  margin: 1px;
+                                                            }
+                                                            &:hover .description {
+                                                                  color: $red;
+                                                            }
+                                                            &:hover .address {
+                                                                  color: $red;
+                                                            }
+                                                      }
+                                                      &:last-child {
+                                                            border: none;
+                                                      }
+                                                }
+                                          }
                                     }
                                     &.active,
                                     :hover {
@@ -525,29 +579,6 @@ body {
                               &:hover {
                                     opacity: 0.85;
                               }
-                        }
-                  }
-            }
-      }
-      #global-search {
-            .search-results {
-                  background-color: $white-a;
-                  color: $black;
-                  position: absolute;
-                  z-index: 99;
-                  width: 30%;
-                  left: 20%;
-                  border-bottom: 1px $black solid;
-                  a {
-                        color: $black;
-                        text-decoration: none;
-                        font-family: $font-normal;
-                        width: 100%;
-                        display: block;
-                        padding: 3px;
-                        border-bottom: 1px $grey solid;
-                        &:hover {
-                              color: $red;
                         }
                   }
             }
