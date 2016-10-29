@@ -24,6 +24,14 @@
                 { "titulo": "Correo" , "href":"mailto:centro@jbsrur.com.ar", "text":"centro@jbsrur.com.ar", "type":"email", "icon":"typcn typcn-mail" },
                 { "titulo": "Ver Más" , "href":"#", "type":"link", "icon":"typcn typcn-plus", "isLink": true }
             ];
+
+            //
+            // Empleadas para la paginacion de propiedades.
+            vm.totalItems = false;
+            vm.currentPage = 1;
+            vm.itemsPerPage = 16;
+            vm.properties = {};
+
             // Activamos
             activate(vm);
 
@@ -48,8 +56,12 @@
                     _.isEqual($state.current.name,STATE.AL)){
                     vm.propiedades = $localStorage.prop_search;
                 }
-                // Busqueda avanzada.
+                /**
+                * Busqueda avanzada.
+                *
+                */
                 else {
+                    console.log("Searching properties: << tokkoResultController() >>");
                     // Consultamos si tenemos valores en la cache
                     if (!_.isEmpty(vm.cache_propiedades)) {
                         // Caso 0: Base de busqueda
@@ -62,7 +74,7 @@
                         ( vm.data.suite_amount.length     == 0 || vm.data.suite_amount[0] == "0" ) &&
                         // Zona/Barrio: 0: Todos
                         vm.data.current_localization_id == 0 ) {
-                            vm.propiedades = $localStorage.prop_cache;
+                            vm.propiedades = vm.cache_propiedades;
                             vm.spinner = false;
                         } else if (!_.isEmpty(vm.data)){
                             /**
@@ -82,14 +94,14 @@
                                 }
 
                                 // Filtramos por tipo de Operacion
-                                vm.propiedades = _.filter($localStorage.prop_cache, function(prop) {
+                                vm.propiedades = _.filter(vm.cache_propiedades, function(prop) {
                                     return _.some(prop.operations, function(oper) {
                                         return oper.operation_type == type;
                                     });
                                 });
                             } else if (vm.data.operation_types.length == 2) {
                                 // Caso 1.1: Filtrar por tipo de Operacion (Todos)
-                                vm.propiedades = $localStorage.prop_cache;
+                                vm.propiedades = vm.cache_propiedades;
                             }
                             // Uncomment only for Test
                             // console.log(vm.propiedades[0]);
@@ -134,16 +146,19 @@
                         }
                     }// else Advanced search with
                 }
-                // prop_search: Todas las propiedades excluidas por search
+                // Consultamos si es necesario almacenar el resultado de la
+                // busqueda en el storage.
                 if (_.isEmpty($localStorage.prop_search)) {
-                    $localStorage.prop_search = vm.propiedades;
+                    $scope.$storage = $localStorage.$default({
+                        prop_search: vm.propiedades,
+                    });
                 }
 
                 /**
                 * Flujo de contingencia
                 * Objetivo: Sino tenemos nada en la cache vamos a buscar
                 */
-                if (_.isEmpty(vm.propiedades) && _.isEmpty(vm.data)) {
+                if (_.isEmpty(vm.propiedades)) {
                     // Call factory to search Tokko properties.
                     tokkoFactory.getProperties(vm.data).then(function(response) {
                         if(response.objects.length > 0) {
@@ -153,9 +168,33 @@
                             vm.error = "No se encontraron propiedades"
                         }
                     });
-                }else {
-                    //vm.error = "No se encontraron propiedades"
                 }
+                else{
+                    // Variables auxiliares para el paginador.
+                    vm.totalItems = vm.propiedades.length;
+                    vm.spinner = false;
+
+                    // Iniciamos las propiedades filtradas para la paginacion inicial.
+                    vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                }
+            }
+            
+            /**
+            * Setea lista propiedades x pagina
+            * El listado de propiedades depende del parametro page pasado.
+            *
+            * @param {int} page - Pagina actual
+            */
+            vm.setPagingData = function (page) {
+                vm.properties =  vm.propiedades.slice((page - 1) * vm.itemsPerPage, page * vm.itemsPerPage);
+            }
+
+            /**
+            * Funcion guia para cambiar la pagina seleccionada.
+            *
+            */
+            vm.pageChanged = function(){
+                vm.setPagingData(vm.currentPage);
             }
         } // Fin controller
     })();

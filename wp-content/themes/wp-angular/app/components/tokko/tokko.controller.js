@@ -166,8 +166,6 @@
                     });
                 }
                 else {
-
-                    console.log("vm.searchTokko: << tokkoController() >>");
                     // Parameters by user
                     var obj = {
                         "operation_types": _.keys(vm.operation_types),
@@ -175,7 +173,7 @@
                         "suite_amount": _.keys(vm.suite_amount),
                         "current_localization_id": _.keys(vm.localization_barrio_id)
                     }
-
+                    console.log("vm.searchTokko: << tokkoController() >>");
                     $state.go('propiedades', {
                         data: obj, cache: vm.prop_cache
                     });

@@ -19,8 +19,6 @@
             vm.allProperties = {};
 
             // Empleadas para la paginacion de propiedades.
-            // @see: https://angular-ui.github.io/bootstrap/
-            // @see: http://stackoverflow.com/questions/34775157/angular-ui-bootstrap-pagination-ng-model-not-updating
             vm.totalItems = false;
             vm.currentPage = 1;
             vm.itemsPerPage = 16;
@@ -41,8 +39,6 @@
             function activate(vm) {
                 // Título de la vista
                 vm.title_view = $stateParams.title_view;
-                console.log($stateParams);
-                console.log($localStorage.prop_cache);
 
                 // Filtramos por tipo de Operacion
                 vm.allProperties = _.filter($localStorage.prop_cache, function(prop) {
@@ -66,8 +62,6 @@
                 $scope.$storage = $localStorage.$default({
                     prop_search: vm.properties,
                 });
-                console.log(vm.properties);
-                console.log('<< FIN activate() catalog >>');
             } // fin activate()
 
             /**
