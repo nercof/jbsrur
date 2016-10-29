@@ -32,6 +32,9 @@
 
             vm.search_query = '';
             vm.barrios = [];
+            //$scope.universo = ["venta", "Alquiler", "casa", "chacabuco Departamento"];
+            // Test typeahead
+            vm.universoPropiedades= [];
 
             /*
             * Permite cargar el mapa
@@ -74,7 +77,19 @@
                     });
                 }
                 // Tenemos que parsear el objeto antes de asignarlo
-                parsedOperationTypes(vm.prop_cache);                
+                parsedOperationTypes(vm.prop_cache);
+
+                //
+                _.each(vm.prop_cache, function (propiedad) {
+                    var obj = _.pick(propiedad, 'id', 'address',
+                    'description', 'fake_address', 'publication_title',
+                    'type', 'operations_types');
+                    obj.type = obj.type.name;
+                    vm.universoPropiedades.push(obj);
+                });
+
+                console.log(vm.universoPropiedades);
+
             }// Fin activate
             /**
             * Permite filtrar elementos del tipo
@@ -91,10 +106,12 @@
                 // Por cada propiedad
                 _.each(pPropiedades, function(propiedad) {
                     propiedad.operationsParsed = [];
+                    propiedad.operations_types = "";
 
                     // Por cada tipo de propiedad
                     _.each(propiedad.operations, function (operation) {
                         propiedad.operationsParsed.push(operation.operation_type);
+                        propiedad.operations_types += operation.operation_type + ' ';
                     });
                 });
             }
