@@ -8,7 +8,15 @@
                         <span class="input-group-btn">
                             <div class="button btn btn-default" type="button" ng-click="vm.searchFilter()"><i class="fa fa-search"></i></div>
                         </span>
-                        <input type="text" class="form-control" ng-model="value_search" ng-trim="false" placeholder="" ng-disabled="!vm.prop_cache">
+                        <input type="text"
+                            class="form-control"
+                            placeholder=""
+                            ng-model="value_search"
+                            ng-trim="false"
+                            ng-disabled="!vm.universoPropiedades"
+                            typeahead-template-url="wp-content/themes/wp-angular/app/views/tokko-search/typeahead-tpl.html"
+                            typeahead-on-select='vm.onSelect($item)'
+                            uib-typeahead="propiedad as propiedad.fake_address for propiedad in vm.universoPropiedades | filter:$viewValue | limitTo:5">
                     </div><!-- /input-group -->
                 </a>
             </li>
@@ -22,21 +30,6 @@
     </div>
     <div class="tab-content clearfix">
         <div class="tab-pane active" id="global-search">
-            <!-- PANEL RESULTADO PROP-CACHE -->
-            <div ng-if="value_search && vm.prop_cache">
-                <div class="col-xs-12">
-                    <div class="col-sm-6 col-xs-6 search-results">
-                        <div ng-repeat="prop in vm.prop_cache | cf_psearch:value_search:vm " >
-                            <div>
-                                <a ui-sref="propiedades.detalle({data: prop , id:prop.id})">
-                                    <b>{{prop.fake_address}}: </b>
-                                    {{prop.type.name}}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="tab-pane" id="advanced-search">

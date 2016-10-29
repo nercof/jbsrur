@@ -22,7 +22,6 @@
         * @param: vm: tokkoController (utilizar vm.universo)
         */
         function filterProps(all_prop, value_search, vm) {
-            console.log("Custom filter: << cf_psearch >>");
             // Variables a utilizar.
             var filtered = [];      // Todas las propiedades.
             var query_search = [];  // Array de busqueda.
@@ -45,14 +44,11 @@
             // Obtener el universo con palbras == true
             filterUniverso = getPalabrasBuscadas();
 
-            console.log(" << getPalabrasBuscadas() >>");
-            console.log(filterUniverso);
 
             // Aplicar filtros anteriores por cada palabra clave.
             _.each(filterUniverso, function(obj){
                 if (obj.field == "property_types") {
                     filtered = _.filter(filtered, function(prop){
-                        // @FIXME: Pre-procesar en tokkoController prop.operations
                         return _.contains(prop.operationsParsed, obj.word);
                     });
                 }
@@ -66,7 +62,10 @@
         * Setear en pending si falta parte de la palabra.
         *
         * @param: word: string de busqueda.
+        * @param: universe: universo de palabras claves.
+        * @param: querySearchLenght: length de la cadena de busqueda
         */
+<<<<<<< HEAD
         function buscarEnUniverso(pWord, pUniverso, pSizeUserInput){
 
             _.each(pUniverso, function(pPalabra){
@@ -86,6 +85,28 @@
                         pPalabra.pAnterior.push(pWord);
                     }
                 }
+=======
+        function buscarEnUniverso(word, universe, querySearchLenght){
+            _.each(universe, function(keyword){
+                keyword.word = keyword.word.toLowerCase();
+                if (keyword.word == word) {
+                    // Si la palabra buscada es igual la keyword setear en true
+                    keyword.status = "true";
+                } else if ( keyword.word.toLowerCase().search(word) >= 0 &&
+                            _.contains(keyword.word.split(/(\s+)/), word) 
+                            ) {
+                                    console.log('HOLAAA');
+                                    console.log(keyword.word, word)
+                                    console.log(keyword.pAnterior);
+                                    // Si la palabra buscada se encuentra dentro de la keyword
+                                    keyword.status = "pending";
+                                    keyword.pAnterior = word;
+                                    console.log('pending');
+                                } else {
+                                    console.log(keyword.word, word);
+                                    console.log(keyword.word.search(word));
+                                }
+>>>>>>> 481564dd6758967443c5183ed9d12538e7faf6b6
             }
         );
     }

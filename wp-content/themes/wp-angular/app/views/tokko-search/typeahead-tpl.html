@@ -1,0 +1,7 @@
+<a>
+    <span class="address" ng-bind-html="match.model.fake_address | to_trust | uibTypeaheadHighlight:query "></span>
+    <div class="description" ng-bind-html="match.model.description | to_trust | resume:query | uibTypeaheadHighlight:query "></div>
+    <span class="tag" ng-bind-html="match.model.barrio | to_trust | uibTypeaheadHighlight:query"></span>
+    <span class="tag" ng-bind-html="match.model.operations_types | to_trust | uibTypeaheadHighlight:query"></span>
+    <span class="tag" ng-bind-html="match.model.type | to_trust | uibTypeaheadHighlight:query"></span>
+</a>
