@@ -52,8 +52,8 @@
 
                 // Si el estado actual es propiedad.detalle no realizar la búsqueda
                 if (_.isEqual($state.current.name,STATE.PD) ||
-                    _.isEqual($state.current.name,STATE.VE) ||
-                    _.isEqual($state.current.name,STATE.AL)){
+                _.isEqual($state.current.name,STATE.VE) ||
+                _.isEqual($state.current.name,STATE.AL)){
                     vm.propiedades = $localStorage.prop_search;
                 }
                 /**
@@ -178,7 +178,7 @@
                     vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
                 }
             }
-            
+
             /**
             * Setea lista propiedades x pagina
             * El listado de propiedades depende del parametro page pasado.

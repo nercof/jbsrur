@@ -42,9 +42,6 @@
                 buscarEnUniverso(word, vm.universo, query_search.length);
             });
 
-            console.log("buscarEnUniverso():");
-            console.log(vm.universo);
-
             // Obtener el universo con palbras == true
             filterUniverso = getPalabrasBuscadas();
 
@@ -71,9 +68,10 @@
         * @param: word: string de busqueda.
         */
         function buscarEnUniverso(pWord, pUniverso, pSizeUserInput){
-            console.log(pWord, pUniverso);
+
             _.each(pUniverso, function(pPalabra){
                 // Si la palabra es igual setear en true.       - Status true
+                console.log(pWord, pPalabra.word, pUniverso);
                 if (pPalabra.word.toLowerCase() == pWord) {
                     pPalabra.status = true;
                 } else if (pPalabra.word.search(pWord) > 0) {
