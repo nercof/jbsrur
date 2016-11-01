@@ -21,6 +21,10 @@
             vm.barriosXzona = {};
             vm.tokko_data = {};
             vm.universo = [];
+            vm.propiedadesPredictive = [];
+
+            // Read and Write
+            $scope.$storage = $localStorage;
 
             vm.property_types = [];
             vm.operation_types = [];
@@ -29,6 +33,7 @@
             vm.localization_barrio_id = [];
             vm.prop_cache = {};
             vm.prop_search = {};
+            vm.listaPropiedades = []; // Lista propiedades predictive
 
             vm.search_query = '';
             vm.barrios = [];
@@ -60,7 +65,9 @@
 
                 if ($localStorage.prop_cache && $localStorage.prop_cache.length > 0) {
                     vm.prop_cache = $localStorage.prop_cache;
-                    vm.prop_search = $localStorage.prop_search;
+
+                    // Limpiamos la lista de busquedas.
+                    $scope.$storage.prop_search = [];
                 }
                 else {
 
@@ -143,7 +150,6 @@
             * @data: null. Porque no hubo interaccion Advanced Search.
             */
             vm.searchFilter = function (){
-                console.log("Quick search filter: << tokkoController() >>");
                 // Re-direct to state propiedad
 
                 var obj = {
@@ -175,8 +181,6 @@
                     });
                 }
                 else {
-
-                    console.log("vm.searchTokko: << tokkoController() >>");
                     // Parameters by user
                     var obj = {
                         "operation_types": _.keys(vm.operation_types),
@@ -210,22 +214,22 @@
             * @data: null. Porque no hubo interaccion Advanced Search.
             */
             vm.searchFilter = function (){
-                console.log("Custom filter: << tokkoController:searchFilter() >>");
-                // Parameters by user
-                var obj = {
-                    "operation_types": _.keys(vm.operation_types),
-                    "property_types": _.keys(vm.property_types),
-                    "suite_amount": _.keys(vm.suite_amount),
-                    "current_localization_id": _.keys(vm.localization_barrio_id)
-                }
-
-                if($state.current.name != 'propiedades.detalle'){
-                    vm.propiedades = vm.prop_search
-                }
+                // Obtener las propiedades seleccionadas.
+                //getPropiedades();
+                var propiedad;
+                _.each(vm.propiedadesPredictive, function(prop){
+                    _.find(vm.prop_cache, function (propiedad) {
+                        if (propiedad.id == prop.id) {
+                            vm.listaPropiedades.push(propiedad);
+                        }
+                    });
+                });
 
                 // Re-direct to state propiedad
                 $state.go('propiedades', {
-                    data: obj, cache: vm.prop_search
+                    data: null,
+                    cache: vm.prop_search,
+                    predictive: vm.listaPropiedades
                 });
             }
         }; // Cierre tokkoController

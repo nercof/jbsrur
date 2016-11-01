@@ -255,11 +255,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
-                'cf_psearch',
-                get_stylesheet_directory_uri() . '/app/filters/cf_psearch.js',
-                array( 'core', 'factories' ));
-
-                wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
                 array( 'core', 'factories' ));
@@ -267,6 +262,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'resume',
                 get_stylesheet_directory_uri() . '/app/filters/resume.js',
+                array( 'core', 'factories' ));
+
+                wp_enqueue_script(
+                'save_storage',
+                get_stylesheet_directory_uri() . '/app/filters/save_model.js',
                 array( 'core', 'factories' ));
 
                 wp_enqueue_script(
