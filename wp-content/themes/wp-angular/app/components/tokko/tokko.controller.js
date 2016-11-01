@@ -21,6 +21,7 @@
             vm.barriosXzona = {};
             vm.tokko_data = {};
             vm.universo = [];
+            vm.propiedadesPredictive = [];
 
             vm.property_types = [];
             vm.operation_types = [];
@@ -29,6 +30,7 @@
             vm.localization_barrio_id = [];
             vm.prop_cache = {};
             vm.prop_search = {};
+            vm.listaPropiedades = []; // Lista propiedades predictive
 
             vm.search_query = '';
             vm.barrios = [];
@@ -132,6 +134,7 @@
             * una propiedad en el buscador global
             */
             vm.onSelect = function(item) {
+                console.log("<< vm.onSelect() >>");
                 $state.go('propiedades.detalle', { id: item.id });
             }
 
@@ -211,21 +214,24 @@
             */
             vm.searchFilter = function (){
                 console.log("Custom filter: << tokkoController:searchFilter() >>");
-                // Parameters by user
-                var obj = {
-                    "operation_types": _.keys(vm.operation_types),
-                    "property_types": _.keys(vm.property_types),
-                    "suite_amount": _.keys(vm.suite_amount),
-                    "current_localization_id": _.keys(vm.localization_barrio_id)
-                }
 
-                if($state.current.name != 'propiedades.detalle'){
-                    vm.propiedades = vm.prop_search
-                }
+                // Obtener las propiedades seleccionadas.
+                //getPropiedades();
+                var propiedad;
+                _.each(vm.propiedadesPredictive, function(prop){
+                    _.find(vm.prop_cache, function (propiedad) {
+                        if (propiedad.id == prop.id) {
+                            vm.listaPropiedades.push(propiedad);
+                            console.log(vm.listaPropiedades);
+                        }
+                    });
+                });
 
                 // Re-direct to state propiedad
                 $state.go('propiedades', {
-                    data: obj, cache: vm.prop_search
+                    data: null,
+                    cache: vm.prop_search,
+                    predictive: vm.listaPropiedades
                 });
             }
         }; // Cierre tokkoController

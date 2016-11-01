@@ -109,7 +109,8 @@
         // Resultado de Buscador de Propiedades.
         params: {
           data: null,
-          cache: null
+          cache: null,
+          predictive: null, // Lista propiedades filtradas por el predictiveSearch
         },
         url: '/' + STATE.PO,
         views: {

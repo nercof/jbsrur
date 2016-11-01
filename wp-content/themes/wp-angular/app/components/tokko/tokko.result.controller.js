@@ -14,6 +14,7 @@
         var vm = this;
         vm.data = {}
         vm.cache_propiedades_propiedades = {}
+        vm.propiedadesPredictive = [];
 
         // Read and Write
         $scope.$storage = $localStorage;
@@ -71,12 +72,18 @@
             // Parámetros de entrada
             vm.data = $stateParams.data;
             vm.cache_propiedades = $stateParams.cache;
+            vm.propiedadesPredictive = $stateParams.predictive;
 
             // Si el estado actual es propiedad.detalle no realizar la búsqueda.
             if (_.isEqual($state.current.name, STATE.PD) ||
                 _.isEqual($state.current.name, STATE.VE) ||
                 _.isEqual($state.current.name, STATE.AL) ) {
                 vm.propiedades = $scope.$storage.prop_search;
+            }
+            else if (_.isEqual($state.current.name, STATE.PO) &&
+                    !_.isEmpty(vm.propiedadesPredictive)) {
+                vm.propiedades = vm.propiedadesPredictive;
+                console.log(vm.propiedades);
             }
             // Si el estado actual es propiedad y tengo datos <F5>
             else if (_.isEqual($state.current.name, STATE.PO) &&

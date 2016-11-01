@@ -15,8 +15,8 @@
                             ng-trim="false"
                             ng-disabled="!vm.universoPropiedades"
                             typeahead-template-url="wp-content/themes/wp-angular/app/views/tokko-search/typeahead-tpl.html"
-                            typeahead-on-select='vm.onSelect($item, $model)'
-                            uib-typeahead="propiedad as propiedad.fake_address for propiedad in vm.universoPropiedades | filter:$viewValue | limitTo:5">
+                            typeahead-on-select='vm.onSelect($item)'
+                            uib-typeahead="propiedad as propiedad.fake_address for propiedad in vm.universoPropiedades | filter:$viewValue | save_model:vm | limitTo:5">
                     </div><!-- /input-group -->
                 </a>
             </li>
