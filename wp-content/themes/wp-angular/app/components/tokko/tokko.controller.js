@@ -134,7 +134,6 @@
             * una propiedad en el buscador global
             */
             vm.onSelect = function(item) {
-                console.log("<< vm.onSelect() >>");
                 $state.go('propiedades.detalle', { id: item.id });
             }
 
@@ -146,7 +145,6 @@
             * @data: null. Porque no hubo interaccion Advanced Search.
             */
             vm.searchFilter = function (){
-                console.log("Quick search filter: << tokkoController() >>");
                 // Re-direct to state propiedad
 
                 var obj = {
@@ -178,8 +176,6 @@
                     });
                 }
                 else {
-
-                    console.log("vm.searchTokko: << tokkoController() >>");
                     // Parameters by user
                     var obj = {
                         "operation_types": _.keys(vm.operation_types),
@@ -213,8 +209,6 @@
             * @data: null. Porque no hubo interaccion Advanced Search.
             */
             vm.searchFilter = function (){
-                console.log("Custom filter: << tokkoController:searchFilter() >>");
-
                 // Obtener las propiedades seleccionadas.
                 //getPropiedades();
                 var propiedad;
@@ -222,7 +216,6 @@
                     _.find(vm.prop_cache, function (propiedad) {
                         if (propiedad.id == prop.id) {
                             vm.listaPropiedades.push(propiedad);
-                            console.log(vm.listaPropiedades);
                         }
                     });
                 });

@@ -83,7 +83,6 @@
             else if (_.isEqual($state.current.name, STATE.PO) &&
                     !_.isEmpty(vm.propiedadesPredictive)) {
                 vm.propiedades = vm.propiedadesPredictive;
-                console.log(vm.propiedades);
             }
             // Si el estado actual es propiedad y tengo datos <F5>
             else if (_.isEqual($state.current.name, STATE.PO) &&
