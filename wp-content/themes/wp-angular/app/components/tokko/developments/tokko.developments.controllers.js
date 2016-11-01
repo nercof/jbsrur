@@ -48,19 +48,8 @@
             if (_.isEmpty(vm.allDevelopments)) {
                 vm.error = true;
             }
-            else {
-                // Almacenamos el resultado de la búsqueda.
-                $scope.$storage.developments = vm.allDevelopments;
-
-                // Variables auxiliares para el paginador.
-                vm.totalItems = vm.allDevelopments.length;
-                vm.spinner = false;
-
-                // Iniciamos las propiedades filtradas para la paginacion inicial.
-                vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-            }
         } // fin activate()
-        
+
         /**
          * Obtener los <emprendimientos> desde la API de Tokko
          * @param {} page - <description>
@@ -68,15 +57,25 @@
         function getDevelopmentsTokkoAPI() {
             // json example
             // http://www.jsoneditoronline.org/?id=19d496428cead0d42adf9485f779a008
-            
+
             // Buscamos en la API
             tokkoFactory.getDevelopmentsTokkoAPI().then(function(response) {
                 if (response.objects.length > 0) {
                     vm.allDevelopments = response.objects;
+
+                    // Almacenamos el resultado de la búsqueda.
+                    $scope.$storage.developments = vm.allDevelopments;
+
+                    // Variables auxiliares para el paginador.
+                    vm.totalItems = vm.allDevelopments.length;
+                    vm.spinner = false;
+
+                    // Iniciamos las propiedades filtradas para la paginacion inicial.
+                    vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
                 }
             });
         }
-        
+
         /**
          * Setea lista propiedades x pagina
          * El listado de propiedades depende del parametro page pasado.

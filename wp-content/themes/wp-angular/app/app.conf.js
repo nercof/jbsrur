@@ -25,6 +25,6 @@
     .constant('TITULO', {
         'CATALOGO_ALQUILER': 'Alquileres',
         'CATALOGO_VENTA': 'Ventas',
-        'NUESTROS_EMPRENDIMIENTOS': 'Nuestros ',
+        'NUESTROS_EMPRENDIMIENTOS': 'Nuestros Emprendimientos',
     });
 })();
