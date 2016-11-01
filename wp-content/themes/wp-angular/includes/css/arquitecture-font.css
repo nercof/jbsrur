@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'arquitecture-font';
-  src:  url('fonts/arquitecture-font.eot?nhc5hn');
-  src:  url('fonts/arquitecture-font.eot?nhc5hn#iefix') format('embedded-opentype'),
-    url('fonts/arquitecture-font.ttf?nhc5hn') format('truetype'),
-    url('fonts/arquitecture-font.woff?nhc5hn') format('woff'),
-    url('fonts/arquitecture-font.svg?nhc5hn#arquitecture-font') format('svg');
+  src:  url('../fonts/arquitecture-font.eot');
+  src:  url('../fonts/arquitecture-font.eot#iefix') format('embedded-opentype'),
+    url('../fonts/arquitecture-font.ttf') format('truetype'),
+    url('../fonts/arquitecture-font.woff') format('woff'),
+    url('../fonts/arquitecture-font.svg#arquitecture-font') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -264,4 +264,3 @@
 .af-air-conditioner:before {
   content: "\e94f";
 }
-
