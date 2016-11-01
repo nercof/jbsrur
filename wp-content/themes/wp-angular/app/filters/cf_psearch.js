@@ -41,9 +41,6 @@
                 buscarEnUniverso(word, vm.universo, query_search.length);
             });
 
-            console.log("buscarEnUniverso():");
-            console.log(vm.universo);
-
             // Obtener el universo con palbras == true
             filterUniverso = getPalabrasBuscadas();
 
@@ -68,6 +65,27 @@
         * @param: universe: universo de palabras claves.
         * @param: querySearchLenght: length de la cadena de busqueda
         */
+<<<<<<< HEAD
+        function buscarEnUniverso(pWord, pUniverso, pSizeUserInput){
+
+            _.each(pUniverso, function(pPalabra){
+                // Si la palabra es igual setear en true.       - Status true
+                console.log(pWord, pPalabra.word, pUniverso);
+                if (pPalabra.word.toLowerCase() == pWord) {
+                    pPalabra.status = true;
+                } else if (pPalabra.word.search(pWord) > 0) {
+                    pPalabra.status = "pending";
+                    if (pSizeUserInput >= 2) {
+                        pPalabra.pAnterior.push(pWord);
+                    }
+                } else if (pPalabra.word.length > pWord.length) {
+                    // Sino es igual consultamos si pertenece o no  - Status pending
+                    pPalabra.status = "pending";
+                    if (pSizeUserInput >= 2) {
+                        pPalabra.pAnterior.push(pWord);
+                    }
+                }
+=======
         function buscarEnUniverso(word, universe, querySearchLenght){
             _.each(universe, function(keyword){
                 keyword.word = keyword.word.toLowerCase();
@@ -88,6 +106,7 @@
                                     console.log(keyword.word, word);
                                     console.log(keyword.word.search(word));
                                 }
+>>>>>>> 481564dd6758967443c5183ed9d12538e7faf6b6
             }
         );
     }

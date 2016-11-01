@@ -19,10 +19,11 @@
                 'ngStorage',  // localStorage and sessionStorage done right for AngularJS
             ])
     // Para poder visualizar el $state en las vistas.
-    .run(['$rootScope', '$state', '$stateParams',
-        function ($rootScope, $state, $stateParams) {
-            $rootScope.$state = $state;
+    .run(['$rootScope', '$state', '$stateParams', '$localStorage',
+        function ($rootScope, $state, $stateParams, $localStorage) {
+            $rootScope.$state       = $state;
             $rootScope.$stateParams = $stateParams;
+            $rootScope.$storage     = $localStorage;
         }])
 
         // Empleamos $localstorage para buscar las propiedades en caché
