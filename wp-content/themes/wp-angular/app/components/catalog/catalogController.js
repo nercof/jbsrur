@@ -82,7 +82,7 @@
             vm.properties = vm.allProperties.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
 
             // Almacenamos el resultado de la búsqueda.
-            $scope.$storage = vm.properties;
+            $scope.$storage.prop_search = vm.properties;
 
         } // fin activate()
 

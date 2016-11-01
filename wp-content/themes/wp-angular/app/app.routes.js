@@ -73,9 +73,13 @@
       })
       .state(STATE.NE, {
         url: '/' + STATE.NE,
+        params: {
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS,
+        },
         views: {
           "content": {
-            templateUrl: localized.views + "emprendimientos.html"
+            templateUrl: localized.tokko + "tokko-developments/tokko-developments.html",
+            controller: 'developmentsController as vm',
           }
         }
       })

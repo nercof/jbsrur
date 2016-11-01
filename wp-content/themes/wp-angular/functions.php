@@ -233,6 +233,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'tokkoDetails',
                 get_stylesheet_directory_uri() . '/app/components/tokko/tokko.details.controller.js',
                 array( 'core', 'factories' ));
+                
+                wp_enqueue_script(
+                'tokko.developments',
+                get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.controllers.js',
+                array( 'core', 'factories'));
 
                 wp_enqueue_script(
                 'secondFooter',
@@ -253,7 +258,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'catalog',
                 get_stylesheet_directory_uri() . '/app/components/catalog/catalogController.js',
                 array( 'core', 'factories'));
-
+                
                 wp_enqueue_script(
                 'cf_psearch',
                 get_stylesheet_directory_uri() . '/app/filters/cf_psearch.js',
