@@ -23,6 +23,9 @@
             vm.universo = [];
             vm.propiedadesPredictive = [];
 
+            // Read and Write
+            $scope.$storage = $localStorage;
+
             vm.property_types = [];
             vm.operation_types = [];
             vm.suite_amount = [];
@@ -62,7 +65,9 @@
 
                 if ($localStorage.prop_cache && $localStorage.prop_cache.length > 0) {
                     vm.prop_cache = $localStorage.prop_cache;
-                    vm.prop_search = $localStorage.prop_search;
+
+                    // Limpiamos la lista de busquedas.
+                    $scope.$storage.prop_search = [];
                 }
                 else {
 
