@@ -1,0 +1,267 @@
+@font-face {
+  font-family: 'arquitecture-font';
+  src:  url('fonts/arquitecture-font.eot?nhc5hn');
+  src:  url('fonts/arquitecture-font.eot?nhc5hn#iefix') format('embedded-opentype'),
+    url('fonts/arquitecture-font.ttf?nhc5hn') format('truetype'),
+    url('fonts/arquitecture-font.woff?nhc5hn') format('woff'),
+    url('fonts/arquitecture-font.svg?nhc5hn#arquitecture-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="af-"], [class*=" af-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'arquitecture-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.af-wrench:before {
+  content: "\e900";
+}
+.af-window:before {
+  content: "\e901";
+}
+.af-wheelbarrow:before {
+  content: "\e902";
+}
+.af-wallpaper:before {
+  content: "\e903";
+}
+.af-truck:before {
+  content: "\e904";
+}
+.af-trowel:before {
+  content: "\e905";
+}
+.af-tiles:before {
+  content: "\e906";
+}
+.af-switch:before {
+  content: "\e907";
+}
+.af-spatula:before {
+  content: "\e908";
+}
+.af-smartphone:before {
+  content: "\e909";
+}
+.af-skyscraper:before {
+  content: "\e90a";
+}
+.af-shovel:before {
+  content: "\e90b";
+}
+.af-set-square:before {
+  content: "\e90c";
+}
+.af-screwdriver:before {
+  content: "\e90d";
+}
+.af-screw-1:before {
+  content: "\e90e";
+}
+.af-screw:before {
+  content: "\e90f";
+}
+.af-saw:before {
+  content: "\e910";
+}
+.af-ruler:before {
+  content: "\e911";
+}
+.af-roof:before {
+  content: "\e912";
+}
+.af-portfolio:before {
+  content: "\e913";
+}
+.af-plug:before {
+  content: "\e914";
+}
+.af-pliers:before {
+  content: "\e915";
+}
+.af-placeholder:before {
+  content: "\e916";
+}
+.af-pipe-1:before {
+  content: "\e917";
+}
+.af-pipe:before {
+  content: "\e918";
+}
+.af-parquet:before {
+  content: "\e919";
+}
+.af-parking:before {
+  content: "\e91a";
+}
+.af-paint-roller:before {
+  content: "\e91b";
+}
+.af-paint-brush:before {
+  content: "\e91c";
+}
+.af-padlock-1:before {
+  content: "\e91d";
+}
+.af-padlock:before {
+  content: "\e91e";
+}
+.af-nail:before {
+  content: "\e91f";
+}
+.af-measuring-tape:before {
+  content: "\e920";
+}
+.af-mansion:before {
+  content: "\e921";
+}
+.af-mailbox:before {
+  content: "\e922";
+}
+.af-line-chart:before {
+  content: "\e923";
+}
+.af-letter:before {
+  content: "\e924";
+}
+.af-lamp:before {
+  content: "\e925";
+}
+.af-ladder:before {
+  content: "\e926";
+}
+.af-key:before {
+  content: "\e927";
+}
+.af-house-4:before {
+  content: "\e928";
+}
+.af-house-3:before {
+  content: "\e929";
+}
+.af-house-2:before {
+  content: "\e92a";
+}
+.af-house-1:before {
+  content: "\e92b";
+}
+.af-house:before {
+  content: "\e92c";
+}
+.af-home:before {
+  content: "\e92d";
+}
+.af-high-voltage:before {
+  content: "\e92e";
+}
+.af-helmet:before {
+  content: "\e92f";
+}
+.af-heater:before {
+  content: "\e930";
+}
+.af-hangar:before {
+  content: "\e931";
+}
+.af-hammer:before {
+  content: "\e932";
+}
+.af-glass-wall:before {
+  content: "\e933";
+}
+.af-garage:before {
+  content: "\e934";
+}
+.af-flash:before {
+  content: "\e935";
+}
+.af-fence:before {
+  content: "\e936";
+}
+.af-faucet:before {
+  content: "\e937";
+}
+.af-elevator:before {
+  content: "\e938";
+}
+.af-driller:before {
+  content: "\e939";
+}
+.af-door:before {
+  content: "\e93a";
+}
+.af-documents:before {
+  content: "\e93b";
+}
+.af-document:before {
+  content: "\e93c";
+}
+.af-crane:before {
+  content: "\e93d";
+}
+.af-concrete-mixer-1:before {
+  content: "\e93e";
+}
+.af-concrete-mixer:before {
+  content: "\e93f";
+}
+.af-compass:before {
+  content: "\e940";
+}
+.af-check:before {
+  content: "\e941";
+}
+.af-chat:before {
+  content: "\e942";
+}
+.af-certificate:before {
+  content: "\e943";
+}
+.af-calculator:before {
+  content: "\e944";
+}
+.af-building-1:before {
+  content: "\e945";
+}
+.af-building:before {
+  content: "\e946";
+}
+.af-brickwall-1:before {
+  content: "\e947";
+}
+.af-brickwall:before {
+  content: "\e948";
+}
+.af-box:before {
+  content: "\e949";
+}
+.af-blueprint-2:before {
+  content: "\e94a";
+}
+.af-blueprint-1:before {
+  content: "\e94b";
+}
+.af-blueprint:before {
+  content: "\e94c";
+}
+.af-balcony:before {
+  content: "\e94d";
+}
+.af-air-conditioner-1:before {
+  content: "\e94e";
+}
+.af-air-conditioner:before {
+  content: "\e94f";
+}
+
