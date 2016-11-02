@@ -72,7 +72,7 @@
         }
       })
       .state(STATE.NE, {
-        url: '/' + STATE.NE,
+        url: '/' + 'nuestros-emprendimientos',
         params: {
           title_view: TITULO.NUESTROS_EMPRENDIMIENTOS,
         },
@@ -137,6 +137,22 @@
           "detalle@propiedades": {
             templateUrl: localized.tokko + "tokko-search-details.html",
             controller: 'tokkoDetailsController as vm',
+          }
+        },
+        deepStateRedirect: true,
+        sticky: true,
+        onEnter: function() {}
+      })
+      .state(STATE.NED, { //DOT Notation
+        params: {
+          data: null,
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
+        },
+        url: '/:id',
+        views: {
+          "detalle@nemprendimientos": {
+            templateUrl: localized.tokko + "tokko-developments/tokko-developments-details.html",
+            controller: 'developmentsDetailsController as vm',
           }
         },
         deepStateRedirect: true,

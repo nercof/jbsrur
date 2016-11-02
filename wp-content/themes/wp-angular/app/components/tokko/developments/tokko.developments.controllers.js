@@ -10,12 +10,13 @@
      *  - @view: tokko-search-result
      */
     function developmentsController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state, $localStorage) {
+        resourceFactory, $stateParams, $state, $localStorage, STATE) {
         console.log('<< Loading developmentsController >>');
         var vm = this;
 
         vm.title_view = '';
         vm.allDevelopments = {};
+        vm.nemprendimientos = STATE.NE;
 
         // $storage support
         $scope.$storage = $localStorage;
@@ -24,7 +25,6 @@
         vm.totalItems = false;
         vm.currentPage = 1;
         vm.itemsPerPage = 6;
-        vm.developments = {};
 
         // Controla el estado de la consulta.
         vm.error = false;
@@ -42,14 +42,41 @@
             // Título de la vista
             vm.title_view = $stateParams.title_view;
 
+            console.log("Loading...");
+            console.log(vm.developments);
+
             // Filtramos por tipo de Operacion
-            getDevelopmentsTokkoAPI();
+            if (_.isEmpty($scope.$storage.developments)) {
+                getDevelopmentsTokkoAPI();
+            }
+            else {
+                vm.allDevelopments = $scope.$storage.developments;
+            }
 
             if (_.isEmpty(vm.allDevelopments)) {
                 vm.error = true;
             }
-        } // fin activate()
+            else {
+                _short_description();
+                
+                // Variables auxiliares para el paginador.
+                vm.totalItems = vm.allDevelopments.length;
+                vm.spinner = false;
 
+                // Iniciamos las propiedades filtradas para la paginacion inicial.
+                vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+            }
+        } // fin activate()
+        
+        /**
+         * Acorta la descripcion para mostrar solo los primeros 80 caracteres.
+         *
+         */
+        function _short_description() {
+            _.each(vm.allDevelopments, function (development) {
+                development.shortDescription = development.description.slice(0, 120) + '...';
+            });
+        }
         /**
          * Obtener los <emprendimientos> desde la API de Tokko
          * @param {} page - <description>
@@ -65,13 +92,6 @@
 
                     // Almacenamos el resultado de la búsqueda.
                     $scope.$storage.developments = vm.allDevelopments;
-
-                    // Variables auxiliares para el paginador.
-                    vm.totalItems = vm.allDevelopments.length;
-                    vm.spinner = false;
-
-                    // Iniciamos las propiedades filtradas para la paginacion inicial.
-                    vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
                 }
             });
         }

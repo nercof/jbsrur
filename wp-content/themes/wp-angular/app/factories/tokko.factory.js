@@ -19,6 +19,7 @@
   .constant('TOKKO_PROPERTY', 'property/{id}/?lang=es_ar&?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
   .constant('TOKKO_SEARCH', 'property/search/?limit=200&lang=es_ar&format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
   .constant('TOKKO_DEVELOPMENT','development/?limit=50&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+  .constant('TOKKO_DEVELOPMENT_ID','development/{id}/?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
   ;
   // limite=200
   // @see:http://tokkobroker.com/api/playground
@@ -41,6 +42,7 @@
     TOKKO_PROPERTY,
     TOKKO_SEARCH,
     TOKKO_DEVELOPMENT,
+    TOKKO_DEVELOPMENT_ID,
     $window
   ){
     console.log('Load tokko.factory.js');
@@ -59,6 +61,7 @@
       'getPropertyByCity': getPropertyByCity,
       'getNameOT':getNameOT,
       'getDevelopmentsTokkoAPI':getDevelopmentsTokkoAPI,
+      'getDevelopmentsTokkoAPIById': getDevelopmentsTokkoAPIById,
     }
 
     // Model Schema to search in Tokko.
@@ -293,6 +296,22 @@
     
     return tokkoService.getRequest(BASE_TOKKO, TOKKO_DEVELOPMENT, TOKKO_KEY);
   }
+  
+  /**
+  * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
+  * http://tokkobroker.com/api/playground#!/developments/development-list_get_0
+  * 
+  * @param {}: None
+  */
+  function getDevelopmentsTokkoAPIById(id) {
+    var url = TOKKO_DEVELOPMENT_ID;
+    url = url.replace('{id}', id)
+    
+    return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
+    
+  }
+  
+  
   /**
   * oper() permite retornar si es Alquiler o Venta el tipo de operacion.
   * Utilazo para el filtrado de datos.

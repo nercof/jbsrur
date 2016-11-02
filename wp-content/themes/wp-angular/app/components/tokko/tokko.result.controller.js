@@ -49,7 +49,6 @@
         vm.totalItems = false;
         vm.currentPage = 1;
         vm.itemsPerPage = 16;
-        //vm.properties = {}; Para que funcione el spinner
 
         // Activamos el controlador
         activate(vm);

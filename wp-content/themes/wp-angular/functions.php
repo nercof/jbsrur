@@ -240,6 +240,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
+                'tokko.developments.details',
+                get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.details.controllers.js',
+                array( 'core', 'factories'));
+                
+                wp_enqueue_script(
                 'secondFooter',
                 get_stylesheet_directory_uri() . '/app/components/footer/second.footer.controller.js',
                 array( 'core', 'factories'));

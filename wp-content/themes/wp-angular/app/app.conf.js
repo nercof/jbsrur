@@ -11,8 +11,9 @@
         'VE':'ventas',
         'AL':'alquileres',
         'QS':'quienes-somos',
-        'NE':'nuestros-emprendimientos',
-        'OE':'otros-emprendimientos',
+        'NE':'nemprendimientos',
+        'OE':'oemprendimientos',
+        'NED':'nemprendimientos.detalle',
         'NO':'novedades',
         'CO':'contacto',
         'PO':'propiedades',
@@ -26,5 +27,6 @@
         'CATALOGO_ALQUILER': 'Alquileres',
         'CATALOGO_VENTA': 'Ventas',
         'NUESTROS_EMPRENDIMIENTOS': 'Nuestros Emprendimientos',
+        'NUESTROS_EMPRENDIMIENTOS_DETALLE': "Detalle del Emprendimiento", 
     });
 })();
