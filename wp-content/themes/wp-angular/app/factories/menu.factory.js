@@ -12,9 +12,9 @@
       'getHeader':  getHeader
     }
 
-    function getHeader() {
+    function getHeader(STATE) {
       return getMenu().then(function(data){
-        addStates(data);
+        addStates(data, STATE);
         formatUrls(data);
         return data;
       });
@@ -24,14 +24,21 @@
       return wordpressService.getRequest(BASE_WP_MENU_URL, MENU_TAG, MENU_ID);
     }
 
-    function addStates(menu) {
+    function addStates(menu, STATE) {
       if (menu.items) {
         menu.items.forEach(function(item){
           if(!item.children){
             item.state = item.url.substr(1);
+            console.log('item.state: ' + item.state);
           }else {
             item.children.forEach(function(child){
-              child.state = child.url.substr(1);
+              console.log('child.state: ' + child.url.substr(1));
+              if (child.url.substr(1) == 'nuestros-emprendimientos') {
+                  child.state = STATE.NE;
+              }else {
+                child.state = STATE.OE;
+              }
+              console.log('child.state: ' + child.state);
             });
           }
         });

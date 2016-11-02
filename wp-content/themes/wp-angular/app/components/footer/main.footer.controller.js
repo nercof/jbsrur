@@ -52,7 +52,7 @@
                     },
                     {
                         name: "Nuestros emprendimientos",
-                        url: "http://jbsrur-marilynpi.c9users.io/#/nuestros-emprendimientos",
+                        url: "http://jbsrur:8080/#/nuestros-emprendimientos",
                     },
                     {
                         name: "Novedades",

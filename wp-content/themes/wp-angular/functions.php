@@ -233,7 +233,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'tokkoDetails',
                 get_stylesheet_directory_uri() . '/app/components/tokko/tokko.details.controller.js',
                 array( 'core', 'factories' ));
-                
+
                 wp_enqueue_script(
                 'tokko.developments',
                 get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.controllers.js',
@@ -243,7 +243,12 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'tokko.developments.details',
                 get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.details.controllers.js',
                 array( 'core', 'factories'));
-                
+
+                wp_enqueue_script(
+                'quienesSomosController',
+                get_stylesheet_directory_uri() . '/app/components/quienes-somos/quienes.somos.controller.js',
+                array( 'core', 'factories'));
+
                 wp_enqueue_script(
                 'secondFooter',
                 get_stylesheet_directory_uri() . '/app/components/footer/second.footer.controller.js',
@@ -263,7 +268,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'catalog',
                 get_stylesheet_directory_uri() . '/app/components/catalog/catalogController.js',
                 array( 'core', 'factories'));
-                
+
                 wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
