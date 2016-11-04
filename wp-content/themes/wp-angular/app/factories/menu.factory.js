@@ -3,25 +3,24 @@
   angular
   .module('app.factories')
   .factory('menuFactory', dataFactory)
-  .constant('MENU_ID', '2')
   .constant('MENU_TAG', 'menus');
 
-  function dataFactory(wordpressService, MENU_ID, MENU_TAG, BASE_WP_MENU_URL){
+  function dataFactory(wordpressService, MENU_TAG, BASE_WP_MENU_URL){
 
     var data = {
       'getHeader':  getHeader
     }
 
-    function getHeader() {
-      return getMenu().then(function(data){
+    function getHeader(id) {
+      return getMenu(id).then(function(data){
         addStates(data);
         formatUrls(data);
         return data;
       });
     }
 
-    function getMenu() {
-      return wordpressService.getRequest(BASE_WP_MENU_URL, MENU_TAG, MENU_ID);
+    function getMenu(id) {
+      return wordpressService.getRequest(BASE_WP_MENU_URL, MENU_TAG, id);
     }
 
     function addStates(menu) {

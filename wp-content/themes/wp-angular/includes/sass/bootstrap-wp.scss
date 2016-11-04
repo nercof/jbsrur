@@ -71,6 +71,9 @@ body {
             .carousel-control {
                   width: 50px;
             }
+            img {
+                  width: 100%;
+            }
       }
       h1 {
             &.title{
@@ -651,9 +654,12 @@ body {
                   display: inline-table;
 
                   .inner-card{
-                        padding: 10px 20px;
+                        margin: 10px 20px;
                         text-align: center;
+                        padding-bottom: 5px;
                         color: $black;
+                        height: 385px;
+                        border: 1px solid $pink;
                         a.thum .pic {
                               &:hover {
                                     background-color: $red-a;
@@ -1024,16 +1030,85 @@ body {
             margin: 0;
 
             h1 {
-                  font-titles: $font-titles;
+                  font-family: $font-titles;
                   color: $white;
                   background-color: $red;
             }
             h2 {
-                  font-titles: $font-normal;
+                  font-family: $font-normal;
                   color: $white;
             }
 
             .destacados{}
             .otros{}
+      }
+      #nav-section {
+            background-color: $white;
+            ul {
+                  text-align: center;
+                  display: block;
+                  margin: 50px auto;
+                  padding: 0;
+
+                  li {
+                        margin: auto;
+                        display: inline-block;
+                        float: none;
+                        vertical-align: top;
+                        a {
+                              font-family: $font-titles;
+                              text-transform: uppercase;
+                              i {
+                                    display: block;
+                                    font-size: 68px;
+                                    height: 110px;
+                                    padding: 18px 10px;
+                                    width: 110px;
+                                    border-radius: 50%;
+                                    margin: auto;
+                              }
+                              span {
+                                    display: block;
+                                    padding-top: 15px;
+                              }
+                        }
+                        &.even {
+                              a {
+                                    color: $bordo;
+
+                                    &:hover {
+                                          text-decoration: none;
+                                          i {
+                                                color: $bordo;
+                                                background-color: $white;
+                                                border: 3px solid $bordo;
+                                          }
+                                    }
+                              }
+                              i {
+                                    background-color: $bordo;
+                                    border: 3px solid $bordo;
+                                    color: $white;
+                              }
+                        }
+                        &.odd {
+                              a {
+                                    color: $red;
+                                    &:hover {
+                                          text-decoration: none;
+                                          i {
+                                                color: $red;
+                                                background-color: $white;
+                                                border: 3px solid $red;
+                                          }
+                                    }
+                              }
+                              i {
+                                    background-color: $pink;
+                                    border: 3px solid $pink;
+                              }
+                        }
+                  }
+            }
       }
 }

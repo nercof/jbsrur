@@ -8,7 +8,7 @@
         //#search
 
         function getMenuItems() {
-          menuFactory.getHeader().then(function(response){
+          menuFactory.getHeader(2).then(function(response){
             $scope.items = response.items;
             setSearchIcon();
           });

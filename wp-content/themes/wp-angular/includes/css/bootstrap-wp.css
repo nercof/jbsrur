@@ -41,6 +41,8 @@ body {
     padding-bottom: 0; }
   body #myCarousel .carousel-control {
     width: 50px; }
+  body #myCarousel img {
+    width: 100%; }
   body h1.title {
     background-color: #90030C;
     font-family: "Montserrat", sans-serif;
@@ -451,9 +453,12 @@ body {
       float: none;
       display: inline-table; }
       body .propiedades .card .inner-card {
-        padding: 10px 20px;
+        margin: 10px 20px;
         text-align: center;
-        color: #131515; }
+        padding-bottom: 5px;
+        color: #131515;
+        height: 385px;
+        border: 1px solid #EC7E7E; }
         body .propiedades .card .inner-card a.thum .pic:hover {
           background-color: rgba(223, 10, 31, 0.5); }
         body .propiedades .card .inner-card h2 {
@@ -732,11 +737,60 @@ body {
     border-radius: 0;
     margin: 0; }
     body #novedades h1 {
-      font-titles: "Montserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       color: #FAF3DD;
       background-color: #DF0A1F; }
     body #novedades h2 {
-      font-titles: "Lato", sans-serif;
+      font-family: "Lato", sans-serif;
       color: #FAF3DD; }
+  body #nav-section {
+    background-color: #FAF3DD; }
+    body #nav-section ul {
+      text-align: center;
+      display: block;
+      margin: 50px auto;
+      padding: 0; }
+      body #nav-section ul li {
+        margin: auto;
+        display: inline-block;
+        float: none;
+        vertical-align: top; }
+        body #nav-section ul li a {
+          font-family: "Montserrat", sans-serif;
+          text-transform: uppercase; }
+          body #nav-section ul li a i {
+            display: block;
+            font-size: 68px;
+            height: 110px;
+            padding: 18px 10px;
+            width: 110px;
+            border-radius: 50%;
+            margin: auto; }
+          body #nav-section ul li a span {
+            display: block;
+            padding-top: 15px; }
+        body #nav-section ul li.even a {
+          color: #90030C; }
+          body #nav-section ul li.even a:hover {
+            text-decoration: none; }
+            body #nav-section ul li.even a:hover i {
+              color: #90030C;
+              background-color: #FAF3DD;
+              border: 3px solid #90030C; }
+        body #nav-section ul li.even i {
+          background-color: #90030C;
+          border: 3px solid #90030C;
+          color: #FAF3DD; }
+        body #nav-section ul li.odd a {
+          color: #DF0A1F; }
+          body #nav-section ul li.odd a:hover {
+            text-decoration: none; }
+            body #nav-section ul li.odd a:hover i {
+              color: #DF0A1F;
+              background-color: #FAF3DD;
+              border: 3px solid #DF0A1F; }
+        body #nav-section ul li.odd i {
+          background-color: #EC7E7E;
+          border: 3px solid #EC7E7E; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */
