@@ -21,8 +21,7 @@
         'method': 'GET',
         'headers': {
           'Content-Type': 'application/json'
-        },
-        'cache': true
+        }
       }).then(function(response) {
         return response.data;
       }).catch(dataServiceError);
