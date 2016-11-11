@@ -5,13 +5,13 @@
     .module('app.core')
     .controller('novedadesDestacadasController', novedadesDestacadasController);
 
-    novedadesDestacadasController.$inject = ['postFactory', '$scope', 'mediaFactory'];
+    novedadesDestacadasController.$inject = ['typeFactory', '$scope', 'mediaFactory'];
 
     /**
     * novedadesController: Gestión de últimos post con category:Novedades.
     *  - @view: content
     */
-    function novedadesDestacadasController(postFactory, $scope, mediaFactory) {
+    function novedadesDestacadasController(typeFactory, $scope, mediaFactory) {
         var vm = this;
         vm.novedades = {};
         vm.slides = [];
@@ -36,7 +36,7 @@
         */
         function create() {
             // Buscamos las novedades.
-            postFactory.getPostByCategoryName("novedades").then(function(data) {
+            typeFactory.getPostByCategoryName("novedades").then(function(data) {
                 vm.novedades = data;
 
                 // Cada tipo de post debe tener asociado un icono en la views.

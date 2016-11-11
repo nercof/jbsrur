@@ -306,7 +306,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
 
                 wp_enqueue_script(
                 'postFactory',
-                get_stylesheet_directory_uri() . '/app/factories/post.factory.js',
+                get_stylesheet_directory_uri() . '/app/factories/type.factory.js',
                 array( 'factories', 'wp-service' ));
 
                 wp_enqueue_script(

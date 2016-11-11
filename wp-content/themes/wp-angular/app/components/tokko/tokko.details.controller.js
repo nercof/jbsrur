@@ -5,13 +5,13 @@
         .module('app.core')
         .controller('tokkoDetailsController', tokkoDetailsController);
 
-    tokkoDetailsController.$inject = ['$state', '$stateParams', 'tokkoFactory', '$scope', '$rootScope', 'postFactory' ];
+    tokkoDetailsController.$inject = ['$state', '$stateParams', 'tokkoFactory', '$scope', '$rootScope', 'typeFactory' ];
 
     /**
      * tokkoDetailsController: Gestión sobre el detalle de la propiedad en tokko.
      *  - @view: tokko-search-details
      */
-    function tokkoDetailsController($state, $stateParams, tokkoFactory, $scope, $rootScope, postFactory) {
+    function tokkoDetailsController($state, $stateParams, tokkoFactory, $scope, $rootScope, typeFactory) {
         var vm = this;
         vm.propiedad = {};
         vm.contact_form = {};
@@ -44,7 +44,7 @@
                 });
             }
             // Generamos el modelo ContactForm
-            postFactory.getPostByCategoryName("contacto").then(
+            typeFactory.getPostByCategoryName("contacto").then(
                 function(data) {
                     // slug: "formulario-de-contacto"
                     vm.contact_form = _.find(data, {slug:"contacto"});

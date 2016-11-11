@@ -49,7 +49,7 @@
                                         <div class="col-sm-4 col-xs-6 step step-list">
                                             <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.tokko_data.tp">
                                                 <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}"  ng-model="vm.property_types[tipo_propiedad.id]">
-                                                <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span>{{tipo_propiedad.name}}</span></label>
+                                                <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span  ng-class="{ 'active': vm.operation_types[0] ||  vm.operation_types[1] }" >{{tipo_propiedad.name}}</span></label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 col-xs-6 step step-list">
