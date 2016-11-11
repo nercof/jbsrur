@@ -61,7 +61,7 @@
                 });
 
                 // 3. Universo de palabras conocidos y sus correspondiente valor.
-                vm.universo = resourceFactory.query_universo({id: 'universo.json'});
+                //vm.universo = resourceFactory.query_universo({id: 'universo.json'});
 
                 if ($localStorage.prop_cache && $localStorage.prop_cache.length > 0) {
                     vm.prop_cache = $localStorage.prop_cache;

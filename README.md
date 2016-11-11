@@ -52,11 +52,11 @@ Base de Datos
 
 Exportar
 
-`mysqldump --databases --user=<db_user> --password <db_name> > <db_file>.sql`
+`docker exec -i wpdb mysqldump --databases -u<db_user> -p<db_password> <db_name> > <db_file>.sql`
 
 Importar
 
-`docker exec -i wpdb mysql -uroot -proot <db_name> < <db_file>.sql`
+`docker exec -i wpdb mysql -u<db_user> -p<db_password> <db_name> < <db_file>.sql`
 
 Exportar fichero desde el contenedor al localhost
 

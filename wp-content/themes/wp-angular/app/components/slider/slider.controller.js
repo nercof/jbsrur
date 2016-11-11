@@ -6,9 +6,9 @@
     .controller('sliderController', sliderController);
 
 
-    function sliderController($scope, postFactory, mediaFactory) {
+    function sliderController($scope, typeFactory, mediaFactory) {
 
-        postFactory.getPostByCategory(7).then(function(posts){
+        typeFactory.getPostByCategory(7).then(function(posts){
             var mediasIds = [], i, self=this;
             mediasIds = getMediasIds(posts);
             mediaFactory.getMediasByIds(mediasIds).then(function(medias){

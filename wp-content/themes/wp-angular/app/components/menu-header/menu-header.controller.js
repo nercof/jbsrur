@@ -2,13 +2,13 @@
 ;(function(){
   angular
     .module('app.core')
-    .controller('menuHeaderController', function($scope, menuFactory, _, STATE){
-        getMenuItems(STATE);
+    .controller('menuHeaderController', function($scope, menuFactory, _){
+        getMenuItems();
 
         //#search
 
-        function getMenuItems(STATE) {
-          menuFactory.getHeader(STATE).then(function(response){
+        function getMenuItems() {
+          menuFactory.getHeader(2).then(function(response){
             $scope.items = response.items;
             setSearchIcon();
           });

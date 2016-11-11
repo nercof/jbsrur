@@ -6,39 +6,32 @@
   .constant('MENU_ID', '2')
   .constant('MENU_TAG', 'menus');
 
-  function dataFactory(wordpressService, MENU_ID, MENU_TAG, BASE_WP_MENU_URL){
+  function dataFactory(wordpressService, MENU_TAG, BASE_WP_MENU_URL){
 
     var data = {
       'getHeader':  getHeader
     }
 
-    function getHeader(STATE) {
-      return getMenu().then(function(data){
-        addStates(data, STATE);
+    function getHeader(id) {
+      return getMenu(id).then(function(data){
+        addStates(data);
         formatUrls(data);
         return data;
       });
     }
 
-    function getMenu() {
-      return wordpressService.getRequest(BASE_WP_MENU_URL, MENU_TAG, MENU_ID);
+    function getMenu(id) {
+      return wordpressService.getRequest(BASE_WP_MENU_URL, MENU_TAG, id);
     }
 
-    function addStates(menu, STATE) {
+    function addStates(menu) {
       if (menu.items) {
         menu.items.forEach(function(item){
           if(!item.children){
             item.state = item.url.substr(1);
-            console.log('item.state: ' + item.state);
           }else {
             item.children.forEach(function(child){
-              console.log('child.state: ' + child.url.substr(1));
-              if (child.url.substr(1) == 'nuestros-emprendimientos') {
-                  child.state = STATE.NE;
-              }else {
-                child.state = STATE.OE;
-              }
-              console.log('child.state: ' + child.state);
+              child.state = child.url.substr(1);
             });
           }
         });

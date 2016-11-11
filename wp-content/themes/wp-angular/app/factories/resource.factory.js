@@ -11,7 +11,7 @@ angular
           params: {id: '@id'},
           isArray: false
         },
-        query_universo
+        query_array
         : {
           method: 'GET',
           params: {id: '@id'},

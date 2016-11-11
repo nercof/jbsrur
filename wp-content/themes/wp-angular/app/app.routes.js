@@ -20,6 +20,10 @@
             templateUrl: localized.tokko + "tokko-search-input.html",
             controller: 'tokkoController as vm'
           },
+          "nav-section": {
+            templateUrl: localized.views + "nav-section.html",
+            controller: 'navSectionController'
+          },
         }
       })
       .state(STATE.QS, {

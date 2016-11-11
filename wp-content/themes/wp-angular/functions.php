@@ -245,11 +245,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
-                'quienesSomosController',
-                get_stylesheet_directory_uri() . '/app/components/quienes-somos/quienes.somos.controller.js',
-                array( 'core', 'factories'));
-
-                wp_enqueue_script(
                 'secondFooter',
                 get_stylesheet_directory_uri() . '/app/components/footer/second.footer.controller.js',
                 array( 'core', 'factories'));
@@ -268,7 +263,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'catalog',
                 get_stylesheet_directory_uri() . '/app/components/catalog/catalogController.js',
                 array( 'core', 'factories'));
-
+                
                 wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
