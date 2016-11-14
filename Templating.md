@@ -7,7 +7,7 @@ The objects in array are the state objects from the ui-router configuration. The
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | ncyBreadcrumbLabel | Contains the interpolated value from the property of the same name in the state object. It allows to display a human-readable label for the steps.  |
 | ncyBreadcrumbLink  | Contains the URL to reach the step. Useful to display a back link for each steps in the breadcrumb.                                                 |
-| ncyBreadcrumbStateRef  | Contains the data of the link, ready to use in a `ui-sref` directive.                                                 |
+| ncyBreadcrumbStateRef  | Contains the data of the link, ready to use in a `ui-sref` directive (v0.5.0).                                                |
 
 ## Predefined templates
 The directive loads 2 predefined templates which can be accessed by their name in the `$breadcrumbProvider` configuration. For example :
