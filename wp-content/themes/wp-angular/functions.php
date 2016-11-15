@@ -265,6 +265,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
+                'nav-section',
+                get_stylesheet_directory_uri() . '/app/components/nav-section/nav-section.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
                 array( 'core', 'factories' ));
@@ -305,7 +310,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'factories', 'wp-service' ));
 
                 wp_enqueue_script(
-                'postFactory',
+                'typeFactory',
                 get_stylesheet_directory_uri() . '/app/factories/type.factory.js',
                 array( 'factories', 'wp-service' ));
 
@@ -323,11 +328,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'resourceFactory',
                 get_stylesheet_directory_uri() . '/app/factories/resource.factory.js',
                 array( 'factories', 'tokko-service' , 'tokkoFactory'));
-
-                wp_enqueue_script(
-                'navSectionController',
-                get_stylesheet_directory_uri() . '/app/components/nav-section/nav-section.controller.js',
-                array( 'core', 'factories'));
 
                 wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
 

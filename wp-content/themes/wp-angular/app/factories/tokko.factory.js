@@ -252,7 +252,7 @@
 
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
   }
-  
+
   /**
    * getPropertyByCity() permite obtener las propiedades de Cordoba y alrededores
    * haciendo un GET a tocko con current_localization_id fijo
@@ -285,33 +285,33 @@
 
     return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
   }
-  
+
  /**
   * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
   * http://tokkobroker.com/api/playground#!/developments/development-list_get_0
-  * 
+  *
   * @param {}: None
   */
   function getDevelopmentsTokkoAPI() {
-    
+    console.log("getDevelopmentsTokkoAPI");
     return tokkoService.getRequest(BASE_TOKKO, TOKKO_DEVELOPMENT, TOKKO_KEY);
   }
-  
+
   /**
   * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
   * http://tokkobroker.com/api/playground#!/developments/development-list_get_0
-  * 
+  *
   * @param {}: None
   */
   function getDevelopmentsTokkoAPIById(id) {
     var url = TOKKO_DEVELOPMENT_ID;
     url = url.replace('{id}', id)
-    
+
     return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
-    
+
   }
-  
-  
+
+
   /**
   * oper() permite retornar si es Alquiler o Venta el tipo de operacion.
   * Utilazo para el filtrado de datos.

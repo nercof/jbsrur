@@ -3,6 +3,7 @@
   angular
   .module('app.factories')
   .factory('menuFactory', dataFactory)
+  .constant('MENU_ID', '2')
   .constant('MENU_TAG', 'menus');
 
   function dataFactory(wordpressService, MENU_TAG, BASE_WP_MENU_URL){
