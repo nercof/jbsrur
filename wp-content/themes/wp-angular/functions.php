@@ -263,7 +263,12 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'catalog',
                 get_stylesheet_directory_uri() . '/app/components/catalog/catalogController.js',
                 array( 'core', 'factories'));
-                
+
+                wp_enqueue_script(
+                'nav-section',
+                get_stylesheet_directory_uri() . '/app/components/nav-section/nav-section.controller.js',
+                array( 'core', 'factories'));
+
                 wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
@@ -305,8 +310,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'factories', 'wp-service' ));
 
                 wp_enqueue_script(
-                'postFactory',
-                get_stylesheet_directory_uri() . '/app/factories/post.factory.js',
+                'typeFactory',
+                get_stylesheet_directory_uri() . '/app/factories/type.factory.js',
                 array( 'factories', 'wp-service' ));
 
                 wp_enqueue_script(
