@@ -13,12 +13,12 @@
      */
     function developmentsDetailsController($state, $stateParams, tokkoFactory, $scope, $rootScope, typeFactory) {
         console.log('<< Loading developmentsDetailsController >>');
-        
+
         var vm = this;
         vm.development = {};
         vm.contact_form = {};
         vm.title_view = '';
-        
+
         create();
 
         /**
@@ -38,12 +38,14 @@
             }
             else {
                 // Buscamos la propiedad en TOKKO
+                /*
                 tokkoFactory.getDevelopmentsTokkoAPIById($stateParams.id).then(function(data) {
                     vm.development = data;
                 });
+                */
             }
             console.log(vm.development);
-            
+
             /*
             // Generamos el modelo ContactForm
             typeFactory.getPostByCategoryName("contacto").then(

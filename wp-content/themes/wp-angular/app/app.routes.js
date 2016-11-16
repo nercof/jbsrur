@@ -82,7 +82,7 @@
         },
         views: {
           "content": {
-            templateUrl: localized.tokko + "tokko-developments/tokko-developments.html",
+            templateUrl: localized.tokko + "emprendimiento/emprendimiento.html",
             controller: 'developmentsController as vm',
           }
         }
@@ -91,7 +91,7 @@
         url: '/' + STATE.OE,
         views: {
           "content": {
-            templateUrl: localized.views + "emprendimientos.html"
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html"
           }
         }
       })
@@ -155,7 +155,7 @@
         url: '/:id',
         views: {
           "detalle@nemprendimientos": {
-            templateUrl: localized.tokko + "tokko-developments/tokko-developments-details.html",
+            templateUrl: localized.tokko + "emprendimiento/emprendimiento-detalle.html",
             controller: 'developmentsDetailsController as vm',
           }
         },

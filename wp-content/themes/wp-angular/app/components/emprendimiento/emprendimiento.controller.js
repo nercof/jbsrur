@@ -47,7 +47,7 @@
 
             // Filtramos por tipo de Operacion
             if (_.isEmpty($scope.$storage.developments)) {
-                getDevelopmentsTokkoAPI();
+                getDevelopments();
             }
             else {
                 vm.allDevelopments = $scope.$storage.developments;
@@ -58,7 +58,7 @@
             }
             else {
                 _short_description();
-                
+
                 // Variables auxiliares para el paginador.
                 vm.totalItems = vm.allDevelopments.length;
                 vm.spinner = false;
@@ -67,7 +67,7 @@
                 vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
             }
         } // fin activate()
-        
+
         /**
          * Acorta la descripcion para mostrar solo los primeros 80 caracteres.
          *
@@ -81,11 +81,12 @@
          * Obtener los <emprendimientos> desde la API de Tokko
          * @param {} page - <description>
          */
-        function getDevelopmentsTokkoAPI() {
+        function getDevelopments() {
             // json example
             // http://www.jsoneditoronline.org/?id=19d496428cead0d42adf9485f779a008
 
             // Buscamos en la API
+            /*
             tokkoFactory.getDevelopmentsTokkoAPI().then(function(response) {
                 if (response.objects.length > 0) {
                     vm.allDevelopments = response.objects;
@@ -94,6 +95,7 @@
                     $scope.$storage.developments = vm.allDevelopments;
                 }
             });
+            */
         }
 
         /**
