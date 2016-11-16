@@ -3,15 +3,15 @@
 
     angular
         .module('app.core')
-        .controller('developmentsController', developmentsController);
+        .controller('emprendimientoController', emprendimientoController);
 
     /**
-     * catalogController: Gestión sobre el listado de propiedades en tokko.
+     * emprendimientoController: Gestión sobre el listado de propiedades en tokko.
      *  - @view: tokko-search-result
      */
-    function developmentsController($scope, tokkoFactory, tokkoService, NgMap,
+    function emprendimientoController($scope, tokkoFactory, tokkoService, NgMap,
         resourceFactory, $stateParams, $state, $localStorage, STATE) {
-        console.log('<< Loading developmentsController >>');
+        console.log('<< Loading emprendimientoController >>');
         var vm = this;
 
         vm.title_view = '';

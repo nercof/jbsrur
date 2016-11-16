@@ -82,8 +82,8 @@
         },
         views: {
           "content": {
-            templateUrl: localized.tokko + "emprendimiento/emprendimiento.html",
-            controller: 'developmentsController as vm',
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            controller: 'emprendimientoController as vm',
           }
         }
       })

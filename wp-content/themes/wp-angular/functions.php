@@ -235,13 +235,13 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories' ));
 
                 wp_enqueue_script(
-                'tokko.developments',
-                get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.controllers.js',
+                'emprendimiento',
+                get_stylesheet_directory_uri() . '/app/components/emprendimiento/emprendimiento.controller.js',
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
-                'tokko.developments.details',
-                get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.details.controllers.js',
+                'emprendimiento.detalle',
+                get_stylesheet_directory_uri() . '/app/components/emprendimiento/emprendimiento.details.controller.js',
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
