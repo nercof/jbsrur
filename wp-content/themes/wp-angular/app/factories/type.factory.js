@@ -15,10 +15,15 @@
       'getPostByCategory': getPostByCategory,
       'getPostByCategoryName': getPostByCategoryName,
       'getEmprendimientos': getEmprendimientos,
+      'getPostsByContentType': getPostsByContentType
     }
 
     function getEmprendimientos() {
       return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "");
+    }
+
+    function getPostsByContentType(typeUri) {
+      return wordpressService.getRequest(BASE_WP_URL, typeUri, "");
     }
 
     function listPosts() {

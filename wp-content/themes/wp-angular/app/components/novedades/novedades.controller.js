@@ -15,7 +15,14 @@
         var vm = this;
         vm.novedades = {};
         vm.slides = [];
-        vm.iconos_format = {};
+
+        // Cada tipo de post debe tener asociado un icono en la views.
+        vm.iconos_format = {
+            "fotos":"typcn typcn-camera-outline",
+            "video":"typcn typcn-video-outline",
+            "evento": "typcn typcn-calendar-outline",
+            "nota": "typcn typcn-lightbulb"
+        };
 
         create();
 
@@ -35,17 +42,11 @@
         *  {object.novedad}.featured_media: que se tiene que buscar en {object.novedad}.guid.rendered
         */
         function create() {
+
             // Buscamos las novedades.
-            typeFactory.getPostByCategoryName("novedades").then(function(data) {
+            typeFactory.getPostsByContentType("novedad").then(function(data) {
                 vm.novedades = data;
-
-                // Cada tipo de post debe tener asociado un icono en la views.
-                vm.iconos_format = {
-                    "standard":"typcn typcn-camera-outline",
-                    "video":"typcn typcn-video-outline",
-                    "post": "typcn typcn-calendar-outline",
-                };
-
+                console.log('novedad', data);
                 // Recorremos las novedades para poder dividir en grupos de 4.
                 _.each(vm.novedades, function(novedad, i){
                     var actived = (i == 0 ? true : false );

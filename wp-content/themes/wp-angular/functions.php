@@ -388,3 +388,35 @@ if ( ! function_exists( '_tk_setup' ) ) :
             function woocommerce_support() {
                 add_theme_support( 'woocommerce' );
             }
+
+            add_action( 'rest_api_init', 'register_wpcf_custom_fields' );
+            function register_wpcf_custom_fields() {
+                $custom_fields = array(
+                    'novedad' => ['wpcf-destacada', 'wpcf-encabezado', 'wpcf-tipo-de-novedad']
+                );
+                foreach ($custom_fields as $custom_type => $fields) {
+                    foreach ($fields as $key => $field) {
+                        register_rest_field( $custom_type,
+                            $field,
+                            array(
+                                'get_callback'    => 'wpcf_get_field',
+                                'update_callback' => null,
+                                'schema'          => null,
+                            )
+                        );
+                    }
+                }
+            }
+
+            /**
+             * Get the value of the "wpcf-destacada" field
+             *
+             * @param array $object Details of current post.
+             * @param string $field_name Name of field.
+             * @param WP_REST_Request $request Current request
+             *
+             * @return mixed
+             */
+            function wpcf_get_field( $object, $field_name, $request ) {
+                return get_post_meta( $object[ 'id' ], $field_name, true );
+            }
