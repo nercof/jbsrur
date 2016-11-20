@@ -18,6 +18,7 @@
     }
 
     function getEmprendimientos() {
+      console.log("<< getEmprendimientos() >>");
       return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "");
     }
 
