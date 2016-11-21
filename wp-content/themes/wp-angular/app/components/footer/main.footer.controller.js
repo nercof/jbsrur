@@ -47,7 +47,7 @@
                         url: "",
                     },
                     {
-                        name: "Quienes somos",
+                        name: "Quiénes somos",
                         url: "http://jbsrur-marilynpi.c9users.io/#/quienes-somos",
                     },
                     {
