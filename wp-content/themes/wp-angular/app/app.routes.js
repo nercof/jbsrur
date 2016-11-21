@@ -59,7 +59,11 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          }
+          },
+          "sub-header": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
         }
       })
       .state(STATE.AL, {
@@ -72,7 +76,11 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          }
+          },
+          "sub-header": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
         }
       })
       .state(STATE.NE, {
