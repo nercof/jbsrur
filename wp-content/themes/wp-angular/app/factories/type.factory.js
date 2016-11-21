@@ -17,8 +17,7 @@
       'getEmprendimientos': getEmprendimientos,
     }
 
-    function getEmprendimientos() {
-      console.log("<< getEmprendimientos() >>");
+    function getEmprendimientos() {      
       return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "");
     }
 

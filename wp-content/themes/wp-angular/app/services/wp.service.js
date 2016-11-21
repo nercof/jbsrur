@@ -15,7 +15,7 @@
 
     function getRequest(url, tag, id) {
       var requestUrl = url + tag + '/' + id;
-      console.log(requestUrl);
+      //console.log(requestUrl);
       return $http({
         'url': requestUrl,
         'method': 'GET',
@@ -23,7 +23,6 @@
           'Content-Type': 'application/json'
         }
       }).then(function(response) {
-        console.log(response);
         return response.data;
       }).catch(dataServiceError);
     }

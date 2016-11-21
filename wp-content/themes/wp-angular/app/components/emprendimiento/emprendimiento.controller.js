@@ -15,7 +15,7 @@
             var vm = this;
 
             vm.title_view = '';
-            //vm.allDevelopments = {};
+            vm.allDevelopments = [];
             vm.nemprendimientos = STATE.NE;
 
             // $storage support
@@ -44,8 +44,16 @@
 
                 // Filtramos por tipo de Operacion
                 if (_.isEmpty($scope.$storage.developments)) {
-                    getDevelopments();
-                    console.log('<< vm.allDevelopments >>');
+                    getDevelopments().then(function(){
+                        _short_description();
+
+                        // Variables auxiliares para el paginador.
+                        vm.totalItems = vm.allDevelopments.length;
+                        vm.spinner = false;
+
+                        // Iniciamos las propiedades filtradas para la paginacion inicial.
+                        vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                    });
                     console.log(vm.allDevelopments);
                 }
                 else {
@@ -83,9 +91,10 @@
             function getDevelopments() {
                 typeFactory.getEmprendimientos().then(
                     function(data){
-                        console.log("test");
-                        console.log(data);
                         vm.allDevelopments = data;
+                        console.log("test");
+                        console.log(vm.allDevelopments);
+                        console.log(data);
                     }
                 );
 
