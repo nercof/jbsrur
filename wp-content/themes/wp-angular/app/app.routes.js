@@ -24,6 +24,10 @@
             templateUrl: localized.views + "nav-section.html",
             controller: 'navSectionController'
           },
+          "social-section": {
+            templateUrl: localized.views + "social-section.html",
+            controller: 'socialSectionController as vm'
+          },
         }
       })
       .state(STATE.QS, {

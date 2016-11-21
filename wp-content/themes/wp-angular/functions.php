@@ -270,6 +270,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
+                'social-section',
+                get_stylesheet_directory_uri() . '/app/components/social-section/social-section.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
                 array( 'core', 'factories' ));

@@ -55,11 +55,11 @@
           "icon": "af-house"
         },
         {
-          "id": "nuestros-emprendimientos",
+          "id": "nemprendimientos",
           "icon": "af-crane"
         },
         {
-          "id": "otros-emprendimientos",
+          "id": "oemprendimientos",
           "icon": "af-building-1"
         },
         {
