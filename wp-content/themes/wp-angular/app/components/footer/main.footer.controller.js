@@ -48,11 +48,11 @@
                     },
                     {
                         name: "Quienes somos",
-                        url: "",
+                        url: "http://jbsrur-marilynpi.c9users.io/#/quienes-somos",
                     },
                     {
                         name: "Nuestros emprendimientos",
-                        url: "http://jbsrur:8080/#/nuestros-emprendimientos",
+                        url: "http://jbsrur-marilynpi.c9users.io/#/nuestros-emprendimientos",
                     },
                     {
                         name: "Novedades",
