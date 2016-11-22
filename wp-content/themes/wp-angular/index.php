@@ -15,9 +15,9 @@ get_header();
 ?>
     <!-- MAIN CONTENT -->
     <div ui-view="header"></div>
-    <div ui-view="sub-header"></div>
-    <div ui-view="content"></div>
     <div ui-view="nav-section"></div>
+    <div ui-view="search-form"></div>
+    <div ui-view="content"></div>
     <!-- Vistas hijos-->
     <!--<div ui-view></div>-->
     <div ui-view="second-footer"></div>
