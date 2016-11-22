@@ -34,11 +34,11 @@
           },
           "contact-section": {
             templateUrl: localized.views + "contact-section.html",
-            controller: 'sucSectionController as vm'
+            controller: 'contactController as vm'
           },
           "suc-section": {
             templateUrl: localized.views + "suc-section.html",
-            controller: 'contactController as vm'
+            controller: 'sucSectionController as vm'
           }
         }
       })

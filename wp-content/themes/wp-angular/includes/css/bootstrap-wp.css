@@ -920,54 +920,96 @@ body {
         body #social-section ul li.odd i {
           background-color: #EC7E7E;
           border: 3px solid #EC7E7E; }
-  body #suc-section {
-    background-color: #FAF3DD; }
-    body #suc-section ul {
-      text-align: center;
-      display: block;
-      margin: 50px auto;
-      padding: 0; }
-      body #suc-section ul li {
-        margin: auto;
-        display: inline-block;
-        float: none;
-        vertical-align: top; }
-        body #suc-section ul li a {
-          font-family: "Montserrat", sans-serif;
-          text-transform: uppercase; }
-          body #suc-section ul li a i {
-            display: block;
-            font-size: 68px;
-            height: 110px;
-            padding: 18px 10px;
-            width: 110px;
-            border-radius: 50%;
-            margin: auto; }
-          body #suc-section ul li a span {
-            display: block;
-            padding-top: 15px; }
-        body #suc-section ul li.even a {
+  body .contact-section {
+    background-color: #FAF3DD;
+    padding: 0; }
+    body .contact-section #contacto {
+      background-color: #90030C;
+      margin: 0;
+      padding: 0px 30px; }
+      body .contact-section #contacto h2 {
+        font-size: 1.4em;
+        background-color: #90030C; }
+      body .contact-section #contacto form input,
+      body .contact-section #contacto form textarea {
+        font-size: 1.1em;
+        padding: 5px;
+        color: #90030C; }
+        body .contact-section #contacto form input::-webkit-input-placeholder, body .contact-section #contacto form input::-moz-placeholder, body .contact-section #contacto form input:-ms-input-placeholder, body .contact-section #contacto form input:-moz-placeholder,
+        body .contact-section #contacto form textarea::-webkit-input-placeholder,
+        body .contact-section #contacto form textarea::-moz-placeholder,
+        body .contact-section #contacto form textarea:-ms-input-placeholder,
+        body .contact-section #contacto form textarea:-moz-placeholder {
           color: #90030C; }
-          body #suc-section ul li.even a:hover {
-            text-decoration: none; }
-            body #suc-section ul li.even a:hover i {
-              color: #90030C;
-              background-color: #FAF3DD;
-              border: 3px solid #90030C; }
-        body #suc-section ul li.even i {
-          background-color: #90030C;
-          border: 3px solid #90030C;
-          color: #FAF3DD; }
-        body #suc-section ul li.odd a {
-          color: #df0a1f; }
-          body #suc-section ul li.odd a:hover {
-            text-decoration: none; }
-            body #suc-section ul li.odd a:hover i {
-              color: #df0a1f;
-              background-color: #FAF3DD;
-              border: 3px solid #df0a1f; }
-        body #suc-section ul li.odd i {
-          background-color: #EC7E7E;
-          border: 3px solid #EC7E7E; }
+      body .contact-section #contacto form textarea {
+        height: 100px; }
+      body .contact-section #contacto form .wpcf7-submit {
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+        padding: 20px 15px; }
+    body .contact-section .map {
+      padding: 0; }
+      body .contact-section .map .mapa {
+        width: 100%;
+        height: 430px; }
+  body #suc-section {
+    background-color: #FAF3DD;
+    padding-top: 20px; }
+    body #suc-section h2 {
+      text-align: center;
+      color: #90030C;
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.6em;
+      font-weight: bold; }
+      body #suc-section h2 .underline {
+        height: 1px;
+        width: 100px;
+        margin: 10px auto 0;
+        background-color: #90030C; }
+    body #suc-section .list {
+      margin: 30px auto; }
+      body #suc-section .list .sucursal {
+        text-align: center; }
+        body #suc-section .list .sucursal h3 {
+          text-align: center;
+          color: #131515;
+          font-family: "Lato", sans-serif;
+          font-size: 1.2em;
+          font-weight: bold;
+          margin: 40px auto; }
+        body #suc-section .list .sucursal .pic {
+          height: 250px;
+          width: 250px;
+          border-radius: 50%;
+          background-size: cover;
+          margin: 10px auto; }
+          body #suc-section .list .sucursal .pic:before {
+            content: "";
+            display: none;
+            width: 250px;
+            height: 250px;
+            background: rgba(223, 10, 31, 0.5);
+            border-radius: 50%; }
+          body #suc-section .list .sucursal .pic:hover:before {
+            display: block; }
+        body #suc-section .list .sucursal .dire {
+          text-align: left;
+          color: #131515;
+          margin: 15px auto;
+          width: 70%; }
+          body #suc-section .list .sucursal .dire i {
+            display: inline-block;
+            font-size: 1.5em;
+            padding: 0px 5px;
+            border-radius: 50%;
+            margin: auto;
+            border: 2px #131515 solid; }
+          body #suc-section .list .sucursal .dire p {
+            display: inline-block;
+            padding: 0 10px;
+            vertical-align: middle;
+            font-family: "Lato", sans-serif;
+            max-width: 80%; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */

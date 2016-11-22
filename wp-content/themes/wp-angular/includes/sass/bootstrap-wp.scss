@@ -1099,7 +1099,7 @@ body {
                   }
             }
       }
-      
+
       #contacto{
             background-color: $red;
             margin: 20px 0;
@@ -1293,9 +1293,51 @@ body {
                   }
             }
       }
-
+      .contact-section {
+            background-color: $white;
+            padding: 0;
+            #contacto{
+                  background-color: $bordo;
+                  margin:0;
+                  padding: 0px 30px;
+                  h2 {
+                        font-size: 1.4em;
+                        background-color: $bordo;
+                  }
+                  form {
+                        input,
+                        textarea {
+                              font-size: 1.1em;
+                              padding: 5px;
+                              color: $bordo;
+                              &::-webkit-input-placeholder,
+                              &::-moz-placeholder,
+                              &:-ms-input-placeholder,
+                              &:-moz-placeholder {
+                                    color: $bordo;
+                              }
+                        }
+                        textarea {
+                              height: 100px;
+                        }
+                        .wpcf7-submit {
+                              font-family: $font-titles;
+                              font-weight: bold;
+                              padding: 20px 15px;
+                        }
+                  }
+            }
+            .map {
+                  padding: 0;
+                  .mapa {
+                        width: 100%;
+                        height: 430px;
+                  }
+            }
+      }
       #suc-section {
             background-color: $white;
+            padding-top: 20px;
             h2 {
                   text-align: center;
                   color: $bordo;
@@ -1310,39 +1352,55 @@ body {
                         background-color: $bordo;
                   }
             }
-            h3 {
-                  text-align: center;
-                  color: $black;
-                  font-family: $font-normal;
-                  font-size: 1.2em;
-                  font-weight: bold;
-            }
-            ul {
-                  text-align: center;
-                  display: block;
-                  margin: 50px auto;
-                  padding: 0;
-
-                  li {
-                        margin: auto;
-                        display: inline-block;
-                        float: none;
-                        vertical-align: top;
-                        a {
-                              font-family: $font-titles;
-                              text-transform: uppercase;
-                              i {
+            .list {
+                  margin: 30px auto;
+                  .sucursal{
+                        text-align: center;
+                        h3 {
+                              text-align: center;
+                              color: $black;
+                              font-family: $font-normal;
+                              font-size: 1.2em;
+                              font-weight: bold;
+                              margin: 40px auto;
+                        }
+                        .pic {
+                              height: 250px;
+                              width: 250px;
+                              border-radius: 50%;
+                              background-size: cover;
+                              margin: 10px auto;
+                              &:before {
+                                    content: "";
+                                    display: none;
+                                    width: 250px;
+                                    height: 250px;
+                                    background: $red-a;
+                                    border-radius: 50%;
+                              }
+                              &:hover:before {
                                     display: block;
-                                    font-size: 68px;
-                                    height: 110px;
-                                    padding: 18px 10px;
-                                    width: 110px;
+                              }
+                        }
+                        .dire {
+                              text-align: left;
+                              color: $black;
+                              margin: 15px auto;
+                              width: 70%;
+                              i {
+                                    display: inline-block;
+                                    font-size: 1.5em;
+                                    padding: 0px 5px;
                                     border-radius: 50%;
                                     margin: auto;
+                                    border: 2px $black solid;
                               }
-                              span {
-                                    display: block;
-                                    padding-top: 15px;
+                              p {
+                                    display: inline-block;
+                                    padding: 0 10px;
+                                    vertical-align: middle;
+                                    font-family: $font-normal;
+                                    max-width: 80%;
                               }
                         }
                   }
