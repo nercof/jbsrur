@@ -13,7 +13,7 @@
         var vm = this;
 
         activate();
-
+        
         function activate() {
             getMenuItems();
         }
@@ -21,7 +21,6 @@
         function getMenuItems() {
             menuFactory.getHeader(19).then(function(response){
                 vm.items = response.items;
-                console.log(vm.items);
                 setIcons();
             });
         }

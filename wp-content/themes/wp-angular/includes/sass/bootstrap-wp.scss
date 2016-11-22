@@ -1296,6 +1296,27 @@ body {
 
       #suc-section {
             background-color: $white;
+            h2 {
+                  text-align: center;
+                  color: $bordo;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.6em;
+                  font-weight: bold;
+                  .underline {
+                        height: 1px;
+                        width: 100px;
+                        margin: 10px auto 0;
+                        background-color: $bordo;
+                  }
+            }
+            h3 {
+                  text-align: center;
+                  color: $black;
+                  font-family: $font-normal;
+                  font-size: 1.2em;
+                  font-weight: bold;
+            }
             ul {
                   text-align: center;
                   display: block;
@@ -1322,42 +1343,6 @@ body {
                               span {
                                     display: block;
                                     padding-top: 15px;
-                              }
-                        }
-                        &.even {
-                              a {
-                                    color: $bordo;
-
-                                    &:hover {
-                                          text-decoration: none;
-                                          i {
-                                                color: $bordo;
-                                                background-color: $white;
-                                                border: 3px solid $bordo;
-                                          }
-                                     }
-                              }
-                              i {
-                                    background-color: $bordo;
-                                    border: 3px solid $bordo;
-                                    color: $white;
-                              }
-                        }
-                        &.odd {
-                              a {
-                                    color: $red;
-                                    &:hover {
-                                          text-decoration: none;
-                                          i {
-                                                color: $red;
-                                                background-color: $white;
-                                                border: 3px solid $red;
-                                          }
-                                    }
-                              }
-                              i {
-                                    background-color: $pink;
-                                    border: 3px solid $pink;
                               }
                         }
                   }
