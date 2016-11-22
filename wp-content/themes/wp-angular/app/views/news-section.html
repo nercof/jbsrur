@@ -13,8 +13,9 @@
                             <div class="caption">
                                 <h3>
                                 <i class="{{ vm.iconos_format[novedad['wpcf-tipo-de-novedad']] }}"></i>
-                                {{novedad.title.rendered}}
+                                <div class="title">{{novedad.title.rendered}}</div>
                                 </h3>
+                                <p ng-bind-html="novedad['wpcf-encabezado'] | to_trust"></p>
                             </div>
                         </div>
                     </div>
