@@ -32,9 +32,13 @@
             templateUrl: localized.views + "social-section.html",
             controller: 'socialSectionController as vm'
           },
+          "contact-section": {
+            templateUrl: localized.views + "contact-section.html",
+            controller: 'sucSectionController as vm'
+          },
           "suc-section": {
             templateUrl: localized.views + "suc-section.html",
-            controller: 'sucSectionController as vm'
+            controller: 'contactController as vm'
           }
         }
       })
