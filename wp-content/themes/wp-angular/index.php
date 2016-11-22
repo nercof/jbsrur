@@ -19,6 +19,7 @@ get_header();
     <div ui-view="search-form"></div>
     <div ui-view="content"></div>
     <div ui-view="social-section"></div>
+    <div ui-view="contact-section"></div>
     <div ui-view="suc-section"></div>
     <div ui-view="second-footer"></div>
     <div ui-view="main-footer"></div>
