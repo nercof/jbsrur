@@ -32,10 +32,10 @@
             templateUrl: localized.views + "social-section.html",
             controller: 'socialSectionController as vm'
           },
-          /*"suc-section": {
+          "suc-section": {
             templateUrl: localized.views + "suc-section.html",
             controller: 'sucSectionController as vm'
-          }*/
+          }
         }
       })
       .state(STATE.QS, {
