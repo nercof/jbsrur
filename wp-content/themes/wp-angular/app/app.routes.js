@@ -27,7 +27,15 @@
           "content": {
             templateUrl: localized.views + "news-section.html",
             controller: 'novedadesController as vm'
-          }
+          },
+          "social-section": {
+            templateUrl: localized.views + "social-section.html",
+            controller: 'socialSectionController as vm'
+          },
+          /*"suc-section": {
+            templateUrl: localized.views + "suc-section.html",
+            controller: 'sucSectionController as vm'
+          }*/
         }
       })
       .state(STATE.QS, {
@@ -63,7 +71,11 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          }
+          },
+          "sub-header": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
         }
       })
       .state(STATE.AL, {
@@ -76,7 +88,11 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          }
+          },
+          "sub-header": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
         }
       })
       .state(STATE.NE, {
@@ -86,8 +102,8 @@
         },
         views: {
           "content": {
-            templateUrl: localized.tokko + "emprendimiento/emprendimiento.html",
-            controller: 'developmentsController as vm',
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            controller: 'emprendimientoController as vm',
           }
         }
       })
