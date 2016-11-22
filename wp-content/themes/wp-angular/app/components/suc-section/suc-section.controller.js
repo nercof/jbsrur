@@ -22,8 +22,7 @@
 
             typeFactory.getSucursales().then(
                 function(data){
-                    vm.sucursales = data;
-
+                    vm.sucursales = _.sortBy(data, 'id');
                     // Cargar la url de la imagen
                     setImages();
                     console.log(" getSucursales() ");
