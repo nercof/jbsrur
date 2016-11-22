@@ -16,13 +16,17 @@
             templateUrl: localized.views + "slider-full.html",
             controller: 'sliderController'
           },
-          "sub-header": {
+          "search-form": {
             templateUrl: localized.tokko + "tokko-search-input.html",
             controller: 'tokkoController as vm'
           },
           "nav-section": {
             templateUrl: localized.views + "nav-section.html",
             controller: 'navSectionController'
+          },
+          "content": {
+            templateUrl: localized.views + "news-section.html",
+            controller: 'novedadesController as vm'
           },
           "social-section": {
             templateUrl: localized.views + "social-section.html",
@@ -31,7 +35,7 @@
           "suc-section": {
             templateUrl: localized.views + "suc-section.html",
             controller: 'sucSectionController as vm'
-          },
+          }
         }
       })
       .state(STATE.QS, {
@@ -116,7 +120,7 @@
         views: {
           "content": {
             templateUrl: localized.views + "novedades.html",
-            controller: 'novedadesDestacadasController as vm',
+            controller: 'novedadesController as vm',
           }
         }
       })

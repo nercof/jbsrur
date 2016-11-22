@@ -402,7 +402,9 @@ if ( ! function_exists( '_tk_setup' ) ) :
             add_action( 'rest_api_init', 'register_wpcf_custom_fields' );
             function register_wpcf_custom_fields() {
                 $custom_fields = array(
-                    'novedad' => ['wpcf-destacada', 'wpcf-encabezado', 'wpcf-tipo-de-novedad']
+                    'novedad' => ['wpcf-destacada', 'wpcf-encabezado', 'wpcf-tipo-de-novedad'],
+                    'emprendimiento' => ['wpcf-latitud-y-longitud', 'wpcf-imagen-galeria-0', 'wpcf-sucursal', 'wpcf-codigo-de-referencia'],
+                    'sucursal' => ['wpcf-latitud-y-longitud', 'wpcf-telefono', 'wpcf-direccion', 'wpcf-email', 'wpcf-galeria-0']
                 );
                 foreach ($custom_fields as $custom_type => $fields) {
                     foreach ($fields as $key => $field) {

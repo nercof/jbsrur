@@ -4,30 +4,14 @@
         <h1>Novedades</h1>
     </div>
     <div class="col-sm-12 col-xs-12 galeria" >
-        <div id="novedades" class="carousel slide" data-ride="carousel" ng-if="vm.slides">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#novedades" data-slide-to={{$index}} ng-class="{'active': novedad.active}" ng-repeat="novedad in vm.slides"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item" ng-class="{ 'active': novedad[$index].active }" ng-repeat="novedad in vm.slides">
-                    {{novedad[$index].title.rendered}}
-                    <i class="vm.iconos_format[novedad[$index].format]"></i><!-- icon -->
+        <div uib-carousel active="active" ng-if="vm.slides">
+            <div uib-slide ng-repeat="slide in vm.slides" active="active" index="$index">
+                <div ng-repeat="novedad in slide">
+                    <i class="{{ vm.iconos_format[novedad['wpcf-tipo-de-novedad']] }}"></i>
+                    <h3>{{novedad.title.rendered}}</h3>
                     <img src="{{novedad.url}}"></img>
                 </div>
             </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#novedad" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#novedad" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
     </div>
     <div class="col-sm-12 col-xs-12">
