@@ -104,6 +104,9 @@
             // busqueda en el storage.
             isEmptyLocalStoragePropSearchSaveit();
 
+            // @FIXME:
+            console.log($stateParams, $stateParams.cache, vm.propiedades);
+
             // Estado del filtrado.
             if (_.isEmpty(vm.propiedades)) {
                 vm.error = "No se encontraron propiedades.";

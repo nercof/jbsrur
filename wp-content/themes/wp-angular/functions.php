@@ -235,13 +235,13 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories' ));
 
                 wp_enqueue_script(
-                'tokko.developments',
-                get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.controllers.js',
+                'emprendimiento',
+                get_stylesheet_directory_uri() . '/app/components/emprendimiento/emprendimiento.controller.js',
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
-                'tokko.developments.details',
-                get_stylesheet_directory_uri() . '/app/components/tokko/developments/tokko.developments.details.controllers.js',
+                'emprendimiento.detalle',
+                get_stylesheet_directory_uri() . '/app/components/emprendimiento/emprendimiento.details.controller.js',
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
@@ -267,6 +267,16 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'nav-section',
                 get_stylesheet_directory_uri() . '/app/components/nav-section/nav-section.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
+                'social-section',
+                get_stylesheet_directory_uri() . '/app/components/social-section/social-section.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
+                'suc-section',
+                get_stylesheet_directory_uri() . '/app/components/suc-section/suc-section.controller.js',
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(

@@ -24,6 +24,14 @@
             templateUrl: localized.views + "nav-section.html",
             controller: 'navSectionController'
           },
+          "social-section": {
+            templateUrl: localized.views + "social-section.html",
+            controller: 'socialSectionController as vm'
+          },
+          "suc-section": {
+            templateUrl: localized.views + "suc-section.html",
+            controller: 'sucSectionController as vm'
+          },
         }
       })
       .state(STATE.QS, {
@@ -90,8 +98,8 @@
         },
         views: {
           "content": {
-            templateUrl: localized.tokko + "emprendimiento/emprendimiento.html",
-            controller: 'developmentsController as vm',
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            controller: 'emprendimientoController as vm',
           }
         }
       })
