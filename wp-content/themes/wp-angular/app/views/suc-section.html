@@ -1,0 +1,14 @@
+<div class="col-sm-12 col-xs-12" id="suc-section">
+    <div class="col-sm-12 col-xs-12">
+        <h1>Sucursales</h1>
+    </div>
+    <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-4 col-xs-4" ng-repeat="sucursal in vm.sucursales">
+            <h2>{{sucursal.title.rendered}}</h2>
+            <div class="pic" style="background-image: url('{{sucursal.featured_media}}')"></div></a>
+            <div class="dire"><i class="typcn typcn-location-outline"></i><p></p></div> 
+            <div class="dire"><i class="typcn typcn-phone-outline"></i><p></p></div>
+            <div class="dire"><i class="typcn typcn-mail"></i><p></p></div>
+        </div>
+    </div>
+</div>
