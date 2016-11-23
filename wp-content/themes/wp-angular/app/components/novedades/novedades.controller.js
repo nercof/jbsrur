@@ -48,7 +48,6 @@
             typeFactory.getPostsByContentType("novedad").then(function(data) {
                 vm.novedades = data;
                 vm.destacadas = getDestacadas(data);
-                console.log('destacadas', vm.destacadas, typeof vm.destacadas);
                 // Recorremos las novedades para poder dividir en grupos de 4.
                 _.each(vm.destacadas, function(destacada, i){
                     // Buscamos la imagen relacionada
@@ -61,7 +60,6 @@
                             // creamos slides de 4 novedades
                             vm.slides.push( vm.destacadas.slice(i, i + 4) );
                         }
-                        console.log(vm.slides);
                     });
                 });
             });

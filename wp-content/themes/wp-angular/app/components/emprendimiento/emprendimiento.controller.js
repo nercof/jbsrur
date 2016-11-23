@@ -11,7 +11,6 @@
     */
     function emprendimientoController($scope, tokkoFactory, tokkoService, NgMap,
         resourceFactory, typeFactory, $stateParams, $state, $localStorage, STATE) {
-            console.log('<< Loading emprendimientoController >>');
             var vm = this;
 
             vm.title_view = '';
@@ -44,26 +43,25 @@
 
                 // Filtramos por tipo de Operacion
                 if (_.isEmpty($scope.$storage.developments)) {
-                    getDevelopments().then(function(){
-                        _short_description();
+                    getDevelopments().then(function (data){
+                        vm.allDevelopments = data;
+                        if (_.isEmpty(vm.allDevelopments)) {
+                            vm.error = true;
+                        }
+                        else{
+                            _short_description();
 
-                        // Variables auxiliares para el paginador.
-                        vm.totalItems = vm.allDevelopments.length;
-                        vm.spinner = false;
+                            // Variables auxiliares para el paginador.
+                            vm.totalItems = vm.allDevelopments.length;
+                            vm.spinner = false;
 
-                        // Iniciamos las propiedades filtradas para la paginacion inicial.
-                        vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                            // Iniciamos las propiedades filtradas para la paginacion inicial.
+                            vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                        }
                     });
-                    console.log(vm.allDevelopments);
                 }
                 else {
                     vm.allDevelopments = $scope.$storage.developments;
-                }
-
-                if (_.isEmpty(vm.allDevelopments)) {
-                    vm.error = true;
-                }
-                else {
                     _short_description();
 
                     // Variables auxiliares para el paginador.
@@ -72,7 +70,7 @@
 
                     // Iniciamos las propiedades filtradas para la paginacion inicial.
                     vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-                }
+                }               
             } // fin activate()
 
             /**
@@ -81,7 +79,7 @@
             */
             function _short_description() {
                 _.each(vm.allDevelopments, function (development) {
-                    development.shortDescription = development.description.slice(0, 120) + '...';
+                    development.shortDescription = development.content.rendered.slice(0, 120) + '...';
                 });
             }
             /**
@@ -89,44 +87,30 @@
             * @param {} page - <description>
             */
             function getDevelopments() {
-                typeFactory.getEmprendimientos().then(
+                return typeFactory.getEmprendimientos()
+                .then(
                     function(data){
-                        vm.allDevelopments = data;
-                        console.log("test");
-                        console.log(vm.allDevelopments);
-                        console.log(data);
+                        return data;
                     }
                 );
-
-                // Buscamos en la API
-                /*
-                tokkoFactory.getDevelopmentsTokkoAPI().then(function(response) {
-                if (response.objects.length > 0) {
-                vm.allDevelopments = response.objects;
-
-                // Almacenamos el resultado de la búsqueda.
-                $scope.$storage.developments = vm.allDevelopments;
             }
-        });
-        */
-    }
 
-    /**
-    * Setea lista propiedades x pagina
-    * El listado de propiedades depende del parametro page pasado.
-    *
-    * @param {int} page - Pagina actual
-    */
-    vm.setPagingData = function(page) {
-        vm.developments = vm.allDevelopments.slice((page - 1) * vm.itemsPerPage, page * vm.itemsPerPage);
-    }
+            /**
+            * Setea lista propiedades x pagina
+            * El listado de propiedades depende del parametro page pasado.
+            *
+            * @param {int} page - Pagina actual
+            */
+            vm.setPagingData = function(page) {
+                vm.developments = vm.allDevelopments.slice((page - 1) * vm.itemsPerPage, page * vm.itemsPerPage);
+            }
 
-    /**
-    * Funcion guia para cambiar la pagina seleccionada.
-    *
-    */
-    vm.pageChanged = function() {
-        vm.setPagingData(vm.currentPage);
-    }
-} // Fin controller
-})();
+            /**
+            * Funcion guia para cambiar la pagina seleccionada.
+            *
+            */
+            vm.pageChanged = function() {
+                vm.setPagingData(vm.currentPage);
+            }
+        } // Fin controller
+    })();

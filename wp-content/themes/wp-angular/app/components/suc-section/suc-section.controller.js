@@ -25,13 +25,13 @@
                     vm.sucursales = _.sortBy(data, 'id');
                     // Cargar la url de la imagen
                     setImages();
-                    console.log(" getSucursales() ");
-                    console.log(vm.sucursales);
-
                 }
             );
         }
 
+        /**
+        * Permite mapear el id de imagen con la url del BE.
+        */
         function setImages() {
             var medias = [];
 
@@ -41,7 +41,6 @@
                 // Buscamos las imagenes en la WP
                 mediaFactory.getMedia(sucursal.featured_media).then(function(data){
                     sucursal.img = data.source_url;
-                    console.log(sucursal.img);
                 });
             });
 

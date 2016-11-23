@@ -44,8 +44,6 @@
                 });
                 */
             }
-            console.log(vm.development);
-
             /*
             // Generamos el modelo ContactForm
             typeFactory.getPostByCategoryName("contacto").then(

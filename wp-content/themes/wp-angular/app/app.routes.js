@@ -59,9 +59,7 @@
         views: {
           "content": {
             templateUrl: localized.views + "catalogo.html",
-            controller: function($stateParams) {
-              console.log($stateParams);
-            }
+            controller: function($stateParams) {}
           }
         }
       })

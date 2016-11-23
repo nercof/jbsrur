@@ -51,7 +51,6 @@
     function getPostByCategory(idCategory) {
 
       return listPosts().then(function(data) {
-        console.log(data);
         return filterByCategory(idCategory, data);
       });
     }
