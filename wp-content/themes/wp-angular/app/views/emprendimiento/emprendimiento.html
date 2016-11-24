@@ -1,7 +1,8 @@
 <div ui-view='title'>
     <h1 class="title">{{vm.title_view}}</h1>
 </div>
-<div ng-if="$state.current.name == vm.nemprendimientos">
+<div ng-if="$state.current.name == vm.nemprendimientos ||
+            $state.current.name == vm.oemprendimientos">
     <div class="col-sm-12 col-xs-12 development">
         <div ng-show="vm.spinner" class="spinner" ng-if="!vm.developments"><i class="fa fa-spinner fa-spin"></i></div>
         <div ng-if="vm.error">{{vm.error}}</div>

@@ -45,10 +45,15 @@
                 if (_.isEmpty($scope.$storage.developments)) {
                     getDevelopments().then(function (data){
                         vm.allDevelopments = data;
+                        
+                        // Determinamos category:
+                        filter_category($stateParams.category);
+
                         if (_.isEmpty(vm.allDevelopments)) {
                             vm.error = true;
                         }
                         else{
+                            $scope.$storage.developments = vm.allDevelopments;
                             _short_description();
 
                             // Variables auxiliares para el paginador.
@@ -62,6 +67,10 @@
                 }
                 else {
                     vm.allDevelopments = $scope.$storage.developments;
+
+                    // Determinamos category:{Nuestros-Otros emprendimientos}
+                    filter_category($stateParams.category);
+
                     _short_description();
 
                     // Variables auxiliares para el paginador.
@@ -70,8 +79,21 @@
 
                     // Iniciamos las propiedades filtradas para la paginacion inicial.
                     vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-                }               
+                }
             } // fin activate()
+
+            /*
+            * Filtramos por Tipo de Emprendimientos.
+            * @param {int} category - id Categoria de emprendimiento
+            */
+            function filter_category(category) {
+                vm.allDevelopments = _.filter(vm.allDevelopments, function (development) {
+                    // Array categories
+                    return _.each(development.categories, function(cat){
+                        return category == cat;
+                    });
+                });
+            }
 
             /**
             * Acorta la descripcion para mostrar solo los primeros 80 caracteres.
@@ -82,6 +104,7 @@
                     development.shortDescription = development.content.rendered.slice(0, 120) + '...';
                 });
             }
+
             /**
             * Obtener los <emprendimientos> desde la API de Tokko
             * @param {} page - <description>

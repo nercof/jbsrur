@@ -101,6 +101,7 @@
         url: '/' + 'nuestros-emprendimientos',
         params: {
           title_view: TITULO.NUESTROS_EMPRENDIMIENTOS,
+          category:17,
         },
         views: {
           "content": {
@@ -110,10 +111,15 @@
         }
       })
       .state(STATE.OE, {
-        url: '/' + STATE.OE,
+        url: '/' + 'otros-emprendimientos',
+        params: {
+          title_view: TITULO.OTROS_EMPRENDIMIENTOS,
+          category:18,
+        },
         views: {
           "content": {
-            templateUrl: localized.views + "emprendimiento/emprendimiento.html"
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            controller: 'emprendimientoController as vm',
           }
         }
       })
