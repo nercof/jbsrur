@@ -1406,4 +1406,47 @@ body {
                   }
             }
       }
+      #emprendimiento {
+            background-color: $white;
+            padding-top: 20px;
+            h2 {
+                  text-align: left;
+                  color: $black;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.6em;
+                  font-weight: bold;
+            }
+            .list {
+                  margin: 30px auto;
+                  .development{
+                        text-align: center;
+                        .pic {
+                              height: 250px;
+                              width: 250px;
+                              border-radius: 50%;
+                              background-size: cover;
+                              margin: 10px auto;
+                              &:before {
+                                    content: "";
+                                    display: none;
+                                    width: 250px;
+                                    height: 250px;
+                                    background: $red-a;
+                                    border-radius: 50%;
+                              }
+                              &:hover:before {
+                                    display: block;
+                              }
+                        }
+                        .p {
+                              display: inline-block;
+                              padding: 0 10px;
+                              vertical-align: middle;
+                              font-family: $font-normal;
+                              max-width: 80%;
+                        }
+                  }
+            }
+      }
 }

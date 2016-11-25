@@ -10,7 +10,7 @@
     *  - @view: tokko-search-result
     */
     function emprendimientoController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, typeFactory, $stateParams, $state, $localStorage, STATE) {
+        resourceFactory, typeFactory, mediaFactory, $stateParams, $state, $localStorage, STATE) {
             var vm = this;
 
             vm.title_view = '';
@@ -45,7 +45,7 @@
                 if (_.isEmpty($scope.$storage.developments)) {
                     getDevelopments().then(function (data){
                         vm.allDevelopments = data;
-                        
+
                         // Determinamos category:
                         filter_category($stateParams.category);
 
@@ -53,8 +53,10 @@
                             vm.error = true;
                         }
                         else{
-                            $scope.$storage.developments = vm.allDevelopments;
+                            // Cargar la url de la imagen
+                            setImages();
                             _short_description();
+                            $scope.$storage.developments = vm.allDevelopments;
 
                             // Variables auxiliares para el paginador.
                             vm.totalItems = vm.allDevelopments.length;
@@ -67,6 +69,8 @@
                 }
                 else {
                     vm.allDevelopments = $scope.$storage.developments;
+                    // Cargar la url de la imagen
+                    setImages();
 
                     // Determinamos category:{Nuestros-Otros emprendimientos}
                     filter_category($stateParams.category);
@@ -82,6 +86,23 @@
                 }
             } // fin activate()
 
+            /**
+            * Permite mapear el id de imagen con la url del BE.
+            */
+            function setImages() {
+                var medias = [];
+
+                // Recorremos las sucursales y obtenemos los id.media
+                _.each(vm.allDevelopments, function (development) {
+
+                    // Buscamos las imagenes en la WP
+                    mediaFactory.getMedia(development.featured_media).then(function(data){
+                        development.image = data.source_url;
+                    });
+                });
+
+            }
+
             /*
             * Filtramos por Tipo de Emprendimientos.
             * @param {int} category - id Categoria de emprendimiento
@@ -90,6 +111,7 @@
                 vm.allDevelopments = _.filter(vm.allDevelopments, function (development) {
                     // Array categories
                     return _.each(development.categories, function(cat){
+                        console.log(development);
                         return category == cat;
                     });
                 });
