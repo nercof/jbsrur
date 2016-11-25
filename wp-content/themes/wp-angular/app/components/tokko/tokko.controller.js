@@ -153,9 +153,6 @@
             vm.searchFilter = function (){
                 // Re-direct to state propiedad
                 
-                console.log("Zonas: ");
-                console.log(vm.zonas);
-                
                 var obj = {
                     "operation_types": _.pluck(vm.operation_types, 'id'),
                     "property_types": _.pluck(vm.property_types, 'id'),
@@ -185,11 +182,11 @@
                     });
                 }
                 else {
-                    
+
                     // Variable para contener los id de barrio a excluir
                     var barriosOzonas = [];
-                    
-                    // Si no tenemos valores en vm.localization_barrio_id es 
+
+                    // Si no tenemos valores en vm.localization_barrio_id es
                     // porque el usuario solo selecciona Zona sin excluir Barrio
                     if (_.isEmpty(_.keys(vm.localization_barrio_id)) && vm.zona) {
                         _.each(vm.zona.barrios, function (barrio){
@@ -199,7 +196,7 @@
                     else {
                         barriosOzonas = _.keys(vm.localization_barrio_id);
                     }
-                    
+
                     // Parameters by user
                     var obj = {
                         "operation_types": _.keys(vm.operation_types),
@@ -221,7 +218,7 @@
             vm.seleccionarBarrio = function (zona){
                 // Permite centralizar la selección de {n} barrios por zona.
                 vm.zona = zona;
-                
+
                 // Inicializamos la lista de barrios a seleccionar.
                 vm.localization_barrio_id = [];
                 if(zona.unBarrio) {

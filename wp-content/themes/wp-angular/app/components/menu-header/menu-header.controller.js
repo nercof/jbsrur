@@ -3,7 +3,6 @@
   angular
   .module('app.core')
   .controller('menuHeaderController', function($scope, menuFactory, _, STATE){
-    console.log("<< menuHeaderController >>");
     getMenuItems(STATE);
 
     //#search

@@ -105,7 +105,7 @@
             isEmptyLocalStoragePropSearchSaveit();
 
             // @FIXME:
-            console.log($stateParams, $stateParams.cache, vm.propiedades);
+            //console.log($stateParams, $stateParams.cache, vm.propiedades);
 
             // Estado del filtrado.
             if (_.isEmpty(vm.propiedades)) {
@@ -121,7 +121,7 @@
             }
 
             // Only for test
-            console.log(vm.properties);
+            //console.log(vm.properties);
         }
 
         /**
@@ -175,7 +175,7 @@
          * se filtrara desde vm.propiedades.
          */
         function filtrarPropiedades(pListaPropiedades) {
-            console.log("Searching properties: << filtrarPropiedades() >>");
+            //console.log("Searching properties: << filtrarPropiedades() >>");
             var resultFiltrado = [];
 
             if (!_.isEmpty(pListaPropiedades) && !_.isEmpty(vm.data)) {

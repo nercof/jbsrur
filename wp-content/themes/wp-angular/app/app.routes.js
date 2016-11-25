@@ -59,9 +59,7 @@
         views: {
           "content": {
             templateUrl: localized.views + "catalogo.html",
-            controller: function($stateParams) {
-              console.log($stateParams);
-            }
+            controller: function($stateParams) {}
           }
         }
       })
@@ -103,6 +101,7 @@
         url: '/' + 'nuestros-emprendimientos',
         params: {
           title_view: TITULO.NUESTROS_EMPRENDIMIENTOS,
+          category:17,
         },
         views: {
           "content": {
@@ -112,10 +111,15 @@
         }
       })
       .state(STATE.OE, {
-        url: '/' + STATE.OE,
+        url: '/' + 'otros-emprendimientos',
+        params: {
+          title_view: TITULO.OTROS_EMPRENDIMIENTOS,
+          category:18,
+        },
         views: {
           "content": {
-            templateUrl: localized.views + "emprendimiento/emprendimiento.html"
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            controller: 'emprendimientoController as vm',
           }
         }
       })
@@ -171,15 +175,15 @@
         sticky: true,
         onEnter: function() {}
       })
-      .state(STATE.NED, { //DOT Notation
+      .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
         params: {
           data: null,
-          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,          
         },
         url: '/:id',
         views: {
           "detalle@nemprendimientos": {
-            templateUrl: localized.tokko + "emprendimiento/emprendimiento-detalle.html",
+            templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
             controller: 'developmentsDetailsController as vm',
           }
         },

@@ -37,15 +37,18 @@
                 vm.development = $stateParams.data;
             }
             else {
-                // Buscamos la propiedad en TOKKO
+                // @TODO: No es necesario.
                 /*
                 tokkoFactory.getDevelopmentsTokkoAPIById($stateParams.id).then(function(data) {
                     vm.development = data;
                 });
                 */
             }
-            console.log(vm.development);
-
+            // Seteamos el titulo de la vista.
+            // title_view();
+            if (vm.development) {
+                console.log(vm.development.image);
+            }
             /*
             // Generamos el modelo ContactForm
             typeFactory.getPostByCategoryName("contacto").then(
@@ -58,6 +61,18 @@
                     angular.element('#jbsrur_contact_form').append(vm.contact_form.content.rendered);
                 });
             */
+        }
+
+        /**
+        * Determina el titulo de la vista.
+        */
+        function title_view(){
+            console.log("title_view()");
+            _.each(vm.development.categories, function(cat){
+                if (category == cat) {
+                    vm.title_view = 'Detalle del Emprendimiento';
+                }
+            });
         }
     }
 })();

@@ -9,11 +9,10 @@
 
     /* @ngInject */
     function socialSectionController(menuFactory, _, resourceFactory) {
-        console.log("<< socialSectionController >>");
         var vm = this;
 
         activate();
-        
+
         function activate() {
             getMenuItems();
         }

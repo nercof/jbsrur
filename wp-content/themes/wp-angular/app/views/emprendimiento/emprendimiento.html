@@ -1,40 +1,39 @@
+<div ng-if="$state.current.name == vm.nemprendimientos ||
+            $state.current.name == vm.oemprendimientos">
 <div ui-view='title'>
     <h1 class="title">{{vm.title_view}}</h1>
 </div>
-<div ng-if="$state.current.name == vm.nemprendimientos">
-    <div class="col-sm-12 col-xs-12 development">
-        <div ng-show="vm.spinner" class="spinner" ng-if="!vm.developments"><i class="fa fa-spinner fa-spin"></i></div>
-        <div ng-if="vm.error">{{vm.error}}</div>
-        <div class="col-sm-12 col-xs-12" ng-repeat="development in vm.developments">
-            <!-- Result of APITokko for developments -->
-            <div class="col-sm-6 col-xs-12">
-                <a ui-sref="nemprendimientos.detalle({data: development , id:development.id})" class="thumb">
-                 <h2>{{development.name}}</h2>
-                </a>
-                <div class="des">
-                    <p><pre>{{development.shortDescription}}</pre></p>
-                </div>
+<div class="col-sm-12 col-xs-12" id="emprendimiento">
+    <div ng-show="vm.spinner" class="spinner" ng-if="!vm.developments"><i class="fa fa-spinner fa-spin"></i></div>
+    <div ng-if="vm.error">{{vm.error}}</div>
+    <div class="col-sm-12 col-xs-12 list" ng-repeat="development in vm.developments">
+        <div class="col-sm-6 col-xs-12 development">
+            <div class="pic" style="background-image: url('{{development.image}}')"></div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <a ui-sref="nemprendimientos.detalle({data: development , id:development.id})">
+                <h2>{{development.title.rendered}}</h2>
+            </a>
+            <div class="des">
+                <p><pre>{{development.shortDescription}}</pre></p>
             </div>
-            <div class="col-sm-6 col-xs-12">
-                <div class="pic" style="background-image: url('{{propiedad.photos[0].image}}')"></div>
-                </a>
-            </div>
-            </div>
-        <div class="col-sm-12 col-xs-12">
-            <!-- Paginador -->
-            <ul uib-pagination
-                boundary-links=true
-                total-items="vm.totalItems"
-                items-per-page="vm.itemsPerPage"
-                ng-model="vm.currentPage"
-                ng-change="vm.pageChanged()"
-                boundary-links="true"
-                previous-text="&lsaquo;"
-                next-text="&rsaquo;"
-                first-text="&laquo;"
-                last-text="&raquo;">
-            </ul>
         </div>
     </div>
+    <div class="col-sm-12 col-xs-12">
+        <!-- Paginador -->
+        <ul uib-pagination
+        boundary-links=true
+        total-items="vm.totalItems"
+        items-per-page="vm.itemsPerPage"
+        ng-model="vm.currentPage"
+        ng-change="vm.pageChanged()"
+        boundary-links="true"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"
+        first-text="&laquo;"
+        last-text="&raquo;">
+    </ul>
+</div>
+</div>
 </div>
 <div ui-view="detalle" />

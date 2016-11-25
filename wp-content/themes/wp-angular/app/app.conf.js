@@ -27,6 +27,7 @@
         'CATALOGO_ALQUILER': 'Alquileres',
         'CATALOGO_VENTA': 'Ventas',
         'NUESTROS_EMPRENDIMIENTOS': 'Nuestros Emprendimientos',
-        'NUESTROS_EMPRENDIMIENTOS_DETALLE': "Detalle del Emprendimiento", 
+        'OTROS_EMPRENDIMIENTOS': 'Otros Emprendimientos',
+        'NUESTROS_EMPRENDIMIENTOS_DETALLE': "Detalle del Emprendimiento",
     });
 })();
