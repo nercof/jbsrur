@@ -1449,4 +1449,126 @@ body {
                   }
             }
       }
+      .detalle-emprendimiento {
+            background-color: $white;
+            font-family: $font-titles;
+            margin: 0px;
+            .col {
+                  padding: 0;
+            }
+            .carousel {
+                  background-color: $grey;
+                  padding-bottom: 2.5em;
+            }
+            h1 {
+                  font-style: $font-titles;
+                  color: $red;
+                  border-bottom: 1px $red solid;
+                  padding: 10px 20px;
+                  font-size: 2.8em;
+                  margin-top: 0;
+                  
+                  .round-border{
+                        border-radius: 100%;
+                        border: 1px $red solid;
+                        display: inline-block;
+
+                        i {
+                              border-radius: 100%;
+                              border: 1px $red solid;
+                              margin: 10px;
+                              padding: 0.3em;
+                        }
+                  }
+            }
+            h1 icon {
+                  background-image: url('../images/icon-house.png');
+            }
+
+            h2 {
+                  font-family: $font-normal;
+                  color: $white;
+                  border: 2.2px $bordo solid;
+                  background-color: $bordo;
+                  text-align: left;
+                  font-size:large;
+                  padding: 10px;
+                  i {
+                        border: 1px solid $white;
+                        border-radius: 100%;
+                        font-size: 22px;
+                        padding: 2px 4px;
+                        vertical-align: middle;
+                        margin: 5px 10px 5px 0px;
+                  }
+            }
+            .pic {
+                  height: 250px;
+                  width: 250px;
+                  border-radius: 50%;
+                  background-size: cover;
+                  margin: 10px auto;
+                  &:before {
+                        content: "";
+                        display: none;
+                        width: 250px;
+                        height: 250px;
+                        background: $red-a;
+                        border-radius: 50%;
+                  }
+                  &:hover:before {
+                        display: block;
+                  }
+            }
+            .galeria {
+                  height: 395px;
+                  img {
+                        height: 360px;
+                  }
+            }
+            .mapa {
+                  height: 395px;
+            }
+
+            .descripcion {
+                  pre {
+                        font-size:1.1em;
+                        font-family: $font-normal;
+                        padding: 0em 2em 0em 0em;
+                        background-color: transparent;
+                        border: none;
+                        white-space: pre-wrap;       /* css-3 */
+                        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+                        white-space: -pre-wrap;      /* Opera 4-6 */
+                        white-space: -o-pre-wrap;    /* Opera 7 */
+                        word-break: break-word;
+                  }
+            }
+            .referencia {
+                  padding: 10px 0;
+                  div {
+                        background-color: $pink;
+                        color: $red;
+                        padding: 15px;
+                        font-size: 1.2em;
+                  }
+            }
+            .caracteristicas {
+                  background-color: $grey;
+                  color: $white;
+                  width: 100%;
+                  margin: auto;
+                  i {
+                        padding-right: 10px;
+                  }
+                  .col-sm-3 {
+                        color: $white;
+                        margin: 10px 10px 10px 0px;
+                        display: block;
+                        text-align: left;
+                        padding: 0;
+                        width: 23%;
+                  }
+            }
+      }
 }

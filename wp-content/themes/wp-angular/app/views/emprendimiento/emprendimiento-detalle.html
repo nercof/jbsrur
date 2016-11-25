@@ -1,11 +1,15 @@
-<div class="row detalle" ng-if="vm.development">
+<div class="row detalle-emprendimiento" ng-if="vm.development">
     <div class="col-sm-12 col-xs-12 col">
         <h1>
             <div class="round-border">
                 <i class="glyphicon glyphicon-home"></i>
             </div>
-            {{vm.development.name}}
+            {{vm.development.title.rendered}}
         </h1>
+    </div>
+    <div class="col-sm-12 col-xs-12">
+        {{vm.development.image}}
+        <div class="pic" style="background-image: url('{{vm.development.image}}')"></div>
     </div>
     <div class="col-sm-12 col-xs-12">
         <div class="col-sm-6 col-xs-12">
@@ -20,10 +24,10 @@
             <div class="col-sm-12 col-xs-12">
             </div>
             <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.development.reference_code">
-                Código de referencia: {{vm.development.reference_code}}
+                Código de referencia: {{vm.development.wpcf-codigo-de-referencia}}
             </div>
             <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.development.branch.phone">
-                <div>Centro de atención: {{vm.development.branch.name}} {{vm.development.branch.phone}}</div>
+                <div>Centro de atención: {{vm.development.wpcf-sucursal}} {{vm.development.branch.phone}}</div>
             </div>
         </div>
 

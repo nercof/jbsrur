@@ -175,15 +175,15 @@
         sticky: true,
         onEnter: function() {}
       })
-      .state(STATE.NED, { //DOT Notation
+      .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
         params: {
           data: null,
-          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,          
         },
         url: '/:id',
         views: {
           "detalle@nemprendimientos": {
-            templateUrl: localized.tokko + "emprendimiento/emprendimiento-detalle.html",
+            templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
             controller: 'developmentsDetailsController as vm',
           }
         },

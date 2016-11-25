@@ -1011,5 +1011,139 @@ body {
             vertical-align: middle;
             font-family: "Lato", sans-serif;
             max-width: 80%; }
+  body #emprendimiento {
+    background-color: #FAF3DD;
+    padding-top: 20px; }
+    body #emprendimiento h2 {
+      text-align: left;
+      color: #131515;
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.6em;
+      font-weight: bold; }
+    body #emprendimiento .list {
+      margin: 30px auto; }
+      body #emprendimiento .list .development {
+        text-align: center; }
+        body #emprendimiento .list .development .pic {
+          height: 250px;
+          width: 250px;
+          border-radius: 50%;
+          background-size: cover;
+          margin: 10px auto; }
+          body #emprendimiento .list .development .pic:before {
+            content: "";
+            display: none;
+            width: 250px;
+            height: 250px;
+            background: rgba(223, 10, 31, 0.5);
+            border-radius: 50%; }
+          body #emprendimiento .list .development .pic:hover:before {
+            display: block; }
+        body #emprendimiento .list .development .p {
+          display: inline-block;
+          padding: 0 10px;
+          vertical-align: middle;
+          font-family: "Lato", sans-serif;
+          max-width: 80%; }
+  body .detalle-emprendimiento {
+    background-color: #FAF3DD;
+    font-family: "Montserrat", sans-serif;
+    margin: 0px; }
+    body .detalle-emprendimiento .col {
+      padding: 0; }
+    body .detalle-emprendimiento .carousel {
+      background-color: #735753;
+      padding-bottom: 2.5em; }
+    body .detalle-emprendimiento h1 {
+      font-style: "Montserrat", sans-serif;
+      color: #df0a1f;
+      border-bottom: 1px #df0a1f solid;
+      padding: 10px 20px;
+      font-size: 2.8em;
+      margin-top: 0; }
+      body .detalle-emprendimiento h1 .round-border {
+        border-radius: 100%;
+        border: 1px #df0a1f solid;
+        display: inline-block; }
+        body .detalle-emprendimiento h1 .round-border i {
+          border-radius: 100%;
+          border: 1px #df0a1f solid;
+          margin: 10px;
+          padding: 0.3em; }
+    body .detalle-emprendimiento h1 icon {
+      background-image: url("../images/icon-house.png"); }
+    body .detalle-emprendimiento h2 {
+      font-family: "Lato", sans-serif;
+      color: #FAF3DD;
+      border: 2.2px #90030C solid;
+      background-color: #90030C;
+      text-align: left;
+      font-size: large;
+      padding: 10px; }
+      body .detalle-emprendimiento h2 i {
+        border: 1px solid #FAF3DD;
+        border-radius: 100%;
+        font-size: 22px;
+        padding: 2px 4px;
+        vertical-align: middle;
+        margin: 5px 10px 5px 0px; }
+    body .detalle-emprendimiento .pic {
+      height: 250px;
+      width: 250px;
+      border-radius: 50%;
+      background-size: cover;
+      margin: 10px auto; }
+      body .detalle-emprendimiento .pic:before {
+        content: "";
+        display: none;
+        width: 250px;
+        height: 250px;
+        background: rgba(223, 10, 31, 0.5);
+        border-radius: 50%; }
+      body .detalle-emprendimiento .pic:hover:before {
+        display: block; }
+    body .detalle-emprendimiento .galeria {
+      height: 395px; }
+      body .detalle-emprendimiento .galeria img {
+        height: 360px; }
+    body .detalle-emprendimiento .mapa {
+      height: 395px; }
+    body .detalle-emprendimiento .descripcion pre {
+      font-size: 1.1em;
+      font-family: "Lato", sans-serif;
+      padding: 0em 2em 0em 0em;
+      background-color: transparent;
+      border: none;
+      white-space: pre-wrap;
+      /* css-3 */
+      white-space: -moz-pre-wrap;
+      /* Mozilla, since 1999 */
+      white-space: -pre-wrap;
+      /* Opera 4-6 */
+      white-space: -o-pre-wrap;
+      /* Opera 7 */
+      word-break: break-word; }
+    body .detalle-emprendimiento .referencia {
+      padding: 10px 0; }
+      body .detalle-emprendimiento .referencia div {
+        background-color: #EC7E7E;
+        color: #df0a1f;
+        padding: 15px;
+        font-size: 1.2em; }
+    body .detalle-emprendimiento .caracteristicas {
+      background-color: #735753;
+      color: #FAF3DD;
+      width: 100%;
+      margin: auto; }
+      body .detalle-emprendimiento .caracteristicas i {
+        padding-right: 10px; }
+      body .detalle-emprendimiento .caracteristicas .col-sm-3 {
+        color: #FAF3DD;
+        margin: 10px 10px 10px 0px;
+        display: block;
+        text-align: left;
+        padding: 0;
+        width: 23%; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */
