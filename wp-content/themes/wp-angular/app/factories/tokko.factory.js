@@ -45,7 +45,7 @@
     TOKKO_DEVELOPMENT_ID,
     $window
   ){
-    console.log('Load tokko.factory.js');
+    
     var lang = "";
 
     var data = {

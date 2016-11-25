@@ -1467,7 +1467,7 @@ body {
                   padding: 10px 20px;
                   font-size: 2.8em;
                   margin-top: 0;
-                  
+
                   .round-border{
                         border-radius: 100%;
                         border: 1px $red solid;
@@ -1504,21 +1504,9 @@ body {
             }
             .pic {
                   height: 250px;
-                  width: 250px;
-                  border-radius: 50%;
+                  width: 100%;
                   background-size: cover;
                   margin: 10px auto;
-                  &:before {
-                        content: "";
-                        display: none;
-                        width: 250px;
-                        height: 250px;
-                        background: $red-a;
-                        border-radius: 50%;
-                  }
-                  &:hover:before {
-                        display: block;
-                  }
             }
             .galeria {
                   height: 395px;
