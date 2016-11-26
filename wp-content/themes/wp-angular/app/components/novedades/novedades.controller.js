@@ -54,7 +54,7 @@
                     mediaFactory.getMedia(destacada.featured_media).then(function(data) {
                         destacada.foto = data;
                         if (!_.isEmpty(destacada.foto.guid)) {
-                            destacada.url = destacada.foto.guid.rendered;
+                            destacada.full = destacada.foto.media_details.sizes.full.source_url;
                         }
                         if(i % 4 == 0) {
                             // creamos slides de 4 novedades
