@@ -6,10 +6,9 @@
         .controller('quienesSomosController', quienesSomosController);
 
     /**
-     * quienesSomosController: 
+     * quienesSomosController:
      */
     function quienesSomosController($scope) {
-        console.log('<< Loading catalogController >>');
         var vm = this;
 
         vm.title_view = '';
@@ -24,7 +23,7 @@
          * << @Comment >>
          */
         function activate(vm) {
-            
+
         } // fin activate()
     } // Fin controller
 })();

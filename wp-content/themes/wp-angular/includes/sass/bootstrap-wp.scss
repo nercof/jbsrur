@@ -43,14 +43,16 @@
 
 $font-normal: 'Lato', sans-serif;
 $font-titles: 'Montserrat', sans-serif;
-$red: #DF0A1F;
+$red: rgb(223, 10, 31);
 $red-a: rgba(223, 10, 31, 0.5);
+$red-ab: rgba(223, 10, 31, 0.8);
 $white: #FAF3DD;
 $white-a: rgba(250, 243, 221, 0.8);
 $white-ab: rgba(250, 243, 221, 0.5);
 $pink: #EC7E7E;
 $bordo: #90030C;
 $grey: #735753;
+$grey-a: rgba(115, 87, 83, 0.8);
 $black: #131515;
 
 body {
@@ -73,6 +75,9 @@ body {
             }
             img {
                   width: 100%;
+            }
+            .carousel-inner {
+                  border-bottom: 10px solid $red;
             }
       }
       h1 {
@@ -222,7 +227,8 @@ body {
             }
       }
       #searchForm {
-            padding-bottom: 0;
+            padding-bottom: 30px;
+            background-color: $white;
 
             .search-tab{
                   width: 50%;
@@ -495,7 +501,9 @@ body {
                                     width: 32%;
 
                                     li {
-                                          margin-bottom: 10px;
+                                          margin: 0px;
+                                          padding-bottom: 10px;
+                                          background-color: $red;
                                           a {
                                                 vertical-align:middle;
                                                 color: $white;
@@ -504,8 +512,12 @@ body {
                                                 padding: 5px 10px;
                                                 display: block;
                                                 border-radius: 0;
+                                                text-transform: none;
                                                 i {
                                                       margin-left: 5px;
+                                                      height: auto;
+                                                      width: auto;
+                                                      font-size: 1em;
                                                 }
                                           }
                                           &.active,
@@ -819,107 +831,7 @@ body {
             .mapa {
                   height: 395px;
             }
-            #contacto{
-                  background-color: $red;
-                  margin: 20px 0;
-                  padding: 0px 30px;
 
-                  h2 {
-                        font-family: $font-normal;
-                        color: $white;
-                        background-color:$red;
-                        border: none;
-                        letter-spacing: 1px;
-                        margin: 5px 0;
-                        padding: 4px;
-                        text-align: left;
-                        text-transform: uppercase;
-                        font-weight: 600;
-
-                        i {
-                              border-radius: 50%;
-                              border: 2px $white solid;
-                              margin: 10px 10px 10px 0px;
-                              padding: 2px 5px;
-                              width: 35px;
-                              height: 35px;
-                              display: inline-block;
-                              font-size: 22px;
-                        }
-                  }
-                  form {
-                        .wpcf7-form-control-wrap {
-                              width: 100%;
-                              display: block;
-                              input,
-                              textarea {
-                                    width: 90%;
-                                    border: none;
-                                    padding: 10px;
-                                    font-weight: 400;
-                                    font-style: italic;
-                                    color: $red;
-                                    font-size: 1.2em;
-                                    &::-webkit-input-placeholder,
-                                    &::-moz-placeholder,
-                                    &:-ms-input-placeholder,
-                                    &:-moz-placeholder {
-                                          font-weight: 400;
-                                          font-style: italic;
-                                          border: none;
-                                    }
-                                    &:focus,
-                                    &:active {
-                                          border: none;
-                                          outline: 0;
-                                    }
-                              }
-                              &.sucursal {
-                                    display: inline;
-                                    padding: 0 15px;
-                                    select {
-                                          color: $red;
-                                          background-color: $white;
-                                          padding: 10px;
-                                          border: 0;
-                                          &:focus,
-                                          &:active {
-                                                border: none;
-                                                outline: 0;
-                                          }
-                                    }
-                              }
-                        }
-                  }
-                  label {
-                        color: $white;
-                        font-size: 1.2em;
-                        font-weight: 400;
-                        font-style: italic;
-                        width: 100%;
-                        padding-bottom: 15px;
-                  }
-                  .wpcf7-submit {
-                        background-color: $white;
-                        border-radius: 20px;
-                        color:$red;
-                        padding: 20px 15px;
-                        font-size: 1em;
-                        text-transform: uppercase;
-                        border: none;
-                        margin: 5px 50px 20px 5px;
-                        float: right;
-                        &:hover {
-                              opacity: 0.85;
-                        }
-                        &:focus,
-                        &:active {
-                              border: none;
-                              outline: 0;
-                              opacity: 0.85;
-                        }
-                  }
-            }
             .descripcion {
                   pre {
                         font-size:1.1em;
@@ -1108,6 +1020,542 @@ body {
                                     border: 3px solid $pink;
                               }
                         }
+                  }
+            }
+      }
+
+      #news-section {
+            background-color: $grey;
+            padding-top: 20px;
+            h2 {
+                  text-align: center;
+                  color: white;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.6em;
+                  font-weight: bold;
+                  .underline {
+                        height: 1px;
+                        width: 100px;
+                        margin: 10px auto 0;
+                        background-color: $white;
+                  }
+            }
+            .galeria {
+                  float: none;
+                  margin: 30px auto;
+
+                  .new {
+                        position: relative;
+                        .img {
+                              width: 100%;
+                              height: 250px;
+                              background-size: cover;
+                              background-position: center;
+                              position: relative;
+                              margin-bottom: 20px;
+                              margin-top: 10px;
+                        }
+                        .caption {
+                              position: absolute;
+                              bottom: 0;
+                              width: 100%;
+                              margin-bottom: 20px;
+                              text-align: left;
+                              background-color: $grey-a;
+                              color: $white;
+                              h3 {
+                                    width: 90%;
+                                    font-family: $font-normal;
+                                    font-size: 1.2em;
+                                    font-weight: bold;
+                                    margin: 0;
+                                    display: inline-block;
+                                    i {
+                                          padding:1em;
+                                          display: inline-block;
+                                          background-color: $red-ab;
+                                    }
+                                    .title {
+                                          display: inline-block;
+                                          max-width: 85%;
+                                          vertical-align: middle;
+                                          padding-left: 10px;
+                                    }
+                              }
+                              p {
+                                    width: 78%;
+                                    margin-left: 55px;
+                                    font-family: $font-normal;
+                                    padding: 5px;
+                                    display: none;
+                              }
+                        }
+                        &:hover {
+                              p {
+                                    display: block;
+                              }
+                        }
+                  }
+            }
+      }
+
+      #contacto{
+            background-color: $red;
+            margin: 20px 0;
+            padding: 0px 30px;
+
+            h2 {
+                  font-family: $font-normal;
+                  color: $white;
+                  background-color:$red;
+                  border: none;
+                  letter-spacing: 1px;
+                  margin: 5px 0;
+                  padding: 4px;
+                  text-align: left;
+                  text-transform: uppercase;
+                  font-weight: 600;
+
+                  i {
+                        border-radius: 50%;
+                        border: 2px $white solid;
+                        margin: 10px 10px 10px 0px;
+                        padding: 2px 5px;
+                        width: 35px;
+                        height: 35px;
+                        display: inline-block;
+                        font-size: 22px;
+                  }
+            }
+            form {
+                  .wpcf7-form-control-wrap {
+                        width: 100%;
+                        display: block;
+                        input,
+                        textarea {
+                              width: 90%;
+                              border: none;
+                              padding: 10px;
+                              font-weight: 400;
+                              font-style: italic;
+                              color: $red;
+                              font-size: 1.2em;
+                              &::-webkit-input-placeholder,
+                              &::-moz-placeholder,
+                              &:-ms-input-placeholder,
+                              &:-moz-placeholder {
+                                    font-weight: 400;
+                                    font-style: italic;
+                                    border: none;
+                              }
+                              &:focus,
+                              &:active {
+                                    border: none;
+                                    outline: 0;
+                              }
+                        }
+                        &.sucursal {
+                              display: inline;
+                              padding: 0 15px;
+                              select {
+                                    color: $red;
+                                    background-color: $white;
+                                    padding: 10px;
+                                    border: 0;
+                                    &:focus,
+                                    &:active {
+                                          border: none;
+                                          outline: 0;
+                                    }
+                              }
+                        }
+                  }
+            }
+            label {
+                  color: $white;
+                  font-size: 1.2em;
+                  font-weight: 400;
+                  font-style: italic;
+                  width: 100%;
+                  padding-bottom: 15px;
+            }
+            .wpcf7-submit {
+                  background-color: $white;
+                  border-radius: 20px;
+                  color:$red;
+                  padding: 20px 15px;
+                  font-size: 1em;
+                  text-transform: uppercase;
+                  border: none;
+                  margin: 5px 50px 20px 5px;
+                  float: right;
+                  &:hover {
+                        opacity: 0.85;
+                  }
+                  &:focus,
+                  &:active {
+                        border: none;
+                        outline: 0;
+                        opacity: 0.85;
+                  }
+            }
+      }
+
+      #social-section {
+            background-color: $white;
+            ul {
+                  text-align: center;
+                  display: block;
+                  margin: 50px auto;
+                  padding: 0;
+
+                  li {
+                        margin: auto;
+                        display: inline-block;
+                        float: none;
+                        vertical-align: top;
+                        a {
+                              font-family: $font-titles;
+                              text-transform: uppercase;
+                              i {
+                                    display: block;
+                                    font-size: 48px;
+                                    padding: 0;
+                                    border-radius: 50%;
+                                    margin: auto;
+                                    background-color: $grey;
+                                    color: $white;
+                                    width: 1.5em;
+                                    height: 1.5em;
+                                    &.typcn {
+                                          &:hover {
+                                                background-color: $red;
+                                          }
+                                    }
+                                    &.typcn-social-facebook {
+                                          &:hover {
+                                                background-color: #40599C;
+                                          }
+                                    }
+                                    &.typcn-social-twitter {
+                                          &:hover {
+                                                background-color: #1da1f2;
+                                          }
+                                    }
+                                    &.typcn-social-google-plus {
+                                          &:hover {
+                                                background-color: #db4437;
+                                          }
+                                    }
+                              }
+                              span {
+                                    display: block;
+                                    padding-top: 15px;
+                              }
+                        }
+                        &.even {
+                              a {
+                                    color: $bordo;
+
+                                    &:hover {
+                                          text-decoration: none;
+                                          i {
+                                                color: $bordo;
+                                                background-color: $white;
+                                                border: 3px solid $bordo;
+                                          }
+                                     }
+                              }
+                              i {
+                                    background-color: $bordo;
+                                    border: 3px solid $bordo;
+                                    color: $white;
+                              }
+                        }
+                        &.odd {
+                              a {
+                                    color: $red;
+                                    &:hover {
+                                          text-decoration: none;
+                                          i {
+                                                color: $red;
+                                                background-color: $white;
+                                                border: 3px solid $red;
+                                          }
+                                    }
+                              }
+                              i {
+                                    background-color: $pink;
+                                    border: 3px solid $pink;
+                              }
+                        }
+                  }
+            }
+      }
+      .contact-section {
+            background-color: $white;
+            padding: 0;
+            #contacto{
+                  background-color: $bordo;
+                  margin:0;
+                  padding: 0px 30px;
+                  h2 {
+                        font-size: 1.4em;
+                        background-color: $bordo;
+                  }
+                  form {
+                        input,
+                        textarea {
+                              font-size: 1.1em;
+                              padding: 5px;
+                              color: $bordo;
+                              &::-webkit-input-placeholder,
+                              &::-moz-placeholder,
+                              &:-ms-input-placeholder,
+                              &:-moz-placeholder {
+                                    color: $bordo;
+                              }
+                        }
+                        textarea {
+                              height: 100px;
+                        }
+                        .wpcf7-submit {
+                              font-family: $font-titles;
+                              font-weight: bold;
+                              padding: 20px 15px;
+                        }
+                  }
+            }
+            .map {
+                  padding: 0;
+                  .mapa {
+                        width: 100%;
+                        height: 430px;
+                  }
+            }
+      }
+      #suc-section {
+            background-color: $white;
+            padding-top: 20px;
+            h2 {
+                  text-align: center;
+                  color: $bordo;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.6em;
+                  font-weight: bold;
+                  .underline {
+                        height: 1px;
+                        width: 100px;
+                        margin: 10px auto 0;
+                        background-color: $bordo;
+                  }
+            }
+            .list {
+                  margin: 30px auto;
+                  .sucursal{
+                        text-align: center;
+                        h3 {
+                              text-align: center;
+                              color: $black;
+                              font-family: $font-normal;
+                              font-size: 1.2em;
+                              font-weight: bold;
+                              margin: 40px auto;
+                        }
+                        .pic {
+                              height: 250px;
+                              width: 250px;
+                              border-radius: 50%;
+                              background-size: cover;
+                              margin: 10px auto;
+                              &:before {
+                                    content: "";
+                                    display: none;
+                                    width: 250px;
+                                    height: 250px;
+                                    background: $red-a;
+                                    border-radius: 50%;
+                              }
+                              &:hover:before {
+                                    display: block;
+                              }
+                        }
+                        .dire {
+                              text-align: left;
+                              color: $black;
+                              margin: 15px auto;
+                              width: 70%;
+                              i {
+                                    display: inline-block;
+                                    font-size: 1.5em;
+                                    padding: 0px 5px;
+                                    border-radius: 50%;
+                                    margin: auto;
+                                    border: 2px $black solid;
+                              }
+                              p {
+                                    display: inline-block;
+                                    padding: 0 10px;
+                                    vertical-align: middle;
+                                    font-family: $font-normal;
+                                    max-width: 80%;
+                              }
+                        }
+                  }
+            }
+      }
+      #emprendimiento {
+            background-color: $white;
+            padding-top: 20px;
+            h2 {
+                  text-align: left;
+                  color: $black;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.6em;
+                  font-weight: bold;
+            }
+            .list {
+                  margin: 30px auto;
+                  .development{
+                        text-align: center;
+                        .pic {
+                              height: 250px;
+                              width: 250px;
+                              border-radius: 50%;
+                              background-size: cover;
+                              margin: 10px auto;
+                              &:before {
+                                    content: "";
+                                    display: none;
+                                    width: 250px;
+                                    height: 250px;
+                                    background: $red-a;
+                                    border-radius: 50%;
+                              }
+                              &:hover:before {
+                                    display: block;
+                              }
+                        }
+                        .p {
+                              display: inline-block;
+                              padding: 0 10px;
+                              vertical-align: middle;
+                              font-family: $font-normal;
+                              max-width: 80%;
+                        }
+                  }
+            }
+      }
+      .detalle-emprendimiento {
+            background-color: $white;
+            font-family: $font-titles;
+            margin: 0px;
+            .col {
+                  padding: 0;
+            }
+            .carousel {
+                  background-color: $grey;
+                  padding-bottom: 2.5em;
+            }
+            h1 {
+                  font-style: $font-titles;
+                  color: $red;
+                  border-bottom: 1px $red solid;
+                  padding: 10px 20px;
+                  font-size: 2.8em;
+                  margin-top: 0;
+
+                  .round-border{
+                        border-radius: 100%;
+                        border: 1px $red solid;
+                        display: inline-block;
+
+                        i {
+                              border-radius: 100%;
+                              border: 1px $red solid;
+                              margin: 10px;
+                              padding: 0.3em;
+                        }
+                  }
+            }
+            h1 icon {
+                  background-image: url('../images/icon-house.png');
+            }
+
+            h2 {
+                  font-family: $font-normal;
+                  color: $white;
+                  border: 2.2px $bordo solid;
+                  background-color: $bordo;
+                  text-align: left;
+                  font-size:large;
+                  padding: 10px;
+                  i {
+                        border: 1px solid $white;
+                        border-radius: 100%;
+                        font-size: 22px;
+                        padding: 2px 4px;
+                        vertical-align: middle;
+                        margin: 5px 10px 5px 0px;
+                  }
+            }
+            .pic {
+                  height: 250px;
+                  width: 100%;
+                  background-size: cover;
+                  margin: 10px auto;
+            }
+            .galeria {
+                  height: 395px;
+                  img {
+                        height: 360px;
+                  }
+            }
+            .mapa {
+                  height: 395px;
+            }
+
+            .descripcion {
+                  pre {
+                        font-size:1.1em;
+                        font-family: $font-normal;
+                        padding: 0em 2em 0em 0em;
+                        background-color: transparent;
+                        border: none;
+                        white-space: pre-wrap;       /* css-3 */
+                        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+                        white-space: -pre-wrap;      /* Opera 4-6 */
+                        white-space: -o-pre-wrap;    /* Opera 7 */
+                        word-break: break-word;
+                  }
+            }
+            .referencia {
+                  padding: 10px 0;
+                  div {
+                        background-color: $pink;
+                        color: $red;
+                        padding: 15px;
+                        font-size: 1.2em;
+                  }
+            }
+            .caracteristicas {
+                  background-color: $grey;
+                  color: $white;
+                  width: 100%;
+                  margin: auto;
+                  i {
+                        padding-right: 10px;
+                  }
+                  .col-sm-3 {
+                        color: $white;
+                        margin: 10px 10px 10px 0px;
+                        display: block;
+                        text-align: left;
+                        padding: 0;
+                        width: 23%;
                   }
             }
       }

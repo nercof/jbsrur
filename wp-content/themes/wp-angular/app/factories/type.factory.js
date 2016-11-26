@@ -5,9 +5,10 @@
     .factory('typeFactory', dataFactory)
     .constant('POST_TAG', 'posts')
     .constant('POST_CAT', '?filter[category_name]=')
-    .constant('EMP_TAG', 'emprendimiento');
+    .constant('EMP_TAG', 'emprendimiento')
+    .constant('SUC_TAG', 'sucursal');
 
-  function dataFactory(wordpressService, POST_TAG, BASE_WP_URL, _, POST_CAT, EMP_TAG) {
+  function dataFactory(wordpressService, POST_TAG, BASE_WP_URL, _, POST_CAT, EMP_TAG, SUC_TAG) {
 
     var data = {
       'listPosts': listPosts,
@@ -15,10 +16,20 @@
       'getPostByCategory': getPostByCategory,
       'getPostByCategoryName': getPostByCategoryName,
       'getEmprendimientos': getEmprendimientos,
+      'getPostsByContentType': getPostsByContentType,
+      'getSucursales': getSucursales,
     }
 
     function getEmprendimientos() {
       return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "");
+    }
+
+    function getSucursales() {
+      return wordpressService.getRequest(BASE_WP_URL, SUC_TAG, "");
+    }
+
+    function getPostsByContentType(typeUri) {
+      return wordpressService.getRequest(BASE_WP_URL, typeUri, "");
     }
 
     function listPosts() {

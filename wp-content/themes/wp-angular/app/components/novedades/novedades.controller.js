@@ -3,19 +3,27 @@
 
     angular
     .module('app.core')
-    .controller('novedadesDestacadasController', novedadesDestacadasController);
+    .controller('novedadesController', novedadesController);
 
-    novedadesDestacadasController.$inject = ['typeFactory', '$scope', 'mediaFactory'];
+    novedadesController.$inject = ['typeFactory', '$scope', 'mediaFactory'];
 
     /**
     * novedadesController: Gestión de últimos post con category:Novedades.
     *  - @view: content
     */
-    function novedadesDestacadasController(typeFactory, $scope, mediaFactory) {
+    function novedadesController(typeFactory, $scope, mediaFactory) {
         var vm = this;
         vm.novedades = {};
         vm.slides = [];
-        vm.iconos_format = {};
+        vm.destacadas = [];
+
+        // Cada tipo de post debe tener asociado un icono en la views.
+        vm.iconos_format = {
+            "1":"typcn typcn-camera-outline",
+            "2":"typcn typcn-video-outline",
+            "3": "typcn typcn-calendar-outline",
+            "4": "typcn typcn-lightbulb"
+        };
 
         create();
 
@@ -35,38 +43,35 @@
         *  {object.novedad}.featured_media: que se tiene que buscar en {object.novedad}.guid.rendered
         */
         function create() {
+
             // Buscamos las novedades.
-            typeFactory.getPostByCategoryName("novedades").then(function(data) {
+            typeFactory.getPostsByContentType("novedad").then(function(data) {
                 vm.novedades = data;
-
-                // Cada tipo de post debe tener asociado un icono en la views.
-                vm.iconos_format = {
-                    "standard":"typcn typcn-camera-outline",
-                    "video":"typcn typcn-video-outline",
-                    "post": "typcn typcn-calendar-outline",
-                };
-
+                vm.destacadas = getDestacadas(data);
                 // Recorremos las novedades para poder dividir en grupos de 4.
-                _.each(vm.novedades, function(novedad, i){
-                    var actived = (i == 0 ? true : false );
-                    novedad.active = actived;
-
+                _.each(vm.destacadas, function(destacada, i){
                     // Buscamos la imagen relacionada
-                    mediaFactory.getMedia(novedad.featured_media).then(function(data) {
-                        novedad.foto = data;
-                        if (!_.isEmpty(novedad.foto.guid)) {
-                            novedad.url = novedad.foto.guid.rendered;
+                    mediaFactory.getMedia(destacada.featured_media).then(function(data) {
+                        destacada.foto = data;
+                        if (!_.isEmpty(destacada.foto.guid)) {
+                            destacada.full = destacada.foto.media_details.sizes.full.source_url;
                         }
-
+                        if(i % 4 == 0) {
+                            // creamos slides de 4 novedades
+                            vm.slides.push( vm.destacadas.slice(i, i + 4) );
+                        }
                     });
-
-                    if(i % 4 == 0) {
-                        // creamos slides de 4 novedades
-                        vm.slides.push( vm.novedades.slice(i, i + 4) );
-                    }
-                })
-                //console.log(vm.slides, vm.iconos_format);
+                });
             });
+        }
+        function getDestacadas(novedades) {
+            var destacadas = [];
+            _.each(novedades, function(novedad, i){
+                if (novedad["wpcf-destacada"] === "1") {
+                    destacadas.push(novedad);
+                }
+            });
+            return destacadas;
         }
     }
 })();

@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="container">
+        <div id="news-section" class="col-sm-12 col-xs-12">
+            <h2>
+                Novedades
+                <div class="underline"></div>
+            </h2>
+            <div class="galeria col-sm-10 col-xs-10">
+                <div uib-carousel active="active" ng-if="vm.slides">
+                    <div uib-slide ng-repeat="slide in vm.slides" active="active" index="$index">
+                        <div ng-repeat="novedad in slide" class="col-sm-6 col-xs-6 new">
+                            <div class="img" style="background-image: url('{{novedad.full}}')"></div>
+                            <div class="caption">
+                                <h3>
+                                <i class="{{ vm.iconos_format[novedad['wpcf-tipo-de-novedad']] }}"></i>
+                                <div class="title">{{novedad.title.rendered}}</div>
+                                </h3>
+                                <p ng-bind-html="novedad['wpcf-encabezado'] | to_trust"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

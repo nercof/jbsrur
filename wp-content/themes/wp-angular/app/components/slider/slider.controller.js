@@ -7,11 +7,10 @@
 
 
     function sliderController($scope, typeFactory, mediaFactory) {
-        console.log("<< sliderController >>");
         typeFactory.getPostByCategory(7).then(function(posts){
             var mediasIds = [], i, self=this;
             mediasIds = getMediasIds(posts);
-            mediaFactory.getMediasByIds(mediasIds).then(function(medias){
+            $scope.medias = mediaFactory.getMediasByIds(mediasIds).then(function(medias){
                 $scope.medias = parseMedias(medias);
             });
         });

@@ -16,7 +16,7 @@
             templateUrl: localized.views + "slider-full.html",
             controller: 'sliderController'
           },
-          "sub-header": {
+          "search-form": {
             templateUrl: localized.tokko + "tokko-search-input.html",
             controller: 'tokkoController as vm'
           },
@@ -24,6 +24,22 @@
             templateUrl: localized.views + "nav-section.html",
             controller: 'navSectionController'
           },
+          "content": {
+            templateUrl: localized.views + "news-section.html",
+            controller: 'novedadesController as vm'
+          },
+          "social-section": {
+            templateUrl: localized.views + "social-section.html",
+            controller: 'socialSectionController as vm'
+          },
+          "contact-section": {
+            templateUrl: localized.views + "contact-section.html",
+            controller: 'contactController as vm'
+          },
+          "suc-section": {
+            templateUrl: localized.views + "suc-section.html",
+            controller: 'sucSectionController as vm'
+          }
         }
       })
       .state(STATE.QS, {
@@ -43,9 +59,7 @@
         views: {
           "content": {
             templateUrl: localized.views + "catalogo.html",
-            controller: function($stateParams) {
-              console.log($stateParams);
-            }
+            controller: function($stateParams) {}
           }
         }
       })
@@ -59,7 +73,11 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          }
+          },
+          "sub-header": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
         }
       })
       .state(STATE.AL, {
@@ -72,26 +90,36 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          }
+          },
+          "sub-header": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
         }
       })
       .state(STATE.NE, {
         url: '/' + 'nuestros-emprendimientos',
         params: {
           title_view: TITULO.NUESTROS_EMPRENDIMIENTOS,
+          category:17,
         },
         views: {
           "content": {
-            templateUrl: localized.tokko + "emprendimiento/emprendimiento.html",
-            controller: 'developmentsController as vm',
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            controller: 'emprendimientoController as vm',
           }
         }
       })
       .state(STATE.OE, {
-        url: '/' + STATE.OE,
+        url: '/' + 'otros-emprendimientos',
+        params: {
+          title_view: TITULO.OTROS_EMPRENDIMIENTOS,
+          category:18,
+        },
         views: {
           "content": {
-            templateUrl: localized.views + "emprendimiento/emprendimiento.html"
+            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            controller: 'emprendimientoController as vm',
           }
         }
       })
@@ -100,7 +128,7 @@
         views: {
           "content": {
             templateUrl: localized.views + "novedades.html",
-            controller: 'novedadesDestacadasController as vm',
+            controller: 'novedadesController as vm',
           }
         }
       })
@@ -147,15 +175,15 @@
         sticky: true,
         onEnter: function() {}
       })
-      .state(STATE.NED, { //DOT Notation
+      .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
         params: {
           data: null,
-          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,          
         },
         url: '/:id',
         views: {
           "detalle@nemprendimientos": {
-            templateUrl: localized.tokko + "emprendimiento/emprendimiento-detalle.html",
+            templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
             controller: 'developmentsDetailsController as vm',
           }
         },

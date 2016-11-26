@@ -15,11 +15,12 @@ get_header();
 ?>
     <!-- MAIN CONTENT -->
     <div ui-view="header"></div>
-    <div ui-view="sub-header"></div>
-    <div ui-view="content"></div>
     <div ui-view="nav-section"></div>
-    <!-- Vistas hijos-->
-    <!--<div ui-view></div>-->
+    <div ui-view="search-form"></div>
+    <div ui-view="content"></div>
+    <div ui-view="social-section"></div>
+    <div ui-view="contact-section"></div>
+    <div ui-view="suc-section"></div>
     <div ui-view="second-footer"></div>
     <div ui-view="main-footer"></div>
 <?php /** get_sidebar(); **/ ?>

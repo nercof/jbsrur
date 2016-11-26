@@ -15,10 +15,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-6 col-xs-6">
             <ng-map class="mapa" center="[{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}]">
                 <marker position="{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}"></marker>
             </ng-map>
+        </div>
+        <div class="col-sm-6 col-xs-6">
         </div>
     </div>
     <div class="col-sm-12 col-xs-12">

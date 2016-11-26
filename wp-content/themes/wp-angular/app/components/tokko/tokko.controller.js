@@ -30,6 +30,7 @@
             vm.operation_types = [];
             vm.suite_amount = [];
             vm.current_localization_id = [];
+            vm.zonas = [];
             vm.localization_barrio_id = [];
             vm.prop_cache = {};
             vm.prop_search = {};
@@ -151,7 +152,7 @@
             */
             vm.searchFilter = function (){
                 // Re-direct to state propiedad
-
+                
                 var obj = {
                     "operation_types": _.pluck(vm.operation_types, 'id'),
                     "property_types": _.pluck(vm.property_types, 'id'),
@@ -181,12 +182,27 @@
                     });
                 }
                 else {
+
+                    // Variable para contener los id de barrio a excluir
+                    var barriosOzonas = [];
+
+                    // Si no tenemos valores en vm.localization_barrio_id es
+                    // porque el usuario solo selecciona Zona sin excluir Barrio
+                    if (_.isEmpty(_.keys(vm.localization_barrio_id)) && vm.zona) {
+                        _.each(vm.zona.barrios, function (barrio){
+                            barriosOzonas.push(barrio.id);
+                        });
+                    }
+                    else {
+                        barriosOzonas = _.keys(vm.localization_barrio_id);
+                    }
+
                     // Parameters by user
                     var obj = {
                         "operation_types": _.keys(vm.operation_types),
                         "property_types": _.keys(vm.property_types),
                         "suite_amount": _.keys(vm.suite_amount),
-                        "current_localization_id": _.keys(vm.localization_barrio_id)
+                        "current_localization_id": barriosOzonas,
                     }
 
                     $state.go('propiedades', {
@@ -200,6 +216,10 @@
             * @zona: object. objeto zona.
             */
             vm.seleccionarBarrio = function (zona){
+                // Permite centralizar la selección de {n} barrios por zona.
+                vm.zona = zona;
+
+                // Inicializamos la lista de barrios a seleccionar.
                 vm.localization_barrio_id = [];
                 if(zona.unBarrio) {
                     angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input').trigger('click').attr('checked',true);

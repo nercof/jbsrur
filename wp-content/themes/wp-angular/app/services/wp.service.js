@@ -7,15 +7,12 @@
   function dataService($http, $log) {
     /* TO DO: Ver $log */
 
-    console.log('Load wordpress.service.js');
-
     var data = {
       'getRequest': getRequest
     }
 
     function getRequest(url, tag, id) {
       var requestUrl = url + tag + '/' + id;
-      //console.log(requestUrl);
       return $http({
         'url': requestUrl,
         'method': 'GET',
