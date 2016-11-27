@@ -105,7 +105,7 @@
         },
         views: {
           "content": {
-            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            templateUrl: localized.views + "emprendimiento/emprendimientos.html",
             controller: 'emprendimientoController as vm',
           }
         }
@@ -118,7 +118,7 @@
         },
         views: {
           "content": {
-            templateUrl: localized.views + "emprendimiento/emprendimiento.html",
+            templateUrl: localized.views + "emprendimiento/emprendimientos.html",
             controller: 'emprendimientoController as vm',
           }
         }
@@ -178,7 +178,7 @@
       .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
         params: {
           data: null,
-          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,          
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
         },
         url: '/:id',
         views: {
