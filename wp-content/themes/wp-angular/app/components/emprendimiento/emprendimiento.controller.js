@@ -40,50 +40,26 @@
             function activate(vm) {
                 // Título de la vista
                 vm.title_view = $stateParams.title_view;
-
-                // Filtramos por tipo de Operacion
-                if (_.isEmpty($scope.$storage.developments)) {
-                    getDevelopments().then(function (data){
-                        vm.allDevelopments = data;
-
-                        // Determinamos category:
-                        filter_category($stateParams.category);
-
-                        if (_.isEmpty(vm.allDevelopments)) {
-                            vm.error = true;
-                        }
-                        else{
-                            // Cargar la url de la imagen
-                            setImages();
-                            _short_description();
-                            $scope.$storage.developments = vm.allDevelopments;
-
-                            // Variables auxiliares para el paginador.
-                            vm.totalItems = vm.allDevelopments.length;
-                            vm.spinner = false;
-
-                            // Iniciamos las propiedades filtradas para la paginacion inicial.
-                            vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-                        }
-                    });
-                }
-                else {
-                    vm.allDevelopments = $scope.$storage.developments;
-                    // Cargar la url de la imagen
-                    setImages();
-
-                    // Determinamos category:{Nuestros-Otros emprendimientos}
+                getDevelopments().then(function (data){
+                    vm.allDevelopments = data;
+                    // Determinamos category:
                     filter_category($stateParams.category);
 
-                    _short_description();
+                    if (_.isEmpty(vm.developments)) {
+                        vm.error = true;
+                    }
+                    else{
+                        // Cargar la url de la imagen
+                        setImages();
+                        _short_description();
+                        // Variables auxiliares para el paginador.
+                        vm.totalItems = vm.developments.length;
+                        vm.spinner = false;
 
-                    // Variables auxiliares para el paginador.
-                    vm.totalItems = vm.allDevelopments.length;
-                    vm.spinner = false;
-
-                    // Iniciamos las propiedades filtradas para la paginacion inicial.
-                    vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-                }
+                        // Iniciamos las propiedades filtradas para la paginacion inicial.
+                        vm.developments = vm.developments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                    }
+                });
             } // fin activate()
 
             /**
@@ -94,9 +70,10 @@
 
                 // Recorremos las sucursales y obtenemos los id.media
                 _.each(vm.allDevelopments, function (development) {
-
-                    // Buscamos las imagenes en la WP
+                    console.log('dev',development);
+                    // Buscamos las imagenes en WP
                     mediaFactory.getMedia(development.featured_media).then(function(data){
+                        console.log('media',data);
                         development.image = data.source_url;
                     });
                 });
@@ -108,13 +85,11 @@
             * @param {int} category - id Categoria de emprendimiento
             */
             function filter_category(category) {
-                vm.allDevelopments = _.filter(vm.allDevelopments, function (development) {
+                vm.developments = _.filter(vm.allDevelopments, function (development) {
                     // Array categories
-                    return _.each(development.categories, function(cat){
-                        console.log(development);
-                        return category == cat;
-                    });
+                    return development.categories.indexOf(category) >= 0;
                 });
+                console.log(vm.allDevelopments, category);
             }
 
             /**

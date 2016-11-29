@@ -1011,41 +1011,58 @@ body {
             vertical-align: middle;
             font-family: "Lato", sans-serif;
             max-width: 80%; }
-  body #emprendimiento {
-    background-color: #FAF3DD;
-    padding-top: 20px; }
-    body #emprendimiento h2 {
-      text-align: left;
-      color: #131515;
-      text-transform: uppercase;
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.6em;
-      font-weight: bold; }
-    body #emprendimiento .list {
-      margin: 30px auto; }
-      body #emprendimiento .list .development {
-        text-align: center; }
-        body #emprendimiento .list .development .pic {
-          height: 250px;
+  body #emprendimientos {
+    background-color: #735753;
+    padding: 40px;
+    margin: auto; }
+    body #emprendimientos .development {
+      text-align: center; }
+      body #emprendimientos .development h2 {
+        text-align: left;
+        color: #131515;
+        text-transform: uppercase;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.6em;
+        font-weight: bold;
+        text-transform: capitalize; }
+      body #emprendimientos .development .pic {
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+        background-size: cover;
+        border: #FAF3DD 12px solid;
+        margin: 10px auto;
+        float: none;
+        display: inline-block;
+        z-index: 9;
+        vertical-align: middle; }
+        body #emprendimientos .development .pic:before {
+          content: "";
+          display: none;
           width: 250px;
+          height: 250px;
+          background: rgba(223, 10, 31, 0.5);
           border-radius: 50%;
-          background-size: cover;
-          margin: 10px auto; }
-          body #emprendimiento .list .development .pic:before {
-            content: "";
-            display: none;
-            width: 250px;
-            height: 250px;
-            background: rgba(223, 10, 31, 0.5);
-            border-radius: 50%; }
-          body #emprendimiento .list .development .pic:hover:before {
-            display: block; }
-        body #emprendimiento .list .development .p {
-          display: inline-block;
-          padding: 0 10px;
-          vertical-align: middle;
-          font-family: "Lato", sans-serif;
-          max-width: 80%; }
+          border: #FAF3DD 12px solid;
+          float: none;
+          margin-top: -12px;
+          margin-left: -27px;
+          vertical-align: middle; }
+        body #emprendimientos .development .pic:hover:before {
+          display: inline-block; }
+      body #emprendimientos .development .des {
+        display: inline-block;
+        text-align: left;
+        padding: 0 10px;
+        float: none;
+        vertical-align: middle;
+        font-family: "Lato", sans-serif;
+        max-width: 80%;
+        background-color: #FAF3DD;
+        margin-left: -50px;
+        z-index: 0;
+        padding: 10px 20px 20px 50px;
+        color: #131515; }
   body .detalle-emprendimiento {
     background-color: #FAF3DD;
     font-family: "Montserrat", sans-serif;
@@ -1090,19 +1107,9 @@ body {
         margin: 5px 10px 5px 0px; }
     body .detalle-emprendimiento .pic {
       height: 250px;
-      width: 250px;
-      border-radius: 50%;
+      width: 100%;
       background-size: cover;
       margin: 10px auto; }
-      body .detalle-emprendimiento .pic:before {
-        content: "";
-        display: none;
-        width: 250px;
-        height: 250px;
-        background: rgba(223, 10, 31, 0.5);
-        border-radius: 50%; }
-      body .detalle-emprendimiento .pic:hover:before {
-        display: block; }
     body .detalle-emprendimiento .galeria {
       height: 395px; }
       body .detalle-emprendimiento .galeria img {

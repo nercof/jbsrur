@@ -319,7 +319,7 @@ body {
                                                       &:focus,
                                                       &:active,
                                                       &::-moz-focus-inner,
-                                                       {
+                                                      {
                                                             outline: none;
                                                             border: 0;
                                                             padding: 0;
@@ -540,9 +540,9 @@ body {
                                     .conteiner-barrios{
                                           padding: 10px;
                                           .control {
-                                          	position: relative;
-                                          	display: inline-block;
-                                          	cursor: pointer;
+                                                position: relative;
+                                                display: inline-block;
+                                                cursor: pointer;
                                                 width: 30%;
                                                 margin: 0 5px;
                                                 input[type="checkbox"] {
@@ -691,7 +691,7 @@ body {
                               font-weight: bold;
                         }
                         a {
-                        text-decoration:none;
+                              text-decoration:none;
                         }
                         .pic {
                               height: 180px;
@@ -920,14 +920,14 @@ body {
             }
 
             ul.dashed-list li {
-                list-style-type: none;
+                  list-style-type: none;
             }
 
             i {
-                width: 1.1em;
-                height: 1em;
-                font-size: 1.1em;
-                padding: 0px 1px;
+                  width: 1.1em;
+                  height: 1em;
+                  font-size: 1.1em;
+                  padding: 0px 1px;
             }
 
             .container {
@@ -1265,7 +1265,7 @@ body {
                                                 background-color: $white;
                                                 border: 3px solid $bordo;
                                           }
-                                     }
+                                    }
                               }
                               i {
                                     background-color: $bordo;
@@ -1406,46 +1406,62 @@ body {
                   }
             }
       }
-      #emprendimiento {
-            background-color: $white;
-            padding-top: 20px;
-            h2 {
-                  text-align: left;
-                  color: $black;
-                  text-transform: uppercase;
-                  font-family: $font-titles;
-                  font-size: 1.6em;
-                  font-weight: bold;
-            }
-            .list {
-                  margin: 30px auto;
-                  .development{
-                        text-align: center;
-                        .pic {
-                              height: 250px;
+      #emprendimientos {
+            background-color: $grey;
+            padding: 40px;
+            margin: auto;
+            .development {
+                  text-align: center;
+                  h2 {
+                        text-align: left;
+                        color: $black;
+                        text-transform: uppercase;
+                        font-family: $font-titles;
+                        font-size: 1.6em;
+                        font-weight: bold;
+                        text-transform: capitalize;
+                  }
+                  .pic {
+                        height: 250px;
+                        width: 250px;
+                        border-radius: 50%;
+                        background-size: cover;
+                        border: $white 12px solid;
+                        margin: 10px auto;
+                        float: none;
+                        display: inline-block;
+                        z-index: 9;
+                        vertical-align: middle;
+                        &:before {
+                              content: "";
+                              display: none;
                               width: 250px;
+                              height: 250px;
+                              background: $red-a;
                               border-radius: 50%;
-                              background-size: cover;
-                              margin: 10px auto;
-                              &:before {
-                                    content: "";
-                                    display: none;
-                                    width: 250px;
-                                    height: 250px;
-                                    background: $red-a;
-                                    border-radius: 50%;
-                              }
-                              &:hover:before {
-                                    display: block;
-                              }
-                        }
-                        .p {
-                              display: inline-block;
-                              padding: 0 10px;
+                              border: $white 12px solid;
+                              float: none;
+                              margin-top: -12px;
+                              margin-left: -27px;
                               vertical-align: middle;
-                              font-family: $font-normal;
-                              max-width: 80%;
                         }
+                        &:hover:before {
+                              display: inline-block;
+                        }
+                  }
+                  .des {
+                        display: inline-block;
+                        text-align: left;
+                        padding: 0 10px;
+                        float: none;
+                        vertical-align: middle;
+                        font-family: $font-normal;
+                        max-width: 80%;
+                        background-color: $white;
+                        margin-left: -50px;
+                        z-index: 0;
+                        padding: 10px 20px 20px 50px;
+                        color: $black;
                   }
             }
       }
