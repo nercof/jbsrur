@@ -34,24 +34,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
         add_theme_support( 'automatic-feed-links' );
 
         /**
-        * Enable support for Post Thumbnails on posts and pages
-        *
-        * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-        */
-        add_theme_support( 'post-thumbnails' );
-
-        function register_recipes_post_type() {
-            $args = array( 'public' => true, 'label' => 'Recipes' );
-            register_post_type( 'recipe', $args );
-        }
-        add_action( 'init', 'register_recipes_post_type' );
-
-        /**
-        * Enable support for Post Formats
-        */
-        add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'recipe' ) );
-
-        /**
         * Rename format in order to change to custom format
         *
         */
@@ -285,6 +267,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
+                'quienes-somos',
+                get_stylesheet_directory_uri() . '/app/components/quienes-somos/quienes.somos.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
                 array( 'core', 'factories' ));
@@ -409,7 +396,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 $custom_fields = array(
                     'novedad' => ['wpcf-destacada', 'wpcf-encabezado', 'wpcf-tipo-de-novedad'],
                     'emprendimiento' => ['wpcf-latitud-y-longitud', 'wpcf-encabezado', 'wpcf-imagen-galeria-0', 'wpcf-sucursal', 'wpcf-codigo-de-referencia'],
-                    'sucursal' => ['wpcf-latitud-y-longitud', 'wpcf-telefono', 'wpcf-direccion', 'wpcf-email', 'wpcf-galeria-0']
+                    'sucursal' => ['wpcf-latitud-y-longitud', 'wpcf-telefono', 'wpcf-direccion', 'wpcf-email', 'wpcf-galeria-0'],
+                    'pagina' => ['wpcf-miembros']
                 );
                 foreach ($custom_fields as $custom_type => $fields) {
                     foreach ($fields as $key => $field) {
