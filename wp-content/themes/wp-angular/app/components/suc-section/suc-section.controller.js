@@ -18,8 +18,6 @@
         * Cargar sucursales e imagenes.
         */
         function activate() {
-            console.log("<< sucSectionController >>");
-
             typeFactory.getSucursales().then(
                 function(data){
                     vm.sucursales = _.sortBy(data, 'id');
