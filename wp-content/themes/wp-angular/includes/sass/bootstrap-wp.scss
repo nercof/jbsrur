@@ -1405,7 +1405,7 @@ body {
                         }
                   }
             }
-      }
+      }quienes-somos
       #emprendimientos {
             background-color: $grey;
             padding: 40px;
@@ -1573,6 +1573,29 @@ body {
                         padding: 0;
                         width: 23%;
                   }
+            }
+      }
+      #quienes-somos {
+            background-color: $white;
+            padding: 40px;
+            margin: auto;
+            text-align: center;
+            h2 {
+                  text-align: left;
+                  color: $black;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.6em;
+                  font-weight: bold;
+                  text-transform: capitalize;
+            }
+            .pic {
+                  height: 250px;
+                  background-size: cover;
+                  float: none;
+                  display: inline-block;
+                  z-index: 9;
+                  vertical-align: middle;                  
             }
       }
 }

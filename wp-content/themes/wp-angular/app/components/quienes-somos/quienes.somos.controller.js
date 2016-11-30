@@ -45,7 +45,9 @@
                     });
                     // Tenemos que hacer el link de media
                     setImages();
-                    console.log(vm.autores);
+
+
+                    angular.element('#qSomos.description').append(vm.qSomos.content.rendered);
                     console.log(vm.qSomos);
                 });
             });
@@ -63,6 +65,11 @@
                 mediaFactory.getMedia(autor.featured_media).then(function(data){
                     autor.image = data.source_url;
                 });
+            });
+
+            // Buscamos las imagenes en WP
+            mediaFactory.getMedia(vm.qSomos.featured_media).then(function(data){
+                vm.qSomos.image = data.source_url;
             });
         }
         /**
