@@ -24,23 +24,22 @@
 </div>
 -->
 <div class="col-sm-12 col-xs-12 col">
-    <h1>
+    <h2>
         <div class="round-border">
             <i class="glyphicon glyphicon-home"></i>
         </div>
         MIEMBROS
-    </h1>
+    </h2>
 </div>
 
 <div class="col-sm-12 col-xs-12">
-    <div class="col-sm-6 col-xs-12">
-        <div>Miembro 1</div>
-    </div>
-    <div class="col-sm-6 col-xs-12">
-        <div>Miembro 2</div>
-    </div>
-    <div class="col-sm-6 col-xs-12">
-        <div>Miembro 3</div>
-    </div>
+    <div class="col-md-3 col-sm-4 col-xs-12" ng-repeat="miembro in vm.miembros">
+        <div class="pic_miembro" style="background-image: url('{{miembro.image}}')">
+        </div>
+        <!-- content.rendered -->
+        {{miembro.title.rendered}}
+        <br/>
+        {{miembro.content.rendered}}
+        </div>
 </div>
 </div>

@@ -1595,7 +1595,18 @@ body {
                   float: none;
                   display: inline-block;
                   z-index: 9;
-                  vertical-align: middle;                  
+                  vertical-align: middle;
+                  .pic_miembro{
+                        height: 250px;
+                        width: 250px;
+                        border-radius: 50%;
+                        background-size: cover;
+                        border: $white 12px solid;
+                        margin: 10px auto;
+                        float: none;
+                        display: inline-block;
+                        z-index: 9;
+                  }
             }
       }
 }

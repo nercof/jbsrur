@@ -13,7 +13,7 @@
 
         vm.title_view = '';
         vm.qSomos = {};
-        vm.autores = [];
+        vm.miembros = [];
 
         // Activamos
         activate(vm);
@@ -39,16 +39,16 @@
                             // Verificamos el autor
                             if (autor.slug == miembro.trim()) {
                                 // Incorporamos el autor
-                                vm.autores.push(autor);
+                                vm.miembros.push(autor);
                             }
                         });
                     });
                     // Tenemos que hacer el link de media
                     setImages();
 
-
-                    angular.element('#qSomos.description').append(vm.qSomos.content.rendered);
                     console.log(vm.qSomos);
+                    console.log(vm.miembros);
+                    angular.element('#qSomos_descripcion').append(vm.qSomos.content.rendered);
                 });
             });
         } // fin activate()
@@ -60,7 +60,7 @@
             var medias = [];
 
             // Recorremos las sucursales y obtenemos los id.media
-            _.each(vm.autores, function (autor) {
+            _.each(vm.miembros, function (autor) {
                 // Buscamos las imagenes en WP
                 mediaFactory.getMedia(autor.featured_media).then(function(data){
                     autor.image = data.source_url;
