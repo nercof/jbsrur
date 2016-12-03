@@ -1,6 +1,6 @@
 <!-- Elemento padre -->
-<div ui-view="sub-header"/>
 <div ui-view='title'><h1 class="title">{{vm.title_view}}</h1></div>
+<div ui-view="search-form"/>
 <div ng-if="$state.current.name == 'alquileres' || $state.current.name == 'ventas'"> <!-- Revisar -->
   <div class="col-sm-12 col-xs-12 propiedades">
     <div ng-show="vm.spinner" class="spinner" ng-if="!vm.properties"><i class="fa fa-spinner fa-spin"></i></div>
