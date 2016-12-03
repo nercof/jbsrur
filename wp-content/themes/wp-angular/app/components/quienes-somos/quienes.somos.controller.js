@@ -45,9 +45,6 @@
                     });
                     // Tenemos que hacer el link de media
                     setImages();
-
-                    console.log(vm.qSomos);
-                    console.log(vm.miembros);
                     angular.element('#qSomos_descripcion').append(vm.qSomos.content.rendered);
                 });
             });
