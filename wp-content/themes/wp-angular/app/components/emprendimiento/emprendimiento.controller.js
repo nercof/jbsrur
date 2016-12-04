@@ -70,10 +70,8 @@
 
                 // Recorremos las sucursales y obtenemos los id.media
                 _.each(vm.allDevelopments, function (development) {
-                    console.log('dev',development);
                     // Buscamos las imagenes en WP
                     mediaFactory.getMedia(development.featured_media).then(function(data){
-                        console.log('media',data);
                         development.image = data.source_url;
                     });
                 });
@@ -89,7 +87,6 @@
                     // Array categories
                     return development.categories.indexOf(category) >= 0;
                 });
-                console.log(vm.allDevelopments, category);
             }
 
             /**

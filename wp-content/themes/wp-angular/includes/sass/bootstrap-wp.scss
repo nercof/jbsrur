@@ -50,8 +50,10 @@ $white: #FAF3DD;
 $white-a: rgba(250, 243, 221, 0.8);
 $white-ab: rgba(250, 243, 221, 0.5);
 $pink: #EC7E7E;
-$bordo: #90030C;
-$grey: #735753;
+//$bordo: #90030C;
+$bordo: #90020B;
+//$grey: #735753;
+$grey: #878478;
 $grey-a: rgba(115, 87, 83, 0.8);
 $black: #131515;
 
@@ -227,7 +229,7 @@ body {
             }
       }
       #searchForm {
-            padding-bottom: 30px;
+            /* padding-bottom: 30px; */
             background-color: $white;
 
             .search-tab{
@@ -239,13 +241,13 @@ body {
 
                   &.nav-pills {
                         li {
-                              background-color: $pink;
+                              background-color: $bordo;
                               label,
                               a {
                                     text-transform: uppercase;
                                     font-family: $font-titles;
                                     padding: 8px 0 0;
-                                    color: $red;
+                                    color: $white;
 
                                     button,
                                     .button {
@@ -408,7 +410,7 @@ body {
                                     }
                                     a {
                                           i {
-                                                border: 1px solid $red;
+                                                border: 1px solid $white;
                                                 border-radius: 100%;
                                                 font-size: 22px;
                                                 padding: 5px;
@@ -503,11 +505,11 @@ body {
                                     li {
                                           margin: 0px;
                                           padding-bottom: 10px;
-                                          background-color: $red;
+                                          background-color: $bordo;
                                           a {
                                                 vertical-align:middle;
                                                 color: $white;
-                                                background-color: $red;
+                                                background-color: $bordo;
                                                 cursor:pointer;
                                                 padding: 5px 10px;
                                                 display: block;
@@ -1005,19 +1007,20 @@ body {
                         }
                         &.odd {
                               a {
-                                    color: $red;
+                                    color: $bordo;
                                     &:hover {
                                           text-decoration: none;
                                           i {
-                                                color: $red;
+                                                color: $bordo;
                                                 background-color: $white;
-                                                border: 3px solid $red;
+                                                border: 3px solid $bordo;
                                           }
                                     }
                               }
                               i {
-                                    background-color: $pink;
-                                    border: 3px solid $pink;
+                                    background-color: $bordo;
+                                    border: 3px solid $bordo;
+                                    color: $white;
                               }
                         }
                   }
@@ -1572,6 +1575,40 @@ body {
                         text-align: left;
                         padding: 0;
                         width: 23%;
+                  }
+            }
+      }
+      #quienes-somos {
+            background-color: $white;
+            padding: 40px;
+            margin: auto;
+            text-align: center;
+            h2 {
+                  text-align: left;
+                  color: $black;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.6em;
+                  font-weight: bold;
+                  text-transform: capitalize;
+            }
+            .pic {
+                  height: 250px;
+                  background-size: cover;
+                  float: none;
+                  display: inline-block;
+                  z-index: 9;
+                  vertical-align: middle;
+                  .pic_miembro{
+                        height: 250px;
+                        width: 250px;
+                        border-radius: 50%;
+                        background-size: cover;
+                        border: $white 12px solid;
+                        margin: 10px auto;
+                        float: none;
+                        display: inline-block;
+                        z-index: 9;
                   }
             }
       }
