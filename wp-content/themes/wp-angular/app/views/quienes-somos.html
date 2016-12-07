@@ -1,43 +1,46 @@
-<div class="row">
-    <div class="col-sm-12 col-xs-12">
-    Imagen portada.
+<div class="row" id="quienes-somos">
+    <div class="col-sm-12 col-xs-12 pic" style="background-image: url('{{vm.qSomos.image}}')">
     </div>
     <div class="col-sm-12 col-xs-12 col">
-        <h1>
+        <h2>
             <div class="round-border">
                 <i class="glyphicon glyphicon-home"></i>
             </div>
             Empresa
-        </h1>
+        </h2>
     </div>
     <div class="col-sm-12 col-xs-12">
-        Descripcion
-    </div>
-    <div class="col-sm-12 col-xs-12">
-        <div uib-carousel active="active">
-            <div uib-slide ng-repeat="" active="active" index="$index">
-                <img ng-src="">
-            </div>
+        {{vm.qSomos.content.rendered}}
+        <div id="qSomos_descripcion">
         </div>
     </div>
-     <div class="col-sm-12 col-xs-12 col">
-        <h1>
-            <div class="round-border">
-                <i class="glyphicon glyphicon-home"></i>
-            </div>
-            MIEMBROS
-        </h1>
-    </div>
+    <!--
+    <div class="col-sm-12 col-xs-12">
+    <div uib-carousel active="active">
+    <div uib-slide ng-repeat="" active="active" index="$index">
+    <img ng-src="">
+</div>
+</div>
+</div>
+-->
+<!-- Issue #84: Por ahora no va la sección de las caras y cargos de cada uno.
+<div class="col-sm-12 col-xs-12 col">
+    <h2>
+        <div class="round-border">
+            <i class="glyphicon glyphicon-home"></i>
+        </div>
+        MIEMBROS
+    </h2>
+</div>
 
-    <div class="col-sm-12 col-xs-12">
-        <div class="col-sm-6 col-xs-12">
-            <div>Miembro 1</div>
+<div class="col-sm-12 col-xs-12">
+    <div class="col-md-3 col-sm-4 col-xs-12" ng-repeat="miembro in vm.miembros">
+        <div class="pic_miembro" style="background-image: url('{{miembro.image}}')">
         </div>
-        <div class="col-sm-6 col-xs-12">
-            <div>Miembro 2</div>
+        {{miembro.title.rendered}}
+        <br/>
+        {{miembro.content.rendered}}
         </div>
-        <div class="col-sm-6 col-xs-12">
-            <div>Miembro 3</div>
-        </div>
-    </div>
+</div>
+-->
 </div>

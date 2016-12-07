@@ -74,7 +74,7 @@
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
           },
-          "sub-header": {
+          "search-form": {
             templateUrl: localized.tokko + "tokko-search-input.html",
             controller: 'tokkoController as vm'
           },
@@ -87,13 +87,13 @@
           type: TYPE.AL
         },
         views: {
+          "search-form": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          },
-          "sub-header": {
-            templateUrl: localized.tokko + "tokko-search-input.html",
-            controller: 'tokkoController as vm'
           },
         }
       })
