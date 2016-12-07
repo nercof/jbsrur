@@ -42,7 +42,7 @@ $cache_rebuild_files = 0; //Added by WP-Cache Manager
 // Disable the file locking system.
 // If you are experiencing problems with clearing or creating cache files
 // uncommenting this may help.
-$wp_cache_mutex_disabled = 0; //Added by WP-Cache Manager
+$wp_cache_mutex_disabled = 1; //Added by WP-Cache Manager
 
 // Just modify it if you have conflicts with semaphores
 $sem_id = 429247994; //Added by WP-Cache Manager
@@ -92,5 +92,5 @@ $wp_cache_not_logged_in = 0; //Added by WP-Cache Manager
 $wp_cache_clear_on_post_edit = 0; //Added by WP-Cache Manager
 $wp_cache_hello_world = 0; //Added by WP-Cache Manager
 $wp_cache_mobile_enabled = 1; //Added by WP-Cache Manager
-$wp_cache_cron_check = 0;
+$wp_cache_cron_check = 1; //Added by WP-Cache Manager
 ?>
