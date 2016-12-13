@@ -57,7 +57,7 @@
                         vm.spinner = false;
 
                         // Iniciamos las propiedades filtradas para la paginacion inicial.
-                        vm.developments = vm.developments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                        vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
                     }
                 });
             } // fin activate()
