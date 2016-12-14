@@ -1,48 +1,53 @@
-<div class="row detalle-emprendimiento" ng-if="vm.development">
-    <div class="col-sm-12 col-xs-12 col">
-        <h1>
-            <div class="round-border">
-                <i class="glyphicon glyphicon-home"></i>
-            </div>
-            {{vm.development.title.rendered}}
-        </h1>
-    </div>
-    <div class="col-sm-12 col-xs-12">
-        <div class="pic" style="background-image: url('{{vm.development.image}}')"></div>
-    </div>
-    <div class="col-sm-12 col-xs-12">
-        <div class="col-sm-6 col-xs-12">
-            <div class="col-sm-12 col-xs-12">
-                <ng-map class="mapa" center="[{{vm.development.geo_lat}}, {{vm.development.geo_long}}]">
-                    <marker position="{{vm.development.geo_lat}}, {{vm.development.geo_long}}"></marker>
-                </ng-map>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-                CONTACTO
-            </div>
-            <div class="col-sm-12 col-xs-12">
-            </div>
-            <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.development.reference_code">
-                Código de referencia: {{vm.development.wpcf-codigo-de-referencia}}
-            </div>
-            <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.development.branch.phone">
-                <div>Centro de atención: {{vm.development.wpcf-sucursal}} {{vm.development.branch.phone}}</div>
+<div class="detalle-emprendimiento" ng-if="vm.development">
+    <div class="row bg-white">
+        <div class="container">
+            <div class="col-sm-12 col-xs-12 col">
+                <h1>
+                    <div class="round-border">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </div>
+                    {{vm.development.title.rendered}}
+                </h1>
             </div>
         </div>
-
-        <div class="col-sm-6 col-xs-12 descripcion">
-            <p><pre>{{vm.development.description}}</pre></p>
+        <div class="col-sm-12 col-xs-12">
+            <div class="pic" style="background-image: url('{{vm.development.image}}')"></div>
         </div>
     </div>
+    <div class="row emp-detalle bg-grey">
+        <div class="container">
+            <div class="col-sm-12 col-xs-12">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="col-sm-12 col-xs-12">
+                        <ng-map class="mapa" center="[{{vm.development.geo_lat}}, {{vm.development.geo_long}}]">
+                            <marker position="{{vm.development.geo_lat}}, {{vm.development.geo_long}}"></marker>
+                        </ng-map>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        CONTACTO
+                    </div>
+                    <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.development.wpcf-codigo-de-referencia">
+                        Código de referencia: {{vm.development.wpcf-codigo-de-referencia}}
+                    </div>
+                    <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.development.branch.phone">
+                        <div>Centro de atención: {{vm.development.wpcf-sucursal}} {{vm.development.branch.phone}}</div>
+                    </div>
+                </div>
 
-    <div class="col-sm-12 col-xs-12">
-        <h2><i class="typcn typcn-pin"></i>Galeria</h2>
-    </div>
-    <div class="col-sm-12 col-xs-12">
-        <div class="col-sm-6 col-xs-12 galeria">
-            <div uib-carousel active="active" ng-if="vm.development.photos">
-                <div uib-slide ng-repeat="photo in vm.development.photos" active="active" index="$index">
-                    <img ng-src="{{photo.image}}">
+                <div class="col-sm-6 col-xs-12 descripcion">
+                    <h2>Descripción de propiedad</h2>
+                    <p ng-bind-html="vm.development.content.rendered | to_trust"></p>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-xs-12" ng-if="vm.development.photos">
+                <h2><i class="typcn typcn-pin"></i>Galeria</h2>
+                <div class="col-sm-6 col-xs-12 galeria">
+                    <div uib-carousel active="active" ng-if="vm.development.photos">
+                        <div uib-slide ng-repeat="photo in vm.development.photos" active="active" index="$index">
+                            <img ng-src="{{photo.image}}">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

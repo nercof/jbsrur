@@ -16,6 +16,12 @@
         vm.novedades = {};
         vm.slides = [];
         vm.destacadas = [];
+        vm.otras = [];
+
+        // Empleadas para la paginacion de propiedades.
+        vm.totalItems = false;
+        vm.currentPage = 1;
+        vm.itemsPerPage = 6;
 
         // Cada tipo de post debe tener asociado un icono en la views.
         vm.iconos_format = {
@@ -47,7 +53,8 @@
             // Buscamos las novedades.
             typeFactory.getPostsByContentType("novedad").then(function(data) {
                 vm.novedades = data;
-                vm.destacadas = getDestacadas(data);
+                vm.destacadas = getDestacadasyOtras(data);
+
                 // Recorremos las novedades para poder dividir en grupos de 4.
                 _.each(vm.destacadas, function(destacada, i){
                     // Buscamos la imagen relacionada
@@ -62,16 +69,53 @@
                         }
                     });
                 });
+
+                // Recorremos las novedades para buscar la imagen relacionada.
+                _.each(vm.otras, function(otra, i){
+                    // Buscamos la imagen relacionada
+                    mediaFactory.getMedia(otra.featured_media).then(function(data) {
+                        otra.foto = data;
+                        if (!_.isEmpty(otra.foto.guid)) {
+                            otra.full = otra.foto.media_details.sizes.full.source_url;
+                        }
+                    });
+                });
+
+                // Iniciamos las propiedades filtradas para la paginacion inicial.
+                vm.otras_noticias = vm.otras.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                
             });
         }
-        function getDestacadas(novedades) {
+
+        /**
+        * Setea lista propiedades x pagina
+        * El listado de propiedades depende del parametro page pasado.
+        *
+        * @param {int} page - Pagina actual
+        */
+        vm.setPagingData = function(page) {
+            vm.developments = vm.allDevelopments.slice((page - 1) * vm.itemsPerPage, page * vm.itemsPerPage);
+        }
+
+        /**
+        * Funcion guia para cambiar la pagina seleccionada.
+        *
+        */
+        vm.pageChanged = function() {
+            vm.setPagingData(vm.currentPage);
+        }
+
+        function getDestacadasyOtras(novedades) {
             var destacadas = [];
+
             _.each(novedades, function(novedad, i){
                 if (novedad["wpcf-destacada"] === "1") {
                     destacadas.push(novedad);
+                }else {
+                    vm.otras.push(novedad);
                 }
             });
-            return destacadas;
+            return (destacadas);
         }
     }
 })();
