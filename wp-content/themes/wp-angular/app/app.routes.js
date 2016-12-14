@@ -48,18 +48,14 @@
           "content": {
             templateUrl: localized.views + "quienes-somos.html",
             controller: 'quienesSomosController as vm'
-          }
-        }
-      })
-      .state('test', {
-        url: '/test',
-        params: {
-          data: null
-        },
-        views: {
-          "content": {
-            templateUrl: localized.views + "catalogo.html",
-            controller: function($stateParams) {}
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         }
       })
@@ -73,6 +69,14 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
+          },
+          "suc-section": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
+          "second-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
           }
         }
       })
@@ -87,6 +91,14 @@
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
           },
+          "suc-section": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
+          "second-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          }
         }
       })
       .state(STATE.NE, {
@@ -99,6 +111,14 @@
           "content": {
             templateUrl: localized.views + "emprendimiento/emprendimientos.html",
             controller: 'emprendimientoController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         }
       })
@@ -112,6 +132,14 @@
           "content": {
             templateUrl: localized.views + "emprendimiento/emprendimientos.html",
             controller: 'emprendimientoController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         }
       })
@@ -119,16 +147,60 @@
         url: '/' + STATE.NO,
         views: {
           "content": {
-            templateUrl: localized.views + "novedades.html",
+            templateUrl: localized.views + "novedad/novedades.html",
             controller: 'novedadesController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         }
+      })
+      .state(STATE.NOD, {
+        url: '/:id',
+        params: {
+          data: null,
+          title_view: 'TITULO NOVEDAD',
+        },
+        views: {
+          "detalle@novedades": {
+            templateUrl: localized.views + "novedad/novedad-detalle.html",
+            controller: 'novedadesDetalleController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          }
+        },
+        deepStateRedirect: true,
+        sticky: true,
+        onEnter: function() {}
       })
       .state(STATE.CO, {
         url: '/' + STATE.CO,
         views: {
-          "content": {
-            templateUrl: localized.views + "contacto.html",
+          "header": {
+            templateUrl: localized.views + "contact-section.html",
+            controller: 'contactController as vm'
+          },
+          "nav-section": {
+            templateUrl: localized.views + "suc-section.html",
+            controller: 'sucSectionController as vm'
+          },
+          "contact-section": {
+            templateUrl: localized.views + "social-section.html",
+            controller: 'socialSectionController as vm'
+          },
+          "second-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
             controller: 'tokkoController as vm'
           }
         }
@@ -145,6 +217,14 @@
           "content": {
             templateUrl: localized.tokko + "tokko-search-result.html",
             controller: 'tokkoResultController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         },
         onExit: function() {
@@ -161,6 +241,14 @@
           "detalle@propiedades": {
             templateUrl: localized.tokko + "tokko-search-details.html",
             controller: 'tokkoDetailsController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         },
         deepStateRedirect: true,
@@ -177,6 +265,14 @@
           "detalle@nemprendimientos": {
             templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
             controller: 'developmentsDetailsController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         },
         deepStateRedirect: true,

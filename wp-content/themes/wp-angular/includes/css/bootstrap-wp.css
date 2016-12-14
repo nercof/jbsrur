@@ -1193,5 +1193,16 @@ body {
         float: none;
         display: inline-block;
         z-index: 9; }
+  body .sub-footer#suc-section .list {
+    margin: 0 auto 20px; }
+    body .sub-footer#suc-section .list .sucursal .pic {
+      width: 80px;
+      height: 80px; }
+      body .sub-footer#suc-section .list .sucursal .pic::before {
+        width: 80px;
+        height: 80px; }
+    body .sub-footer#suc-section .list .sucursal h3 {
+      font-size: 1em;
+      margin: 10px auto; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */

@@ -242,6 +242,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
+                'novedades.detalle',
+                get_stylesheet_directory_uri() . '/app/components/novedades/novedades.details.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
                 'catalog',
                 get_stylesheet_directory_uri() . '/app/components/catalog/catalogController.js',
                 array( 'core', 'factories'));
