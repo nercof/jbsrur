@@ -15,7 +15,7 @@
         console.log('<< Loading developmentsDetailsController >>');
 
         var vm = this;
-        vm.development = {};
+        vm.emprendimiento = {};
         vm.contact_form = {};
         vm.title_view = '';
 
@@ -34,19 +34,20 @@
         function create() {
             // Generamos el modelo Propiedad
             if (!_.isEmpty($stateParams.data)) {
-                vm.development = $stateParams.data;
-                console.log(vm.development);
-            }
-            else {
-                // @TODO: SI ES NECESARIO
+                vm.emprendimiento = $stateParams.data;
+
+                // Parse lat-long desde el dato de la API
+                parseLatitudLongitud();
+                parseSucursal();
+                console.log(vm.emprendimiento);
 
             }
+            else {} // Consultar si corresponde
+
             // Seteamos el titulo de la vista.
             // title_view();
-            if (vm.development) {
-                console.log(vm.development.image);
-            }
-            /*
+
+
             // Generamos el modelo ContactForm
             typeFactory.getPostByCategoryName("contacto").then(
                 function(data) {
@@ -57,15 +58,36 @@
                     // generado desde Wordpress.
                     angular.element('#jbsrur_contact_form').append(vm.contact_form.content.rendered);
                 });
-            */
+
+        }
+
+        function parseSucursal() {
+            typeFactory.getSucursal(vm.emprendimiento['wpcf-sucursal']).then(
+                function(data){
+                    vm.emprendimiento.suc_nombre = data.title.rendered;
+                    vm.emprendimiento.suc_telefo = data['wpcf-telefono'];                    
+                }
+            );
+        }
+
+        /*
+         * Comment
+         *
+         */
+        function parseLatitudLongitud() {
+            // Formateamos los autores
+            var data = vm.emprendimiento["wpcf-latitud-y-longitud"].split(";");
+            if (!_.isEmpty(data)) {
+                vm.emprendimiento.geo_lat = data[0];
+                vm.emprendimiento.geo_long = data[1];
+            }
         }
 
         /**
         * Determina el titulo de la vista.
         */
         function title_view(){
-            console.log("title_view()");
-            _.each(vm.development.categories, function(cat){
+            _.each(vm.emprendimiento.categories, function(cat){
                 if (category == cat) {
                     vm.title_view = 'Detalle del Emprendimiento';
                 }

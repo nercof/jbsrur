@@ -20,6 +20,7 @@
       'getPostsByContentType': getPostsByContentType,
       'getSucursales': getSucursales,
       'getQuienesSomos': getQuienesSomos,
+      'getSucursal': getSucursal,
     }
 
     function getEmprendimientos() {
@@ -32,6 +33,10 @@
 
     function getSucursales() {
       return wordpressService.getRequest(BASE_WP_URL, SUC_TAG, "");
+    }
+
+    function getSucursal(id) {
+      return wordpressService.getRequest(BASE_WP_URL, SUC_TAG, id);
     }
 
     function getPostsByContentType(typeUri) {

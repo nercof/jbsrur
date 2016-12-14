@@ -7,16 +7,12 @@
             <div class="col-sm-12 col-xs-12">
                 {{vm.novedad.title.rendered}}
             </div>
-            <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.novedad.reference_code">
-                Código de referencia: {{vm.novedad.wpcf-codigo-de-referencia}}
-            </div>
-            <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.novedad.branch.phone">
-                <div>Centro de atención: {{vm.novedad.wpcf-sucursal}} {{vm.novedad.branch.phone}}</div>
+            <div class="col-sm-12 col-xs-12">
+                {{vm.novedad.content.rendered}}
             </div>
         </div>
-
-        <div class="col-sm-6 col-xs-12">
-            <p><pre>{{vm.novedad.description}}</pre></p>
-        </div>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+        <p><pre>{{vm.novedad.description}}</pre></p>
     </div>
 </div>
