@@ -151,7 +151,7 @@
       .state(STATE.CO, {
         url: '/' + STATE.CO,
         views: {
-          "contact-section": {
+          "social-section": {
             templateUrl: localized.views + "contact-section.html",
             controller: 'contactController as vm'
           },
@@ -159,7 +159,7 @@
             templateUrl: localized.views + "suc-section.html",
             controller: 'sucSectionController as vm'
           },
-          "social-section": {
+          "contact-section": {
             templateUrl: localized.views + "social-section.html",
             controller: 'socialSectionController as vm'
           }
