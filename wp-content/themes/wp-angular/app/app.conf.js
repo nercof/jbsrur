@@ -15,6 +15,7 @@
         'OE':'oemprendimientos',
         'NED':'nemprendimientos.detalle',
         'NO':'novedades',
+        'NOD':'novedades.detalle',
         'CO':'contacto',
         'PO':'propiedades',
         'PD':'propiedades.detalle'
