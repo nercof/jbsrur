@@ -127,10 +127,22 @@
         url: '/' + STATE.NO,
         views: {
           "content": {
-            templateUrl: localized.views + "novedades.html",
+            templateUrl: localized.views + "novedad/novedades.html",
             controller: 'novedadesController as vm',
           }
         }
+      })
+      .state(STATE.NOD, {
+        url: '/:id',
+        views: {
+          "detalle@novedades": {
+            templateUrl: localized.views + "novedad/novedad-detalle.html",
+            controller: 'developmentsDetailsController as vm',
+          }
+        },
+        deepStateRedirect: true,
+        sticky: true,
+        onEnter: function() {}
       })
       .state(STATE.CO, {
         url: '/' + STATE.CO,
