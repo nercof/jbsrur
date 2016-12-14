@@ -73,11 +73,7 @@
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',
-          },
-          "search-form": {
-            templateUrl: localized.tokko + "tokko-search-input.html",
-            controller: 'tokkoController as vm'
-          },
+          }
         }
       })
       .state(STATE.AL, {
@@ -87,10 +83,6 @@
           type: TYPE.AL
         },
         views: {
-          "search-form": {
-            templateUrl: localized.tokko + "tokko-search-input.html",
-            controller: 'tokkoController as vm'
-          },
           "content": {
             templateUrl: localized.views + "catalogo.html",
             controller: 'catalogController as vm',

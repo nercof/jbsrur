@@ -12,7 +12,7 @@
 </div><!-- close .container -->
 </div><!-- close .main-content -->
 
-<footer id="colophon" class="site-footer" role="contentinfo">
+<footer id="colophon" class="site-footer bg-red" role="contentinfo">
 	<?php // substitute the class "container-fluid" below if you want a wider content area ?>
 	<div class="container" id="mainFooter">
 		<div class="col-sm-12">

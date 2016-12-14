@@ -1,10 +1,14 @@
-<div class="col-sm-12 col-xs-12" id="nav-section">
-    <ul>
-        <li class="menu-item col-sm-2" ng-repeat="item in items" ng-class-odd="'odd'" ng-class-even="'even'">
-            <a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item">
-                <i class="{{item.icon}}"></i>
-                <span>{{item.title}}</span>
-            </a>
-        </li>
-    </ul>
+<div class="bg-white">
+    <div class="container">
+        <div class="col-sm-12 col-xs-12" id="nav-section">
+            <ul>
+                <li class="menu-item col-sm-2" ng-repeat="item in items" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item">
+                        <i class="{{item.icon}}"></i>
+                        <span>{{item.title}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

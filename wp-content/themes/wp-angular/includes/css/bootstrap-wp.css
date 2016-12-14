@@ -37,8 +37,18 @@ body {
   font-size: 10px; }
   body #masthead {
     height: 5px; }
-  body .site-navigation .container {
-    padding-bottom: 0; }
+  body .bg-white {
+    background-color: #FAF3DD; }
+  body .bg-bordo {
+    background-color: #90020B; }
+  body .bg-grey {
+    background-color: #878478; }
+  body .bg-red {
+    background-color: #df0a1f; }
+  body .site-navigation {
+    background-color: #df0a1f; }
+    body .site-navigation .container {
+      padding-bottom: 0; }
   body #myCarousel .carousel-control {
     width: 50px; }
   body #myCarousel img {
@@ -46,7 +56,7 @@ body {
   body #myCarousel .carousel-inner {
     border-bottom: 10px solid #df0a1f; }
   body h1.title {
-    background-color: #90030C;
+    background-color: #90020B;
     font-family: "Montserrat", sans-serif;
     color: #FAF3DD;
     text-transform: uppercase;
@@ -125,7 +135,7 @@ body {
       background-color: #FAF3DD;
       width: 410px;
       float: none;
-      top: 75px;
+      top: 85px;
       left: -130px;
       border-radius: 0;
       border: none; }
@@ -135,7 +145,7 @@ body {
         float: none;
         padding: 1em 1.5em; }
     body #jbsrur-nav .navbar-nav {
-      margin: 15px 0;
+      margin: 25px 0;
       float: right; }
       body #jbsrur-nav .navbar-nav li {
         text-align: center;
@@ -147,13 +157,13 @@ body {
         margin-top: 5px; }
     body #jbsrur-nav .logo {
       background-image: url("../images/logo.png");
-      height: 65px;
-      width: 180px;
-      margin: 10px 20px;
+      height: 90px;
+      width: 200px;
+      margin: 15px 20px 5px;
       background-size: contain;
       background-repeat: no-repeat; }
   body #searchForm {
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
     background-color: #FAF3DD; }
     body #searchForm .search-tab {
       width: 50%;
@@ -161,13 +171,13 @@ body {
     body #searchForm ul {
       background-color: #FAF3DD; }
       body #searchForm ul.nav-pills li {
-        background-color: #EC7E7E; }
+        background-color: #90020B; }
         body #searchForm ul.nav-pills li label,
         body #searchForm ul.nav-pills li a {
           text-transform: uppercase;
           font-family: "Montserrat", sans-serif;
           padding: 8px 0 0;
-          color: #df0a1f; }
+          color: #FAF3DD; }
           body #searchForm ul.nav-pills li label button,
           body #searchForm ul.nav-pills li label .button,
           body #searchForm ul.nav-pills li a button,
@@ -211,7 +221,7 @@ body {
           body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn {
             float: right; }
             body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn .button {
-              background-color: #EC7E7E;
+              background-color: #90020B;
               border-radius: 50%;
               height: 35px;
               margin: 0 5px;
@@ -219,9 +229,9 @@ body {
               padding: 4px 6px;
               text-align: left;
               width: 35px;
-              border: 1px solid #df0a1f; }
+              border: 1px solid #FAF3DD; }
               body #searchForm ul.nav-pills li.global-search .input-group .input-group-btn .button i {
-                color: #df0a1f;
+                color: #FAF3DD;
                 height: 35px;
                 width: 35px;
                 font-size: 22px; }
@@ -251,17 +261,17 @@ body {
                 body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .address {
                   display: block;
                   font-weight: bold;
-                  color: #735753; }
+                  color: #878478; }
                   body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .address strong {
                     font-weight: 900; }
                 body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .description {
                   white-space: normal;
                   display: block;
-                  color: #735753;
+                  color: #878478;
                   padding: 5px 0;
                   font-size: 0.9em; }
                 body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .tag {
-                  background-color: #735753;
+                  background-color: #878478;
                   color: #FAF3DD;
                   border-radius: 10px;
                   padding: 2px 5px 2px 5px;
@@ -286,7 +296,7 @@ body {
             color: #FAF3DD;
             border: 1px solid #FAF3DD; }
           body #searchForm ul.nav-pills li.advanced-search a i {
-            border: 1px solid #df0a1f;
+            border: 1px solid #FAF3DD;
             border-radius: 100%;
             font-size: 22px;
             padding: 5px;
@@ -355,7 +365,7 @@ body {
             body #advanced-search .panel .step.step-tabs .nav-pills li a {
               vertical-align: middle;
               color: #FAF3DD;
-              background-color: #df0a1f;
+              background-color: transparent;
               cursor: pointer;
               padding: 5px 10px;
               display: block;
@@ -431,12 +441,12 @@ body {
         color: #EC7E7E; }
     body .propiedades .paginador {
       text-align: center;
-      background: #90030C;
+      background: #90020B;
       margin: 30px 0; }
       body .propiedades .paginador .pagination {
         margin: 20px auto; }
         body .propiedades .paginador .pagination li a {
-          background-color: #90030C;
+          background-color: #90020B;
           color: #FAF3DD;
           border: 0;
           font-family: "Lato", sans-serif;
@@ -444,18 +454,18 @@ body {
           border-radius: 50%;
           margin: 0 5px; }
           body .propiedades .paginador .pagination li a:hover {
-            color: #90030C;
+            color: #90020B;
             background-color: rgba(250, 243, 221, 0.8); }
         body .propiedades .paginador .pagination li.disabled a {
           color: rgba(250, 243, 221, 0.5); }
           body .propiedades .paginador .pagination li.disabled a:hover {
             color: rgba(250, 243, 221, 0.5);
-            background-color: #90030C; }
+            background-color: #90020B; }
         body .propiedades .paginador .pagination li.active a {
-          color: #90030C;
+          color: #90020B;
           background-color: rgba(250, 243, 221, 0.8); }
         body .propiedades .paginador .pagination li.pagination-first a:hover, body .propiedades .paginador .pagination li.pagination-prev a:hover, body .propiedades .paginador .pagination li.pagination-last a:hover, body .propiedades .paginador .pagination li.pagination-next a:hover {
-          background-color: #90030C;
+          background-color: #90020B;
           color: #FAF3DD; }
     body .propiedades .card {
       padding: 0;
@@ -542,12 +552,11 @@ body {
     body .detalle .col {
       padding: 0; }
     body .detalle .carousel {
-      background-color: #735753;
+      background-color: #878478;
       padding-bottom: 2.5em; }
     body .detalle h1 {
       font-style: "Montserrat", sans-serif;
       color: #df0a1f;
-      border-bottom: 3px #df0a1f solid;
       padding: 10px 20px;
       font-size: 2.8em;
       margin-top: 0; }
@@ -565,8 +574,8 @@ body {
     body .detalle h2 {
       font-family: "Lato", sans-serif;
       color: #FAF3DD;
-      border: 2.2px #90030C solid;
-      background-color: #90030C;
+      border: 2.2px #90020B solid;
+      background-color: #90020B;
       text-align: left;
       font-size: large;
       padding: 10px; }
@@ -601,12 +610,11 @@ body {
     body .detalle .referencia {
       padding: 10px 0; }
       body .detalle .referencia div {
-        background-color: #EC7E7E;
         color: #df0a1f;
         padding: 15px;
         font-size: 1.2em; }
     body .detalle .caracteristicas {
-      background-color: #735753;
+      background-color: #878478;
       color: #FAF3DD;
       width: 100%;
       margin: auto; }
@@ -620,7 +628,7 @@ body {
         padding: 0;
         width: 23%; }
   body #secondFooter {
-    background-color: #90030C;
+    background-color: #90020B;
     border-radius: 0; }
   body #mainFooter .site-footer-inner {
     color: #FAF3DD;
@@ -633,7 +641,7 @@ body {
       height: 120px; }
     body #mainFooter .site-footer-inner .right {
       padding: 15px 10px;
-      background-color: #90030C;
+      background-color: #90020B;
       display: inline-block;
       height: 120px; }
       body #mainFooter .site-footer-inner .right ul {
@@ -659,7 +667,7 @@ body {
     padding-bottom: 0;
     padding: 0px; }
   body #novedades {
-    background-color: #735753;
+    background-color: #878478;
     border-radius: 0;
     margin: 0; }
     body #novedades h1 {
@@ -696,30 +704,31 @@ body {
             display: block;
             padding-top: 15px; }
         body #nav-section ul li.even a {
-          color: #90030C; }
+          color: #90020B; }
           body #nav-section ul li.even a:hover {
             text-decoration: none; }
             body #nav-section ul li.even a:hover i {
-              color: #90030C;
+              color: #90020B;
               background-color: #FAF3DD;
-              border: 3px solid #90030C; }
+              border: 3px solid #90020B; }
         body #nav-section ul li.even i {
-          background-color: #90030C;
-          border: 3px solid #90030C;
+          background-color: #90020B;
+          border: 3px solid #90020B;
           color: #FAF3DD; }
         body #nav-section ul li.odd a {
-          color: #df0a1f; }
+          color: #90020B; }
           body #nav-section ul li.odd a:hover {
             text-decoration: none; }
             body #nav-section ul li.odd a:hover i {
-              color: #df0a1f;
+              color: #90020B;
               background-color: #FAF3DD;
-              border: 3px solid #df0a1f; }
+              border: 3px solid #90020B; }
         body #nav-section ul li.odd i {
-          background-color: #EC7E7E;
-          border: 3px solid #EC7E7E; }
+          background-color: #90020B;
+          border: 3px solid #90020B;
+          color: #FAF3DD; }
   body #news-section {
-    background-color: #735753;
+    background-color: #878478;
     padding-top: 20px; }
     body #news-section h2 {
       text-align: center;
@@ -737,7 +746,9 @@ body {
       float: none;
       margin: 30px auto; }
       body #news-section .galeria .new {
-        position: relative; }
+        position: relative;
+        overflow: hidden;
+        padding: 0; }
         body #news-section .galeria .new .img {
           width: 100%;
           height: 250px;
@@ -882,7 +893,7 @@ body {
             padding: 0;
             border-radius: 50%;
             margin: auto;
-            background-color: #735753;
+            background-color: #878478;
             color: #FAF3DD;
             width: 1.5em;
             height: 1.5em; }
@@ -898,16 +909,16 @@ body {
             display: block;
             padding-top: 15px; }
         body #social-section ul li.even a {
-          color: #90030C; }
+          color: #90020B; }
           body #social-section ul li.even a:hover {
             text-decoration: none; }
             body #social-section ul li.even a:hover i {
-              color: #90030C;
+              color: #90020B;
               background-color: #FAF3DD;
-              border: 3px solid #90030C; }
+              border: 3px solid #90020B; }
         body #social-section ul li.even i {
-          background-color: #90030C;
-          border: 3px solid #90030C;
+          background-color: #90020B;
+          border: 3px solid #90020B;
           color: #FAF3DD; }
         body #social-section ul li.odd a {
           color: #df0a1f; }
@@ -924,23 +935,23 @@ body {
     background-color: #FAF3DD;
     padding: 0; }
     body .contact-section #contacto {
-      background-color: #90030C;
+      background-color: #90020B;
       margin: 0;
       padding: 0px 30px; }
       body .contact-section #contacto h2 {
         font-size: 1.4em;
-        background-color: #90030C; }
+        background-color: #90020B; }
       body .contact-section #contacto form input,
       body .contact-section #contacto form textarea {
         font-size: 1.1em;
         padding: 5px;
-        color: #90030C; }
+        color: #90020B; }
         body .contact-section #contacto form input::-webkit-input-placeholder, body .contact-section #contacto form input::-moz-placeholder, body .contact-section #contacto form input:-ms-input-placeholder, body .contact-section #contacto form input:-moz-placeholder,
         body .contact-section #contacto form textarea::-webkit-input-placeholder,
         body .contact-section #contacto form textarea::-moz-placeholder,
         body .contact-section #contacto form textarea:-ms-input-placeholder,
         body .contact-section #contacto form textarea:-moz-placeholder {
-          color: #90030C; }
+          color: #90020B; }
       body .contact-section #contacto form textarea {
         height: 100px; }
       body .contact-section #contacto form .wpcf7-submit {
@@ -957,7 +968,7 @@ body {
     padding-top: 20px; }
     body #suc-section h2 {
       text-align: center;
-      color: #90030C;
+      color: #90020B;
       text-transform: uppercase;
       font-family: "Montserrat", sans-serif;
       font-size: 1.6em;
@@ -966,7 +977,7 @@ body {
         height: 1px;
         width: 100px;
         margin: 10px auto 0;
-        background-color: #90030C; }
+        background-color: #90020B; }
     body #suc-section .list {
       margin: 30px auto; }
       body #suc-section .list .sucursal {
@@ -1012,7 +1023,7 @@ body {
             font-family: "Lato", sans-serif;
             max-width: 80%; }
   body #emprendimientos {
-    background-color: #735753;
+    background-color: #878478;
     padding: 40px;
     margin: auto; }
     body #emprendimientos .development {
@@ -1070,7 +1081,7 @@ body {
     body .detalle-emprendimiento .col {
       padding: 0; }
     body .detalle-emprendimiento .carousel {
-      background-color: #735753;
+      background-color: #878478;
       padding-bottom: 2.5em; }
     body .detalle-emprendimiento h1 {
       font-style: "Montserrat", sans-serif;
@@ -1093,8 +1104,8 @@ body {
     body .detalle-emprendimiento h2 {
       font-family: "Lato", sans-serif;
       color: #FAF3DD;
-      border: 2.2px #90030C solid;
-      background-color: #90030C;
+      border: 2.2px #90020B solid;
+      background-color: #90020B;
       text-align: left;
       font-size: large;
       padding: 10px; }
@@ -1139,7 +1150,7 @@ body {
         padding: 15px;
         font-size: 1.2em; }
     body .detalle-emprendimiento .caracteristicas {
-      background-color: #735753;
+      background-color: #878478;
       color: #FAF3DD;
       width: 100%;
       margin: auto; }
@@ -1152,5 +1163,35 @@ body {
         text-align: left;
         padding: 0;
         width: 23%; }
+  body #quienes-somos {
+    background-color: #FAF3DD;
+    padding: 40px;
+    margin: auto;
+    text-align: center; }
+    body #quienes-somos h2 {
+      text-align: left;
+      color: #131515;
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.6em;
+      font-weight: bold;
+      text-transform: capitalize; }
+    body #quienes-somos .pic {
+      height: 250px;
+      background-size: cover;
+      float: none;
+      display: inline-block;
+      z-index: 9;
+      vertical-align: middle; }
+      body #quienes-somos .pic .pic_miembro {
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+        background-size: cover;
+        border: #FAF3DD 12px solid;
+        margin: 10px auto;
+        float: none;
+        display: inline-block;
+        z-index: 9; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */
