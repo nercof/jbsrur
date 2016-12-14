@@ -83,7 +83,7 @@
 
                 // Iniciamos las propiedades filtradas para la paginacion inicial.
                 vm.otras_noticias = vm.otras.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-                console.log(vm.otras_noticias);
+                
             });
         }
 

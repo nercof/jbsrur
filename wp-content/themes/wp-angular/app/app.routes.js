@@ -134,10 +134,14 @@
       })
       .state(STATE.NOD, {
         url: '/:id',
+        params: {
+          data: null,
+          title_view: 'TITULO NOVEDAD',
+        },
         views: {
           "detalle@novedades": {
             templateUrl: localized.views + "novedad/novedad-detalle.html",
-            controller: 'developmentsDetailsController as vm',
+            controller: 'novedadesDetalleController as vm',
           }
         },
         deepStateRedirect: true,

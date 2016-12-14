@@ -1,0 +1,42 @@
+<div class="row " ng-if="vm.novedad">
+    <div class="col-sm-12 col-xs-12">
+        <div class="pic" style="background-image: url('{{vm.novedad.image}}')"></div>
+    </div>
+    <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-6 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <ng-map class="mapa" center="[{{vm.novedad.geo_lat}}, {{vm.novedad.geo_long}}]">
+                    <marker position="{{vm.novedad.geo_lat}}, {{vm.novedad.geo_long}}"></marker>
+                </ng-map>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                CONTACTO
+            </div>
+            <div class="col-sm-12 col-xs-12">
+            </div>
+            <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.novedad.reference_code">
+                Código de referencia: {{vm.novedad.wpcf-codigo-de-referencia}}
+            </div>
+            <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.novedad.branch.phone">
+                <div>Centro de atención: {{vm.novedad.wpcf-sucursal}} {{vm.novedad.branch.phone}}</div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xs-12 descripcion">
+            <p><pre>{{vm.novedad.description}}</pre></p>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-xs-12">
+        <h2><i class="typcn typcn-pin"></i>Galeria</h2>
+    </div>
+    <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-6 col-xs-12 galeria">
+            <div uib-carousel active="active" ng-if="vm.novedad.photos">
+                <div uib-slide ng-repeat="photo in vm.novedad.photos" active="active" index="$index">
+                    <img ng-src="{{photo.image}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
