@@ -147,6 +147,10 @@
         url: '/' + STATE.NO,
         views: {
           "content": {
+            templateUrl: localized.views + "news-section.html",
+            controller: 'novedadesController as vm'
+          },
+          "suc-section": {
             templateUrl: localized.views + "novedad/novedades.html",
             controller: 'novedadesController as vm',
           },

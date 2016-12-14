@@ -666,17 +666,33 @@ body {
   body #mainFooter .container {
     padding-bottom: 0;
     padding: 0px; }
-  body #novedades {
-    background-color: #878478;
-    border-radius: 0;
-    margin: 0; }
-    body #novedades h1 {
-      font-family: "Montserrat", sans-serif;
-      color: #FAF3DD;
-      background-color: #df0a1f; }
-    body #novedades h2 {
-      font-family: "Lato", sans-serif;
-      color: #FAF3DD; }
+  body #novedades .listado-novedades {
+    text-align: center;
+    margin: 30px auto; }
+    body #novedades .listado-novedades a {
+      display: table;
+      color: #131515;
+      margin: 15px auto; }
+      body #novedades .listado-novedades a .pic {
+        display: inline-block;
+        text-align: center; }
+        body #novedades .listado-novedades a .pic .img {
+          height: 150px;
+          width: 280px;
+          background-size: cover;
+          background-position: center;
+          margin: auto; }
+      body #novedades .listado-novedades a .detalle {
+        display: inline-block;
+        text-align: left; }
+        body #novedades .listado-novedades a .detalle h2 {
+          color: #df0a1f;
+          border: none;
+          background-color: transparent;
+          text-align: left;
+          font-size: 1.2em;
+          padding: 0;
+          font-weight: bold; }
   body #nav-section {
     background-color: #FAF3DD; }
     body #nav-section ul {
@@ -1086,7 +1102,6 @@ body {
     body .detalle-emprendimiento h1 {
       font-style: "Montserrat", sans-serif;
       color: #df0a1f;
-      border-bottom: 1px #df0a1f solid;
       padding: 10px 20px;
       font-size: 2.8em;
       margin-top: 0; }
@@ -1117,14 +1132,17 @@ body {
         vertical-align: middle;
         margin: 5px 10px 5px 0px; }
     body .detalle-emprendimiento .pic {
-      height: 250px;
+      height: 450px;
       width: 100%;
       background-size: cover;
-      margin: 10px auto; }
+      margin: 10px auto 0;
+      background-position: center; }
     body .detalle-emprendimiento .galeria {
       height: 395px; }
       body .detalle-emprendimiento .galeria img {
         height: 360px; }
+    body .detalle-emprendimiento .emp-detalle {
+      padding: 30px 0; }
     body .detalle-emprendimiento .mapa {
       height: 395px; }
     body .detalle-emprendimiento .descripcion pre {

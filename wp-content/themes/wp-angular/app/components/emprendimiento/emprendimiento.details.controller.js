@@ -35,14 +35,11 @@
             // Generamos el modelo Propiedad
             if (!_.isEmpty($stateParams.data)) {
                 vm.development = $stateParams.data;
+                console.log(vm.development);
             }
             else {
-                // @TODO: No es necesario.
-                /*
-                tokkoFactory.getDevelopmentsTokkoAPIById($stateParams.id).then(function(data) {
-                    vm.development = data;
-                });
-                */
+                // @TODO: SI ES NECESARIO
+
             }
             // Seteamos el titulo de la vista.
             // title_view();
