@@ -151,18 +151,22 @@
       .state(STATE.CO, {
         url: '/' + STATE.CO,
         views: {
-          "social-section": {
+          "header": {
             templateUrl: localized.views + "contact-section.html",
             controller: 'contactController as vm'
           },
-          "suc-section": {
+          "nav-section": {
             templateUrl: localized.views + "suc-section.html",
             controller: 'sucSectionController as vm'
           },
           "contact-section": {
             templateUrl: localized.views + "social-section.html",
             controller: 'socialSectionController as vm'
-          }
+          },
+          "second-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
         }
       })
       .state(STATE.PO, {
@@ -177,6 +181,10 @@
           "content": {
             templateUrl: localized.tokko + "tokko-search-result.html",
             controller: 'tokkoResultController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
           }
         },
         onExit: function() {
@@ -193,6 +201,10 @@
           "detalle@propiedades": {
             templateUrl: localized.tokko + "tokko-search-details.html",
             controller: 'tokkoDetailsController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
           }
         },
         deepStateRedirect: true,
