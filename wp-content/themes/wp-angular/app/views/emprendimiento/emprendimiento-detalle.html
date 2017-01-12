@@ -25,8 +25,8 @@
                     </div>
                     <div class="col-sm-12 col-xs-12" id="contacto">
                         <h2><i class="typcn typcn-user"></i>Contacto</h2>
-                            <!-- @import: Contact Form 7 plugin  -->
-                            <div id="jbsrur_contact_form"></div>
+                        <!-- @import: Contact Form 7 plugin  -->
+                        <div id="jbsrur_contact_form"></div>
                     </div>
                     <div class="col-sm-12 col-xs-12 referencia">
                         Código de referencia: {{vm.emprendimiento['wpcf-codigo-de-referencia']}}
@@ -42,12 +42,21 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-xs-12" ng-if="vm.emprendimiento.photos">
+            <div class="col-sm-12 col-xs-12">
                 <h2><i class="typcn typcn-pin"></i>Galeria</h2>
-                <div class="col-sm-6 col-xs-12 galeria">
-                    <div uib-carousel active="active" ng-if="vm.emprendimiento.photos">
-                        <div uib-slide ng-repeat="photo in vm.emprendimiento.photos" active="active" index="$index">
-                            <img ng-src="{{photo.image}}">
+                <div class="galeria col-sm-10 col-xs-10">
+                    <div uib-carousel active="active" ng-if="vm.slides">
+                        <div uib-slide ng-repeat="slide in vm.slides" active="active" index="$index">
+                            <div ng-repeat="novedad in slide" class="col-sm-6 col-xs-6 new">
+                                <div class="img" style="background-image: url('{{novedad.full}}')"></div>
+                                <div class="caption">
+                                    <h3>
+                                        <i class="{{ vm.iconos_format[novedad['wpcf-tipo-de-novedad']] }}"></i>
+                                        <div class="title">{{novedad.title.rendered}}</div>
+                                    </h3>
+                                    <p ng-bind-html="novedad['wpcf-encabezado'] | to_trust"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

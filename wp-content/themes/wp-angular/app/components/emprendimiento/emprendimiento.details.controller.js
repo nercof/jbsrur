@@ -35,11 +35,11 @@
             // Generamos el modelo Propiedad
             if (!_.isEmpty($stateParams.data)) {
                 vm.emprendimiento = $stateParams.data;
-
+                console.log(vm.emprendimiento);
                 // Parse lat-long desde el dato de la API
                 parseLatitudLongitud();
                 parseSucursal();
-
+                parseGallery();
             }
             else {} // Consultar si corresponde
 
@@ -59,13 +59,42 @@
                 });
 
         }
+        /**
+        *
+        */
+        function parseGallery() {
+            // Formateamos los autores
+            // "sdNVBNFDJGHJHKHJKFGHSDFGASDGSFG↵[gallery ids="136,135,134"]"
+            var data = vm.emprendimiento["wpcf-slider"].split("]");
+            console.log(data);
+            if (!_.isEmpty(data)) {}
 
+            // Recorremos las novedades para poder dividir en grupos de 4.
+            /*
+            _.each(vm.destacadas, function(destacada, i){
+                // Buscamos la imagen relacionada
+                mediaFactory.getMedia(destacada.featured_media).then(function(data) {
+                    destacada.foto = data;
+                    if (!_.isEmpty(destacada.foto.guid)) {
+                        destacada.full = destacada.foto.media_details.sizes.full.source_url;
+                    }
+                    if(i % 4 == 0) {
+                        // creamos slides de 4 novedades
+                        vm.slides.push( vm.destacadas.slice(i, i + 4) );
+                    }
+                });
+            });
+            */
+        }
+        /**
+        *
+        */
         function parseSucursal() {
+
             typeFactory.getSucursal(vm.emprendimiento['wpcf-sucursal']).then(
                 function(data){
-                    console.log(data);
-                    //vm.emprendimiento.suc_nombre = data.title.rendered;
-                    //vm.emprendimiento.suc_telefo = data['wpcf-telefono'];
+                    vm.emprendimiento.suc_nombre = data.title.rendered;
+                    vm.emprendimiento.suc_telefo = data['wpcf-telefono'];
                 }
             );
         }
