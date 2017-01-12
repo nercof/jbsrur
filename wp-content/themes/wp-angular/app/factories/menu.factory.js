@@ -9,10 +9,10 @@
   function dataFactory(wordpressService, MENU_TAG, BASE_WP_MENU_URL){
 
     var data = {
-      'getHeader':  getHeader
+      'getFormatMenu':  getFormatMenu
     }
 
-    function getHeader(id) {
+    function getFormatMenu(id) {
       return getMenu(id).then(function(data){
         addStates(data);
         formatUrls(data);

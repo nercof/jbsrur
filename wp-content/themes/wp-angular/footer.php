@@ -21,15 +21,16 @@
 				<div class="col-sm-6 col-xs-12 left">
 					<p class="title">{{vm.title}}</p>
 					<p class="subtitle">{{vm.subtitle}}</p>
-					<a href="{{vm.fb}}"><i class="typcn typcn-social-twitter"></i></a>
-					<a href="{{vm.twitter}}"><i class="typcn typcn-social-facebook"></i></a>
-					<a href="mailto:{{vm.email}}"><i class="typcn typcn-mail"></i></a>
-					</p>
+					<div ng-repeat="link in vm.social" class="links">
+						<a href="{{link.url}}">
+							<i class="{{link.title}}"></i>
+						</a>
+					</div>
 				</div>
 				<div class="col-sm-6 col-xs-12 right">
-					<ul class="dashed-list">
-						<li ng-repeat="link in vm.links">
-							<a href='{{link.url}}'>{{link.name}}</a>
+					<ul class="dashed-list" ng-if="vm.items">
+						<li ng-repeat="item in vm.items">
+							<a href='{{item.url}}'>{{item.title}}</a>
 						</li>
 					</ul>
 				</div>

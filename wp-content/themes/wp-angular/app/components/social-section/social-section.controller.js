@@ -18,7 +18,7 @@
         }
 
         function getMenuItems() {
-            menuFactory.getHeader(19).then(function(response){
+            menuFactory.getFormatMenu(19).then(function(response){
                 vm.items = response.items;
                 setIcons();
             });

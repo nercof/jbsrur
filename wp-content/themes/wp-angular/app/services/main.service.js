@@ -24,6 +24,6 @@
     console.log('mainService');
 
     var data = {
-      'getHeader': getHeader
+      'getFormatMenu': getFormatMenu
     }
 }})();
