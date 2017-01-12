@@ -6,7 +6,7 @@
     getMenuItems(STATE);
 
     function getMenuItems(pState) {
-      menuFactory.getHeader(14).then(function(response){
+      menuFactory.getFormatMenu(14).then(function(response){
         $scope.items = response.items;
         $scope.icons = getIcons();
         setIcons();
