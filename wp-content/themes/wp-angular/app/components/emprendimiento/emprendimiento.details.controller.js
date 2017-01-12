@@ -65,16 +65,19 @@
         function parseGallery() {
             // Formateamos los autores
             // "sdNVBNFDJGHJHKHJKFGHSDFGASDGSFG↵[gallery ids="136,135,134"]"
-            var data = vm.emprendimiento["wpcf-slider"].split("]");
-            console.log(data);
-            if (!_.isEmpty(data)) {}
+            var gallery = [];
+            gallery = vm.emprendimiento["wpcf-slider"].split("=");
+            gallery = array[1].split(",");
+            if (!_.isEmpty(array)) {}
 
             // Recorremos las novedades para poder dividir en grupos de 4.
-            /*
-            _.each(vm.destacadas, function(destacada, i){
+
+            _.each(gallery, function(imagen, i){
+                
                 // Buscamos la imagen relacionada
-                mediaFactory.getMedia(destacada.featured_media).then(function(data) {
-                    destacada.foto = data;
+                mediaFactory.getMedia(imagen).then(function(data) {
+
+                    /*destacada.foto = data;
                     if (!_.isEmpty(destacada.foto.guid)) {
                         destacada.full = destacada.foto.media_details.sizes.full.source_url;
                     }
@@ -82,9 +85,10 @@
                         // creamos slides de 4 novedades
                         vm.slides.push( vm.destacadas.slice(i, i + 4) );
                     }
+                    */
                 });
             });
-            */
+
         }
         /**
         *
@@ -104,7 +108,7 @@
          *
          */
         function parseLatitudLongitud() {
-            // Formateamos los autores
+            // Formateamos latitud y longitud.
             var data = vm.emprendimiento["wpcf-latitud-y-longitud"].split(";");
             if (!_.isEmpty(data)) {
                 vm.emprendimiento.geo_lat = data[0];
