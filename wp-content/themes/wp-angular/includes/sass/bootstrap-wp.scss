@@ -902,6 +902,9 @@ body {
                         background-color: $red;
                         display: inline-block;
                         height: 120px;
+                        .links {
+                              display: inline-block;
+                        }
                   }
                   .right {
                         padding: 15px 10px;
@@ -999,6 +1002,7 @@ body {
                         a {
                               font-family: $font-titles;
                               text-transform: uppercase;
+                              color: $red;
                               i {
                                     display: block;
                                     font-size: 68px;
@@ -1007,47 +1011,21 @@ body {
                                     width: 110px;
                                     border-radius: 50%;
                                     margin: auto;
+                                    background-color: $red;
+                                    border: 3px solid $red;
+                                    color: $white;
                               }
                               span {
                                     display: block;
                                     padding-top: 15px;
                               }
-                        }
-                        &.even {
-                              a {
-                                    color: $bordo;
-
-                                    &:hover {
-                                          text-decoration: none;
-                                          i {
-                                                color: $bordo;
-                                                background-color: $white;
-                                                border: 3px solid $bordo;
-                                          }
+                              &:hover {
+                                    text-decoration: none;
+                                    i {
+                                          color: $red;
+                                          background-color: $white;
+                                          border: 3px solid $red;
                                     }
-                              }
-                              i {
-                                    background-color: $bordo;
-                                    border: 3px solid $bordo;
-                                    color: $white;
-                              }
-                        }
-                        &.odd {
-                              a {
-                                    color: $bordo;
-                                    &:hover {
-                                          text-decoration: none;
-                                          i {
-                                                color: $bordo;
-                                                background-color: $white;
-                                                border: 3px solid $bordo;
-                                          }
-                                    }
-                              }
-                              i {
-                                    background-color: $bordo;
-                                    border: 3px solid $bordo;
-                                    color: $white;
                               }
                         }
                   }
@@ -1332,6 +1310,7 @@ body {
                   background-color: $bordo;
                   margin:0;
                   padding: 0px 30px;
+                  height: 430px;
                   h2 {
                         font-size: 1.4em;
                         background-color: $bordo;

@@ -5,14 +5,15 @@
     .module('app.core')
     .controller('mainFooterController', mainFooterController);
 
-    mainFooterController.$inject = ['$state', '$stateParams', 'tokkoFactory', '$scope', '$rootScope'];
+    mainFooterController.$inject = ['$state', '$stateParams', 'tokkoFactory', '$scope', '$rootScope', 'menuFactory'];
 
     /**
     * mainFooterController: <comment>
     *  - @view: main-footer
     */
-    function mainFooterController($state, $stateParams, tokkoFactory, $scope, $rootScope) {
+    function mainFooterController($state, $stateParams, tokkoFactory, $scope, $rootScope, menuFactory) {
         var vm = this;
+        var arraySocial = ['typcn typcn-social-twitter', 'typcn typcn-social-facebook', 'typcn typcn-at'];
         vm.title = false;
         vm.email = false;
         vm.fb = false;
@@ -27,38 +28,19 @@
         *
         */
         function create() {
-            vm.title = "JBSRUR";
+            vm.title = "JB SRUR";
             vm.subtitle = "La inmobiliaria de Córdoba";
             vm.email = "info@jbsrur.com.ar";
             vm.fb = "";
             vm.twitter = "";
-            vm.links =
-                [
-                    {
-                        name: "Ventas",
-                        url: "http://jbsrur:8080/#/ventas",
-                    },
-                    {
-                        name: "Alquiler",
-                        url: "http://jbsrur:8080/#/alquileres",
-                    },
-                    {
-                        name: "Administracion",
-                        url: "",
-                    },
-                    {
-                        name: "Quiénes somos",
-                        url: "http://jbsrur-marilynpi.c9users.io/#/quienes-somos",
-                    },
-                    {
-                        name: "Nuestros emprendimientos",
-                        url: "http://jbsrur-marilynpi.c9users.io/#/nuestros-emprendimientos",
-                    },
-                    {
-                        name: "Novedades",
-                        url: "",
-                    }
-                ];
+
+            menuFactory.getFormatMenu(20).then(function(response){
+                    vm.items = response.items;
+            });
+            menuFactory.getFormatMenu(19).then(function(response){
+                    vm.social = _.filter(response.items, function(item){ return arraySocial.indexOf(item.title) >= 0; });
+                    console.log(vm.social)
+            });
         }
     }
 })();

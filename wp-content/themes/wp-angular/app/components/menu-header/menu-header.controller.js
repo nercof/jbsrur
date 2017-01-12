@@ -8,7 +8,7 @@
     //#search
 
     function getMenuItems(pState) {
-      menuFactory.getHeader(2).then(function(response){
+      menuFactory.getFormatMenu(2).then(function(response){
         $scope.items = response.items;
         setSearchIcon();
         setStateName(pState, $scope.items)

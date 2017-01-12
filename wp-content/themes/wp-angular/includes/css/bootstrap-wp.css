@@ -639,6 +639,8 @@ body {
       background-color: #df0a1f;
       display: inline-block;
       height: 120px; }
+      body #mainFooter .site-footer-inner .left .links {
+        display: inline-block; }
     body #mainFooter .site-footer-inner .right {
       padding: 15px 10px;
       background-color: #90020B;
@@ -707,7 +709,8 @@ body {
         vertical-align: top; }
         body #nav-section ul li a {
           font-family: "Montserrat", sans-serif;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          color: #df0a1f; }
           body #nav-section ul li a i {
             display: block;
             font-size: 68px;
@@ -715,34 +718,19 @@ body {
             padding: 18px 10px;
             width: 110px;
             border-radius: 50%;
-            margin: auto; }
+            margin: auto;
+            background-color: #df0a1f;
+            border: 3px solid #df0a1f;
+            color: #FAF3DD; }
           body #nav-section ul li a span {
             display: block;
             padding-top: 15px; }
-        body #nav-section ul li.even a {
-          color: #90020B; }
-          body #nav-section ul li.even a:hover {
+          body #nav-section ul li a:hover {
             text-decoration: none; }
-            body #nav-section ul li.even a:hover i {
-              color: #90020B;
+            body #nav-section ul li a:hover i {
+              color: #df0a1f;
               background-color: #FAF3DD;
-              border: 3px solid #90020B; }
-        body #nav-section ul li.even i {
-          background-color: #90020B;
-          border: 3px solid #90020B;
-          color: #FAF3DD; }
-        body #nav-section ul li.odd a {
-          color: #90020B; }
-          body #nav-section ul li.odd a:hover {
-            text-decoration: none; }
-            body #nav-section ul li.odd a:hover i {
-              color: #90020B;
-              background-color: #FAF3DD;
-              border: 3px solid #90020B; }
-        body #nav-section ul li.odd i {
-          background-color: #90020B;
-          border: 3px solid #90020B;
-          color: #FAF3DD; }
+              border: 3px solid #df0a1f; }
   body #news-section {
     background-color: #878478;
     padding-top: 20px; }
@@ -953,7 +941,8 @@ body {
     body .contact-section #contacto {
       background-color: #90020B;
       margin: 0;
-      padding: 0px 30px; }
+      padding: 0px 30px;
+      height: 430px; }
       body .contact-section #contacto h2 {
         font-size: 1.4em;
         background-color: #90020B; }
