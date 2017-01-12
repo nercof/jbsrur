@@ -39,7 +39,6 @@
                 // Parse lat-long desde el dato de la API
                 parseLatitudLongitud();
                 parseSucursal();
-                console.log(vm.emprendimiento);
 
             }
             else {} // Consultar si corresponde
@@ -64,8 +63,9 @@
         function parseSucursal() {
             typeFactory.getSucursal(vm.emprendimiento['wpcf-sucursal']).then(
                 function(data){
-                    vm.emprendimiento.suc_nombre = data.title.rendered;
-                    vm.emprendimiento.suc_telefo = data['wpcf-telefono'];                    
+                    console.log(data);
+                    //vm.emprendimiento.suc_nombre = data.title.rendered;
+                    //vm.emprendimiento.suc_telefo = data['wpcf-telefono'];
                 }
             );
         }
