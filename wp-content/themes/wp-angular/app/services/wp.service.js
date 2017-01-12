@@ -13,6 +13,7 @@
 
     function getRequest(url, tag, id) {
       var requestUrl = url + tag + '/' + id;
+      
       return $http({
         'url': requestUrl,
         'method': 'GET',

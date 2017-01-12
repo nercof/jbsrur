@@ -74,8 +74,10 @@
                     mediaFactory.getMedia(development.featured_media).then(function(data){
                         development.image = data.source_url;
                     });
-                });
 
+                    // Buscamos la imagen de portada
+                    development.portada = development["wpcf-portada"];
+                });
             }
 
             /*
