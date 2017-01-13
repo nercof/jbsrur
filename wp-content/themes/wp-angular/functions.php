@@ -282,6 +282,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
+                'admProp',
+                get_stylesheet_directory_uri() . '/app/components/administracion/administracion.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
                 array( 'core', 'factories' ));

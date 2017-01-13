@@ -1655,6 +1655,35 @@ body {
                   }
             }
       }
+      #admProp {
+            margin: auto;
+            text-align: center;
+            h2 {
+                  text-align: left;
+                  color: $white;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size:2em;
+                  font-weight: bold;
+                  margin: 20px 0px;
+            }
+            .content {
+                  text-align: left;
+                  font-family: $font-normal;
+                  padding: 40px 20px 30px;
+                  font-size: 1.1em;
+            }
+            .pic {
+                  height: 450px;
+                  background-size: cover;
+                  float: none;
+                  display: inline-block;
+                  z-index: 9;
+                  vertical-align: middle;
+                  background-position: 0% 60%;
+                  width: 100%;
+            }
+      }
       .sub-footer#suc-section {
                   .list {
                         margin: 0 auto 20px;
