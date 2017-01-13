@@ -25,7 +25,7 @@
             controller: 'navSectionController'
           },
           "content": {
-            templateUrl: localized.views + "news-section.html",
+            templateUrl: localized.views + "novedad/section.html",
             controller: 'novedadesController as vm'
           },
           "social-section": {
@@ -143,11 +143,11 @@
         url: '/' + STATE.NO,
         views: {
           "content": {
-            templateUrl: localized.views + "novedad/novedades.html",
+            templateUrl: localized.views + "novedad/index.html",
             controller: 'novedadesController as vm'
           },
           "top@novedades": {
-            templateUrl: localized.views + 'news-section.html',
+            templateUrl: localized.views + 'novedad/section.html',
             controller: 'novedadesController as vm'
           },
           "middle@novedades": {
@@ -172,13 +172,17 @@
         },
         views: {
           "top@novedades": {
-            templateUrl: localized.views + 'novedad/novedad-detalle.html',
+            templateUrl: localized.views + 'novedad/detail.html',
             controller: 'novedadesDetalleController as vm'
           },
           "middle@novedades": {
-            templateUrl: localized.views + 'news-section.html',
+            templateUrl: localized.views + 'novedad/section.html',
             controller: 'novedadesController as vm'
           },
+          "button@novedades": {
+            templateUrl: localized.views + 'novedad/list.html',
+            controller: 'novedadesController as vm'
+          }
         },
         deepStateRedirect: true,
         sticky: true,
