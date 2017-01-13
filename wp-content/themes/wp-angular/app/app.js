@@ -9,6 +9,7 @@
             [   'ui.router',
                 'underscore',
                 'ui.bootstrap',
+                'bootstrapLightbox',
                 'app.config',
                 'app.routes',
                 'app.core',
@@ -33,7 +34,11 @@
                     var aux = $localStorageProvider.get('prop_cache');
 
                 }
-            ]);
+            ])
+            .config( function (LightboxProvider) {
+                // set a custom template
+                LightboxProvider.templateUrl = localized.views + 'lightbox-custom.html';
+        });
 
     console.log('Loading app modules...: '
             + '\n- ui.router'

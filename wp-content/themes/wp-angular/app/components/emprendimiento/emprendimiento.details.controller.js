@@ -5,13 +5,15 @@
     .module('app.core')
     .controller('developmentsDetailsController', developmentsDetailsController);
 
-    developmentsDetailsController.$inject = ['$state', '$stateParams', 'tokkoFactory', '$scope', '$rootScope', 'typeFactory', 'mediaFactory' ];
+    developmentsDetailsController.$inject = ['$state', '$stateParams',
+    'tokkoFactory', '$scope', '$rootScope', 'typeFactory',
+    'mediaFactory', 'Lightbox'];
 
     /**
     * developmentsDetailsController: Gestión sobre el detalle del emprendimiento.
     *  - @view: tokko-search-details
     */
-    function developmentsDetailsController($state, $stateParams, tokkoFactory, $scope, $rootScope, typeFactory, mediaFactory) {
+    function developmentsDetailsController($state, $stateParams, tokkoFactory, $scope, $rootScope, typeFactory, mediaFactory, Lightbox) {
         console.log('<< Loading developmentsDetailsController >>');
 
         var vm = this;
@@ -20,6 +22,7 @@
         vm.title_view = '';
         vm.gallery = [];
         vm.slides = [];
+        vm.galleryLightboxModal = [];
 
         create();
 
@@ -45,7 +48,6 @@
             else {
                 typeFactory.getEmprendimientoById($stateParams.id).then(function(data){
                     vm.emprendimiento = data;
-                    console.log(vm.emprendimiento);
                     // Buscamos las imagenes en WP
                     mediaFactory.getMedia(vm.emprendimiento.featured_media).then(function(data){
                         vm.emprendimiento.image = data.source_url;
@@ -60,9 +62,6 @@
                 }
             );
         }
-
-
-
         // Generamos el modelo ContactForm
         typeFactory.getPostByCategoryName("contacto").then(
             function(data) {
@@ -74,21 +73,27 @@
                 angular.element('#jbsrur_contact_form').append(vm.contact_form.content.rendered);
             });
 
-        }
+        } // Fin create
+
+        $scope.openLightboxModal = function (index) {
+            console.log(vm.gallery);
+            console.log(index);
+            Lightbox.openModal(vm.galleryLightboxModal, index);
+          };
+
         /**
         *
         */
         function buildSlider() {
-
             // Recorremos las novedades para poder dividir en grupos de 4.
             _.each(vm.gallery, function(imagen, i){
                 if(i % 3 == 0) {
                     // creamos slides de 4 novedades
                     vm.slides.push( vm.gallery.slice(i, i + 3) );
-                    console.log(vm.slides);
                 }
             });
         }
+
         /**
         * "Ejemplo [gallery ids="136,135,134"]"
         * vm.emprendimiento["wpcf-slider"]
@@ -114,7 +119,10 @@
                         // Incorporamos la imagen a la gallery
                         if (!_.isEmpty(imagen.guid)) {
                             imagen.full = imagen.media_details.sizes.full.source_url;
+                            imagen.thumbUrl = imagen.media_details.sizes.full.source_url;
                             vm.gallery.push(imagen);
+                            vm.galleryLightboxModal.push(imagen.media_details.sizes.full.source_url);
+                            console.log(vm.galleryLightboxModal);
                         }
 
                     });

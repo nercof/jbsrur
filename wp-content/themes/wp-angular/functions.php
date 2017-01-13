@@ -162,6 +162,10 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 get_template_directory_uri() .'/node_modules/angular-resource/angular-resource.js');
 
                 wp_enqueue_script(
+                'angular-bootstrap-lightbox',
+                get_template_directory_uri() .'/node_modules/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js');
+
+                wp_enqueue_script(
                 'ngstorage',
                 get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.js');
 
@@ -169,7 +173,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'app',
                 get_stylesheet_directory_uri() . '/app/app.js',
                 array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map',
-                'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls'));
+                'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls',
+            'angular-bootstrap-lightbox'));
 
                 wp_enqueue_script(
                 'routes',
