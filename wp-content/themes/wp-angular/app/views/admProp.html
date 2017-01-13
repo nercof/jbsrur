@@ -1,0 +1,17 @@
+<div id="admProp">
+    <div class="pic" style="background-image: url('{{vm.admProp.image}}')">
+    </div>
+    <div class="row bg-red">
+        <div class="container">
+            <h2>
+                {{vm.admProp.title.rendered}}
+            </h2>
+        </div>
+    </div>
+    <div class="row bg-white">
+        <div class="container">
+            <p ng-bind-html="vm.admProp.content.rendered | to_trust" class="content">
+            </p>
+        </div>
+    </div>
+</div>

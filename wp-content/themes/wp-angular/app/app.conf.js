@@ -18,7 +18,8 @@
         'NOD':'novedades.detalle',
         'CO':'contacto',
         'PO':'propiedades',
-        'PD':'propiedades.detalle'
+        'PD':'propiedades.detalle',
+        'ADP':'administracion'
     })
     .constant('TYPE', {
         'AL': 'Alquiler',
