@@ -1,5 +1,5 @@
 <div class="detalle-emprendimiento" ng-if="vm.emprendimiento">
-    <div class="row bg-white">
+    <div class="bg-white">
         <div class="container">
             <div class="col-sm-12 col-xs-12 col">
                 <h1>
@@ -10,45 +10,45 @@
                 </h1>
             </div>
         </div>
-        <div class="col-sm-12 col-xs-12">
+        <div>
             <div class="pic" style="background-image: url('{{vm.emprendimiento.portada}}')"></div>
         </div>
     </div>
-    <div class="row emp-detalle bg-grey">
+    <div class="emp-detalle bg-white">
         <div class="container">
             <div class="col-sm-12 col-xs-12">
                 <div class="col-sm-6 col-xs-12">
-                    <div class="col-sm-12 col-xs-12">
-                        <ng-map class="mapa" center="[{{vm.emprendimiento.geo_lat}}, {{vm.emprendimiento.geo_long}}]">
-                            <marker position="{{vm.emprendimiento.geo_lat}}, {{vm.emprendimiento.geo_long}}"></marker>
-                        </ng-map>
-                    </div>
+                    <ng-map class="mapa" center="[{{vm.emprendimiento.geo_lat}}, {{vm.emprendimiento.geo_long}}]">
+                        <marker position="{{vm.emprendimiento.geo_lat}}, {{vm.emprendimiento.geo_long}}"></marker>
+                    </ng-map>
                     <div class="col-sm-12 col-xs-12" id="contacto">
                         <h2><i class="typcn typcn-user"></i>Contacto</h2>
                         <!-- @import: Contact Form 7 plugin  -->
                         <div id="jbsrur_contact_form"></div>
                     </div>
-                    <div class="col-sm-12 col-xs-12 referencia">
+                    <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.emprendimiento['wpcf-codigo-de-referencia']">
                         Código de referencia: {{vm.emprendimiento['wpcf-codigo-de-referencia']}}
                     </div>
-                    <div class="col-sm-12 col-xs-12 referencia">
+                    <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.emprendimiento.suc_nombre && vm.emprendimiento.suc_telefo">
                         <div>Centro de atención: {{vm.emprendimiento.suc_nombre}} {{vm.emprendimiento.suc_telefo}}</div>
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-xs-12 descripcion">
-                    <h2>Descripción de propiedad</h2>
-                    <p ng-bind-html="vm.emprendimiento.content.rendered | to_trust"></p>
+                    <h2><i class="fa fa-hand-o-right"></i>Descripción</h2>
+                    <p class="desc" ng-bind-html="vm.emprendimiento.content.rendered | to_trust"></p>
                 </div>
             </div>
 
             <div class="col-sm-12 col-xs-12">
-                <h2><i class="typcn typcn-pin"></i>Galeria</h2>
-                <div ng-repeat="imagen in vm.gallery" ng-if="vm.gallery">
-                    <div class="col-xs-4 col-md-4">
-                        <a ng-click="openLightboxModal($index)">
-                            <img src="{{imagen.full}}" alt="...">
-                        </a>
+                <div class="col-sm-12 col-xs-12">
+                    <h2><i class="fa fa-camera-retro "></i>Galeria</h2>
+                    <div ng-if="vm.gallery" class="gallery">
+                        <div class="col-xs-4 col-md-4 col" ng-repeat="imagen in vm.gallery" >
+                            <a ng-click="openLightboxModal($index)">
+                                <img src="{{imagen.full}}" alt="...">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

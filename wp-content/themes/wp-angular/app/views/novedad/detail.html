@@ -1,18 +1,16 @@
-<div class="row " ng-if="vm.novedad">
-    <div class="col-sm-12 col-xs-12">
-        <div class="pic" style="background-image: url('{{vm.novedad.full}}')"></div>
-    </div>
-    <div class="col-sm-12 col-xs-12">
-        <div class="col-sm-6 col-xs-12">
+<div class="bg-white detalle-news " ng-if="vm.novedad">
+    <div class="pic" style="background-image: url('{{vm.novedad.full}}')"></div>
+    <div class="bg-bordo">
+        <div class="container">
             <div class="col-sm-12 col-xs-12">
-                {{vm.novedad.title.rendered}}
-            </div>
-            <div class="col-sm-12 col-xs-12">
-                {{vm.novedad.content.rendered}}
+                <h1>{{vm.novedad.title.rendered}}</h1>
             </div>
         </div>
     </div>
-    <div class="col-sm-6 col-xs-12">
-        <p><pre>{{vm.novedad.description}}</pre></p>
+    <div class="bg-white">
+        <div class="container">
+            <div class="col-sm-12 col-xs-12 content" ng-bind-html="vm.novedad.content.rendered | to_trust">
+            </div>
+        </div>
     </div>
 </div>

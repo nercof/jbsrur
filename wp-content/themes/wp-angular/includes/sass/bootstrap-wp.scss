@@ -35,7 +35,7 @@
       padding: 0 15px 0 15px;
 }
 #content {
-      padding-bottom: 0;
+      padding: 0;
 }
 
 /* JBSRUR */
@@ -1150,7 +1150,7 @@ body {
                               font-weight: 400;
                               font-style: italic;
                               color: $red;
-                              font-size: 1.2em;
+                              font-size: 1.1em;
                               &::-webkit-input-placeholder,
                               &::-moz-placeholder,
                               &:-ms-input-placeholder,
@@ -1490,7 +1490,7 @@ body {
             h1 {
                   font-style: $font-titles;
                   color: $red;
-                  padding: 10px 20px;
+                  padding: 20px 20px 10px;
                   font-size: 2.8em;
                   margin-top: 0;
 
@@ -1519,14 +1519,18 @@ body {
                   text-align: left;
                   font-size:large;
                   padding: 10px;
+                  margin: 0;
                   i {
-                        border: 1px solid $white;
-                        border-radius: 100%;
                         font-size: 22px;
                         padding: 2px 4px;
                         vertical-align: middle;
                         margin: 5px 10px 5px 0px;
                   }
+            }
+            .desc {
+                  padding: 20px;
+                  font-family: $font-normal;
+                  font-size: 1.1em;
             }
             .pic {
                   height: 450px;
@@ -1535,10 +1539,15 @@ body {
                   margin: 10px auto 0;
                   background-position: center;
             }
-            .galeria {
-                  height: 395px;
-                  img {
-                        height: 360px;
+            .gallery {
+                   margin-top: 1.5em;
+                   text-align: center;
+                   .col {
+                        float: none;
+                        display: inline-block;
+                        a {
+                             cursor: pointer;
+                        }
                   }
             }
             .emp-detalle {
@@ -1563,13 +1572,11 @@ body {
                   }
             }
             .referencia {
-                  padding: 10px 0;
-                  div {
-                        background-color: $pink;
-                        color: $red;
-                        padding: 15px;
-                        font-size: 1.2em;
-                  }
+                  padding: 15px;
+                  margin-bottom: 10px;
+                  color: $bordo;
+                  font-size: 1.2em;
+                  border: $bordo 1px solid;
             }
             .caracteristicas {
                   background-color: $grey;
@@ -1673,5 +1680,41 @@ body {
                               }
                         }
                   }
+      }
+      .modal-content {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            -webkit-box-shadow:none;
+            box-shadow:none;
+      }
+      .detalle-news {
+            .pic {
+                  height: 450px;
+                  background-size: cover;
+                  background-position: center;
+            }
+            h1{
+                  text-align: left;
+                  color: $white;
+                  font-family: $font-titles;
+                  font-size:2em;
+                  margin: 20px 0px;
+            }
+            .content {
+                  text-align: left;
+                  font-family: $font-normal;
+                  padding: 40px 20px 30px;
+                  font-size: 1.1em;
+                  figure {
+                        display: inline-block;
+                        float: left;
+                        padding: 0px 20px;
+                        border: none;
+                  }
+                  figcaption {
+                        font-style: italic;
+                  }
+            }
       }
 }

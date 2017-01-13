@@ -90,5 +90,5 @@ type="text/javascript"></script>
 <div class="main-content">
 <?php // substitute the class "container-fluid" below if you want a wider content area ?>
 	<div>
-		<div class="row">
+		<div>
 			<div id="content" class="main-content-inner col-xs-12">
