@@ -1,13 +1,13 @@
 'use strict';;
 (function() {
   angular
-    .module('app.factories')
-    .factory('typeFactory', dataFactory)
-    .constant('POST_TAG', 'posts')
-    .constant('POST_CAT', '?filter[category_name]=')
-    .constant('EMP_TAG', 'emprendimiento')
-    .constant('SUC_TAG', 'sucursal')
-    .constant('PAGE_QS', 'pagina');
+  .module('app.factories')
+  .factory('typeFactory', dataFactory)
+  .constant('POST_TAG', 'posts')
+  .constant('POST_CAT', '?filter[category_name]=')
+  .constant('EMP_TAG', 'emprendimiento')
+  .constant('SUC_TAG', 'sucursal')
+  .constant('PAGE_QS', 'pagina');
 
   function dataFactory(wordpressService, POST_TAG, BASE_WP_URL, _, POST_CAT, EMP_TAG, SUC_TAG, PAGE_QS) {
 
@@ -17,21 +17,36 @@
       'getPostByCategory': getPostByCategory,
       'getPostByCategoryName': getPostByCategoryName,
       'getEmprendimientos': getEmprendimientos,
+      'getEmprendimientoById':getEmprendimientoById,
       'getPostsByContentType': getPostsByContentType,
       'getSucursales': getSucursales,
       'getQuienesSomos': getQuienesSomos,
+      'getSucursal': getSucursal,
+      'getAdmProp': getAdmProp,
     }
 
     function getEmprendimientos() {
       return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "");
     }
 
+    function getEmprendimientoById(id) {
+      return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, id);
+    }
+
     function getQuienesSomos(id) {
+      return wordpressService.getRequest(BASE_WP_URL, PAGE_QS, id);
+    }
+
+    function getAdmProp(id) {
       return wordpressService.getRequest(BASE_WP_URL, PAGE_QS, id);
     }
 
     function getSucursales() {
       return wordpressService.getRequest(BASE_WP_URL, SUC_TAG, "");
+    }
+
+    function getSucursal(id) {
+      return wordpressService.getRequest(BASE_WP_URL, SUC_TAG, id);
     }
 
     function getPostsByContentType(typeUri) {
@@ -69,9 +84,9 @@
     }
 
     /**
-     * getPostByCategoryName(pName) devuelve los post by category = pName
-     *
-     */
+    * getPostByCategoryName(pName) devuelve los post by category = pName
+    *
+    */
     function getPostByCategoryName(pName) {
       return filterPostByCategoryName(pName).then(function(data) {
         return data;
@@ -79,11 +94,11 @@
     }
 
     /**
-     * filterPostByCategoryName(pName) Consume el servicio WP para leer los post
-     * by category=pName
-     *
-     * API: wp-json/wp/v2/posts?filter[category_name]=pName
-     */
+    * filterPostByCategoryName(pName) Consume el servicio WP para leer los post
+    * by category=pName
+    *
+    * API: wp-json/wp/v2/posts?filter[category_name]=pName
+    */
     function filterPostByCategoryName(pName, pCloud) {
       // Arma url
       var tag = POST_CAT + pName;

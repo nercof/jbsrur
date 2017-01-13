@@ -10,13 +10,15 @@
                     <div uib-slide ng-repeat="slide in vm.slides" active="active" index="$index">
                         <div ng-repeat="novedad in slide" class="col-sm-6 col-xs-6 new">
                             <div class="img" style="background-image: url('{{novedad.full}}')"></div>
-                            <div class="caption">
-                                <h3>
-                                <i class="{{ vm.iconos_format[novedad['wpcf-tipo-de-novedad']] }}"></i>
-                                <div class="title">{{novedad.title.rendered}}</div>
-                                </h3>
-                                <p ng-bind-html="novedad['wpcf-encabezado'] | to_trust"></p>
-                            </div>
+                            <a ui-sref="novedades.detalle({data: novedad , id:novedad.id})">
+                                <div class="caption">
+                                    <h3>
+                                    <i class="{{ vm.iconos_format[novedad['wpcf-tipo-de-novedad']] }}"></i>
+                                    <div class="title">{{novedad.title.rendered}}</div>
+                                    </h3>
+                                    <p ng-bind-html="novedad['wpcf-encabezado'] | to_trust"></p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

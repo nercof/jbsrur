@@ -1,5 +1,4 @@
 @import url("../../node_modules/typicons.font/src/font/typicons.css");
-
 /*
 *
 * Here are a few needed CSS additions to integrate bootstrap truly into WordPress,
@@ -35,7 +34,7 @@
       padding: 0 15px 0 15px;
 }
 #content {
-      padding-bottom: 0;
+      padding: 0;
 }
 
 /* JBSRUR */
@@ -902,6 +901,9 @@ body {
                         background-color: $red;
                         display: inline-block;
                         height: 120px;
+                        .links {
+                              display: inline-block;
+                        }
                   }
                   .right {
                         padding: 15px 10px;
@@ -999,6 +1001,7 @@ body {
                         a {
                               font-family: $font-titles;
                               text-transform: uppercase;
+                              color: $red;
                               i {
                                     display: block;
                                     font-size: 68px;
@@ -1007,47 +1010,21 @@ body {
                                     width: 110px;
                                     border-radius: 50%;
                                     margin: auto;
+                                    background-color: $red;
+                                    border: 3px solid $red;
+                                    color: $white;
                               }
                               span {
                                     display: block;
                                     padding-top: 15px;
                               }
-                        }
-                        &.even {
-                              a {
-                                    color: $bordo;
-
-                                    &:hover {
-                                          text-decoration: none;
-                                          i {
-                                                color: $bordo;
-                                                background-color: $white;
-                                                border: 3px solid $bordo;
-                                          }
+                              &:hover {
+                                    text-decoration: none;
+                                    i {
+                                          color: $red;
+                                          background-color: $white;
+                                          border: 3px solid $red;
                                     }
-                              }
-                              i {
-                                    background-color: $bordo;
-                                    border: 3px solid $bordo;
-                                    color: $white;
-                              }
-                        }
-                        &.odd {
-                              a {
-                                    color: $bordo;
-                                    &:hover {
-                                          text-decoration: none;
-                                          i {
-                                                color: $bordo;
-                                                background-color: $white;
-                                                border: 3px solid $bordo;
-                                          }
-                                    }
-                              }
-                              i {
-                                    background-color: $bordo;
-                                    border: 3px solid $bordo;
-                                    color: $white;
                               }
                         }
                   }
@@ -1172,7 +1149,7 @@ body {
                               font-weight: 400;
                               font-style: italic;
                               color: $red;
-                              font-size: 1.2em;
+                              font-size: 1.1em;
                               &::-webkit-input-placeholder,
                               &::-moz-placeholder,
                               &:-ms-input-placeholder,
@@ -1332,6 +1309,7 @@ body {
                   background-color: $bordo;
                   margin:0;
                   padding: 0px 30px;
+                  height: 430px;
                   h2 {
                         font-size: 1.4em;
                         background-color: $bordo;
@@ -1511,7 +1489,7 @@ body {
             h1 {
                   font-style: $font-titles;
                   color: $red;
-                  padding: 10px 20px;
+                  padding: 20px 20px 10px;
                   font-size: 2.8em;
                   margin-top: 0;
 
@@ -1540,14 +1518,18 @@ body {
                   text-align: left;
                   font-size:large;
                   padding: 10px;
+                  margin: 0;
                   i {
-                        border: 1px solid $white;
-                        border-radius: 100%;
                         font-size: 22px;
                         padding: 2px 4px;
                         vertical-align: middle;
                         margin: 5px 10px 5px 0px;
                   }
+            }
+            .desc {
+                  padding: 20px;
+                  font-family: $font-normal;
+                  font-size: 1.1em;
             }
             .pic {
                   height: 450px;
@@ -1556,10 +1538,15 @@ body {
                   margin: 10px auto 0;
                   background-position: center;
             }
-            .galeria {
-                  height: 395px;
-                  img {
-                        height: 360px;
+            .gallery {
+                   margin-top: 1.5em;
+                   text-align: center;
+                   .col {
+                        float: none;
+                        display: inline-block;
+                        a {
+                             cursor: pointer;
+                        }
                   }
             }
             .emp-detalle {
@@ -1584,13 +1571,11 @@ body {
                   }
             }
             .referencia {
-                  padding: 10px 0;
-                  div {
-                        background-color: $pink;
-                        color: $red;
-                        padding: 15px;
-                        font-size: 1.2em;
-                  }
+                  padding: 15px;
+                  margin-bottom: 10px;
+                  color: $bordo;
+                  font-size: 1.2em;
+                  border: $bordo 1px solid;
             }
             .caracteristicas {
                   background-color: $grey;
@@ -1611,26 +1596,58 @@ body {
             }
       }
       #quienes-somos {
-            background-color: $white;
-            padding: 40px;
             margin: auto;
             text-align: center;
             h2 {
                   text-align: left;
-                  color: $black;
+                  color: $white;
                   text-transform: uppercase;
                   font-family: $font-titles;
-                  font-size: 1.6em;
+                  font-size:2em;
                   font-weight: bold;
-                  text-transform: capitalize;
+                  margin: 20px 0px;
+            }
+            .content {
+                  text-align: left;
+                  font-family: $font-normal;
+                  padding: 40px 20px 30px;
+                  font-size: 1.1em;
+            }
+            .valores {
+                  padding: 50px 50px 80px;
+                  .text-center {
+                        div {
+                              font-size: 4em;
+                              color: $white;
+                              font-family: $font-titles;
+                        }
+                  }
+                  i {
+                        color: $bordo;
+                        border-radius: 50%;
+                        background-color: $white;
+                        height: 80px;
+                        line-height: normal;
+                        padding: 10px;
+                        margin: 10px 150px;
+                        display: inline-block;
+                        width: 80px;
+                        text-align: center;
+                        margin: 20px 30px;
+                  }
+                  .carousel-indicators {
+                        margin-top: 15px;
+                  }
             }
             .pic {
-                  height: 250px;
+                  height: 450px;
                   background-size: cover;
                   float: none;
                   display: inline-block;
                   z-index: 9;
                   vertical-align: middle;
+                  background-position: 0% 60%;
+                  width: 100%;
                   .pic_miembro{
                         height: 250px;
                         width: 250px;
@@ -1642,6 +1659,35 @@ body {
                         display: inline-block;
                         z-index: 9;
                   }
+            }
+      }
+      #admProp {
+            margin: auto;
+            text-align: center;
+            h2 {
+                  text-align: left;
+                  color: $white;
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size:2em;
+                  font-weight: bold;
+                  margin: 20px 0px;
+            }
+            .content {
+                  text-align: left;
+                  font-family: $font-normal;
+                  padding: 40px 20px 30px;
+                  font-size: 1.1em;
+            }
+            .pic {
+                  height: 450px;
+                  background-size: cover;
+                  float: none;
+                  display: inline-block;
+                  z-index: 9;
+                  vertical-align: middle;
+                  background-position: 0% 60%;
+                  width: 100%;
             }
       }
       .sub-footer#suc-section {
@@ -1662,5 +1708,41 @@ body {
                               }
                         }
                   }
+      }
+      .modal-content {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            -webkit-box-shadow:none;
+            box-shadow:none;
+      }
+      .detalle-news {
+            .pic {
+                  height: 450px;
+                  background-size: cover;
+                  background-position: center;
+            }
+            h1{
+                  text-align: left;
+                  color: $white;
+                  font-family: $font-titles;
+                  font-size:2em;
+                  margin: 20px 0px;
+            }
+            .content {
+                  text-align: left;
+                  font-family: $font-normal;
+                  padding: 40px 20px 30px;
+                  font-size: 1.1em;
+                  figure {
+                        display: inline-block;
+                        float: left;
+                        padding: 0px 20px;
+                        border: none;
+                  }
+                  figcaption {
+                        font-style: italic;
+                  }
+            }
       }
 }

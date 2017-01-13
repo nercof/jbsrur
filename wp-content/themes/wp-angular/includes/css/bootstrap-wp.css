@@ -28,7 +28,7 @@
   padding: 0 15px 0 15px; }
 
 #content {
-  padding-bottom: 0; }
+  padding: 0; }
 
 /* JBSRUR */
 body {
@@ -639,6 +639,8 @@ body {
       background-color: #df0a1f;
       display: inline-block;
       height: 120px; }
+      body #mainFooter .site-footer-inner .left .links {
+        display: inline-block; }
     body #mainFooter .site-footer-inner .right {
       padding: 15px 10px;
       background-color: #90020B;
@@ -707,7 +709,8 @@ body {
         vertical-align: top; }
         body #nav-section ul li a {
           font-family: "Montserrat", sans-serif;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          color: #df0a1f; }
           body #nav-section ul li a i {
             display: block;
             font-size: 68px;
@@ -715,34 +718,19 @@ body {
             padding: 18px 10px;
             width: 110px;
             border-radius: 50%;
-            margin: auto; }
+            margin: auto;
+            background-color: #df0a1f;
+            border: 3px solid #df0a1f;
+            color: #FAF3DD; }
           body #nav-section ul li a span {
             display: block;
             padding-top: 15px; }
-        body #nav-section ul li.even a {
-          color: #90020B; }
-          body #nav-section ul li.even a:hover {
+          body #nav-section ul li a:hover {
             text-decoration: none; }
-            body #nav-section ul li.even a:hover i {
-              color: #90020B;
+            body #nav-section ul li a:hover i {
+              color: #df0a1f;
               background-color: #FAF3DD;
-              border: 3px solid #90020B; }
-        body #nav-section ul li.even i {
-          background-color: #90020B;
-          border: 3px solid #90020B;
-          color: #FAF3DD; }
-        body #nav-section ul li.odd a {
-          color: #90020B; }
-          body #nav-section ul li.odd a:hover {
-            text-decoration: none; }
-            body #nav-section ul li.odd a:hover i {
-              color: #90020B;
-              background-color: #FAF3DD;
-              border: 3px solid #90020B; }
-        body #nav-section ul li.odd i {
-          background-color: #90020B;
-          border: 3px solid #90020B;
-          color: #FAF3DD; }
+              border: 3px solid #df0a1f; }
   body #news-section {
     background-color: #878478;
     padding-top: 20px; }
@@ -840,7 +828,7 @@ body {
         font-weight: 400;
         font-style: italic;
         color: #df0a1f;
-        font-size: 1.2em; }
+        font-size: 1.1em; }
         body #contacto form .wpcf7-form-control-wrap input::-webkit-input-placeholder, body #contacto form .wpcf7-form-control-wrap input::-moz-placeholder, body #contacto form .wpcf7-form-control-wrap input:-ms-input-placeholder, body #contacto form .wpcf7-form-control-wrap input:-moz-placeholder,
         body #contacto form .wpcf7-form-control-wrap textarea::-webkit-input-placeholder,
         body #contacto form .wpcf7-form-control-wrap textarea::-moz-placeholder,
@@ -953,7 +941,8 @@ body {
     body .contact-section #contacto {
       background-color: #90020B;
       margin: 0;
-      padding: 0px 30px; }
+      padding: 0px 30px;
+      height: 430px; }
       body .contact-section #contacto h2 {
         font-size: 1.4em;
         background-color: #90020B; }
@@ -1102,7 +1091,7 @@ body {
     body .detalle-emprendimiento h1 {
       font-style: "Montserrat", sans-serif;
       color: #df0a1f;
-      padding: 10px 20px;
+      padding: 20px 20px 10px;
       font-size: 2.8em;
       margin-top: 0; }
       body .detalle-emprendimiento h1 .round-border {
@@ -1123,24 +1112,31 @@ body {
       background-color: #90020B;
       text-align: left;
       font-size: large;
-      padding: 10px; }
+      padding: 10px;
+      margin: 0; }
       body .detalle-emprendimiento h2 i {
-        border: 1px solid #FAF3DD;
-        border-radius: 100%;
         font-size: 22px;
         padding: 2px 4px;
         vertical-align: middle;
         margin: 5px 10px 5px 0px; }
+    body .detalle-emprendimiento .desc {
+      padding: 20px;
+      font-family: "Lato", sans-serif;
+      font-size: 1.1em; }
     body .detalle-emprendimiento .pic {
       height: 450px;
       width: 100%;
       background-size: cover;
       margin: 10px auto 0;
       background-position: center; }
-    body .detalle-emprendimiento .galeria {
-      height: 395px; }
-      body .detalle-emprendimiento .galeria img {
-        height: 360px; }
+    body .detalle-emprendimiento .gallery {
+      margin-top: 1.5em;
+      text-align: center; }
+      body .detalle-emprendimiento .gallery .col {
+        float: none;
+        display: inline-block; }
+        body .detalle-emprendimiento .gallery .col a {
+          cursor: pointer; }
     body .detalle-emprendimiento .emp-detalle {
       padding: 30px 0; }
     body .detalle-emprendimiento .mapa {
@@ -1161,12 +1157,11 @@ body {
       /* Opera 7 */
       word-break: break-word; }
     body .detalle-emprendimiento .referencia {
-      padding: 10px 0; }
-      body .detalle-emprendimiento .referencia div {
-        background-color: #EC7E7E;
-        color: #df0a1f;
-        padding: 15px;
-        font-size: 1.2em; }
+      padding: 15px;
+      margin-bottom: 10px;
+      color: #90020B;
+      font-size: 1.2em;
+      border: #90020B 1px solid; }
     body .detalle-emprendimiento .caracteristicas {
       background-color: #878478;
       color: #FAF3DD;
@@ -1182,25 +1177,50 @@ body {
         padding: 0;
         width: 23%; }
   body #quienes-somos {
-    background-color: #FAF3DD;
-    padding: 40px;
     margin: auto;
     text-align: center; }
     body #quienes-somos h2 {
       text-align: left;
-      color: #131515;
+      color: #FAF3DD;
       text-transform: uppercase;
       font-family: "Montserrat", sans-serif;
-      font-size: 1.6em;
+      font-size: 2em;
       font-weight: bold;
-      text-transform: capitalize; }
+      margin: 20px 0px; }
+    body #quienes-somos .content {
+      text-align: left;
+      font-family: "Lato", sans-serif;
+      padding: 40px 20px 30px;
+      font-size: 1.1em; }
+    body #quienes-somos .valores {
+      padding: 50px 50px 80px; }
+      body #quienes-somos .valores .text-center div {
+        font-size: 4em;
+        color: #FAF3DD;
+        font-family: "Montserrat", sans-serif; }
+      body #quienes-somos .valores i {
+        color: #90020B;
+        border-radius: 50%;
+        background-color: #FAF3DD;
+        height: 80px;
+        line-height: normal;
+        padding: 10px;
+        margin: 10px 150px;
+        display: inline-block;
+        width: 80px;
+        text-align: center;
+        margin: 20px 30px; }
+      body #quienes-somos .valores .carousel-indicators {
+        margin-top: 15px; }
     body #quienes-somos .pic {
-      height: 250px;
+      height: 450px;
       background-size: cover;
       float: none;
       display: inline-block;
       z-index: 9;
-      vertical-align: middle; }
+      vertical-align: middle;
+      background-position: 0% 60%;
+      width: 100%; }
       body #quienes-somos .pic .pic_miembro {
         height: 250px;
         width: 250px;
@@ -1211,6 +1231,31 @@ body {
         float: none;
         display: inline-block;
         z-index: 9; }
+  body #admProp {
+    margin: auto;
+    text-align: center; }
+    body #admProp h2 {
+      text-align: left;
+      color: #FAF3DD;
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      font-size: 2em;
+      font-weight: bold;
+      margin: 20px 0px; }
+    body #admProp .content {
+      text-align: left;
+      font-family: "Lato", sans-serif;
+      padding: 40px 20px 30px;
+      font-size: 1.1em; }
+    body #admProp .pic {
+      height: 450px;
+      background-size: cover;
+      float: none;
+      display: inline-block;
+      z-index: 9;
+      vertical-align: middle;
+      background-position: 0% 60%;
+      width: 100%; }
   body .sub-footer#suc-section .list {
     margin: 0 auto 20px; }
     body .sub-footer#suc-section .list .sucursal .pic {
@@ -1222,5 +1267,33 @@ body {
     body .sub-footer#suc-section .list .sucursal h3 {
       font-size: 1em;
       margin: 10px auto; }
+  body .modal-content {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  body .detalle-news .pic {
+    height: 450px;
+    background-size: cover;
+    background-position: center; }
+  body .detalle-news h1 {
+    text-align: left;
+    color: #FAF3DD;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2em;
+    margin: 20px 0px; }
+  body .detalle-news .content {
+    text-align: left;
+    font-family: "Lato", sans-serif;
+    padding: 40px 20px 30px;
+    font-size: 1.1em; }
+    body .detalle-news .content figure {
+      display: inline-block;
+      float: left;
+      padding: 0px 20px;
+      border: none; }
+    body .detalle-news .content figcaption {
+      font-style: italic; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */

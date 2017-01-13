@@ -25,7 +25,7 @@
             controller: 'navSectionController'
           },
           "content": {
-            templateUrl: localized.views + "news-section.html",
+            templateUrl: localized.views + "novedad/section.html",
             controller: 'novedadesController as vm'
           },
           "social-section": {
@@ -52,10 +52,6 @@
           "sub-footer":{
             templateUrl: localized.views + "sub-footer.html",
             controller: 'sucSectionController as vm'
-          },
-          "main-footer": {
-            templateUrl: localized.tokko + "tokko-search-input.html",
-            controller: 'tokkoController as vm'
           }
         }
       })
@@ -147,12 +143,16 @@
         url: '/' + STATE.NO,
         views: {
           "content": {
-            templateUrl: localized.views + "news-section.html",
+            templateUrl: localized.views + "novedad/index.html",
             controller: 'novedadesController as vm'
           },
-          "suc-section": {
-            templateUrl: localized.views + "novedad/novedades.html",
-            controller: 'novedadesController as vm',
+          "top@novedades": {
+            templateUrl: localized.views + 'novedad/section.html',
+            controller: 'novedadesController as vm'
+          },
+          "middle@novedades": {
+            templateUrl: localized.views + 'novedad/list.html',
+            controller: 'novedadesController as vm'
           },
           "sub-footer":{
             templateUrl: localized.views + "sub-footer.html",
@@ -171,17 +171,17 @@
           title_view: 'TITULO NOVEDAD',
         },
         views: {
-          "detalle@novedades": {
-            templateUrl: localized.views + "novedad/novedad-detalle.html",
-            controller: 'novedadesDetalleController as vm',
+          "top@novedades": {
+            templateUrl: localized.views + 'novedad/detail.html',
+            controller: 'novedadesDetalleController as vm'
           },
-          "sub-footer":{
-            templateUrl: localized.views + "sub-footer.html",
-            controller: 'sucSectionController as vm'
+          "middle@novedades": {
+            templateUrl: localized.views + 'novedad/section.html',
+            controller: 'novedadesController as vm'
           },
-          "main-footer": {
-            templateUrl: localized.tokko + "tokko-search-input.html",
-            controller: 'tokkoController as vm'
+          "button@novedades": {
+            templateUrl: localized.views + 'novedad/list.html',
+            controller: 'novedadesController as vm'
           }
         },
         deepStateRedirect: true,
@@ -234,6 +234,28 @@
         onExit: function() {
           //delete $scope.$storage.prop_search;
           //delete $localStorage.prop_search;
+        },
+      })
+      .state(STATE.ADP, {
+        // Resultado de Buscador de Propiedades.
+        params: {
+          data: null,
+          cache: null,
+        },
+        url: '/' + STATE.ADP,
+        views: {
+          "content": {
+            templateUrl: localized.views + "admProp.html",
+            controller: 'administracionController as vm',
+          },
+          "contact-section": {
+            templateUrl: localized.views + "contact-section.html",
+            controller: 'contactController as vm'
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          }
         },
       })
       .state(STATE.PD, { //DOT Notation

@@ -162,6 +162,10 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 get_template_directory_uri() .'/node_modules/angular-resource/angular-resource.js');
 
                 wp_enqueue_script(
+                'angular-bootstrap-lightbox',
+                get_template_directory_uri() .'/node_modules/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js');
+
+                wp_enqueue_script(
                 'ngstorage',
                 get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.js');
 
@@ -169,7 +173,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'app',
                 get_stylesheet_directory_uri() . '/app/app.js',
                 array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map',
-                'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls'));
+                'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls',
+            'angular-bootstrap-lightbox'));
 
                 wp_enqueue_script(
                 'routes',
@@ -274,6 +279,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'quienes-somos',
                 get_stylesheet_directory_uri() . '/app/components/quienes-somos/quienes.somos.controller.js',
+                array( 'core', 'factories'));
+
+                wp_enqueue_script(
+                'admProp',
+                get_stylesheet_directory_uri() . '/app/components/administracion/administracion.controller.js',
                 array( 'core', 'factories'));
 
                 wp_enqueue_script(
@@ -400,9 +410,9 @@ if ( ! function_exists( '_tk_setup' ) ) :
             function register_wpcf_custom_fields() {
                 $custom_fields = array(
                     'novedad' => ['wpcf-destacada', 'wpcf-encabezado', 'wpcf-tipo-de-novedad'],
-                    'emprendimiento' => ['wpcf-latitud-y-longitud', 'wpcf-encabezado', 'wpcf-imagen-galeria-0', 'wpcf-sucursal', 'wpcf-codigo-de-referencia'],
+                    'emprendimiento' => ['wpcf-latitud-y-longitud', 'wpcf-encabezado', 'wpcf-slider', 'wpcf-portada', 'wpcf-sucursal', 'wpcf-codigo-de-referencia'],
                     'sucursal' => ['wpcf-latitud-y-longitud', 'wpcf-telefono', 'wpcf-direccion', 'wpcf-email', 'wpcf-galeria-0'],
-                    'pagina' => ['wpcf-miembros']
+                    'pagina' => ['wpcf-valores']
                 );
                 foreach ($custom_fields as $custom_type => $fields) {
                     foreach ($fields as $key => $field) {
