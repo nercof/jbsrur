@@ -45,7 +45,7 @@
     TOKKO_DEVELOPMENT_ID,
     $window
   ){
-    
+
     var lang = "";
 
     var data = {
@@ -293,7 +293,6 @@
   * @param {}: None
   */
   function getDevelopmentsTokkoAPI() {
-    console.log("getDevelopmentsTokkoAPI");
     return tokkoService.getRequest(BASE_TOKKO, TOKKO_DEVELOPMENT, TOKKO_KEY);
   }
 
@@ -311,7 +310,6 @@
 
   }
 
-
   /**
   * oper() permite retornar si es Alquiler o Venta el tipo de operacion.
   * Utilazo para el filtrado de datos.
@@ -323,16 +321,6 @@
       return "Alquiler";
     }
   }
-
-  // get Departamento a Estrenar
-  // http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[2],%22currency%22:%22ANY%22,%22filters%22:[[%22age%22,%22=%22,0]]}
-  // get Departamentos
-  // http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[2],%22currency%22:%22ANY%22,%22filters%22:[[%22age%22,%22=%22,0]]}
-  // get Edificios Comerciales
-  // http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[8],%22currency%22:%22ANY%22,%22filters%22:[]}
-  // get +5 dormitorioss
-  // http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:0,%22current_localization_type%22:%22country%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],%22currency%22:%22ANY%22,%22filters%22:[[%22suite_amount%22,%22%3E%22,5]]}
-  // get barriosXzona CENTRO http://jbsrur.com.ar/listado.php?order_by=price&limit=20&order=desc&page=1&data={%22current_localization_id%22:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],%22current_localization_type%22:%22division%22,%22price_from%22:0,%22price_to%22:999999999,%22operation_types%22:[1,2],%22property_types%22:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],%22currency%22:%22ANY%22,%22filters%22:[]}
 
   return data;
 }

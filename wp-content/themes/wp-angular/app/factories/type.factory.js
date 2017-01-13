@@ -17,6 +17,7 @@
       'getPostByCategory': getPostByCategory,
       'getPostByCategoryName': getPostByCategoryName,
       'getEmprendimientos': getEmprendimientos,
+      'getEmprendimientoById':getEmprendimientoById,
       'getPostsByContentType': getPostsByContentType,
       'getSucursales': getSucursales,
       'getQuienesSomos': getQuienesSomos,
@@ -25,6 +26,10 @@
 
     function getEmprendimientos() {
       return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "");
+    }
+
+    function getEmprendimientoById(id) {
+      return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, id);
     }
 
     function getQuienesSomos(id) {
