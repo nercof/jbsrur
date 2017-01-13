@@ -76,8 +76,6 @@
         } // Fin create
 
         $scope.openLightboxModal = function (index) {
-            console.log(vm.gallery);
-            console.log(index);
             Lightbox.openModal(vm.galleryLightboxModal, index);
           };
 
@@ -122,7 +120,6 @@
                             imagen.thumbUrl = imagen.media_details.sizes.full.source_url;
                             vm.gallery.push(imagen);
                             vm.galleryLightboxModal.push(imagen.media_details.sizes.full.source_url);
-                            console.log(vm.galleryLightboxModal);
                         }
 
                     });
