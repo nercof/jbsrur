@@ -26,8 +26,21 @@
         function activate(vm) {
             getQuienesSomos().then(function (data){
                 vm.qSomos = data;
+                console.log(data);
+                vm.valoresString = data['wpcf-valores'];
+                vm.valoresString = vm.valoresString.replace(/([<])+([u])+([l])+([>])/g, '');
+                vm.valoresString = vm.valoresString.replace(/([<])+([/])+([u])+([l])+([>])/g, '');
+                vm.valores = _.filter(angular.element(vm.valoresString), function(item){
+                    return item.nodeName === 'LI'
+                });
+                vm.valores = _.pluck(vm.valores, 'innerHTML');
+                console.log(vm.valores);
+                // Buscamos las imagenes en WP
+                mediaFactory.getMedia(vm.qSomos.featured_media).then(function(data){
+                    vm.qSomos.image = data.source_url;
+                });
 
-                typeFactory.getPostsByContentType("autor").then(function(data) {
+                /*typeFactory.getPostsByContentType("autor").then(function(data) {
                     var autores_all = data;
 
                     // Formateamos los autores
@@ -46,7 +59,7 @@
                     // Tenemos que hacer el link de media
                     setImages();
                     angular.element('#qSomos_descripcion').append(vm.qSomos.content.rendered);
-                });
+                });*/
             });
         } // fin activate()
 
@@ -64,13 +77,9 @@
                 });
             });
 
-            // Buscamos las imagenes en WP
-            mediaFactory.getMedia(vm.qSomos.featured_media).then(function(data){
-                vm.qSomos.image = data.source_url;
-            });
         }
         /**
-        * Obtener los <emprendimientos> desde la API de Tokko
+        *
         * @param {} page - <description>
         */
         function getQuienesSomos() {

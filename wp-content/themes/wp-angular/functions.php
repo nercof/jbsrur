@@ -402,7 +402,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                     'novedad' => ['wpcf-destacada', 'wpcf-encabezado', 'wpcf-tipo-de-novedad'],
                     'emprendimiento' => ['wpcf-latitud-y-longitud', 'wpcf-encabezado', 'wpcf-slider', 'wpcf-portada', 'wpcf-sucursal', 'wpcf-codigo-de-referencia'],
                     'sucursal' => ['wpcf-latitud-y-longitud', 'wpcf-telefono', 'wpcf-direccion', 'wpcf-email', 'wpcf-galeria-0'],
-                    'pagina' => ['wpcf-miembros']
+                    'pagina' => ['wpcf-valores']
                 );
                 foreach ($custom_fields as $custom_type => $fields) {
                     foreach ($fields as $key => $field) {

@@ -39,7 +39,6 @@
             });
             menuFactory.getFormatMenu(19).then(function(response){
                     vm.social = _.filter(response.items, function(item){ return arraySocial.indexOf(item.title) >= 0; });
-                    console.log(vm.social)
             });
         }
     }
