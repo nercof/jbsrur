@@ -1590,26 +1590,58 @@ body {
             }
       }
       #quienes-somos {
-            background-color: $white;
-            padding: 40px;
             margin: auto;
             text-align: center;
             h2 {
                   text-align: left;
-                  color: $black;
+                  color: $white;
                   text-transform: uppercase;
                   font-family: $font-titles;
-                  font-size: 1.6em;
+                  font-size:2em;
                   font-weight: bold;
-                  text-transform: capitalize;
+                  margin: 20px 0px;
+            }
+            .content {
+                  text-align: left;
+                  font-family: $font-normal;
+                  padding: 40px 20px 30px;
+                  font-size: 1.1em;
+            }
+            .valores {
+                  padding: 50px 50px 80px;
+                  .text-center {
+                        div {
+                              font-size: 4em;
+                              color: $white;
+                              font-family: $font-titles;
+                        }
+                  }
+                  i {
+                        color: $bordo;
+                        border-radius: 50%;
+                        background-color: $white;
+                        height: 80px;
+                        line-height: normal;
+                        padding: 10px;
+                        margin: 10px 150px;
+                        display: inline-block;
+                        width: 80px;
+                        text-align: center;
+                        margin: 20px 30px;
+                  }
+                  .carousel-indicators {
+                        margin-top: 15px;
+                  }
             }
             .pic {
-                  height: 250px;
+                  height: 450px;
                   background-size: cover;
                   float: none;
                   display: inline-block;
                   z-index: 9;
                   vertical-align: middle;
+                  background-position: 0% 60%;
+                  width: 100%;
                   .pic_miembro{
                         height: 250px;
                         width: 250px;
