@@ -236,6 +236,24 @@
           //delete $localStorage.prop_search;
         },
       })
+      .state(STATE.ADP, {
+        // Resultado de Buscador de Propiedades.
+        params: {
+          data: null,
+          cache: null,
+        },
+        url: '/' + STATE.ADP,
+        views: {
+          "content": {
+            templateUrl: localized.views + "admProp.html",
+            controller: 'administracionController as vm',
+          },
+          "sub-footer":{
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          }
+        },
+      })
       .state(STATE.PD, { //DOT Notation
         params: {
           data: null
