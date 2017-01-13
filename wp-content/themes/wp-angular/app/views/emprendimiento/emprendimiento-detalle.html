@@ -44,12 +44,15 @@
 
             <div class="col-sm-12 col-xs-12">
                 <h2><i class="typcn typcn-pin"></i>Galeria</h2>
-                <div class="galeria col-sm-10 col-xs-10">
-                    <div ng-repeat="imagen in slide" class="col-sm-6 col-xs-6 new">
-                        <div class="img" style="background-image: url('{{imagen.full}}')"></div>
+                <div ng-repeat="imagen in vm.gallery" ng-if="vm.gallery">
+                    <div class="col-xs-4 col-md-4">
+                        <a ng-click="openLightboxModal($index)">
+                            <img src="{{imagen.full}}" alt="...">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
