@@ -248,6 +248,10 @@
             templateUrl: localized.views + "admProp.html",
             controller: 'administracionController as vm',
           },
+          "contact-section": {
+            templateUrl: localized.views + "contact-section.html",
+            controller: 'contactController as vm'
+          },
           "sub-footer":{
             templateUrl: localized.views + "sub-footer.html",
             controller: 'sucSectionController as vm'
