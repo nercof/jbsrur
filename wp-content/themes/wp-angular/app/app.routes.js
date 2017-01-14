@@ -98,7 +98,7 @@
         }
       })
       .state(STATE.NE, {
-        url: '/' + 'nuestros-emprendimientos',
+        url: '/' + 'emprendimientos-propios',
         params: {
           title_view: TITULO.NUESTROS_EMPRENDIMIENTOS,
           category:17,
