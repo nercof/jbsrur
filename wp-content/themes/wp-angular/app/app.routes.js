@@ -4,7 +4,7 @@
     .module('app.routes', ['ui.router', 'app.config', 'app.core'])
     .config(config);
 
-  function config($stateProvider, $urlRouterProvider,
+  function config($stateProvider, $urlRouterProvider, $locationProvider,
     // Constantes
     STATE, TYPE, TITULO) {
     $urlRouterProvider.otherwise('/');
@@ -305,5 +305,7 @@
         sticky: true,
         onEnter: function() {}
       });
+      // use the HTML5 History API
+       $locationProvider.html5Mode(true);
   } // Fin function config
 }());

@@ -47,7 +47,7 @@
                     vm.items = response.items;
 
                     _.each(vm.items, function (item) {
-                        item.urlFooter =  '/#' + item.url;
+                        item.urlFooter =  item.url;
                     });
 
             });
