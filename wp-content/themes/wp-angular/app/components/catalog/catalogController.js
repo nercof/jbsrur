@@ -74,6 +74,9 @@
                 vm.error = true;
             }
 
+            // Parsear ruta resultado: Zona + Barrio en vez de full_location
+            parseLocation();
+
             // Variables auxiliares para el paginador.
             vm.totalItems = vm.allProperties.length;
             vm.spinner = false;
@@ -85,6 +88,18 @@
             $scope.$storage.prop_search = vm.properties;
 
         } // fin activate()
+
+        /**
+         * Setea la direccion a mostrar en el catalogo
+         *
+         * @param {}
+         */
+        function parseLocation() {
+            _.each(vm.allProperties, function (propiedad) {
+                propiedad.direccion = propiedad.full_location;
+                //console.log(propiedad);
+            });
+        }
 
         /**
          * Setea lista propiedades x pagina
