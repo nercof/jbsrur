@@ -66,13 +66,10 @@
                         vm.galleryLightboxModal.push(photo.image);
                     }
                 });
-                console.log(vm.galleryLightboxModal);
             }
 
             $scope.openLightboxModal = function (index) {
                 Lightbox.openModal(vm.galleryLightboxModal, index);
             };
-
-
         }
     })();

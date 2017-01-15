@@ -305,7 +305,7 @@
         sticky: true,
         onEnter: function() {}
       });
-      // use the HTML5 History API
-       $locationProvider.html5Mode(true);
+      // Use the HTML5 History API in order to prevent use of '#' in url path
+      //$locationProvider.html5Mode(true);
   } // Fin function config
 }());

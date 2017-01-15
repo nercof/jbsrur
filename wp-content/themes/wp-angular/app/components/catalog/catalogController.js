@@ -97,7 +97,6 @@
         function parseLocation() {
             _.each(vm.allProperties, function (propiedad) {
                 propiedad.direccion = propiedad.full_location;
-                //console.log(propiedad);
             });
         }
 
