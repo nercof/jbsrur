@@ -125,7 +125,7 @@
                         propiedad.zona = nombreZona.zona;
                     }
                 });
-                console.log(propSinZona);
+                //console.log(propSinZona);
             }
             /**
             * Permite filtrar elementos del tipo

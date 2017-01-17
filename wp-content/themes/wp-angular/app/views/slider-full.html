@@ -8,6 +8,9 @@
   <div class="carousel-inner" role="listbox">
     <div class="item" ng-class="{ 'active': media.active}" ng-repeat="media in medias">
       <img src="{{media.url}}">
+      <div class="caption">
+        <p ng-bind-html="media.caption | to_trust"></p>
+      </div>
     </div>
   </div>
 
