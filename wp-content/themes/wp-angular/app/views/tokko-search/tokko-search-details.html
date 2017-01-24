@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-12 col-xs-12">
             <div class="col-sm-6 col-xs-12 galeria">
-                <div uib-carousel active="active" ng-if="vm.propiedad.photos">
+                <div uib-carousel interval="5000" active="active" ng-if="vm.propiedad.photos">
                     <div uib-slide ng-repeat="photo in vm.propiedad.photos" active="active" index="$index">
                         <a ng-click="openLightboxModal($index)">
                             <img ng-src="{{photo.image}}">

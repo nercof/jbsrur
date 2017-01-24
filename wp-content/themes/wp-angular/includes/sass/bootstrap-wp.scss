@@ -83,6 +83,7 @@ body {
             }
       }
       #myCarousel {
+            cycle: true;
             .carousel-control {
                   width: 50px;
             }
@@ -836,6 +837,9 @@ body {
             }
             .galeria {
                   height: 395px;
+                  .cycle {
+                        cycle: true;
+                  }
                   img {
                         height: 360px;
                   }
