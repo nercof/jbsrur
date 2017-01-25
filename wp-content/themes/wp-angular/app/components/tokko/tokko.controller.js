@@ -120,7 +120,10 @@
 
                     if (_.isEmpty(nombreZona)) {
                         propSinZona.push({id: propiedad.id, barrio: propiedad.barrio});
-                        propiedad.zona = 'Not Found';
+                        propiedad.zona = false;
+                    }
+                    else if (nombreZona.zona == propiedad.location.name) {
+                        propiedad.zona = false;
                     }
                     else {
                         propiedad.zona = nombreZona.zona;

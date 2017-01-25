@@ -22,8 +22,16 @@
               <div class="pic" style="background-image: url('{{propiedad.photos[0].image}}')"></div>
             </a>
             <div class="dire">
-              <i class="typcn typcn-location-outline"></i>
-              <p>{{propiedad.zona}} | {{propiedad.barrio}}</p>
+              <div class="dire">
+                <div ng-if="propiedad.zona && propiedad.barrio">
+                  <i class="typcn typcn-location-outline"></i>
+                  <p>{{propiedad.zona}} | {{propiedad.barrio}}</p>
+                </div>
+                <div ng-if="!propiedad.zona">
+                  <i class="typcn typcn-location-outline"></i>
+                  <p>{{propiedad.barrio}}</p>
+                </div>
+              </div>
             </div>
             <div class="dire">
               <i class="typcn typcn-home-outline"></i>
