@@ -25,7 +25,6 @@
         function activate(vm) {
             getAdministracion().then(function (data){
                 vm.admProp = data;
-                console.log(data);
 
                 // Buscamos las imagenes en WP
                 mediaFactory.getMedia(vm.admProp.featured_media).then(function(data){
