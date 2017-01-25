@@ -1341,5 +1341,31 @@ body {
       border: none; }
     body .detalle-news .content figcaption {
       font-style: italic; }
+  body .lightbox-nav .close {
+    position: absolute;
+    right: 0;
+    color: #FAF3DD;
+    font-size: 3em;
+    opacity: 1; }
+  body .lightbox-nav .btn-group {
+    position: relative;
+    width: 100%;
+    display: block; }
+    body .lightbox-nav .btn-group a:hover {
+      text-decoration: none; }
+    body .lightbox-nav .btn-group .typcn-chevron-left {
+      position: absolute;
+      left: -40px;
+      color: #FAF3DD;
+      font-size: 3em;
+      top: 200px; }
+    body .lightbox-nav .btn-group .typcn-chevron-right {
+      position: absolute;
+      right: -40px;
+      color: #FAF3DD;
+      font-size: 3em;
+      top: 200px; }
+  body .modal-body {
+    padding: 30px; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */

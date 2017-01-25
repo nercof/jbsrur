@@ -1801,4 +1801,38 @@ body {
                   }
             }
       }
+      .lightbox-nav{
+            .close {
+                  position: absolute;
+                  right: 0;
+                  color: $white;
+                  font-size: 3em;
+                  opacity: 1;
+            }
+            .btn-group {
+                  position: relative;
+                  width: 100%;
+                  display: block;
+                  a:hover {
+                        text-decoration: none;
+                  }
+                  .typcn-chevron-left {
+                        position: absolute;
+                        left:-40px;
+                        color: $white;
+                        font-size: 3em;
+                        top: 200px;
+                  }
+                  .typcn-chevron-right {
+                        position: absolute;
+                        right: -40px;
+                        color: $white;
+                        font-size: 3em;
+                        top: 200px;
+                  }
+            }
+      }
+      .modal-body {
+            padding: 30px;
+      }
 }
