@@ -15,7 +15,7 @@
 			beforeSubmit: function(arr, $form, options) {
 				$form.wpcf7ClearResponseOutput();
 				$form.find('[aria-invalid]').attr('aria-invalid', 'false');
-				$form.find('img.ajax-loader').css({ visibility: 'visible' });
+				$form.find('.loaderSpinner').css({ visibility: 'visible' });
 				return true;
 			},
 			beforeSerialize: function($form, options) {
@@ -90,6 +90,11 @@
 		$form.wpcf7ClearResponseOutput();
 
 		$form.find('.wpcf7-form-control').removeClass('wpcf7-not-valid');
+		if($form.find('.typcn').length === 0){
+			$form.find('.wpcf7-form-control').after('<i class="typcn typcn-tick"></i>');
+		}else {
+			$form.find('.typcn-times').removeClass('typcn-times').addClass('typcn-tick');
+		}
 		$form.removeClass('invalid spam sent failed');
 
 		if (data.captcha) {
@@ -104,6 +109,7 @@
 			$.each(data.invalids, function(i, n) {
 				$form.find(n.into).wpcf7NotValidTip(n.message);
 				$form.find(n.into).find('.wpcf7-form-control').addClass('wpcf7-not-valid');
+				$form.find(n.into).find('i').removeClass('typcn-tick').addClass('typcn-times');
 				$form.find(n.into).find('[aria-invalid]').attr('aria-invalid', 'true');
 			});
 
@@ -130,7 +136,8 @@
 		} else if (1 == data.mailSent) {
 			$responseOutput.addClass('wpcf7-mail-sent-ok');
 			$form.addClass('sent');
-
+			$form.find(data.into).find('i').css('display', 'none');
+			$form.find('.typcn').remove();
 			if (data.onSentOk) {
 				$.each(data.onSentOk, function(i, n) { eval(n) });
 			}
@@ -141,7 +148,7 @@
 		} else {
 			$responseOutput.addClass('wpcf7-mail-sent-ng');
 			$form.addClass('failed');
-
+			$form.find(data.into).find('i').css('display', 'none');
 			$(data.into).trigger('wpcf7:mailfailed');
 			$(data.into).trigger('mailfailed.wpcf7'); // deprecated
 		}
@@ -199,8 +206,7 @@
 
 	$.fn.wpcf7AjaxLoader = function() {
 		return this.each(function() {
-			var loader = $('<img class="ajax-loader" />')
-				.attr({ src: _wpcf7.loaderUrl, alt: _wpcf7.sending })
+			var loader = $('<div class="loaderSpinner"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></div>')
 				.css('visibility', 'hidden');
 
 			$(this).after(loader);
@@ -315,7 +321,7 @@
 			var $into = $(this);
 
 			$into.find('span.wpcf7-not-valid-tip').remove();
-			$into.append('<span role="alert" class="wpcf7-not-valid-tip">' + message + '</span>');
+			//$into.append('<span role="alert" class="wpcf7-not-valid-tip">' + message + '</span>');
 
 			if ($into.is('.use-floating-validation-tip *')) {
 				$('.wpcf7-not-valid-tip', $into).mouseover(function() {
@@ -394,7 +400,7 @@
 		return this.each(function() {
 			$(this).find('div.wpcf7-response-output').hide().empty().removeClass('wpcf7-mail-sent-ok wpcf7-mail-sent-ng wpcf7-validation-errors wpcf7-spam-blocked').removeAttr('role');
 			$(this).find('span.wpcf7-not-valid-tip').remove();
-			$(this).find('img.ajax-loader').css({ visibility: 'hidden' });
+			$(this).find('.loaderSpinner').css({ visibility: 'hidden' });
 		});
 	};
 
@@ -456,7 +462,9 @@
 
 	$(function() {
 		_wpcf7.supportHtml5 = $.wpcf7SupportHtml5();
-		$('div.wpcf7 > form').wpcf7InitForm();
+		setTimeout(function(){
+			$('div.wpcf7 > form').wpcf7InitForm();
+		}, 5000);
 	});
 
 })(jQuery);

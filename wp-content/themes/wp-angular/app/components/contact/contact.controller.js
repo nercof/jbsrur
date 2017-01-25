@@ -19,6 +19,9 @@
                     // slug: "formulario-de-contacto"
                     vm.contact_form = _.find(data, {slug:"contacto"});
                     angular.element('#jbsrur_contact_form').append(vm.contact_form.content.rendered);
+                    angular.element('#jbsrur_contact_form form').attr("action", "/contacto/#wpcf7-f533-p563-o1");
+                    angular.element('#jbsrur_contact_form form').attr("name", "contactForm");
+                    angular.element('#jbsrur_contact_form input[type="email"]').attr("ng-model", "contactForm.email");
                 });
         }
     }
