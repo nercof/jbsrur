@@ -51,16 +51,6 @@
             //getBarriosXZonaArray(vm);
 
             function activate(vm) {
-                // Load repository local objects
-                // 1. Datos comunes para API Tokko
-                vm.tokko_data = resourceFactory.query({id: 'tokko.data.json'});
-
-                //  2. Listado de barrios de Córdoba y alrededores
-                vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
-                function(data){
-                    vm.barrios = data.to.barrios;
-                });
-
                 // 3. Universo de palabras conocidos y sus correspondiente valor.
                 //vm.universo = resourceFactory.query_universo({id: 'universo.json'});
 
@@ -84,9 +74,14 @@
                         });
                     });
                 }
+
                 // Tenemos que parsear el objeto antes de asignarlo
                 parsedOperationTypes(vm.prop_cache);
-                //
+
+                // 1. Datos comunes para API Tokko
+                vm.tokko_data = resourceFactory.query({id: 'tokko.data.json'});
+
+                // @TODO: Comment f(x)
                 _.each(vm.prop_cache, function (propiedad) {
                     var obj = _.pick(propiedad, 'id', 'address',
                     'description', 'fake_address', 'publication_title',
@@ -96,8 +91,42 @@
                     vm.universoPropiedades.push(obj);
                 });
 
+                //  2. Listado de barrios de Córdoba y alrededores
+                vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
+                function(data){
+                    vm.barrios = data.to.barrios;
+
+                    // Parsear ruta resultado: Zona + Barrio en vez de full_location
+                    parseLocation(vm.prop_cache);
+                });
 
             }// Fin activate
+
+            /**
+            * Setea la direccion a mostrar en el catalogo
+            *
+            * @param {}
+            */
+            function parseLocation(propiedades) {
+                var nombreZona = {};
+                var propSinZona = [];
+
+                _.each(propiedades, function (propiedad) {
+                    //console.log(propiedad);
+                    nombreZona = _.find(vm.barrios, function (barrio) {
+                        return _.isEqual(barrio.name, propiedad.barrio);
+                    });
+
+                    if (_.isEmpty(nombreZona)) {
+                        propSinZona.push(propiedad.barrio);
+                        propiedad.zona = 'Not Found';
+                    }
+                    else {
+                        propiedad.zona = nombreZona.zona;
+                    }
+                });
+                //console.log(propSinZona);
+            }
             /**
             * Permite filtrar elementos del tipo
             * "operations": [{  "operation_type": "Rent",
@@ -152,7 +181,7 @@
             */
             vm.searchFilter = function (){
                 // Re-direct to state propiedad
-                
+
                 var obj = {
                     "operation_types": _.pluck(vm.operation_types, 'id'),
                     "property_types": _.pluck(vm.property_types, 'id'),
