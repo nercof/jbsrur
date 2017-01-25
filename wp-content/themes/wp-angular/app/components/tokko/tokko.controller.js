@@ -114,18 +114,20 @@
                 _.each(propiedades, function (propiedad) {
                     //console.log(propiedad);
                     nombreZona = _.find(vm.barrios, function (barrio) {
-                        return _.isEqual(barrio.name, propiedad.barrio);
+                        //return _.isEqual(barrio.name, propiedad.barrio);
+                        return _.isEqual(barrio.name, propiedad.location.name);
                     });
 
                     if (_.isEmpty(nombreZona)) {
-                        propSinZona.push(propiedad.barrio);
+                        propSinZona.push({id: propiedad.id, barrio: propiedad.barrio});
                         propiedad.zona = 'Not Found';
                     }
                     else {
                         propiedad.zona = nombreZona.zona;
                     }
+                    propiedad.barrio = propiedad.location.name;
                 });
-                //console.log(propSinZona);
+                console.log(propSinZona);
             }
             /**
             * Permite filtrar elementos del tipo
