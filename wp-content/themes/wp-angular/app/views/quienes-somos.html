@@ -16,7 +16,7 @@
     </div>
     <div class="row bg-bordo">
         <div class="container valores">
-            <div uib-carousel interval="5000" active="active" ng-if="vm.valores">
+            <div uib-carousel interval="3000" active="active" ng-if="vm.valores">
                 <div uib-slide ng-repeat="valor in vm.valores" active="active" index="$index">
                     <div ng-bind-html="valor | to_trust" ></div>
                 </div>

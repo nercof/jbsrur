@@ -49,12 +49,26 @@ body {
     background-color: #df0a1f; }
     body .site-navigation .container {
       padding-bottom: 0; }
-  body #myCarousel .carousel-control {
-    width: 50px; }
-  body #myCarousel img {
-    width: 100%; }
-  body #myCarousel .carousel-inner {
-    border-bottom: 10px solid #df0a1f; }
+  body #myCarousel {
+    cycle: true; }
+    body #myCarousel .carousel-control {
+      width: 50px; }
+    body #myCarousel img {
+      width: 100%; }
+    body #myCarousel .carousel-inner {
+      border-bottom: 10px solid #df0a1f; }
+    body #myCarousel .caption {
+      background-color: rgba(250, 243, 221, 0.5);
+      color: #df0a1f;
+      text-align: left;
+      font-size: 2em;
+      font-family: "Montserrat", sans-serif;
+      display: inline-block;
+      position: absolute;
+      z-index: 9999;
+      top: 50px;
+      left: 50px;
+      padding: 20px 30px; }
   body h1.title {
     background-color: #90020B;
     font-family: "Montserrat", sans-serif;
@@ -797,6 +811,12 @@ body {
     background-color: #df0a1f;
     margin: 20px 0;
     padding: 0px 30px; }
+    body #contacto .loaderSpinner {
+      text-align: center; }
+      body #contacto .loaderSpinner i {
+        font-size: 2em;
+        color: #EC7E7E;
+        display: block; }
     body #contacto h2 {
       font-family: "Lato", sans-serif;
       color: #FAF3DD;
@@ -817,6 +837,8 @@ body {
         height: 35px;
         display: inline-block;
         font-size: 22px; }
+    body #contacto form i {
+      display: none; }
     body #contacto form .wpcf7-form-control-wrap {
       width: 100%;
       display: block; }
@@ -842,6 +864,18 @@ body {
         body #contacto form .wpcf7-form-control-wrap textarea:active {
           border: none;
           outline: 0; }
+      body #contacto form .wpcf7-form-control-wrap i {
+        color: #FAF3DD;
+        font-size: 1.5em;
+        padding-left: 15px;
+        display: inline-block;
+        vertical-align: top; }
+      body #contacto form .wpcf7-form-control-wrap .wpcf7-not-valid-tip {
+        color: white;
+        font-size: 0.9em;
+        display: block;
+        font-style: italic;
+        padding: 5px 0 0 0; }
       body #contacto form .wpcf7-form-control-wrap.sucursal {
         display: inline;
         padding: 0 15px; }
@@ -876,6 +910,18 @@ body {
         border: none;
         outline: 0;
         opacity: 0.85; }
+    body #contacto .wpcf7-mail-sent-ok {
+      border: 0; }
+    body #contacto .wpcf7-mail-sent-ng {
+      border: 0; }
+    body #contacto .wpcf7-spam-blocked {
+      border: 0; }
+    body #contacto .wpcf7-validation-errors {
+      border: 0; }
+    body #contacto .wpcf7-response-output {
+      color: #FAF3DD;
+      font-family: "Lato", sans-serif;
+      margin: -10px 0px 10px; }
   body #social-section {
     background-color: #FAF3DD; }
     body #social-section ul {

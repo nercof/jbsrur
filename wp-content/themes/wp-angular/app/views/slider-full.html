@@ -1,26 +1,8 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel" ng-if="medias">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to={{$index}} ng-class="{'active': media.active}" ng-repeat="media in medias"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item" ng-class="{ 'active': media.active}" ng-repeat="media in medias">
+<div id="myCarousel" class="carousel slide" uib-carousel interval="3000" active="active" ng-if="medias">
+    <div <div class="item" uib-slide ng-repeat="media in medias" active="active" index="$index">
       <img src="{{media.url}}">
-      <div class="caption">
+      <div class="caption" ng-if="media.caption">
         <p ng-bind-html="media.caption | to_trust"></p>
       </div>
     </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>

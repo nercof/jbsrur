@@ -93,6 +93,19 @@ body {
             .carousel-inner {
                   border-bottom: 10px solid $red;
             }
+            .caption {
+                  background-color: $white-ab;
+                  color: $red;
+                  text-align: left;
+                  font-size: 2em;
+                  font-family: $font-titles;
+                  display: inline-block;
+                  position: absolute;
+                  z-index: 9999;
+                  top: 50px;
+                  left: 50px;
+                  padding: 20px 30px;
+            }
       }
       h1 {
             &.title{
