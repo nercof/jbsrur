@@ -83,6 +83,7 @@ body {
             }
       }
       #myCarousel {
+            cycle: true;
             .carousel-control {
                   width: 50px;
             }
@@ -91,6 +92,19 @@ body {
             }
             .carousel-inner {
                   border-bottom: 10px solid $red;
+            }
+            .caption {
+                  background-color: $white-ab;
+                  color: $red;
+                  text-align: left;
+                  font-size: 2em;
+                  font-family: $font-titles;
+                  display: inline-block;
+                  position: absolute;
+                  z-index: 9999;
+                  top: 50px;
+                  left: 50px;
+                  padding: 20px 30px;
             }
       }
       h1 {
@@ -1113,7 +1127,14 @@ body {
             background-color: $red;
             margin: 20px 0;
             padding: 0px 30px;
-
+            .loaderSpinner {
+                  text-align: center;
+                  i {
+                        font-size: 2em;
+                        color: $pink;
+                        display: block;
+                  }
+            }
             h2 {
                   font-family: $font-normal;
                   color: $white;
@@ -1138,6 +1159,9 @@ body {
                   }
             }
             form {
+                  i {
+                        display: none;
+                  }
                   .wpcf7-form-control-wrap {
                         width: 100%;
                         display: block;
@@ -1163,6 +1187,20 @@ body {
                                     border: none;
                                     outline: 0;
                               }
+                        }
+                        i {
+                              color: $white;
+                              font-size: 1.5em;
+                              padding-left: 15px;
+                              display: inline-block;
+                              vertical-align: top;
+                        }
+                        .wpcf7-not-valid-tip {
+                              color: white;
+                              font-size: 0.9em;
+                              display: block;
+                              font-style: italic;
+                              padding: 5px 0 0 0;
                         }
                         &.sucursal {
                               display: inline;
@@ -1208,6 +1246,24 @@ body {
                         outline: 0;
                         opacity: 0.85;
                   }
+            }
+            .wpcf7-mail-sent-ok {
+                  border: 0;
+            }
+            .wpcf7-mail-sent-ng {
+                  border: 0;
+            }
+            .wpcf7-spam-blocked {
+                  border: 0;
+            }
+            .wpcf7-validation-errors {
+                  border:0;
+            }
+            .wpcf7-response-output {
+                  color: $white;
+                  font-family: $font-normal;
+                  margin: -10px 0px 10px;
+
             }
       }
 
@@ -1744,5 +1800,39 @@ body {
                         font-style: italic;
                   }
             }
+      }
+      .lightbox-nav{
+            .close {
+                  position: absolute;
+                  right: 0;
+                  color: $white;
+                  font-size: 3em;
+                  opacity: 1;
+            }
+            .btn-group {
+                  position: relative;
+                  width: 100%;
+                  display: block;
+                  a:hover {
+                        text-decoration: none;
+                  }
+                  .typcn-chevron-left {
+                        position: absolute;
+                        left:-40px;
+                        color: $white;
+                        font-size: 3em;
+                        top: 200px;
+                  }
+                  .typcn-chevron-right {
+                        position: absolute;
+                        right: -40px;
+                        color: $white;
+                        font-size: 3em;
+                        top: 200px;
+                  }
+            }
+      }
+      .modal-body {
+            padding: 30px;
       }
 }

@@ -4,7 +4,7 @@
     .module('app.routes', ['ui.router', 'app.config', 'app.core'])
     .config(config);
 
-  function config($stateProvider, $urlRouterProvider,
+  function config($stateProvider, $urlRouterProvider, $locationProvider,
     // Constantes
     STATE, TYPE, TITULO) {
     $urlRouterProvider.otherwise('/');
@@ -98,7 +98,7 @@
         }
       })
       .state(STATE.NE, {
-        url: '/' + 'nuestros-emprendimientos',
+        url: '/' + 'emprendimientos-propios',
         params: {
           title_view: TITULO.NUESTROS_EMPRENDIMIENTOS,
           category:17,
@@ -305,5 +305,7 @@
         sticky: true,
         onEnter: function() {}
       });
+      // Use the HTML5 History API in order to prevent use of '#' in url path
+      //$locationProvider.html5Mode(true);
   } // Fin function config
 }());

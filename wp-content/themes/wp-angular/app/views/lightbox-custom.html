@@ -2,6 +2,23 @@
     ng-swipe-left="Lightbox.nextImage()"
     ng-swipe-right="Lightbox.prevImage()">
   <!-- navigation -->
+  <div class="lightbox-nav">
+    <button class="close" aria-hidden="true" ng-click="$dismiss()">×</button>
+    <div class="btn-group" ng-if="Lightbox.images.length > 1">
+      <a class="typcn typcn-chevron-left" ng-click="Lightbox.prevImage()">
+        <!-- ‹ Previous -->
+      </a>
+    <!--
+      <a ng-href="{{Lightbox.imageUrl}}" target="_blank"
+          class="btn btn-xs btn-default" title="Open in new tab">
+        Open image in new tab
+      </a>
+    -->
+      <a class="typcn typcn-chevron-right" ng-click="Lightbox.nextImage()">
+        <!-- Next › -->
+      </a>
+    </div>
+  </div>
 
   <div class="lightbox-image-container">
     <!-- caption -->

@@ -30,7 +30,7 @@
 				<div class="col-sm-6 col-xs-12 right">
 					<ul class="dashed-list" ng-if="vm.items">
 						<li ng-repeat="item in vm.items">
-							<a href='{{item.url}}'>{{item.title}}</a>
+							<a href='{{item.urlFooter}}'>{{item.title}}</a>
 						</li>
 					</ul>
 				</div>
