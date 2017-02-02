@@ -130,7 +130,7 @@
                     }
                     propiedad.barrio = propiedad.location.name;
                 });
-                console.log(propSinZona);
+                //console.log(propSinZona);
             }
             /**
             * Permite filtrar elementos del tipo

@@ -112,6 +112,9 @@
                 vm.error = "No se encontraron propiedades.";
             }
             else {
+                // Setear vm.currentParentState in all properties
+                setParentState();
+
                 // Variables auxiliares para el paginador.
                 vm.totalItems = vm.propiedades.length;
                 vm.spinner = false;
@@ -123,6 +126,16 @@
             // Only for test
             //console.log(vm.properties);
         }
+        /**
+         * Overwrite parentState for all properties
+         */
+         function setParentState(){
+             // Recorro las propiedades del catalogo
+             console.log("Setting parent propiedades");
+            _.each(vm.propiedades, function(propiedad) {
+                propiedad.parentState = 'propiedades';
+            });
+         }
 
         /**
          *
