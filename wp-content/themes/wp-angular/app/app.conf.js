@@ -31,5 +31,12 @@
         'NUESTROS_EMPRENDIMIENTOS': 'Emprendimientos propios',
         'OTROS_EMPRENDIMIENTOS': 'Otros Emprendimientos',
         'NUESTROS_EMPRENDIMIENTOS_DETALLE': "Detalle del Emprendimiento",
+        'HOME':'Home page',
+        'QSOM':'Quiénes Somos',
+        'NOV': 'Novedades',
+        'CONTACTO':'Contacto',
+        'PROPIEDAD': 'Propiedades',
+        'ADP': 'Administración de Propiedades',
+        'DETPROP': 'Detalle de la propiedad',
     });
 })();

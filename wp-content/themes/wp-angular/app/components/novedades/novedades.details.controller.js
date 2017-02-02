@@ -17,15 +17,13 @@
         vm.contact_form = {};
         vm.title_view = '';
 
-
         activate();
 
         function activate() {
-            
+
             // Generamos el modelo Propiedad
             if (!_.isEmpty($stateParams.data)) {
                 vm.novedad = $stateParams.data;
-                console.log(vm.novedad);
             }
             else {
                 // @TODO: No es necesario.

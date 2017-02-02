@@ -112,9 +112,7 @@
                 var propSinZona = [];
 
                 _.each(propiedades, function (propiedad) {
-                    //console.log(propiedad);
                     nombreZona = _.find(vm.barrios, function (barrio) {
-                        //return _.isEqual(barrio.name, propiedad.barrio);
                         return _.isEqual(barrio.name, propiedad.location.name);
                     });
 
@@ -130,7 +128,7 @@
                     }
                     propiedad.barrio = propiedad.location.name;
                 });
-                console.log(propSinZona);
+                //console.log(propSinZona);
             }
             /**
             * Permite filtrar elementos del tipo
