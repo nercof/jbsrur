@@ -104,9 +104,6 @@
             // busqueda en el storage.
             isEmptyLocalStoragePropSearchSaveit();
 
-            // @FIXME:
-            //console.log($stateParams, $stateParams.cache, vm.propiedades);
-
             // Estado del filtrado.
             if (_.isEmpty(vm.propiedades)) {
                 vm.error = "No se encontraron propiedades.";
@@ -122,16 +119,12 @@
                 // Iniciamos las propiedades filtradas para la paginacion inicial.
                 vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
             }
-
-            // Only for test
-            //console.log(vm.properties);
         }
         /**
          * Overwrite parentState for all properties
          */
          function setParentState(){
-             // Recorro las propiedades del catalogo
-             console.log("Setting parent propiedades");
+            // Recorro las propiedades del catalogo
             _.each(vm.propiedades, function(propiedad) {
                 propiedad.parentState = 'propiedades';
             });

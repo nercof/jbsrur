@@ -204,7 +204,6 @@
                     //"current_localization_id": _.pluck(vm.current_localization_id, 'id')
             }
 
-            console.log(_.keys(vm.property_types_selected));
             return _.filter(vm.properties, function(propiedad) {
                 return _.some(_.keys(vm.property_types_selected), function(ptype) {
                         return propiedad.type.id == ptype;

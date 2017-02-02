@@ -151,8 +151,6 @@
         TOKKO_LANG + lang +
         TOKKO_FORMAT +
         TOKKO_KEYC + TOKKO_KEY;
-
-      //console.log('getPropertyCustomTagsAll url: ' + url);
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
     /*
@@ -162,10 +160,8 @@
     function getCurrentLang() {
       lang = $window.navigator.language || $window.navigator.userLanguage;
       if (lang === 'en-US') {
-        //console.log("Language is english");
       }
       else if (lang == "es") {
-        //console.log("Language is: " + "es_ar");
         lang = "es_ar";
       }
     }
