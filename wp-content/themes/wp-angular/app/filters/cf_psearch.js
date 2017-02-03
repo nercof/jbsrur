@@ -1,158 +1,99 @@
 (function() {
     'use strict';
     /**
-    * cf_tokko: Custom filter.
-    *  - @view: tokko-search-input
-    *
-    * Objetivo: removeAccents and filter properties.
-    */
+     * cf_tokko: Custom filter.
+     *  - @view: tokko-search-input
+     *
+     * Objetivo: removeAccents and filter properties.
+     */
     angular
-    .module('app.core')
-    .filter('cf_psearch', cf_psearch);
+        .module('app.core')
+        .filter('cf_psearch', cf_psearch);
 
     function cf_psearch() {
-        console.log("Custom filter: << cf_psearch >>");
         return filterProps;
 
         /**
-        * vm.prop_search = properties filtered
-        *
-        * @param: all_prop: All properties in localStorage.prop_cache{}
-        * @param: value_search: input data from user views
-        * @param: vm: tokkoController (utilizar vm.universo)
-        */
-        function filterProps(all_prop, value_search, vm) {
+         * vm.prop_search = properties filtered
+         *
+         * @param: all_prop: All properties in localStorage.prop_cache{}
+         * @param: vm: tokkoController
+         *
+         * @FIXME:
+         *  - tenemos que completar el input de filtros dependiendo de
+         *    vm.properties, porque por ejemplo tenemos a nivel ui
+         *    +5 dormitorios pero en la <page> actual no esta ese objeto.
+         *
+         *    Se me ocurre ejecutar createCommonObjectFilter() en cada paginacion
+         */
+        function filterProps(all_prop, vm) {
             // Variables a utilizar.
-            var filtered = [];      // Todas las propiedades.
-            var query_search = [];  // Array de busqueda.
-            var words = [];         // Array de palabras separadas por espacio.
-            var filterUniverso = [];// Array de palabras claves con status true.
+            var filtered = []; // Todas las propiedades.
+            var typeActive = [];
+            var domiActive = [];
+            var attEspActive = [];
 
-            // Asignamos
-            filtered = all_prop;
-            words = removeEspecialChar(value_search).toLowerCase();
-            query_search = words.split(/(\s+)/).filter(
-                function(e) { return e.trim().length > 0; }
-            );
+            // Permite filtrar los que esten con estado false.
+            typeActive      = parseTrue(vm.property_types_selected);
+            domiActive      = parseTrue(vm.suite_amount_selected);
+            attEspActive    = parseTrue(vm.attEspeciales_selected);
 
-            // Recorremos las palabras ingresadas.
-            _.each(query_search, function(word){
-                // Setear a true la palabra conocida si corresponde.
-                buscarEnUniverso(word, vm.universo, query_search.length);
-            });
-
-            // Obtener el universo con palbras == true
-            filterUniverso = getPalabrasBuscadas();
-
-
-            // Aplicar filtros anteriores por cada palabra clave.
-            _.each(filterUniverso, function(obj){
-                if (obj.field == "property_types") {
-                    filtered = _.filter(filtered, function(prop){
-                        return _.contains(prop.operationsParsed, obj.word);
+            // Sino hay nada para filtrar
+            if (_.isEmpty(typeActive) && _.isEmpty(domiActive) && _.isEmpty(attEspActive)) {
+                filtered = all_prop;
+            }
+            else {
+                // Tendremos que empezar a filtrar por lo seleccionado
+                // Tipo de Propiedad
+                filtered = _.filter(all_prop, function(propiedad) {
+                    return _.some(typeActive, function(ptype) {
+                        return propiedad.type.id == ptype;
                     });
+                });
+
+                // Nada para filtrar con Tipo de Propiedad
+                if (_.isEmpty(filtered)) {
+                    filtered = all_prop;
                 }
-            });
+
+                // Dormitorios
+                filtered = _.filter(filtered, function(propiedad) {
+                    return _.some(domiActive, function(pdorm) {
+                        return propiedad.suite_amount == pdorm;
+                    });
+                });
+
+                // Nada para filtrar con Tipo de Propiedad
+                if (_.isEmpty(filtered)) {
+                    filtered = all_prop;
+                }
+
+                // Atributos Especiales.
+                filtered = _.filter(filtered, function(propiedad) {
+                    return _.some(attEspActive, function(attEsp) {
+                        return _.where(propiedad.tags, {'id': parseInt(attEsp)}).length > 0 ;
+                    });
+                });
+
+                // Nada para filtrar con Tipo de Propiedad
+                if (_.isEmpty(filtered)) {
+                    filtered = all_prop;
+                }
+            }
 
             return filtered;
         }
 
         /**
-        * Setear en true la palabra del universo si es igual a word.
-        * Setear en pending si falta parte de la palabra.
-        *
-        * @param: word: string de busqueda.
-        * @param: universe: universo de palabras claves.
-        * @param: querySearchLenght: length de la cadena de busqueda
-        */
-<<<<<<< HEAD
-        function buscarEnUniverso(pWord, pUniverso, pSizeUserInput){
-
-            _.each(pUniverso, function(pPalabra){
-                // Si la palabra es igual setear en true.       - Status true
-                console.log(pWord, pPalabra.word, pUniverso);
-                if (pPalabra.word.toLowerCase() == pWord) {
-                    pPalabra.status = true;
-                } else if (pPalabra.word.search(pWord) > 0) {
-                    pPalabra.status = "pending";
-                    if (pSizeUserInput >= 2) {
-                        pPalabra.pAnterior.push(pWord);
-                    }
-                } else if (pPalabra.word.length > pWord.length) {
-                    // Sino es igual consultamos si pertenece o no  - Status pending
-                    pPalabra.status = "pending";
-                    if (pSizeUserInput >= 2) {
-                        pPalabra.pAnterior.push(pWord);
-                    }
-                }
-=======
-        function buscarEnUniverso(word, universe, querySearchLenght){
-            _.each(universe, function(keyword){
-                keyword.word = keyword.word.toLowerCase();
-                if (keyword.word == word) {
-                    // Si la palabra buscada es igual la keyword setear en true
-                    keyword.status = "true";
-                } else if ( keyword.word.toLowerCase().search(word) >= 0 &&
-                            _.contains(keyword.word.split(/(\s+)/), word) 
-                            ) {
-                                    console.log('HOLAAA');
-                                    console.log(keyword.word, word)
-                                    console.log(keyword.pAnterior);
-                                    // Si la palabra buscada se encuentra dentro de la keyword
-                                    keyword.status = "pending";
-                                    keyword.pAnterior = word;
-                                    console.log('pending');
-                                } else {
-                                    console.log(keyword.word, word);
-                                    console.log(keyword.word.search(word));
-                                }
->>>>>>> 481564dd6758967443c5183ed9d12538e7faf6b6
-            }
-        );
+         * F(x) que permite eliminar los filtros unchecked para que no quede el
+         * arreglo de la forma [2: false, 3: true] y siempre tengamos los true
+         *
+         */
+        function parseTrue(checkboxCollection) {
+            return _.keys(_.pick(checkboxCollection,
+                function(v, k) {
+                    return v === true;
+                }));
+        }
     }
-
-    /**
-    * return palabras del universo con status true.
-    *
-    */
-    function getPalabrasBuscadas(params){
-        var pBuscadas = [];
-        // Reorro el universo formado.
-        _.each(params, function(param){
-            if (param.status == true) {
-                pBuscadas.push(param);
-            }
-        });
-
-        return pBuscadas;
-    }
-
-    /**
-    * @param: query_search: input to replace
-    */
-    function removeEspecialChar(value_search){
-        return value_search.replace(/á/g, 'a')
-        .replace(/â/g, 'a')
-        .replace(/é/g, 'e')
-        .replace(/è/g, 'e')
-        .replace(/ê/g, 'e')
-        .replace(/í/g, 'i')
-        .replace(/ï/g, 'i')
-        .replace(/ì/g, 'i')
-        .replace(/ó/g, 'o')
-        .replace(/ô/g, 'o')
-        .replace(/ú/g, 'u')
-        .replace(/ü/g, 'u')
-        .replace(/ç/g, 'c')
-        .replace(/ß/g, 's')
-        .replace(/á/g, 'a')
-        .replace(/é/g, 'e')
-        .replace(/í/g, 'i')
-        .replace(/ó/g, 'o')
-        .replace(/ú/g, 'u')
-        .replace(/Ö/g, 'o')
-        .replace(/ö/g, 'o')
-        ;
-    }
-}
 })();

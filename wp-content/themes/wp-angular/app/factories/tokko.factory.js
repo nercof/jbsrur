@@ -1,26 +1,25 @@
-'use strict';
-;(function(){
+'use strict';;
+(function() {
   angular
-  .module('app.factories')
-  .factory('tokkoFactory', dataFactory)
-  .constant('TOKKO_FORMAT', '?format=json')
-  .constant('TOKKO_LANG', '?lang=')
-  .constant('TOKKO_KEYC', '&key=')
-  .constant('TOKKO_KEY', '8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_WEB_CONTACT', 'webcontact/?key=')
-  .constant('TOKKO_COUNTRIES', 'countries/?format=json')
-  .constant('TOKKO_STATES', 'state/?format=json')
-  .constant('TOKKO_LOCATION', 'location/{id}/?format=json')
-  .constant('TOKKO_PROPERTY_TYPE', 'property_type/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_DEVELOPMENT_LIST', 'development/summary/?format=json&limit=999&key=8fe7f17376761bada8524d0a75c8937f8a4517b7&lang=es_ar')
-  .constant('DEVELOPMENTS', 'development/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_PROPERTY_CUSTOM_TAG', 'property_custom_tag/')
-  .constant('TOKKO_DEVELOPMENT_TYPE', '/api/v1/development_type/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_PROPERTY', 'property/{id}/?lang=es_ar&?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_SEARCH', 'property/search/?limit=200&lang=es_ar&format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_DEVELOPMENT','development/?limit=50&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  .constant('TOKKO_DEVELOPMENT_ID','development/{id}/?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
-  ;
+    .module('app.factories')
+    .factory('tokkoFactory', dataFactory)
+    .constant('TOKKO_FORMAT', '?format=json')
+    .constant('TOKKO_LANG', '?lang=')
+    .constant('TOKKO_KEYC', '&key=')
+    .constant('TOKKO_KEY', '8fe7f17376761bada8524d0a75c8937f8a4517b7')
+    .constant('TOKKO_WEB_CONTACT', 'webcontact/?key=')
+    .constant('TOKKO_COUNTRIES', 'countries/?format=json')
+    .constant('TOKKO_STATES', 'state/?format=json')
+    .constant('TOKKO_LOCATION', 'location/{id}/?format=json')
+    .constant('TOKKO_PROPERTY_TYPE', 'property_type/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+    .constant('TOKKO_DEVELOPMENT_LIST', 'development/summary/?format=json&limit=999&key=8fe7f17376761bada8524d0a75c8937f8a4517b7&lang=es_ar')
+    .constant('DEVELOPMENTS', 'development/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+    .constant('TOKKO_PROPERTY_CUSTOM_TAG', 'property_custom_tag/')
+    .constant('TOKKO_DEVELOPMENT_TYPE', '/api/v1/development_type/?lang=es_ar&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+    .constant('TOKKO_PROPERTY', 'property/{id}/?lang=es_ar&?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+    .constant('TOKKO_SEARCH', 'property/search/?limit=200&lang=es_ar&format=json&data=tokko_query&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+    .constant('TOKKO_DEVELOPMENT', 'development/?limit=50&key=8fe7f17376761bada8524d0a75c8937f8a4517b7')
+    .constant('TOKKO_DEVELOPMENT_ID', 'development/{id}/?format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7');
   // limite=200
   // @see:http://tokkobroker.com/api/playground
   // GET /api/v1/property/search
@@ -44,12 +43,12 @@
     TOKKO_DEVELOPMENT,
     TOKKO_DEVELOPMENT_ID,
     $window
-  ){
+  ) {
 
     var lang = "";
 
     var data = {
-      'listStates':  listStates,
+      'listStates': listStates,
       'getState': getState,
       'getCountry': getCountry,
       'getPropertyType': getPropertyType,
@@ -59,35 +58,37 @@
       'getProperty': getProperty,
       'getProperties': getProperties,
       'getPropertyByCity': getPropertyByCity,
-      'getNameOT':getNameOT,
-      'getDevelopmentsTokkoAPI':getDevelopmentsTokkoAPI,
+      'getNameOT': getNameOT,
+      'getDevelopmentsTokkoAPI': getDevelopmentsTokkoAPI,
       'getDevelopmentsTokkoAPIById': getDevelopmentsTokkoAPIById,
+      'getNamePropertyTypes': getNamePropertyTypes,
+      'getNameDormitorios': getNameDormitorios,
     }
 
     // Model Schema to search in Tokko.
     var data_tokko = {
-      "price_to": 0,                  //"int",
-      "current_localization_type": "",//"string",
-      "current_localization_id": [],  //"List",
-      "without_tags": [],             //"list",
-      "currency": "",                 //"String",
-      "with_custom_tags": [],         //"list",
-      "without_custom_tags": "",      //"list",
-      "operation_types": "",          //"list",
-      "with_tags": [],                //"list",
-      "filter": [],                   //"list",
-      "price_from": 0,                //"int",
-      "property_types": [],           //"list"
+      "price_to": 0, //"int",
+      "current_localization_type": "", //"string",
+      "current_localization_id": [], //"List",
+      "without_tags": [], //"list",
+      "currency": "", //"String",
+      "with_custom_tags": [], //"list",
+      "without_custom_tags": "", //"list",
+      "operation_types": "", //"list",
+      "with_tags": [], //"list",
+      "filter": [], //"list",
+      "price_from": 0, //"int",
+      "property_types": [], //"list"
     }
 
     function listStates() {
-      return getPosts("").then(function(data){
+      return getPosts("").then(function(data) {
         return data;
       });
     }
 
     function getState(id) {
-      return getStates(id).then(function(data){
+      return getStates(id).then(function(data) {
         return data;
       });
     }
@@ -97,7 +98,7 @@
     }
 
     function getCountry(id) {
-      return getSCountryies(id).then(function(data){
+      return getSCountryies(id).then(function(data) {
         return data;
       });
     }
@@ -107,14 +108,14 @@
     }
 
     /*
-    * @FIXME: Excluir las que NO sean "tipo_propiedad", para no enviar algunas
-    * que no tienen relacion como CN- Cama Nautica.
-    *
-    * "tipo_propiedad":[Indistinto, Terreno, Departamento, Departamento a Estrenar
-    *  Casa, Quinta, Oficina, Local, Edificio Comercial, Campo, Cochera, Depósito  ]
-    */
+     * @FIXME: Excluir las que NO sean "tipo_propiedad", para no enviar algunas
+     * que no tienen relacion como CN- Cama Nautica.
+     *
+     * "tipo_propiedad":[Indistinto, Terreno, Departamento, Departamento a Estrenar
+     *  Casa, Quinta, Oficina, Local, Edificio Comercial, Campo, Cochera, Depósito  ]
+     */
     function getPropertyType(id) {
-      return getPropertyTypes(id).then(function(data){
+      return getPropertyTypes(id).then(function(data) {
         return data;
       });
     }
@@ -122,14 +123,14 @@
     function getPropertyTypes(id) {
       getCurrentLang();
       var url = 'property_type/' +
-      TOKKO_LANG + lang   +
-      TOKKO_FORMAT        +
-      TOKKO_KEYC + TOKKO_KEY;
+        TOKKO_LANG + lang +
+        TOKKO_FORMAT +
+        TOKKO_KEYC + TOKKO_KEY;
       return tokkoService.getRequest(BASE_TOKKO, TOKKO_PROPERTY_TYPE, TOKKO_KEY);
     }
 
     function getDevelopmentList(id) {
-      return getDevelopmentListAll(id).then(function(data){
+      return getDevelopmentListAll(id).then(function(data) {
         return data;
       });
     }
@@ -139,7 +140,7 @@
     }
 
     function getPropertyCustomTags(id) {
-      return getPropertyCustomTagsAll(id).then(function(data){
+      return getPropertyCustomTagsAll(id).then(function(data) {
         return data;
       });
     }
@@ -147,24 +148,20 @@
     function getPropertyCustomTagsAll(id) {
       getCurrentLang();
       var url = TOKKO_PROPERTY_CUSTOM_TAG +
-      TOKKO_LANG + lang   +
-      TOKKO_FORMAT        +
-      TOKKO_KEYC + TOKKO_KEY;
-
-      //console.log('getPropertyCustomTagsAll url: ' + url);
+        TOKKO_LANG + lang +
+        TOKKO_FORMAT +
+        TOKKO_KEYC + TOKKO_KEY;
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
     /*
-    * Obtengo el lenguaje del navegador.
-    *
-    */
-    function getCurrentLang(){
+     * Obtengo el lenguaje del navegador.
+     *
+     */
+    function getCurrentLang() {
       lang = $window.navigator.language || $window.navigator.userLanguage;
       if (lang === 'en-US') {
-        //console.log("Language is english");
       }
       else if (lang == "es") {
-        //console.log("Language is: " + "es_ar");
         lang = "es_ar";
       }
     }
@@ -172,7 +169,7 @@
     // Permite buscar el barrio de la localidad seleccionada.
     // Debemos buscar por defecto solo Córdoba.
     function getLocation(id) {
-      return getLocations(id).then(function(data){
+      return getLocations(id).then(function(data) {
         return data;
       });
     }
@@ -186,7 +183,7 @@
     }
 
     function getProperty(id) {
-      return getPropertys(id).then(function(data){
+      return getPropertys(id).then(function(data) {
         return data;
       });
     }
@@ -197,12 +194,12 @@
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
     /**
-    *
-    * Para hacer una búsqueda el campo data podemos usar los siguientes
-    * parametros:
-    *
-    * @use: data_tokko
-    */
+     *
+     * Para hacer una búsqueda el campo data podemos usar los siguientes
+     * parametros:
+     *
+     * @use: data_tokko
+     */
 
     function getProperties(params) {
       var url = '';
@@ -211,16 +208,16 @@
       // current_localization_id:[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],
 
       var data_test = {
-        current_localization_id:[],
-        current_localization_type:"division",
-        price_from:0,
-        price_to:9999999,
-        operation_types:[],
-        property_types:[],
-        currency:"ARS",
-        filters:[],
-        with_tags:[],
-        without_tags:[]
+        current_localization_id: [],
+        current_localization_type: "division",
+        price_from: 0,
+        price_to: 9999999,
+        operation_types: [],
+        property_types: [],
+        currency: "ARS",
+        filters: [],
+        with_tags: [],
+        without_tags: []
       };
       // Comment
       if (params) {
@@ -236,14 +233,14 @@
         // "31366" "La Granja",
         // "30814" "Los Reartes",
         // "32085" "Villa Carlos Paz"
-        data_test.current_localization_id = [30864,31366,30814,32085];
+        data_test.current_localization_id = [30864, 31366, 30814, 32085];
       }
 
-      if(data_test.operation_types.length == 0){
-        data_test.operation_types = [1,2,3];
+      if (data_test.operation_types.length == 0) {
+        data_test.operation_types = [1, 2, 3];
       }
       if (data_test.property_types.length == 0) {
-        data_test.property_types = [1,2,3,4,5,6,7];
+        data_test.property_types = [1, 2, 3, 4, 5, 6, 7];
       }
       //{"current_localization_id":[51827,30951,30884,30994,31104,31030,31130,31171,30876,30886,31092,31002,30943,31103],"current_localization_type":"division","price_from":0,"price_to":4500000,"operation_types":[1,2,3],"property_types":[1,2,3,4,5,6,7],"currency":"USD","filters":[],"with_tags":[],"without_tags":[]}
       var aux = JSON.stringify(data_test);
@@ -251,77 +248,131 @@
       url = url.replace('tokko_query', aux);
 
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
-  }
-
-  /**
-   * getPropertyByCity() permite obtener las propiedades de Cordoba y alrededores
-   * haciendo un GET a tocko con current_localization_id fijo
-   */
-  function getPropertyByCity() {
-    var url = '';
-    var aux = "";
-
-    // 30864: "Cordoba Capital"
-    // 31366: "La Granja"
-    // 30814: "Los Reartes"
-    // 32085: "Villa Carlos Paz
-
-    var data_test = {
-      current_localization_id: [30864, 31366, 30814, 32085],
-      current_localization_type: "division",
-      price_from: 0,
-      price_to: 9999999,
-      operation_types: [1, 2],
-      property_types: [1, 2, 3, 4, 5, 6, 7],
-      currency: "ARS",
-      filters: [],
-      with_tags: [],
-      without_tags: []
-    };
-
-    var aux = JSON.stringify(data_test);
-    var url = TOKKO_SEARCH;
-    url = url.replace('tokko_query', aux);
-
-    return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
-  }
-
- /**
-  * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
-  * http://tokkobroker.com/api/playground#!/developments/development-list_get_0
-  *
-  * @param {}: None
-  */
-  function getDevelopmentsTokkoAPI() {
-    return tokkoService.getRequest(BASE_TOKKO, TOKKO_DEVELOPMENT, TOKKO_KEY);
-  }
-
-  /**
-  * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
-  * http://tokkobroker.com/api/playground#!/developments/development-list_get_0
-  *
-  * @param {}: None
-  */
-  function getDevelopmentsTokkoAPIById(id) {
-    var url = TOKKO_DEVELOPMENT_ID;
-    url = url.replace('{id}', id)
-
-    return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
-
-  }
-
-  /**
-  * oper() permite retornar si es Alquiler o Venta el tipo de operacion.
-  * Utilazo para el filtrado de datos.
-  */
-  function getNameOT(oper){
-    if (_.values(oper) == 1) {
-      return "Venta";
-    } else {
-      return "Alquiler";
     }
-  }
 
-  return data;
-}
+    /**
+     * getPropertyByCity() permite obtener las propiedades de Cordoba y alrededores
+     * haciendo un GET a tocko con current_localization_id fijo
+     */
+    function getPropertyByCity() {
+      var url = '';
+      var aux = "";
+
+      // 30864: "Cordoba Capital"
+      // 31366: "La Granja"
+      // 30814: "Los Reartes"
+      // 32085: "Villa Carlos Paz
+
+      var data_test = {
+        current_localization_id: [30864, 31366, 30814, 32085],
+        current_localization_type: "division",
+        price_from: 0,
+        price_to: 9999999,
+        operation_types: [1, 2],
+        property_types: [1, 2, 3, 4, 5, 6, 7],
+        currency: "ARS",
+        filters: [],
+        with_tags: [],
+        without_tags: []
+      };
+
+      var aux = JSON.stringify(data_test);
+      var url = TOKKO_SEARCH;
+      url = url.replace('tokko_query', aux);
+
+      return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
+    }
+
+    /**
+     * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
+     * http://tokkobroker.com/api/playground#!/developments/development-list_get_0
+     *
+     * @param {}: None
+     */
+    function getDevelopmentsTokkoAPI() {
+      return tokkoService.getRequest(BASE_TOKKO, TOKKO_DEVELOPMENT, TOKKO_KEY);
+    }
+
+    /**
+     * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
+     * http://tokkobroker.com/api/playground#!/developments/development-list_get_0
+     *
+     * @param {}: None
+     */
+    function getDevelopmentsTokkoAPIById(id) {
+      var url = TOKKO_DEVELOPMENT_ID;
+      url = url.replace('{id}', id)
+
+      return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
+
+    }
+
+    /**
+     * oper() permite retornar si es Alquiler o Venta el tipo de operacion.
+     * Utilazo para el filtrado de datos.
+     */
+    function getNameOT(oper) {
+      if (_.values(oper) == 1) {
+        return "Venta";
+      }
+      else {
+        return "Alquiler";
+      }
+    }
+
+    /**
+     * getNamePropertyTypes() permite retornar la descripcion del tipo de Propiedad
+     *
+     * Utilazo para el filtrado de datos.
+     */
+    function getNamePropertyTypes(property_type) {
+
+      switch (property_type) {
+        case 1:
+          return "Terreno";
+        case 2:
+          return "Departamento";
+        case 3:
+          return "Casa";
+        case 5:
+          return "Oficina";
+        case 7:
+          return "Local";
+        case 9:
+          return "Campo";
+        default:
+          return "Todos";
+      }
+    }
+
+    /**
+     * getNameDormitorios() permite retornar la descripcion del tipo de Propiedad
+     *
+     * Utilazo para el filtrado de datos.
+     */
+    function getNameDormitorios(suite_amount) {
+
+      switch (suite_amount) {
+        case 1:
+          return "1 dormitorio";
+        case 2:
+          return "2 dormitorios";
+        case 3:
+          return "3 dormitorios";
+        case 4:
+          return "4 dormitorios";
+        case 5:
+          return "5 dormitorios";
+        case 6:
+          return "+5 dormitorios";
+        case 7:
+          return "+5 dormitorios";
+        case 8:
+          return "+5 dormitorios";
+        default:
+          return "Todos";
+      }
+    }
+    return data;
+  }
 }());
