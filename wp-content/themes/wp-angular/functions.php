@@ -172,17 +172,18 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'angular-breadcrumb',
                 get_template_directory_uri() .'/node_modules/angular-breadcrumb/dist/angular-breadcrumb.js');
+
                 wp_enqueue_script(
                 'angular-utils-pagination',
                 get_template_directory_uri() .'/node_modules/angular-utils-pagination/dirPagination.js');
-
 
                 wp_enqueue_script(
                 'app',
                 get_stylesheet_directory_uri() . '/app/app.js',
                 array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map',
                 'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls',
-            'angular-bootstrap-lightbox'));
+                'angular-bootstrap-lightbox', 'angular-utils-pagination',
+                'angular-breadcrumb'));
 
                 wp_enqueue_script(
                 'routes',

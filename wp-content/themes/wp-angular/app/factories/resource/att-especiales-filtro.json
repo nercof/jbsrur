@@ -1,0 +1,212 @@
+[
+    {
+        "id": "1",
+        "name": "Agua Corriente",
+        "show": false
+    },
+    {
+        "id": "2",
+        "name": "Cloaca",
+        "show": false
+    },
+    {
+        "id": "3",
+        "name": "Gas Natural",
+        "show": false
+    },
+    {
+        "id": "5",
+        "name": "Electricidad",
+        "show": false
+    },
+    {
+        "id": "6",
+        "name": "Pavimento",
+        "show": false
+    },
+    {
+        "id": "7",
+        "name": "Telefono",
+        "show": false
+    },
+    {
+        "id": "10",
+        "name": "Balcón",
+        "show": true
+    },
+    {
+        "id": "4",
+        "name": "Internet",
+        "show": false
+    },
+    {
+        "id": "8",
+        "name": "Cable",
+        "show": false
+    },
+    {
+        "id": "12",
+        "name": "Cocina",
+        "show": false
+    },
+    {
+        "id": "13",
+        "name": "Comedor",
+        "show": false
+    },
+    {
+        "id": "21",
+        "name": "Living",
+        "show": false
+    },
+    {
+        "id": "17",
+        "name": "Oficina",
+        "show": false
+    },
+    {
+        "id": "22",
+        "name": "Living comedor",
+        "show": false
+    },
+    {
+        "id": "23",
+        "name": "Patio",
+        "show": true
+    },
+    {
+        "id": "28",
+        "name": "Aire Acondicionado individual",
+        "show": false
+    },
+    {
+        "id": "31",
+        "name": "Calefacción",
+        "show": false
+    },
+    {
+        "id": "35",
+        "name": "Parrilla",
+        "show": false
+    },
+    {
+        "id": "46",
+        "name": "Apto mascotas",
+        "show": false
+    },
+    {
+        "id": "18",
+        "name": "Hall",
+        "show": false
+    },
+    {
+        "id": "19",
+        "name": "Jardín",
+        "show": false
+    },
+    {
+        "id": "25",
+        "name": "Terraza",
+        "show": true
+    },
+    {
+        "id": "33",
+        "name": "Gimnasio",
+        "show": false
+    },
+    {
+        "id": "36",
+        "name": "Quincho",
+        "show": false
+    },
+    {
+        "id": "38",
+        "name": "Sala de juegos",
+        "show": false
+    },
+    {
+        "id": "40",
+        "name": "Solarium",
+        "show": false
+    },
+    {
+        "id": "41",
+        "name": "SUM",
+        "show": false
+    },
+    {
+        "id": "42",
+        "name": "Seguridad",
+        "show": false
+    },
+    {
+        "id": "51",
+        "name": "Piscina",
+        "show": false
+    },
+    {
+        "id": "52",
+        "name": "Riego automatico",
+        "show": false
+    },
+    {
+        "id": "16",
+        "name": "Suite",
+        "show": false
+    },
+    {
+        "id": "20",
+        "name": "Lavadero",
+        "show": true
+    },
+    {
+        "id": "26",
+        "name": "Toilette",
+        "show": false
+    },
+    {
+        "id": "11",
+        "name": "Baulera",
+        "show": false
+    },
+    {
+        "id": "15",
+        "name": "Dependencia",
+        "show": false
+    },
+    {
+        "id": "27",
+        "name": "Vestidor",
+        "show": false
+    },
+    {
+        "id": "14",
+        "name": "Comedor diario",
+        "show": false
+    },
+    {
+        "id": "29",
+        "name": "Alarma",
+        "show": false
+    },
+    {
+        "id": "9",
+        "name": "Altillo",
+        "show": false
+    },
+    {
+        "id": "47",
+        "name": "Apto profesional",
+        "show": false
+    },
+    {
+        "id": "39",
+        "name": "Sauna",
+        "show": false
+    },
+    {
+        "id": "53",
+        "name": "Vista al golf",
+        "show": false
+    }
+]
