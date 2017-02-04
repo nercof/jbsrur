@@ -368,6 +368,6 @@
         onEnter: function() {}
       });
     // Use the HTML5 History API in order to prevent use of '#' in url path
-    //$locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
   } // Fin function config
 }());
