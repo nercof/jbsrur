@@ -38,7 +38,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 card" ng-repeat="propiedad in vm.properties | cf_psearch:vm | orderBy:vm.sortType" ng-class-odd="'odd'">
+        <div class="col-md-3 card" ng-repeat="propiedad in vm.allProperties | itemsPerPage: 10" ng-class-odd="'odd'">
           <div ng-if="vm.properties" class="inner-card">
             <a ui-sref="propiedades.detalle({data: propiedad , id: propiedad.id})" class="thumb">
               <h2>{{propiedad.fake_address}}</h2>
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="col-sm-12 col-xs-12 paginador">
-          <ul uib-pagination boundary-links=t rue total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.currentPage" ng-change="vm.pageChanged()" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+          <ul uib-pagination total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.currentPage" ng-change="vm.pageChanged()" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
           </ul>
         </div>
       </div>

@@ -24,6 +24,20 @@
         vm.state = true;
         vm.error = false;
 
+        // Filtros auxiliares parte UI
+        vm.sortType = 'zona';
+        vm.property_types = [];
+        vm.suite_amount = [];
+        vm.zonas = [];
+        vm.attEspeciales = [];
+        vm.propSinAttEspeciales = [];
+
+        // Filtros auxiliares pare BE selection UI
+        vm.property_types_selected = [];
+        vm.suite_amount_selected = [];
+        vm.zonas_selected = [];
+        vm.attEspeciales_selected = [];
+
         vm.tabsContacto = [{
             "titulo": "Telefono",
             "href": "tel:+543514608800",
@@ -112,6 +126,10 @@
                 // Setear vm.currentParentState in all properties
                 setParentState();
 
+                // Create common objet for internal filter
+                // { property_types | suite_amount | localization_barrio_id }
+                createCommonObjectFilter();
+
                 // Variables auxiliares para el paginador.
                 vm.totalItems = vm.propiedades.length;
                 vm.spinner = false;
@@ -120,6 +138,60 @@
                 vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
             }
         }
+        /**
+        * Permite generar los objetos auxiliares para filtrar el resultado
+        * desde el catalogo resultado por los campos:
+        *
+        * { property_types | suite_amount | localization_barrio_id }
+        *
+        * @param {}
+        */
+        function createCommonObjectFilter() {
+            // Atributos Especiales { Baño | patio | cochera | ...}
+            // tags = { Patio | Balcón | Lavadero | Terraza  }
+            resourceFactory.query_array({id: 'att-especiales-filtro.json'},
+            function(data){
+                vm.attEspeciales = _.filter(data, function(attEspecial){
+                    return attEspecial.show == true;
+                });
+            });
+
+            // Recorro las propiedades del catalogo
+            _.each(vm.propiedades, function(propiedad) {
+                // Tipos de Propiedad
+                if (!_.where(vm.property_types, {
+                    'id': propiedad.type.id
+                }).length) {
+                    vm.property_types.push({
+                        id: propiedad.type.id,
+                        name: tokkoFactory.getNamePropertyTypes(propiedad.type.id)
+                    });
+                }
+
+                // Dormitorios
+                if (!_.where(vm.suite_amount, {
+                    'id': propiedad.suite_amount
+                }).length) {
+                    vm.suite_amount.push({
+                        id: propiedad.suite_amount,
+                        name: tokkoFactory.getNameDormitorios(propiedad.suite_amount)
+                    });
+                }
+
+                // Zonas
+                if (!_.contains(vm.zonas, propiedad.zona)) {
+                    vm.zonas.push(propiedad.zona);
+                }
+
+                // Atributos Especiales { Baño | patio | cochera | ...}
+                // Para identificar las propiedades sin attEspeciales
+                if(_.isEmpty(propiedad.tags)){
+                    vm.propSinAttEspeciales.push(propiedad);
+                }
+            });
+
+        }
+
         /**
          * Overwrite parentState for all properties
          */

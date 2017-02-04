@@ -27,7 +27,6 @@
         vm.subtitle = false;
         vm.links = [];
 
-
         create(STATE);
 
         /**
@@ -40,7 +39,6 @@
             vm.email = "info@jbsrur.com.ar";
             vm.fb = "";
             vm.twitter = "";
-
 
             menuFactory.getFormatMenu(20).then(function(response){
 
