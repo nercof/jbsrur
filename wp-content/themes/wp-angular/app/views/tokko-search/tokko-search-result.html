@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 card" ng-repeat="propiedad in vm.properties" ng-class-odd="'odd'">
+        <div class="col-md-3 card" dir-paginate="propiedad in vm.propiedades | cf_psearch:vm | itemsPerPage: vm.itemsPerPage" current-page="vm.currentPage" ng-class-odd="'odd'">
           <div ng-if="vm.properties" class="inner-card">
             <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" class="thumb">
               <h2>{{propiedad.fake_address}}</h2>
@@ -86,11 +86,11 @@
           </div>
         </div>
         <div class="col-sm-12 col-xs-12 paginador" ng-if="vm.properties">
-          <ul uib-pagination boundary-links = true
-          total-items = "vm.totalItems" items-per-page = "vm.itemsPerPage"
-          ng-model="vm.currentPage" ng-change="vm.pageChanged()" boundary-links="true"
-          previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-          last-text="&raquo;" ></ul>
+          <dir-pagination-controls boundary-links="true"
+            on-page-change="pageChangeHandler(newPageNumber)"
+                ng-if="1 < pages.length || !autoHide"
+            template-url="wp-content/themes/wp-angular/app/views/dirPagination.tpl.html"></dir-pagination-controls>
+          </div>
         </div>
       </div>
     </div>
