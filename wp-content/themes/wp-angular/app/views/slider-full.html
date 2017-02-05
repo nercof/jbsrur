@@ -1,6 +1,8 @@
 <div id="myCarousel" class="carousel slide" uib-carousel interval="3000" active="active" ng-if="medias">
     <div <div class="item" uib-slide ng-repeat="media in medias" active="active" index="$index">
-      <img src="{{media.url}}">
+      <a href="{{media.link}}">
+          <img src="{{media.url}}">
+      </a>
       <div class="caption" ng-if="media.caption">
         <p ng-bind-html="media.caption | to_trust"></p>
       </div>
