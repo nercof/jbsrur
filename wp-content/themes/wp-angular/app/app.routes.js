@@ -19,7 +19,7 @@
       $urlRouterProvider.otherwise( '/');
       // Use the HTML5 History API in order to prevent use of '#' in url path
       //$locationProvider.html5Mode(true).hashPrefix('!');
-      console.log($stateProvider  );
+    
       $stateProvider
       .state(STATE.HO, {
         url: '/',
