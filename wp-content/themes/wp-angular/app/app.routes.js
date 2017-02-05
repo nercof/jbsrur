@@ -12,14 +12,8 @@
   function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,
     // Constantes
     STATE, TYPE, TITULO) {
-      // Expose XHR requests to server
-      $httpProvider.defaults.useXDomain = true;
-      delete $httpProvider.defaults.headers.common['X-Requested-With'];
-      //$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       $urlRouterProvider.otherwise( '/');
-      // Use the HTML5 History API in order to prevent use of '#' in url path
-      //$locationProvider.html5Mode(true).hashPrefix('!');
-    
+      
       $stateProvider
       .state(STATE.HO, {
         url: '/',
