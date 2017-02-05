@@ -1,19 +1,26 @@
 'use strict';
 (function() {
   angular
-    .module('app.routes', ['ui.router', 'app.config', 'app.core'])
-    .config(config);
+  .module('app.routes', ['ui.router', 'app.config', 'app.core'])
+  .config(config);
 
   /**
-   * Initial route state configuration.
-   * $localized: overwrite initial path for all views.
-   *
-   */
-  function config($stateProvider, $urlRouterProvider, $locationProvider,
+  * Initial route state configuration.
+  * $localized: overwrite initial path for all views.
+  *
+  */
+  function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,
     // Constantes
     STATE, TYPE, TITULO) {
-    $urlRouterProvider.otherwise('/');
-    $stateProvider
+      // Expose XHR requests to server
+      $httpProvider.defaults.useXDomain = true;
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
+      //$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+      $urlRouterProvider.otherwise( '/');
+      // Use the HTML5 History API in order to prevent use of '#' in url path
+      //$locationProvider.html5Mode(true).hashPrefix('!');
+      console.log($stateProvider  );
+      $stateProvider
       .state(STATE.HO, {
         url: '/',
         views: {
@@ -309,65 +316,64 @@
         },
       })
       .state(STATE.PD, { //DOT Notation 'PD':'propiedades.detalle',
-        params: {
-          data: null,
-          id:null,
+      params: {
+        data: null,
+        id:null,
+      },
+      url: '/:id',
+      views: {
+        "detalle@propiedades": {
+          templateUrl: localized.tokko + "tokko-search-details.html",
+          controller: 'tokkoDetailsController as vm',
         },
-        url: '/:id',
-        views: {
-          "detalle@propiedades": {
-            templateUrl: localized.tokko + "tokko-search-details.html",
-            controller: 'tokkoDetailsController as vm',
-          },
-          "sub-footer": {
-            templateUrl: localized.views + "sub-footer.html",
-            controller: 'sucSectionController as vm'
-          },
-          "main-footer": {
-            templateUrl: localized.tokko + "tokko-search-input.html",
-            controller: 'tokkoController as vm'
+        "sub-footer": {
+          templateUrl: localized.views + "sub-footer.html",
+          controller: 'sucSectionController as vm'
+        },
+        "main-footer": {
+          templateUrl: localized.tokko + "tokko-search-input.html",
+          controller: 'tokkoController as vm'
+        }
+      },
+      ncyBreadcrumb: {
+        label: TITULO.DETPROP,
+        parent: function($scope) {
+          if(!_.isEmpty($scope.data.parentState)){
+            return $scope.data.parentState;
           }
-        },
-        ncyBreadcrumb: {
-          label: TITULO.DETPROP,
-          parent: function($scope) {
-            if(!_.isEmpty($scope.data.parentState)){
-              return $scope.data.parentState;
-            }
-          }
-        },
-        deepStateRedirect: true,
-        onEnter: function() {}
-      })
-      .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
-        params: {
-          data: null,
-          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
-        },
-        url: '/:id',
-        views: {
-          "detalle@nemprendimientos": {
-            templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
-            controller: 'developmentsDetailsController as vm',
-          },
-          "sub-footer": {
-            templateUrl: localized.views + "sub-footer.html",
-            controller: 'sucSectionController as vm'
-          },
-          "main-footer": {
-            templateUrl: localized.tokko + "tokko-search-input.html",
-            controller: 'tokkoController as vm'
-          }
-        },
-        ncyBreadcrumb: {
-          label: TITULO.NUESTROS_EMPRENDIMIENTOS,
-          parent: STATE.NE,
-        },
-        deepStateRedirect: true,
-        sticky: true,
-        onEnter: function() {}
-      });
-    // Use the HTML5 History API in order to prevent use of '#' in url path
-    $locationProvider.html5Mode(true);
-  } // Fin function config
+        }
+      },
+      deepStateRedirect: true,
+      onEnter: function() {}
+    })
+    .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
+    params: {
+      data: null,
+      title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
+    },
+    url: '/:id',
+    views: {
+      "detalle@nemprendimientos": {
+        templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
+        controller: 'developmentsDetailsController as vm',
+      },
+      "sub-footer": {
+        templateUrl: localized.views + "sub-footer.html",
+        controller: 'sucSectionController as vm'
+      },
+      "main-footer": {
+        templateUrl: localized.tokko + "tokko-search-input.html",
+        controller: 'tokkoController as vm'
+      }
+    },
+    ncyBreadcrumb: {
+      label: TITULO.NUESTROS_EMPRENDIMIENTOS,
+      parent: STATE.NE,
+    },
+    deepStateRedirect: true,
+    sticky: true,
+    onEnter: function() {}
+  });
+
+} // Fin function config
 }());

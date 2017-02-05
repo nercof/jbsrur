@@ -177,6 +177,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'angular-utils-pagination',
                 get_template_directory_uri() .'/node_modules/angular-utils-pagination/dirPagination.js');
 
+
                 wp_enqueue_script(
                 'app',
                 get_stylesheet_directory_uri() . '/app/app.js',
