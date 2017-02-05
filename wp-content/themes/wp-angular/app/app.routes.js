@@ -13,7 +13,7 @@
         // Constantes
         STATE, TYPE, TITULO) {
             $urlRouterProvider.otherwise( '/');
-
+            // Estados.
             $stateProvider
             .state(STATE.HO, {
                 url: '/',
