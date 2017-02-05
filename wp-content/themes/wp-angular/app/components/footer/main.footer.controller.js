@@ -6,46 +6,48 @@
     .controller('mainFooterController', mainFooterController);
 
     mainFooterController.$inject = ['$state',
-    '$stateParams',
-    'tokkoFactory',
-    '$scope',
-    '$rootScope',
-    'menuFactory',
-    'STATE'];
+                                    '$stateParams',
+                                    'tokkoFactory',
+                                    '$scope',
+                                    '$rootScope',
+                                    'menuFactory'];
 
     /**
     * mainFooterController: <comment>
     *  - @view: main-footer
     */
     function mainFooterController($state, $stateParams, tokkoFactory, $scope,
-        $rootScope, menuFactory, STATE) {
-            var vm = this;
-            var arraySocial = ['typcn typcn-social-twitter', 'typcn typcn-social-facebook', 'typcn typcn-at'];
-            vm.title = false;
-            vm.email = false;
-            vm.fb = false;
-            vm.twitter = false;
-            vm.subtitle = false;
-            vm.links = [];
-            vm.nemprendimientos = '/' + STATE.NE;
+                                $rootScope, menuFactory, STATE) {
+        var vm = this;
+        var arraySocial = ['typcn typcn-social-twitter', 'typcn typcn-social-facebook', 'typcn typcn-at'];
+        vm.title = false;
+        vm.email = false;
+        vm.fb = false;
+        vm.twitter = false;
+        vm.subtitle = false;
+        vm.links = [];
 
-            create();
 
-            /**
-            * create()
-            *
-            */
-            function create() {
-                vm.title = "JB SRUR";
-                vm.subtitle = "La inmobiliaria de Córdoba";
-                vm.email = "info@jbsrur.com.ar";
-                vm.fb = "";
-                vm.twitter = "";
+        create(STATE);
 
-                menuFactory.getFormatMenu(20).then(function(response){
+        /**
+        * create()
+        *
+        */
+        function create(STATE) {
+            vm.title = "JB SRUR";
+            vm.subtitle = "La inmobiliaria de Córdoba";
+            vm.email = "info@jbsrur.com.ar";
+            vm.fb = "";
+            vm.twitter = "";
+
+
+            menuFactory.getFormatMenu(20).then(function(response){
+
                     vm.items = response.items;
 
                     _.each(vm.items, function (item) {
+                        //item.urlFooter =  item.url;
                         if(item.url==vm.nemprendimientos){
                             item.urlFooter = 'emprendimientos-propios';
                         }
@@ -53,13 +55,11 @@
                             item.urlFooter =  item.url;
                         }
                     });
-                });
 
-
-
-                menuFactory.getFormatMenu(19).then(function(response){
+            });
+            menuFactory.getFormatMenu(19).then(function(response){
                     vm.social = _.filter(response.items, function(item){ return arraySocial.indexOf(item.title) >= 0; });
-                });
-            }
+            });
         }
-    })();
+    }
+})();
