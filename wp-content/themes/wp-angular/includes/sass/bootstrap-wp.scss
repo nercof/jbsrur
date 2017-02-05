@@ -116,6 +116,19 @@ body {
                   margin: 0;
                   padding: 20px;
                   font-size: 1.2em;
+                  .breadcrumb {
+                        background-color: transparent;
+                        margin-bottom: 0;
+                        a {
+                              color: $white;
+                              &:hover {
+                                    color: $white;
+                              }
+                        }
+                        span {
+                              color: $white;
+                        }
+                  }
             }
       }
       .carousel {
@@ -691,6 +704,7 @@ body {
                   padding: 0;
                   float: none;
                   display: inline-table;
+                  overflow: hidden;
 
                   .inner-card{
                         margin: 10px 20px;
@@ -699,11 +713,7 @@ body {
                         color: $black;
                         height: 385px;
                         border: 1px solid $pink;
-                        a.thum .pic {
-                              &:hover {
-                                    background-color: $red-a;
-                              }
-                        }
+                        overflow: hidden;
                         h2 {
                               color: $white;
                               background-color: $red;
@@ -721,11 +731,18 @@ body {
                               text-decoration:none;
                         }
                         .pic {
-                              height: 180px;
-                              background-size: cover;
-                              background-repeat: no-repeat;
                               margin: 0px 0px 20px 0px;
-                              background-position: center top;
+                              transition: all;
+                              overflow: hidden;
+                              .img {
+                                    height: 180px;
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: center top;
+                              }
+                              &:hover .img{
+                                    transform: scale(1.2);
+                              }
                         }
                         .line {
                               width: 85%;
@@ -755,37 +772,21 @@ body {
                               width: 100%;
                               padding-bottom: 5px;
                         }
-                        .prop-contacto {
-                              .nav-pills{
-                                    width: 100%;
-                                    li {
-                                          float: none;
-                                          width: 32%;
-                                          padding: 0px;
-                                          display: inline-block;
+                        .more {
+                              a{
+                                    color: $red;
+                                    background-color: $white;
+                                    text-align: center;
+                                    i {
+                                          width: 30px;
+                                          height: 30px;
+                                          padding: 0px 5px 5px;
                                           margin: auto;
-
-                                          &.active {
-                                                a{
-                                                      color: $white;
-                                                      background-color: $red;
-                                                      margin: 5px 0px;
-                                                      i {
-                                                            color: $white;
-                                                      }
-                                                }
-                                                label {
-                                                      margin: 15px 0px;
-                                                      padding: 5px;
-
-                                                }
-                                                &:hover a{
-                                                      background-color: $red;
-                                                }
-                                          }
-                                          &:hover a{
-                                                background-color: $pink;
-                                          }
+                                          border-radius: 50%;
+                                          border: 2px $white solid;
+                                    }
+                                    &:hover i {
+                                          border: 2px $red solid;
                                     }
                               }
                         }
@@ -803,6 +804,9 @@ body {
             .col {
                   padding: 0;
             }
+            .container {
+                  margin-bottom: 30px;
+            }
             .carousel {
                   background-color: $grey;
                   padding-bottom: 2.5em;
@@ -810,20 +814,25 @@ body {
             h1 {
                   font-style: $font-titles;
                   color: $red;
-                  padding: 10px 20px;
+                  padding: 30px 20px 20px;
                   font-size: 2.8em;
                   margin-top: 0;
+                  text-align: center;
+                  margin: 10px 0px 30px;
 
                   .round-border{
                         border-radius: 100%;
-                        border: 2px $red solid;
                         display: inline-block;
 
                         i {
                               border-radius: 100%;
-                              border: 2px $red solid;
+                              border: 0px $red solid;
                               margin: 10px;
                               padding: 0.3em;
+                              color: $white;
+                              background: $red;
+                              font-size: 1.3em;
+                              vertical-align: bottom;
                         }
                   }
             }
@@ -832,26 +841,38 @@ body {
             }
 
             h2 {
-                  font-family: $font-normal;
+                  font-family: $font-titles;
                   color: $white;
                   border: 2.2px $bordo solid;
                   background-color: $bordo;
                   text-align: left;
-                  font-size:large;
                   padding: 10px;
+                  margin: 0;
+                  font-size: 1.1em;
                   i {
-                        border: 1px solid $white;
+                        border: 2px solid $white;
                         border-radius: 100%;
                         font-size: 22px;
                         padding: 2px 4px;
                         vertical-align: middle;
                         margin: 5px 10px 5px 0px;
                   }
+                  &.red {
+                        border: 2.2px $red solid;
+                        background-color: $red;
+                  }
             }
             .galeria {
                   height: 395px;
-                  img {
-                        height: 360px;
+                  margin-bottom: 30px;
+                  a {
+                        cursor: pointer;
+                        .img {
+                              height: 360px;
+                              width: 100%;
+                              background-size: cover;
+                              background-position: center;
+                        }
                   }
             }
             .mapa {
@@ -859,10 +880,11 @@ body {
             }
 
             .descripcion {
+                  color: $black;
                   pre {
-                        font-size:1.1em;
+                        font-size: 1em;
                         font-family: $font-normal;
-                        padding: 0em 2em 0em 0em;
+                        padding: 1em;
                         background-color: transparent;
                         border: none;
                         white-space: pre-wrap;       /* css-3 */
@@ -870,31 +892,98 @@ body {
                         white-space: -pre-wrap;      /* Opera 4-6 */
                         white-space: -o-pre-wrap;    /* Opera 7 */
                         word-break: break-word;
+                        padding-bottom: 0;
                   }
             }
             .referencia {
-                  padding: 10px 0;
+                  color: $black;
                   div {
-                        color: $red;
                         padding: 15px;
                         font-size: 1.2em;
                   }
-            }
-            .caracteristicas {
-                  background-color: $grey;
-                  color: $white;
-                  width: 100%;
-                  margin: auto;
-                  i {
-                        padding-right: 10px;
+                  &.tel {
+                        margin-top: 20px;
+                        color:$red;
+                        margin-bottom: 0;
                   }
-                  .col-sm-3 {
+                  i {
+                        border: 2px solid $red;
+                        border-radius: 100%;
+                        font-size: 22px;
+                        padding: 2px 4px;
+                        vertical-align: middle;
+                        margin: 5px 10px 5px 0px;
+                  }
+            }
+            .ngTruncateToggleText {
+                  font-size: 2em;
+                  border-radius: 50%;
+                  margin: 10px;
+                  color: $red;
+                  border: 2px $red solid;
+                  padding: 0 8px;
+                  text-align: center;
+                  width: 40px;
+                  display: inline-block;
+                  cursor: pointer;
+                  line-height: normal;
+                  &:hover {
+                        color: $red-a;
+                        border: 2px $red-a solid;
+                        text-decoration: none;
+                  }
+            }
+            .content-car {
+                  margin-top: 20px;
+                  .caracteristicas {
+                        background-color: $grey;
                         color: $white;
-                        margin: 10px 10px 10px 0px;
-                        display: block;
-                        text-align: left;
-                        padding: 0;
-                        width: 23%;
+                        width: 100%;
+                        margin: auto;
+                        padding: 10px 20px;
+                        i {
+                              padding-right: 10px;
+                        }
+                        .col-sm-6 {
+                              margin: 10px 0px;
+                              display: inline-block;
+                              text-align: left;
+                              padding: 0;
+                        }
+                  }
+            }
+            #contacto {
+                  background-color: transparent;
+                  padding: 0 15px;
+                  h2 {
+                        padding-left: 15px;
+                        cursor: pointer;
+                        margin: 0;
+                  }
+                  #jbsrur_contact_form{
+                        display: none;
+                        background-color: $red;
+                        padding: 15px;
+                        &.open {
+                              display: block;
+                        }
+                  }
+                  form {
+                        margin-bottom: 40px;
+                        input, textarea {
+                              padding: 5px;
+                              font-size: 1em;
+                              letter-spacing: 1px;
+                              &.wpcf7-submit {
+                                    padding: 20px 15px;
+                              }
+                        }
+                  }
+                  .loaderSpinner {
+                        padding: 15px 0px 0px 50px;
+                  }
+                  .wpcf7-response-output {
+                        margin-top: -35px;
                   }
             }
       }
@@ -1498,6 +1587,7 @@ body {
                         display: inline-block;
                         z-index: 9;
                         vertical-align: middle;
+                        cursor: pointer;
                         &:before {
                               content: "";
                               display: none;
@@ -1545,20 +1635,25 @@ body {
             h1 {
                   font-style: $font-titles;
                   color: $red;
-                  padding: 20px 20px 10px;
+                  padding: 30px 20px 20px;
                   font-size: 2.8em;
                   margin-top: 0;
+                  text-align: center;
+                  margin: 10px 0px 30px;
 
                   .round-border{
                         border-radius: 100%;
-                        border: 1px $red solid;
                         display: inline-block;
 
                         i {
                               border-radius: 100%;
-                              border: 1px $red solid;
+                              border: 0px $red solid;
                               margin: 10px;
                               padding: 0.3em;
+                              color: $white;
+                              background: $red;
+                              font-size: 1.3em;
+                              vertical-align: bottom;
                         }
                   }
             }
@@ -1567,25 +1662,28 @@ body {
             }
 
             h2 {
-                  font-family: $font-normal;
+                  font-family: $font-titles;
                   color: $white;
                   border: 2.2px $bordo solid;
                   background-color: $bordo;
                   text-align: left;
-                  font-size:large;
                   padding: 10px;
                   margin: 0;
+                  font-size: 1.1em;
                   i {
+                        border: 0px solid $white;
+                        border-radius: 100%;
                         font-size: 22px;
                         padding: 2px 4px;
                         vertical-align: middle;
                         margin: 5px 10px 5px 0px;
                   }
+
             }
             .desc {
                   padding: 20px;
                   font-family: $font-normal;
-                  font-size: 1.1em;
+                  font-size: 1em;
             }
             .pic {
                   height: 450px;
@@ -1602,6 +1700,12 @@ body {
                         display: inline-block;
                         a {
                              cursor: pointer;
+                             .img {
+                                   height: 230px;
+                                   width: 90%;
+                                   background-size: cover;
+                                   background-position: center;
+                             }
                         }
                   }
             }
@@ -1627,11 +1731,25 @@ body {
                   }
             }
             .referencia {
-                  padding: 15px;
-                  margin-bottom: 10px;
-                  color: $bordo;
-                  font-size: 1.2em;
-                  border: $bordo 1px solid;
+                  color: $black;
+                  padding: 20px 15px;
+                  margin-bottom: 20px;
+                  div {
+                     font-size: 1.2em;
+                  }
+                  i {
+                      border: 2px solid $red;
+                      border-radius: 100%;
+                      font-size: 22px;
+                      padding: 2px 4px;
+                      vertical-align: middle;
+                      margin: 5px 10px 5px 0px;
+                  }
+                  &.tel {
+                      margin-top: 20px;
+                      color: $red;
+                      margin-bottom: 0;
+                  }
             }
             .caracteristicas {
                   background-color: $grey;
@@ -1648,6 +1766,39 @@ body {
                         text-align: left;
                         padding: 0;
                         width: 23%;
+                  }
+            }
+            #contacto {
+                  padding: 0px 15px;
+                  h2 {
+                      cursor: pointer;
+                      margin: 0;
+                      padding:0;
+                  }
+                  #jbsrur_contact_form{
+                        display: none;
+                        background-color: $red;
+                        padding: 15px;
+                        &.open {
+                              display: block;
+                        }
+                  }
+                  form {
+                        margin-bottom: 40px;
+                        input, textarea {
+                              padding: 5px;
+                              font-size: 1em;
+                              letter-spacing: 1px;
+                              &.wpcf7-submit {
+                                    padding: 20px 15px;
+                              }
+                        }
+                  }
+                  .loaderSpinner {
+                        padding: 15px 0px 0px 50px;
+                  }
+                  .wpcf7-response-output {
+                        margin-top: -35px;
                   }
             }
       }
@@ -1801,6 +1952,29 @@ body {
                   }
             }
       }
+      .pag-contacto {
+            h1 {
+                  font-family: $font-titles;
+                  color: $red;
+                  padding: 30px 20px 20px;
+                  font-size: 2.8em;
+                  margin-top: 0;
+                  text-align: center;
+                  margin: 10px 0px 30px;
+                  i {
+                        border-radius: 50%;
+                        margin: 10px;
+                        padding: 0.3em;
+                        color: $white;
+                        background: $red;
+                        font-size: 1.3em;
+                        vertical-align: bottom;
+                  }
+            }
+      }
+      .lightbox-image-container {
+            text-align: center;
+      }
       .lightbox-nav{
             .close {
                   position: absolute;
@@ -1808,13 +1982,26 @@ body {
                   color: $white;
                   font-size: 3em;
                   opacity: 1;
+                  outline: 0;
+                  &:hover {
+                        color: $white-ab;
+                        text-decoration: none
+                  }
+                  &:focus, &:active {
+                        outline: 0;
+                  }
             }
             .btn-group {
                   position: relative;
                   width: 100%;
                   display: block;
-                  a:hover {
-                        text-decoration: none;
+                  a {
+                        cursor: pointer;
+                        color: $white;
+                        &:hover {
+                              color: $white-ab;
+                              text-decoration: none
+                        }
                   }
                   .typcn-chevron-left {
                         position: absolute;

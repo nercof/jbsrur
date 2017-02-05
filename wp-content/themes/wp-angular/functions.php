@@ -154,6 +154,10 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 get_template_directory_uri() .'/node_modules/underscore/underscore-min.js');
 
                 wp_enqueue_script(
+                'ng-text-truncate',
+                get_template_directory_uri() .'/includes/js/ng-text-truncate.js');
+
+                wp_enqueue_script(
                 'ng-map',
                 get_template_directory_uri() .'/node_modules/ngmap/build/scripts/ng-map.js');
 

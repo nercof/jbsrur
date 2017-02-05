@@ -47,8 +47,8 @@
           }
         },
         ncyBreadcrumb: {
-          label: TITULO.HOME
-          //skip: true, // Never display this state in breadcrumb.
+          label: TITULO.HOME,
+          skip: true // Never display this state in breadcrumb.
         }
       })
       .state(STATE.QS, {
@@ -76,7 +76,7 @@
         },
         views: {
           "content": {
-            templateUrl: localized.views + "catalogo.html",
+            templateUrl: localized.tokko + "tokko-search-result.html",
             controller: 'catalogController as vm',
           },
           "suc-section": {
@@ -101,7 +101,7 @@
         },
         views: {
           "content": {
-            templateUrl: localized.views + "catalogo.html",
+            templateUrl: localized.tokko + "tokko-search-result.html",
             controller: 'catalogController as vm',
           },
           "suc-section": {
@@ -139,7 +139,7 @@
           }
         },
         ncyBreadcrumb: {
-          label: TITULO.NUESTROS_EMPRENDIMIENTOS,
+          label: TITULO.EMPRENDIMIENTOS,
           parent: STATE.HO,
         },
       })
@@ -164,7 +164,7 @@
           }
         },
         ncyBreadcrumb: {
-          label: TITULO.OTROS_EMPRENDIMIENTOS,
+          label: TITULO.EMPRENDIMIENTOS,
           parent: STATE.HO,
         },
       })
@@ -218,7 +218,7 @@
           }
         },
         ncyBreadcrumb: {
-          label: 'Detalle de la Novedad',
+          label: 'Detalle',
           parent: STATE.NO,
         },
         deepStateRedirect: true,
@@ -229,10 +229,14 @@
         url: '/' + STATE.CO,
         views: {
           "header": {
+            templateUrl: localized.views + "contacto.html",
+            controller: 'sliderController'
+          },
+          "nav-section": {
             templateUrl: localized.views + "contact-section.html",
             controller: 'contactController as vm'
           },
-          "nav-section": {
+          "content": {
             templateUrl: localized.views + "suc-section.html",
             controller: 'sucSectionController as vm'
           },
@@ -291,7 +295,7 @@
         url: '/' + STATE.ADP,
         views: {
           "content": {
-            templateUrl: localized.views + "admProp.html",
+            templateUrl: localized.views + "adm-prop.html",
             controller: 'administracionController as vm',
           },
           "contact-section": {
@@ -339,6 +343,34 @@
         deepStateRedirect: true,
         onEnter: function() {}
       })
+      .state(STATE.OED, { //DOT Notation'OED':'oemprendimientos.detalle',
+        params: {
+          data: null,
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
+        },
+        url: '/:id',
+        views: {
+          "detalle@oemprendimientos": {
+            templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
+            controller: 'developmentsDetailsController as vm',
+          },
+          "sub-footer": {
+            templateUrl: localized.views + "sub-footer.html",
+            controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          }
+        },
+        ncyBreadcrumb: {
+          label: TITULO.DETPROP,
+          parent: STATE.OE,
+        },
+        deepStateRedirect: true,
+        sticky: true,
+        onEnter: function() {}
+      })
       .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
         params: {
           data: null,
@@ -360,13 +392,14 @@
           }
         },
         ncyBreadcrumb: {
-          label: TITULO.NUESTROS_EMPRENDIMIENTOS,
+          label: TITULO.DETPROP,
           parent: STATE.NE,
         },
         deepStateRedirect: true,
         sticky: true,
         onEnter: function() {}
       });
+
     // Use the HTML5 History API in order to prevent use of '#' in url path
     //$locationProvider.html5Mode(true);
   } // Fin function config

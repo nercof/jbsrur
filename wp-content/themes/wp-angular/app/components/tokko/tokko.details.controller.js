@@ -37,7 +37,7 @@
          *
          */
         function create() {
-
+            vm.openForm = false;
             // Generamos el modelo Propiedad
             if (!_.isEmpty($scope.data)) {
                 vm.propiedad = $scope.data;
@@ -49,6 +49,7 @@
                     vm.propiedad = data;
                     parseAndBuildGallery();
                 });
+
             }
 
             // Generamos el modelo ContactForm
@@ -70,6 +71,7 @@
         } // Fin create()
 
         function parseAndBuildGallery() {
+            vm.propiedad.tags = (vm.propiedad.tags.length === 0) ? false : vm.propiedad.tags;
             _.each(vm.propiedad.photos, function(photo) {
                 // Incorporamos la imagen a la gallery
                 if (!_.isEmpty(photo)) {
@@ -80,6 +82,10 @@
 
         $scope.openLightboxModal = function(index) {
             Lightbox.openModal(vm.galleryLightboxModal, index);
+        };
+
+        $scope.openForm = function() {
+            vm.openForm = !vm.openForm;
         };
     }
 })();

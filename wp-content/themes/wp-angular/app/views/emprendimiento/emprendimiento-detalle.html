@@ -1,13 +1,22 @@
+<div class="row bg-bordo ng-scope">
+  <div class="container">
+    <div ui-view='title'>
+      <h1 class="title">
+          <div ncy-breadcrumb ncy-breadcrumb-text-separator=" > "></div>
+      </h1>
+    </div>
+  </div>
+</div>
 <div class="detalle-emprendimiento" ng-if="vm.emprendimiento">
     <div class="bg-white">
         <div class="container">
             <div class="col-sm-12 col-xs-12 col">
-                <h1>
-                    <div class="round-border">
-                        <i class="glyphicon glyphicon-home"></i>
-                    </div>
-                    {{vm.emprendimiento.title.rendered}}
-                </h1>
+              <h1>
+                  <div class="round-border">
+                      <i class="af-house-2"></i>
+                  </div>
+                  {{vm.emprendimiento.title.rendered}}
+              </h1>
             </div>
         </div>
         <div>
@@ -18,25 +27,29 @@
         <div class="container">
             <div class="col-sm-12 col-xs-12">
                 <div class="col-sm-6 col-xs-12">
+                    <h2><i class="typcn typcn-location-outline"></i> Ubicación</h2>
                     <ng-map class="mapa" center="[{{vm.emprendimiento.geo_lat}}, {{vm.emprendimiento.geo_long}}]">
                         <marker position="{{vm.emprendimiento.geo_lat}}, {{vm.emprendimiento.geo_long}}"></marker>
                     </ng-map>
+                    <div class="col-sm-12 col-xs-12 referencia tel" ng-if="vm.emprendimiento.suc_nombre && vm.emprendimiento.suc_telefo">
+                        <div> <i class="typcn typcn-phone"></i> Centro de atención: {{vm.emprendimiento.suc_nombre}}
+                          <span ng-if="vm.emprendimiento.suc_telefo && vm.emprendimiento.suc_nombre"> - </span>
+                          {{vm.emprendimiento.suc_telefo}}
+                        </div>
+                    </div>
                     <div class="col-sm-12 col-xs-12" id="contacto">
-                        <h2><i class="typcn typcn-user"></i>Contacto</h2>
-                        <!-- @import: Contact Form 7 plugin  -->
-                        <div id="jbsrur_contact_form"></div>
-                    </div>
-                    <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.emprendimiento['wpcf-codigo-de-referencia']">
-                        Código de referencia: {{vm.emprendimiento['wpcf-codigo-de-referencia']}}
-                    </div>
-                    <div class="col-sm-12 col-xs-12 referencia" ng-if="vm.emprendimiento.suc_nombre && vm.emprendimiento.suc_telefo">
-                        <div>Centro de atención: {{vm.emprendimiento.suc_nombre}} {{vm.emprendimiento.suc_telefo}}</div>
+                      <h2 ng-click="openForm()"><i class="typcn typcn-user"></i>Contacto</h2>
+                      <!-- @import: Contact Form 7 plugin  -->
+                      <div id="jbsrur_contact_form" ng-class="{ 'open': vm.openForm}"></div>
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-xs-12 descripcion">
-                    <h2><i class="fa fa-hand-o-right"></i>Descripción</h2>
+                    <h2><i class="af-document"></i>Descripción</h2>
                     <p class="desc" ng-bind-html="vm.emprendimiento.content.rendered | to_trust"></p>
+                    <div class="referencia" ng-if="vm.emprendimiento['wpcf-codigo-de-referencia']">
+                      <div>Código de referencia: {{vm.emprendimiento['wpcf-codigo-de-referencia']}}</div>
+                    </div>
                 </div>
             </div>
 
@@ -46,7 +59,7 @@
                     <div ng-if="vm.gallery" class="gallery">
                         <div class="col-xs-4 col-md-4 col" ng-repeat="imagen in vm.gallery" >
                             <a ng-click="openLightboxModal($index)">
-                                <img src="{{imagen.full}}" alt="...">
+                                <div class="img" style="background-image: url('{{imagen.full}}')"></div>
                             </a>
                         </div>
                     </div>

@@ -1,6 +1,15 @@
+<div class="row bg-bordo ng-scope">
+  <div class="container">
+    <div ui-view='title'>
+      <h1 class="title">
+          <div ncy-breadcrumb ncy-breadcrumb-text-separator=" > "></div>
+      </h1>
+    </div>
+  </div>
+</div>
 <div class="bg-white detalle-news " ng-if="vm.novedad">
     <div class="pic" style="background-image: url('{{vm.novedad.full}}')"></div>
-    <div class="bg-bordo">
+    <div class="bg-red">
         <div class="container">
             <div class="col-sm-12 col-xs-12">
                 <h1>{{vm.novedad.title.rendered}}</h1>
