@@ -1,4 +1,4 @@
-'use strict';;
+'use strict';
 (function() {
     var underscore = angular.module('underscore', []);
     underscore.factory('_', ['$window', function($window) {
@@ -18,6 +18,7 @@
         'ngResource',             // Load this module in order to use $resource.
         'ngStorage',              // Load this module in order to use $localStorage & $sessionStorage
         'ncy-angular-breadcrumb', // Load this module in order to use $breadcrumb
+        'angularUtils.directives.dirPagination',
     ])
 
     // Para poder visualizar el $state en las vistas.
@@ -26,7 +27,7 @@
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.$storage = $localStorage;
-        }
+    }
     ])
 
     // Empleamos $localstorage para buscar las propiedades en caché

@@ -9,8 +9,6 @@
     angular
     .module('app.core')
     .filter('cf_tokko', function() {
-        //console.log("Custom filter: << i_query >>");
-
         /**
         * vm.prop_search = properties filtered
         *
@@ -21,8 +19,6 @@
             // Var for test
             var filtered = [];
             filtered = all_prop;
-            console.log("{<< all_prop >>}")
-            console.log(all_prop);
 
             // var words separate by space
             var value_search = [];
@@ -69,9 +65,7 @@
                             )// end return
                         }// end function prop
                     )
-                    console.log("{<< filtered >>}")
                     vm.prop_search = filtered;
-                    console.log(vm.prop_search);
                     return filtered;
                 }// end activate object current_localization_id if correspond
             }
@@ -116,8 +110,6 @@
                             _.intersection(bname, value_search).length === value_search.length &&
                             !_.contains(pController.current_localization_id, barrio)){
                                 pController.current_localization_id.push(barrio);
-                                console.log("{{{ ohm }}}");
-
                                 // Cortamos el loop
                                 return false;
                             }

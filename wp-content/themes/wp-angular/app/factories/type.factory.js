@@ -19,6 +19,7 @@
       'getEmprendimientos': getEmprendimientos,
       'getEmprendimientoById':getEmprendimientoById,
       'getPostsByContentType': getPostsByContentType,
+      'getPostsByContentTypeId': getPostsByContentTypeId,
       'getSucursales': getSucursales,
       'getQuienesSomos': getQuienesSomos,
       'getSucursal': getSucursal,
@@ -51,6 +52,10 @@
 
     function getPostsByContentType(typeUri) {
       return wordpressService.getRequest(BASE_WP_URL, typeUri, "");
+    }
+
+    function getPostsByContentTypeId(typeUri, id) {      
+      return wordpressService.getRequest(BASE_WP_URL, typeUri, id);
     }
 
     function listPosts() {

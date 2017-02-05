@@ -32,11 +32,16 @@
             var typeActive = [];
             var domiActive = [];
             var attEspActive = [];
+            var preFiltered = [];
 
             // Permite filtrar los que esten con estado false.
             typeActive      = parseTrue(vm.property_types_selected);
             domiActive      = parseTrue(vm.suite_amount_selected);
             attEspActive    = parseTrue(vm.attEspeciales_selected);
+
+            //console.log(typeActive);
+            //console.log(domiActive);
+            //console.log(attEspActive);
 
             // Sino hay nada para filtrar
             if (_.isEmpty(typeActive) && _.isEmpty(domiActive) && _.isEmpty(attEspActive)) {
@@ -56,16 +61,23 @@
                     filtered = all_prop;
                 }
 
-                // Dormitorios
-                filtered = _.filter(filtered, function(propiedad) {
-                    return _.some(domiActive, function(pdorm) {
-                        return propiedad.suite_amount == pdorm;
-                    });
-                });
+                // Almaceno el estado anterior.
+                preFiltered = filtered;
 
-                // Nada para filtrar con Tipo de Propiedad
-                if (_.isEmpty(filtered)) {
-                    filtered = all_prop;
+                if (!_.isEmpty(domiActive)) {
+                    // Dormitorios
+                    filtered = _.filter(filtered, function(propiedad) {
+                        return _.some(domiActive, function(pdorm) {
+                            return propiedad.suite_amount == pdorm;
+                        });
+                    });
+
+                    // Nada para filtrar con Tipo de Propiedad
+                    if (_.isEmpty(filtered)) {
+                        filtered = preFiltered;
+                    }else {
+                        preFiltered = filtered;
+                    }
                 }
 
                 // Atributos Especiales.
@@ -77,7 +89,7 @@
 
                 // Nada para filtrar con Tipo de Propiedad
                 if (_.isEmpty(filtered)) {
-                    filtered = all_prop;
+                    filtered = preFiltered;
                 }
             }
 
