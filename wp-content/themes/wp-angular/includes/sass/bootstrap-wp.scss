@@ -1,5 +1,4 @@
 @import url("../../node_modules/typicons.font/src/font/typicons.css");
-
 /*
 *
 * Here are a few needed CSS additions to integrate bootstrap truly into WordPress,
@@ -61,7 +60,10 @@ body {
       font-family: $font-normal;
       background-image: url('../images/bg.png');
       font-size: 10px;
-
+      .alert-info {
+	display:none;
+      }     
+      
       #masthead {
             height: 5px;
       }
@@ -191,6 +193,9 @@ body {
                         -ms-transform: scale(1, 1); /* IE 9 */
                         -webkit-transform: scale(1, 1); /* Safari */
                         transform: scale(1, 1);
+			&.search {
+				cursor:pointer;
+			}
 
                         &:hover {
                               -ms-transform: scale(1.1, 1.1); /* IE 9 */
