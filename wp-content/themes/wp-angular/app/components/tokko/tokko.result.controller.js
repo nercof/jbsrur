@@ -18,6 +18,19 @@
 
         // Read and Write
         $scope.$storage = $localStorage;
+        // Filtros auxiliares parte UI
+        vm.sortType = 'zona';
+        vm.property_types = [];
+        vm.suite_amount = [];
+        vm.zonas = [];
+        vm.attEspeciales = [];
+        vm.propSinAttEspeciales = [];
+
+        // Filtros auxiliares pare BE selection UI
+        vm.property_types_selected = [];
+        vm.suite_amount_selected = [];
+        vm.zonas_selected = [];
+        vm.attEspeciales_selected = [];
 
         // Variables auxiliares
         vm.spinner = true;
@@ -112,6 +125,10 @@
                 // Setear vm.currentParentState in all properties
                 setParentState();
 
+                // Create common objet for internal filter
+                // { property_types | suite_amount | localization_barrio_id }
+                createCommonObjectFilter();
+
                 // Variables auxiliares para el paginador.
                 vm.totalItems = vm.propiedades.length;
                 vm.spinner = false;
@@ -120,6 +137,73 @@
                 vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
             }
         }
+        /**
+        * Permite generar los objetos auxiliares para filtrar el resultado
+        * desde el catalogo resultado por los campos:
+        *
+        * { property_types | suite_amount | localization_barrio_id }
+        *
+        * @param {}
+        */
+        function createCommonObjectFilter() {
+            // Atributos Especiales { Baño | patio | cochera | ...}
+            // tags = { Patio | Balcón | Lavadero | Terraza  }
+            resourceFactory.query_array({id: 'att-especiales-filtro.json'},
+            function(data){
+                vm.attEspeciales = _.filter(data, function(attEspecial){
+                    return attEspecial.show == true;
+                });
+            });
+
+            // Recorro las propiedades del catalogo
+            _.each(vm.propiedades, function(propiedad) {
+                // Tipos de Propiedad
+                if (!_.where(vm.property_types, {
+                    'id': propiedad.type.id
+                }).length) {
+                    vm.property_types.push({
+                        id: propiedad.type.id,
+                        name: tokkoFactory.getNamePropertyTypes(propiedad.type.id)
+                    });
+                }
+
+                // Dormitorios
+                if (!_.where(vm.suite_amount, {
+                    'id': propiedad.suite_amount
+                }).length) {
+                    var nombre = tokkoFactory.getNameDormitorios(propiedad.suite_amount);
+                    if(propiedad.suite_amount > 0 && !_.isEqual(nombre, "Todos")){
+                        vm.suite_amount.push({
+                            id: propiedad.suite_amount,
+                            name: nombre
+                        });
+
+                    }
+                }
+
+                // Zonas
+                if (!_.contains(vm.zonas, propiedad.zona)) {
+                    vm.zonas.push(propiedad.zona);
+                }
+
+                // Atributos Especiales { Baño | patio | cochera | ...}
+                // Para identificar las propiedades sin attEspeciales
+                if(_.isEmpty(propiedad.tags)){
+                    vm.propSinAttEspeciales.push(propiedad);
+                }
+            });
+            // Ordenamos
+            vm.suite_amount = _.sortBy(vm.suite_amount, 'id');
+        }
+        /**
+        * F(x) que permite eliminar los filtros unchecked para que no quede el
+        * arreglo de la forma [2: false, 3: true] y siempre tengamos los true
+        *
+        */
+        vm.unchecked = function(){
+            console.log("unchecked()");
+        }
+
         /**
          * Overwrite parentState for all properties
          */

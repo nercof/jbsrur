@@ -62,7 +62,7 @@
                 }
 
                 // Almaceno el estado anterior.
-                preFiltered = filtered;
+                //preFiltered = filtered;
 
                 if (!_.isEmpty(domiActive)) {
                     // Dormitorios
@@ -73,23 +73,24 @@
                     });
 
                     // Nada para filtrar con Tipo de Propiedad
-                    if (_.isEmpty(filtered)) {
-                        filtered = preFiltered;
-                    }else {
-                        preFiltered = filtered;
-                    }
+                    //if (_.isEmpty(filtered)) {
+                    //    filtered = preFiltered;
+                    //}else {
+                    //    preFiltered = filtered;
+                    //}
                 }
-
-                // Atributos Especiales.
-                filtered = _.filter(filtered, function(propiedad) {
-                    return _.some(attEspActive, function(attEsp) {
-                        return _.where(propiedad.tags, {'id': parseInt(attEsp)}).length > 0 ;
+                if (!_.isEmpty(attEspActive)) {
+                    // Atributos Especiales.
+                    filtered = _.filter(filtered, function(propiedad) {
+                        return _.some(attEspActive, function(attEsp) {
+                            return _.where(propiedad.tags, {'id': parseInt(attEsp)}).length > 0 ;
+                        });
                     });
-                });
 
-                // Nada para filtrar con Tipo de Propiedad
-                if (_.isEmpty(filtered)) {
-                    filtered = preFiltered;
+                    // Nada para filtrar con Tipo de Propiedad
+                    //if (_.isEmpty(filtered)) {
+                    //    filtered = preFiltered;
+                    //}
                 }
             }
 
