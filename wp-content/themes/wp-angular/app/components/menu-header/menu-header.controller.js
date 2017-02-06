@@ -51,9 +51,7 @@
       });
     }
     $scope.openSearch = function() {
-      console.log($location.hash());
       $location.hash('searchForm');
-      console.log($location.hash());
       $anchorScroll();
       angular.element('#searchForm .advanced-search').addClass('active');
       angular.element('#searchForm #advanced-search').addClass('active');
