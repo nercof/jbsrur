@@ -12,10 +12,12 @@
             var mediasIds = [], i, self=this;
             var orderSlide = [];
             mediasIds = getMediasIds(posts);
+            $scope.posts = posts;
             $scope.medias = mediaFactory.getMediasByIds(mediasIds).then(function(medias){
                 $scope.medias = parseMedias(medias);
+
                 // Ordenando medias por nombre.
-                $scope.medias = sortByName($scope.medias, posts);                
+                $scope.medias = sortByName($scope.medias, posts);
             });
         });
 
@@ -30,11 +32,14 @@
             // Declaramos la variable.
             var orderSlide = [];
             var orden = '';
+            var post = {};
 
             _.each(medias, function(media){
                 orden = media.url.split('Slider-');
                 orden = orden[1].split('.');
-                media.caption = getContentPost(media.featured_media, posts);
+                post = getContentPost(media.featured_media, posts);
+                media.caption = post.content.rendered
+                media.link = post['wpcf-link'];
                 media.orden = orden[0];
             });
             orderSlide = _.sortBy(medias, 'orden');
@@ -48,11 +53,12 @@
         */
         function getContentPost(featured_media, posts){
             var caption;
-            caption = _.find(posts, function(post){
+            //caption = _.find(posts, function(post){
+            return _.find(posts, function(post){    
                 return post.featured_media == featured_media;
             });
 
-            return caption.content.rendered;
+            //return caption.content.rendered;
         }
 
         function getMediasIds(posts){

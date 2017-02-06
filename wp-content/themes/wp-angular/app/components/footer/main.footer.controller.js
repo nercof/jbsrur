@@ -47,7 +47,13 @@
                     vm.items = response.items;
 
                     _.each(vm.items, function (item) {
-                        item.urlFooter =  item.url;
+                        //item.urlFooter =  item.url;
+                        if(item.url==vm.nemprendimientos){
+                            item.urlFooter = 'emprendimientos-propios';
+                        }
+                        else{
+                            item.urlFooter =  item.url;
+                        }
                     });
 
             });

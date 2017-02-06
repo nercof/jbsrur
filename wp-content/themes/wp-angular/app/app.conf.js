@@ -14,6 +14,7 @@
         'NE':'nemprendimientos',
         'OE':'oemprendimientos',
         'NED':'nemprendimientos.detalle',
+        'OED':'oemprendimientos.detalle',
         'NO':'novedades',
         'NOD':'novedades.detalle',
         'CO':'contacto',
@@ -29,7 +30,14 @@
         'CATALOGO_ALQUILER': 'Alquileres',
         'CATALOGO_VENTA': 'Ventas',
         'NUESTROS_EMPRENDIMIENTOS': 'Emprendimientos propios',
+        'EMPRENDIMIENTOS': 'Emprendimientos',
         'OTROS_EMPRENDIMIENTOS': 'Otros Emprendimientos',
-        'NUESTROS_EMPRENDIMIENTOS_DETALLE': "Detalle del Emprendimiento",
+        'HOME':'Home page',
+        'QSOM':'Quiénes Somos',
+        'NOV': 'Novedades',
+        'CONTACTO':'Contacto',
+        'PROPIEDAD': 'Propiedades',
+        'ADP': 'Administración de Propiedades',
+        'DETPROP': 'Detalle',
     });
 })();

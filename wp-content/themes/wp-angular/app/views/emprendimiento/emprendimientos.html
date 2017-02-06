@@ -14,7 +14,7 @@ $state.current.name == 'oemprendimientos'">
                     <i class="fa fa-spinner fa-spin"></i>
                 </div>
                 <div ng-if="vm.error">{{vm.error}}</div>
-                <a ui-sref="nemprendimientos.detalle({data: development , id:development.id})">
+                <a ui-sref="{{vm.urlEmprendimientos}}.detalle({data: development , id:development.id})">
                     <div class="col-sm-4 col-xs-12 pic" style="background-image: url('{{development.image}}')">
                     </div>
                     <div class="col-sm-8 col-xs-12 des">

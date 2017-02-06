@@ -15,7 +15,7 @@
 
             vm.title_view = '';
             vm.allDevelopments = [];
-            vm.nemprendimientos = STATE.NE;
+            vm.urlEmprendimientos = $state.current.name;
 
             // $storage support
             $scope.$storage = $localStorage;

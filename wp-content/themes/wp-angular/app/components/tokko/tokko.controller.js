@@ -56,9 +56,6 @@
 
                 if ($localStorage.prop_cache && $localStorage.prop_cache.length > 0) {
                     vm.prop_cache = $localStorage.prop_cache;
-
-                    // Limpiamos la lista de busquedas.
-                    $scope.$storage.prop_search = [];
                 }
                 else {
 
@@ -70,7 +67,6 @@
 
                         $scope.$storage = $localStorage.$default({
                             prop_cache: vm.prop_cache,
-                            prop_search: {},
                         });
                     });
                 }
@@ -112,9 +108,7 @@
                 var propSinZona = [];
 
                 _.each(propiedades, function (propiedad) {
-                    //console.log(propiedad);
                     nombreZona = _.find(vm.barrios, function (barrio) {
-                        //return _.isEqual(barrio.name, propiedad.barrio);
                         return _.isEqual(barrio.name, propiedad.location.name);
                     });
 
@@ -130,7 +124,7 @@
                     }
                     propiedad.barrio = propiedad.location.name;
                 });
-                console.log(propSinZona);
+                //console.log(propSinZona);
             }
             /**
             * Permite filtrar elementos del tipo

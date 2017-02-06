@@ -9,13 +9,14 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes();?> ng-app="jbsrurApp">
 <head>
-	<base href="/">
+
+    <base href="/">
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
-
+	<base href="<?php $url_info = parse_url( home_url() ); echo trailingslashit( $url_info['path'] ); ?>">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDrl-z2weSfa5LQl34kkacL2ucsPhrNrgU"
@@ -65,7 +66,10 @@ type="text/javascript"></script>
 							<ul class="nav navbar-nav" id="main-menu">
 								<li class="menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="item in items"
 								ng-class="{ 'menu-item-has-children': item.children, 'dropdown': item.children }">
-									<a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item" ng-if="!item.children">{{item.title}}
+									<a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item" ng-if="!item.children && !item.search">{{item.title}}
+										<i class="fa {{item.icon}}" ng-if="item.icon"></i>
+									</a>
+									<a title="{{item.title}}"  class="menu-item search" ng-if="item.search" ng-click="openSearch()">{{item.title}}
 										<i class="fa {{item.icon}}" ng-if="item.icon"></i>
 									</a>
 									<a title="{{item.title}}" class="menu-item" ng-if="item.children"

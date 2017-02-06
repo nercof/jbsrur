@@ -154,6 +154,10 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 get_template_directory_uri() .'/node_modules/underscore/underscore-min.js');
 
                 wp_enqueue_script(
+                'ng-text-truncate',
+                get_template_directory_uri() .'/includes/js/ng-text-truncate.js');
+
+                wp_enqueue_script(
                 'ng-map',
                 get_template_directory_uri() .'/node_modules/ngmap/build/scripts/ng-map.js');
 
@@ -170,11 +174,21 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.js');
 
                 wp_enqueue_script(
+                'angular-breadcrumb',
+                get_template_directory_uri() .'/node_modules/angular-breadcrumb/dist/angular-breadcrumb.js');
+
+                wp_enqueue_script(
+                'angular-utils-pagination',
+                get_template_directory_uri() .'/node_modules/angular-utils-pagination/dirPagination.js');
+
+
+                wp_enqueue_script(
                 'app',
                 get_stylesheet_directory_uri() . '/app/app.js',
                 array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map',
                 'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls',
-            'angular-bootstrap-lightbox'));
+                'angular-bootstrap-lightbox', 'angular-utils-pagination',
+                'angular-breadcrumb'));
 
                 wp_enqueue_script(
                 'routes',
@@ -289,6 +303,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
+                array( 'core', 'factories' ));
+
+                wp_enqueue_script(
+                'cf_psearch',
+                get_stylesheet_directory_uri() . '/app/filters/cf_psearch.js',
                 array( 'core', 'factories' ));
 
                 wp_enqueue_script(
@@ -412,7 +431,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                     'novedad' => ['wpcf-destacada', 'wpcf-encabezado', 'wpcf-tipo-de-novedad'],
                     'emprendimiento' => ['wpcf-latitud-y-longitud', 'wpcf-encabezado', 'wpcf-slider', 'wpcf-portada', 'wpcf-sucursal', 'wpcf-codigo-de-referencia'],
                     'sucursal' => ['wpcf-latitud-y-longitud', 'wpcf-telefono', 'wpcf-direccion', 'wpcf-email', 'wpcf-galeria-0'],
-                    'pagina' => ['wpcf-valores']
+                    'pagina' => ['wpcf-valores'],
+                    'post' => ['wpcf-link'],
                 );
                 foreach ($custom_fields as $custom_type => $fields) {
                     foreach ($fields as $key => $field) {

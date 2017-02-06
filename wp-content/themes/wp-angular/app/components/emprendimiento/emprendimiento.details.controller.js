@@ -38,6 +38,7 @@
         */
         function create() {
             // Generamos el modelo Propiedad
+            vm.openForm = false;
             if (!_.isEmpty($stateParams.data)) {
                 vm.emprendimiento = $stateParams.data;
                 // Parse lat-long desde el dato de la API
@@ -80,7 +81,12 @@
 
         $scope.openLightboxModal = function (index) {
             Lightbox.openModal(vm.galleryLightboxModal, index);
-          };
+        };
+
+        $scope.openForm = function() {
+            console.log(vm.openForm);
+            vm.openForm = !vm.openForm;
+        };
 
         /**
         *

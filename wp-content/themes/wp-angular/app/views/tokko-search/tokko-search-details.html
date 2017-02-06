@@ -1,64 +1,70 @@
+<div class="row bg-bordo ng-scope">
+  <div class="container">
+    <div ui-view='title'>
+      <h1 class="title">
+          <div ncy-breadcrumb ncy-breadcrumb-text-separator=" > "></div>
+      </h1>
+    </div>
+  </div>
+</div>
 <div class="row detalle bg-white" ng-if="vm.propiedad">
     <div class="container">
         <div class="col-sm-12 col-xs-12 col">
             <h1>
                 <div class="round-border">
-                    <i class="glyphicon glyphicon-home"></i>
+                    <i class="af-house-2"></i>
                 </div>
                 {{vm.propiedad.fake_address}}
             </h1>
         </div>
         <div class="col-sm-12 col-xs-12">
-            <div class="col-sm-6 col-xs-12 galeria">
-                <div uib-carousel interval="5000" active="active" ng-if="vm.propiedad.photos">
+            <div class="col-sm-6 col-xs-12">
+                <div class="galeria" uib-carousel interval="5000" active="active" ng-if="vm.propiedad.photos">
                     <div uib-slide ng-repeat="photo in vm.propiedad.photos" active="active" index="$index">
                         <a ng-click="openLightboxModal($index)">
-                            <img ng-src="{{photo.image}}">
+                            <div class="img" style="background-image: url('{{photo.image}}')"></div>
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-xs-6">
+                <h2><i class="typcn typcn-location-outline"></i> Ubicación</h2>
                 <ng-map class="mapa" center="[{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}]">
                     <marker position="{{vm.propiedad.geo_lat}}, {{vm.propiedad.geo_long}}"></marker>
                 </ng-map>
             </div>
-            <div class="col-sm-6 col-xs-6">
+            <div class="col-sm-6 col-xs-6 descripcion">
+              <h2>{{vm.propiedad.type.name}}<span ng-if="vm.propiedad.type.name && vm.propiedad.location.name"> en </span>{{vm.propiedad.location.name}}</h2>
+              <p><pre ng-text-truncate="vm.propiedad.description"
+                ng-tt-words-threshold="100"
+                ng-tt-more-label="+"
+                ng-tt-less-label="-"></pre></p>
             </div>
-        </div>
-        <div class="col-sm-12 col-xs-12">
-            <div class="col-sm-6 col-xs-12 descripcion">
-                <!--<h2> <i class="typcn typcn-clipboard"></i>Descripción</h2> -->
-                <p><pre>{{vm.propiedad.description}}</pre></p>
-            </div>
-            <div class="col-sm-6 col-xs-12" id="contacto">
-                <h2><i class="typcn typcn-user"></i>Contacto</h2>
-                <!-- @import: Contact Form 7 plugin  -->
-                <div id="jbsrur_contact_form"></div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-xs-12">
-            <h2><i class="typcn typcn-pin"></i>Principales características</h2>
-        </div>
-        <div class="col-sm-12 col-xs-12" >
-            <div class="caracteristicas row col-sm-12">
-                <div class="col-sm-3" ng-repeat="tag in vm.propiedad.tags">
-                    <i class="typcn typcn-plus"></i>{{tag.name}}
-                </div>
-                <div class="col-sm-3" ng-if="vm.propiedad.suite_amount">
-                    <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s
-                </div>
-                <div class="col-sm-3" ng-if="vm.propiedad.bathroom_amount">
-                    <i class="typcn typcn-plus"></i>{{vm.propiedad.bathroom_amount}} Baño/s
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-xs-12">
-            <div class="col-sm-6 col-xs-12 referencia" ng-if="vm.propiedad.reference_code">
+            <div class="col-sm-6 col-xs-6 referencia" ng-if="vm.propiedad.reference_code">
                 <div>Código de referencia: {{vm.propiedad.reference_code}}</div>
             </div>
-            <div class="col-sm-6 col-xs-12 referencia" ng-if="vm.propiedad.branch.phone">
-                <div>Centro de atención: {{vm.propiedad.branch.name}} {{vm.propiedad.branch.phone}}</div>
+            <div class="col-sm-6 col-xs-6 content-car" ng-if="vm.propiedad.tags">
+                <h2><i class="typcn typcn-pin"></i>Principales características</h2>
+                <div class="caracteristicas row col-sm-12">
+                    <div class="col-sm-6" ng-repeat="tag in vm.propiedad.tags">
+                        <i class="typcn typcn-plus"></i>{{tag.name}}
+                    </div>
+                    <div class="col-sm-6" ng-if="vm.propiedad.suite_amount">
+                        <i class="typcn typcn-plus"></i>{{vm.propiedad.suite_amount}} Dormitorio/s
+                    </div>
+                    <div class="col-sm-6" ng-if="vm.propiedad.bathroom_amount">
+                        <i class="typcn typcn-plus"></i>{{vm.propiedad.bathroom_amount}} Baño/s
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12 referencia tel" ng-if="vm.propiedad.branch.phone">
+                <div> <i class="typcn typcn-phone"></i> Centro de atención: {{vm.propiedad.branch.name}}
+                  <span ng-if="vm.propiedad.branch.phone && vm.propiedad.branch.name"> - </span>
+                  {{vm.propiedad.branch.phone}}
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12" id="contacto">
+                <h2 ng-click="openForm()"><i class="typcn typcn-user"></i>Contacto</h2>
+                <!-- @import: Contact Form 7 plugin  -->
+                <div id="jbsrur_contact_form" ng-class="{ 'open': vm.openForm}"></div>
             </div>
         </div>
     </div>
