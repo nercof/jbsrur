@@ -43,7 +43,7 @@ type="text/javascript"></script>
 </header><!-- #masthead -->
 
 <nav class="site-navigation">
-<?php  $url_actual = home_url( add_query_arg( array() ) );// substitute the class "container-fluid" below if you want a wider content area ?>
+<?php // substitute the class "container-fluid" below if you want a wider content area ?>
 	<div class="container">
 		<div class="row">
 			<div class="site-navigation-inner col-sm-12">
