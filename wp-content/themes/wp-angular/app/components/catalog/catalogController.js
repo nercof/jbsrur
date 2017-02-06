@@ -119,7 +119,10 @@
 
 
             } // fin activate()
-
+            vm.pageChanged = function() {
+                $location.hash('top');
+                $anchorScroll();
+            };
             /**
             * Overwrite parentState for all properties
             */

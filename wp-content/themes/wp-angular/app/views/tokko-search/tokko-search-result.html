@@ -77,10 +77,11 @@
           </div>
         </div>
         <div class="col-sm-12 col-xs-12 paginador" ng-if="vm.propiedades">
-          <dir-pagination-controls boundary-links="true"
-            on-page-change="pageChangeHandler(newPageNumber)"
-                ng-if="1 < pages.length || !autoHide"
-            template-url="wp-content/themes/wp-angular/app/views/dirPagination.tpl.html"></dir-pagination-controls>
+          <dir-pagination-controls
+            boundary-links="true"
+            ng-if="1 < pages.length || !autoHide"
+            template-url="wp-content/themes/wp-angular/app/views/dirPagination.tpl.html">
+          </dir-pagination-controls>
           </div>
         </div>
       </div>
