@@ -43,7 +43,7 @@ type="text/javascript"></script>
 </header><!-- #masthead -->
 
 <nav class="site-navigation">
-<?php // substitute the class "container-fluid" below if you want a wider content area ?>
+<?php  $url_actual = home_url( add_query_arg( array() ) );// substitute the class "container-fluid" below if you want a wider content area ?>
 	<div class="container">
 		<div class="row">
 			<div class="site-navigation-inner col-sm-12">
@@ -66,7 +66,10 @@ type="text/javascript"></script>
 							<ul class="nav navbar-nav" id="main-menu">
 								<li class="menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="item in items"
 								ng-class="{ 'menu-item-has-children': item.children, 'dropdown': item.children }">
-									<a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item" ng-if="!item.children">{{item.title}}
+									<a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item" ng-if="!item.children && !item.search">{{item.title}}
+										<i class="fa {{item.icon}}" ng-if="item.icon"></i>
+									</a>
+									<a title="{{item.title}}"  class="menu-item search" ng-if="item.search" ng-click="openSearch()">{{item.title}}
 										<i class="fa {{item.icon}}" ng-if="item.icon"></i>
 									</a>
 									<a title="{{item.title}}" class="menu-item" ng-if="item.children"
