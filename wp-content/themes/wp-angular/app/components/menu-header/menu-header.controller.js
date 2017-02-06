@@ -2,9 +2,8 @@
 ;(function(){
   angular
   .module('app.core')
-  .controller('menuHeaderController', function($scope, menuFactory, _, STATE){
+  .controller('menuHeaderController', function($scope, $window, $location, $state, menuFactory, _, $anchorScroll, STATE){
     getMenuItems(STATE);
-
     //#search
 
     function getMenuItems(pState) {
@@ -45,8 +44,17 @@
         if(e.url === '#search'){
           e.icon = 'fa-search';
           e.title = '';
+          e.url = '#searchForm';
+          e.search = true;
+
         }
       });
     }
+    $scope.openSearch = function() {
+      $location.hash('searchForm');
+      $anchorScroll();
+      angular.element('#searchForm .advanced-search').addClass('active');
+      angular.element('#searchForm #advanced-search').addClass('active');
+    };
   });
 }());

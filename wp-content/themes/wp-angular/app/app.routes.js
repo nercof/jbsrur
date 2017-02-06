@@ -58,6 +58,10 @@
             templateUrl: localized.views + "quienes-somos.html",
             controller: 'quienesSomosController as vm'
           },
+          "suc-section": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
+          },
           "sub-footer": {
             templateUrl: localized.views + "sub-footer.html",
             controller: 'sucSectionController as vm'
@@ -150,11 +154,11 @@
           category: 18,
         },
         views: {
-          "content": {
+          "contact-section": {
             templateUrl: localized.views + "emprendimiento/emprendimientos.html",
             controller: 'emprendimientoController as vm',
           },
-          "sub-footer": {
+          "second-footer": {
             templateUrl: localized.views + "sub-footer.html",
             controller: 'sucSectionController as vm'
           },
@@ -305,6 +309,10 @@
           "sub-footer": {
             templateUrl: localized.views + "sub-footer.html",
             controller: 'sucSectionController as vm'
+          },
+          "main-footer": {
+            templateUrl: localized.tokko + "tokko-search-input.html",
+            controller: 'tokkoController as vm'
           }
         },
         ncyBreadcrumb: {
