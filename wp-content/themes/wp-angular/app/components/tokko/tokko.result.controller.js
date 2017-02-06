@@ -171,6 +171,7 @@
             */
             //$localStorage.prop_search = (_.isEmpty($localStorage.prop_search)) ? vm.propiedades : $localStorage.prop_search;
             $scope.$storage.prop_search = vm.propiedades;
+            $scope.$storage.$apply();
         }
 
         /**

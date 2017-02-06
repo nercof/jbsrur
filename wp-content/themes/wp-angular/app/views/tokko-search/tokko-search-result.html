@@ -19,7 +19,31 @@
           <i class="fa fa-spinner fa-spin"></i>
         </div>
         <div ng-if="vm.error">{{vm.error}}</div>
-        <div class="col-md-3 card" ng-repeat="propiedad in vm.properties" ng-class-odd="'odd'">
+        <div class="alert alert-info">
+          <h2>Filtros Aplicados:</h2>
+          <p>Sort Type: {{ vm.sortType }}</p>
+          <div class="row">
+            <div class="col-sm-4 col-xs-6 step step-list">
+              <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.property_types">
+                <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}" ng-change="vm.unchecked()" ng-model="vm.property_types_selected[tipo_propiedad.id]">
+                <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span  ng-class="{ 'active': vm.operation_types[0] ||  vm.operation_types[1] }" >{{tipo_propiedad.name}}</span></label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-6 step step-list">
+              <div class="checkbox checkbox-primary" ng-repeat="dormitorio in vm.suite_amount">
+                <input type="checkbox" id="{{dormitorio.name + dormitorio.id}}+do" ng-change="vm.unchecked()" ng-model="vm.suite_amount_selected[dormitorio.id]">
+                <label for="{{dormitorio.name + dormitorio.id}}+do" name="{{dormitorio.name}}"><span>{{dormitorio.name}}</span></label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-3 step step-list">
+              <div class="checkbox checkbox-primary" ng-repeat="atributo in vm.attEspeciales">
+                <input type="checkbox" id="{{atributo.name + atributo.id}}" ng-change="vm.unchecked()" ng-model="vm.attEspeciales_selected[atributo.id]">
+                <label for="{{atributo.name + atributo.id}}" name="{{atributo.name}}"><span  ng-class="" >{{atributo.name}}</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 card" dir-paginate="propiedad in vm.propiedades | cf_psearch:vm | itemsPerPage: vm.itemsPerPage" current-page="vm.currentPage" ng-class-odd="'odd'">
           <div ng-if="vm.properties" class="inner-card">
             <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" class="thumb">
               <h2 ng-text-truncate="propiedad.fake_address"
@@ -53,11 +77,11 @@
           </div>
         </div>
         <div class="col-sm-12 col-xs-12 paginador" ng-if="vm.properties">
-          <ul uib-pagination boundary-links = true
-          total-items = "vm.totalItems" items-per-page = "vm.itemsPerPage"
-          ng-model="vm.currentPage" ng-change="vm.pageChanged()" boundary-links="true"
-          previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-          last-text="&raquo;" ></ul>
+          <dir-pagination-controls boundary-links="true"
+            on-page-change="pageChangeHandler(newPageNumber)"
+                ng-if="1 < pages.length || !autoHide"
+            template-url="wp-content/themes/wp-angular/app/views/dirPagination.tpl.html"></dir-pagination-controls>
+          </div>
         </div>
       </div>
     </div>

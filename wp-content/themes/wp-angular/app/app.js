@@ -1,4 +1,4 @@
-'use strict';;
+'use strict';
 (function() {
     var underscore = angular.module('underscore', []);
     underscore.factory('_', ['$window', function($window) {
