@@ -85,7 +85,7 @@
                         return oper.operation_type == $stateParams.type;
                     });
                 });
-
+                console.log(vm.allProperties);
                 if ($stateParams.type == TYPE.AL) {
                     vm.currentParentState = STATE.AL;
                 } else {
@@ -115,6 +115,8 @@
 
                 // Almacenamos el resultado de la búsqueda.
                 $scope.$storage.prop_search = vm.properties;
+                vm.propiedades = vm.allProperties;
+                console.log(vm.propiedades);
 
             } // fin activate()
 

@@ -15,7 +15,7 @@
   <div class="container">
     <div>
       <div class="col-sm-12 col-xs-12 propiedades">
-        <div ng-show="vm.spinner" class="spinner" ng-if="!vm.properties">
+        <div ng-show="vm.spinner" class="spinner" ng-if="!vm.propiedades">
           <i class="fa fa-spinner fa-spin"></i>
         </div>
         <div ng-if="vm.error">{{vm.error}}</div>
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="col-md-3 card" dir-paginate="propiedad in vm.propiedades | cf_psearch:vm | itemsPerPage: vm.itemsPerPage" current-page="vm.currentPage" ng-class-odd="'odd'">
-          <div ng-if="vm.properties" class="inner-card">
+          <div ng-if="vm.propiedades" class="inner-card">
             <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" class="thumb">
               <h2 ng-text-truncate="propiedad.fake_address"
                   ng-tt-chars-threshold="36"
@@ -76,7 +76,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-12 col-xs-12 paginador" ng-if="vm.properties">
+        <div class="col-sm-12 col-xs-12 paginador" ng-if="vm.propiedades">
           <dir-pagination-controls boundary-links="true"
             on-page-change="pageChangeHandler(newPageNumber)"
                 ng-if="1 < pages.length || !autoHide"

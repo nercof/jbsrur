@@ -18,7 +18,8 @@
         'ngResource',             // Load this module in order to use $resource.
         'ngStorage',              // Load this module in order to use $localStorage & $sessionStorage
         'ncy-angular-breadcrumb', // Load this module in order to use $breadcrumb
-        'ngTextTruncate'
+        'ngTextTruncate',
+        'angularUtils.directives.dirPagination'
     ])
 
     // Para poder visualizar el $state en las vistas.
