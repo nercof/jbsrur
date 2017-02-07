@@ -139,7 +139,7 @@
         }
 
         $scope.pageChanged = function() {
-            console.log("id paginador");
+            console.log("id paginador:");
             $location.hash('paginador');
             $anchorScroll();
         }
