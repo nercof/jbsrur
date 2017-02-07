@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 card" dir-paginate="propiedad in vm.propiedades | cf_psearch:vm | itemsPerPage: vm.itemsPerPage" current-page="vm.currentPage" ng-class-odd="'odd'">
+        <div class="col-md-3 card" id="paginador" dir-paginate="propiedad in vm.propiedades | cf_psearch:vm | itemsPerPage: vm.itemsPerPage" current-page="vm.currentPage" ng-class-odd="'odd'">
           <div ng-if="vm.propiedades" class="inner-card">
             <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" class="thumb">
               <h2 ng-text-truncate="propiedad.fake_address"
@@ -79,6 +79,7 @@
         <div class="col-sm-12 col-xs-12 paginador" ng-if="vm.propiedades">
           <dir-pagination-controls
             boundary-links="true"
+            on-page-change="pageChanged()"
             ng-if="1 < pages.length || !autoHide"
             template-url="wp-content/themes/wp-angular/app/views/dirPagination.tpl.html">
           </dir-pagination-controls>

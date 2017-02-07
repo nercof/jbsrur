@@ -137,11 +137,13 @@
                 vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
             }
         }
+
         $scope.pageChanged = function() {
-            console.log("TOP");
-            $location.hash('top');
+            console.log("id paginador");
+            $location.hash('paginador');
             $anchorScroll();
-        };
+        }
+
         /**
         * Permite generar los objetos auxiliares para filtrar el resultado
         * desde el catalogo resultado por los campos:
