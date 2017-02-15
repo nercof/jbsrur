@@ -35,7 +35,6 @@
 
             // Recorremos las sucursales y obtenemos los id.media
             _.each(vm.sucursales, function (sucursal) {
-
                 // Buscamos las imagenes en la WP
                 mediaFactory.getMedia(sucursal.featured_media).then(function(data){
                     sucursal.img = data.source_url;
