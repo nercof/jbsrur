@@ -178,11 +178,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 get_template_directory_uri() .'/node_modules/angular-breadcrumb/dist/angular-breadcrumb.js');
 
                 wp_enqueue_script(
-                'angular-utils-pagination',
-                get_template_directory_uri() .'/node_modules/angular-utils-pagination/dirPagination.js');
-
-
-                wp_enqueue_script(
                 'app',
                 get_stylesheet_directory_uri() . '/app/app.js',
                 array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map',
@@ -334,6 +329,11 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'tokko-service',
                 get_stylesheet_directory_uri() . '/app/services/tokko.service.js',
                 array( 'services' ));
+
+                wp_enqueue_script(
+                'angular-utils-pagination',
+                get_template_directory_uri() .'/app/services/dirPagination.js');
+
 
                 wp_enqueue_script(
                 'factories',
