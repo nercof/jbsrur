@@ -60,10 +60,7 @@ body {
       font-family: $font-normal;
       background-image: url('../images/bg.png');
       font-size: 10px;
-      .alert-info {
-	display:none;
-      }     
-      
+
       #masthead {
             height: 5px;
       }
@@ -2029,5 +2026,48 @@ body {
       }
       .modal-body {
             padding: 30px;
+      }
+      .filtro {
+            background-color: $bordo;
+            color: $white;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            h2 {
+                  text-transform: uppercase;
+                  font-family: $font-titles;
+                  font-size: 1.5em;
+                  padding: 1em;
+                  padding-bottom: 0;
+                  font-weight: bold;
+            }
+            .checkbox {
+                display: block;
+                margin: 10px 5px;
+                input[type="checkbox"] {
+                      display:none;
+                      &+ label span{
+                           display:inline-block;
+                           width:20px;
+                           height:20px;
+                           margin: -1px 15px 0 0;
+                           vertical-align:middle;
+                           background-image: url('../images/checkbox.png');
+                           cursor:pointer;
+
+                           &:hover {
+                                  background-image: url('../images/checkbox-active-bordo.png');
+                           }
+                      }
+                      &:checked + label span{
+                           background-image: url('../images/checkbox-active-bordo.png');
+                      }
+                }
+                label {
+                      vertical-align: middle;
+                      cursor: pointer;
+                      font-family: $font-titles;
+                }
+
+            }
       }
 }

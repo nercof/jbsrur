@@ -53,6 +53,8 @@
     $scope.openSearch = function() {
       $location.hash('searchForm');
       $anchorScroll();
+      angular.element('#searchForm .tab-pane').removeClass('active');
+      angular.element('#searchForm .search-tab').removeClass('active');
       angular.element('#searchForm .advanced-search').addClass('active');
       angular.element('#searchForm #advanced-search').addClass('active');
     };

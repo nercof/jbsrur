@@ -171,6 +171,11 @@
                 $state.go('propiedades.detalle', { id: item.id });
             }
 
+            vm.openTab = function(id) {
+              angular.element('#searchForm .tab-pane').removeClass('active');
+              angular.element('#searchForm ' + id).addClass('active');
+            };
+
             /**
             * searchFilter() permite redireccionar el flujo al estado
             * propiedad con la lista de propiedades filtradas por la

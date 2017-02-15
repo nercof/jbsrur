@@ -2,7 +2,7 @@
     <div class="container">
         <div id="searchForm">
             <ul class="nav nav-pills">
-                <li class="active col-md-6 search-tab global-search">
+                <li class="active col-md-6 search-tab global-search" ng-click="vm.openTab('global-search')">
                     <a data-target="#global-search" data-toggle="tab">
                         <div class="input-group">
                             <label>Buscar propiedades</label>
@@ -21,7 +21,7 @@
                         </div><!-- /input-group -->
                     </a>
                 </li>
-                <li class="col-md-6 search-tab advanced-search">
+                <li class="col-md-6 search-tab advanced-search" ng-click="vm.openTab('advanced-search')">
                     <a data-target="#advanced-search" data-toggle="tab">
                         <i class="glyphicon glyphicon-home"></i>
                         <label>Búsqueda Avanzada</label>
