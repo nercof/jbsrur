@@ -137,6 +137,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 //Load angular
                 wp_enqueue_script('angularjs', get_template_directory_uri() .'/node_modules/angular/angular.min.js');
 
+                wp_enqueue_script('contact', 'http://jbsrur:8080/wp-content/plugins/contact-form-7/includes/js/scripts.js');
+
                 wp_enqueue_script(
                 'angular-ui-router',
                 get_template_directory_uri() .'/node_modules/angular-ui-router/release/angular-ui-router.js');

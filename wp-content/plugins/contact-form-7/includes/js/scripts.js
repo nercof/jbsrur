@@ -11,6 +11,7 @@
 	}, _wpcf7);
 
 	$.fn.wpcf7InitForm = function() {
+		console.log('form contact init');
 		this.ajaxForm({
 			beforeSubmit: function(arr, $form, options) {
 				$form.wpcf7ClearResponseOutput();
