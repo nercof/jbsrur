@@ -7,7 +7,7 @@
     </div>
   </div>
 </div>
-<div class="row detalle bg-white" ng-if="vm.propiedad">
+<div class="detalle bg-white" ng-if="vm.propiedad">
     <div class="container">
         <div class="col-sm-12 col-xs-12 col">
             <h1>
@@ -56,7 +56,8 @@
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12 referencia tel" ng-if="vm.propiedad.branch.phone">
-                <div> <i class="typcn typcn-phone"></i> Centro de atención: {{vm.propiedad.branch.name}}
+                <div><a href="tel:{{vm.propiedad.branch.phone}}" rel="nofollow"><i class="typcn typcn-phone"></a></i>
+                 Centro de atención: {{vm.propiedad.branch.name}}
                   <span ng-if="vm.propiedad.branch.phone && vm.propiedad.branch.name"> - </span>
                   {{vm.propiedad.branch.phone}}
                 </div>

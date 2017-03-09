@@ -85,7 +85,7 @@
                         return oper.operation_type == $stateParams.type;
                     });
                 });
-                console.log(vm.allProperties);
+
                 if ($stateParams.type == TYPE.AL) {
                     vm.currentParentState = STATE.AL;
                 } else {
@@ -116,10 +116,13 @@
                 // Almacenamos el resultado de la búsqueda.
                 $scope.$storage.prop_search = vm.properties;
                 vm.propiedades = vm.allProperties;
-                console.log(vm.propiedades);
+
 
             } // fin activate()
-
+            vm.pageChanged = function() {
+                $location.hash('top');
+                $anchorScroll();
+            };
             /**
             * Overwrite parentState for all properties
             */
@@ -164,10 +167,14 @@
                     if (!_.where(vm.suite_amount, {
                         'id': propiedad.suite_amount
                     }).length) {
-                        vm.suite_amount.push({
-                            id: propiedad.suite_amount,
-                            name: tokkoFactory.getNameDormitorios(propiedad.suite_amount)
-                        });
+                        var nombre = tokkoFactory.getNameDormitorios(propiedad.suite_amount);
+                        if(propiedad.suite_amount > 0 && !_.isEqual(nombre, "Todos")){
+                            vm.suite_amount.push({
+                                id: propiedad.suite_amount,
+                                name: nombre
+                            });
+
+                        }
                     }
 
                     // Zonas
@@ -181,7 +188,8 @@
                         vm.propSinAttEspeciales.push(propiedad);
                     }
                 });
-
+                // Ordenamos
+                vm.suite_amount = _.sortBy(vm.suite_amount, 'id');
             }
             /**
             * F(x) que permite eliminar los filtros unchecked para que no quede el
