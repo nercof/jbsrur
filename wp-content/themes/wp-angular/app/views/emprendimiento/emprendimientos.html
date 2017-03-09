@@ -9,7 +9,7 @@
     <div class="bg-grey">
         <div class="col-sm-12 col-xs-12 list container" id="emprendimientos">
             <div class="col-sm-12 col-xs-12 development" id="paginador"
-            dir-paginate="development in vm.allDevelopments | itemsPerPage: vm.itemsPerPage"
+            dir-paginate="development in vm.developments | itemsPerPage: vm.itemsPerPage"
             current-page="vm.currentPage" ng-class-odd="'odd'">
             <div ng-show="vm.spinner" class="spinner" ng-if="!vm.developments">
                 <i class="fa fa-spinner fa-spin"></i>

@@ -58,8 +58,8 @@
                         vm.spinner = false;
 
                         // Iniciamos las propiedades filtradas para la paginacion inicial.
-                        vm.totalItems = vm.allDevelopments.length;
-                        vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                        vm.totalItems = vm.developments.length;
+                        //vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
 
                         // test
                         console.log(vm.allDevelopments);
@@ -95,7 +95,7 @@
             function filter_category(category) {
 
                 vm.developments = _.filter(vm.allDevelopments, function (development) {
-                    // Array categories
+                // Array categories
                     return development.categories.indexOf(category) >= 0;
                 });
             }

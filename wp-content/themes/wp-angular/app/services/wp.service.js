@@ -12,7 +12,7 @@
     }
 
     function getRequest(url, tag, id) {
-      var requestUrl = url + tag + '/' + id;
+      var requestUrl = url + tag + '/' + id + '?per_page=100';
       return $http({
         'url': requestUrl,
         'method': 'GET',
