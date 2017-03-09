@@ -60,12 +60,6 @@
                         // Iniciamos las propiedades filtradas para la paginacion inicial.
                         vm.totalItems = vm.developments.length;
                         //vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-
-                        // test
-                        console.log(vm.allDevelopments);
-                        console.log(vm.developments);
-                        console.log(vm.totalItems)
-                        console.log(vm.itemsPerPage)
                     }
                 });
             } // fin activate()
