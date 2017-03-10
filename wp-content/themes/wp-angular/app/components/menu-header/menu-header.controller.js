@@ -41,6 +41,10 @@
 
     function setSearchIcon() {
       _.each($scope.items, function(e, i){
+        console.log(e);
+        if(e.url === "#contacto") {
+          e.contact = true;
+        }
         if(e.url === '#search'){
           e.icon = 'fa-search';
           e.title = '';

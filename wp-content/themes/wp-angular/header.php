@@ -66,7 +66,10 @@ type="text/javascript"></script>
 							<ul class="nav navbar-nav" id="main-menu">
 								<li class="menu-item menu-item-type-custom menu-item-object-custom" ng-repeat="item in items"
 								ng-class="{ 'menu-item-has-children': item.children, 'dropdown': item.children }">
-									<a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item" ng-if="!item.children && !item.search">{{item.title}}
+									<a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item" ng-if="!item.children && !item.search && !item.contact">{{item.title}}
+										<i class="fa {{item.icon}}" ng-if="item.icon"></i>
+									</a>
+									<a title="{{item.title}}" ui-sref="{{item.state}}" class="menu-item" ng-if="item.contact" target="_blank">{{item.title}}
 										<i class="fa {{item.icon}}" ng-if="item.icon"></i>
 									</a>
 									<a title="{{item.title}}"  class="menu-item search" ng-if="item.search" ng-click="openSearch()">{{item.title}}
