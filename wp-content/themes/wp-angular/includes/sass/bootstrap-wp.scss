@@ -1630,6 +1630,56 @@ body {
                         color: $black;
                   }
             }
+            .paginador {
+                  text-align: center;
+                  background: $bordo;
+                  margin: 30px 0;
+
+                  .pagination {
+                        margin: 20px auto;
+                        li {
+                              a {
+                                    background-color: $bordo;
+                                    color: $white;
+                                    border: 0;
+                                    font-family: $font-normal;
+                                    font-weight: bold;
+                                    border-radius: 50%;
+                                    margin: 0 5px;
+                                    &:hover{
+                                          color: $bordo;
+                                          background-color: $white-a;
+                                    }
+                              }
+                              &.disabled {
+                                    a {
+                                          color: $white-ab;
+                                          &:hover{
+                                                color: $white-ab;
+                                                background-color: $bordo;
+                                          }
+                                    }
+                              }
+                              &.active {
+                                    a {
+                                          color: $bordo;
+                                          background-color: $white-a;
+                                    }
+                              }
+                              &.pagination-first,
+                              &.pagination-prev,
+                              &.pagination-last,
+                              &.pagination-next {
+                                    a {
+                                          &:hover{
+                                                background-color: $bordo;
+                                                color: $white;
+                                          }
+                                    }
+                              }
+                        }
+                  }
+            }
       }
       .detalle-emprendimiento {
             background-color: $white;

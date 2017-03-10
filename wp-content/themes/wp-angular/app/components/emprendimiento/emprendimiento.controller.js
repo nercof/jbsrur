@@ -21,7 +21,7 @@
             $scope.$storage = $localStorage;
 
             // Empleadas para la paginacion de propiedades.
-            vm.totalItems = false;
+            vm.totalItems = 0;
             vm.currentPage = 1;
             vm.itemsPerPage = 6;
 
@@ -52,12 +52,14 @@
                         // Cargar la url de la imagen
                         setImages();
                         _short_description();
+
                         // Variables auxiliares para el paginador.
-                        vm.totalItems = vm.developments.length;
+
                         vm.spinner = false;
 
                         // Iniciamos las propiedades filtradas para la paginacion inicial.
-                        vm.developments = vm.developments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                        vm.totalItems = vm.developments.length;
+                        //vm.developments = vm.allDevelopments.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
                     }
                 });
             } // fin activate()
@@ -85,8 +87,9 @@
             * @param {int} category - id Categoria de emprendimiento
             */
             function filter_category(category) {
+
                 vm.developments = _.filter(vm.allDevelopments, function (development) {
-                    // Array categories
+                // Array categories
                     return development.categories.indexOf(category) >= 0;
                 });
             }
