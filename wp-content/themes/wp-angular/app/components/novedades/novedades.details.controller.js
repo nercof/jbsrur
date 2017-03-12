@@ -5,10 +5,10 @@
         .module('app.core')
         .controller('novedadesDetalleController', novedadesDetalleController);
 
-    novedadesDetalleController.$inject = ['$scope', 'mediaFactory', 'typeFactory', '$state', '$stateParams'];
+    novedadesDetalleController.$inject = ['$scope', 'mediaFactory', 'typeFactory', '$state', '$stateParams', '$anchorScroll'];
 
     /* @ngInject */
-    function novedadesDetalleController($scope, mediaFactory, typeFactory, $state, $stateParams) {
+    function novedadesDetalleController($scope, mediaFactory, typeFactory, $state, $stateParams, $anchorScroll) {
         var vm = this;
         console.log('<< Loading novedadesDetalleController >>');
 
@@ -23,6 +23,8 @@
             "3": "typcn typcn-calendar-outline",
             "4": "typcn typcn-lightbulb"
         };
+
+        $anchorScroll();
 
         activate();
 
