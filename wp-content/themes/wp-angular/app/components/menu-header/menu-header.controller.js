@@ -9,7 +9,7 @@
     function getMenuItems(pState) {
       menuFactory.getFormatMenu(2).then(function(response){
         $scope.items = response.items;
-        setSearchIcon();
+        formatMenu();
         setStateName(pState, $scope.items)
       });
     }
@@ -39,9 +39,8 @@
       }
     }
 
-    function setSearchIcon() {
+    function formatMenu() {
       _.each($scope.items, function(e, i){
-        console.log(e);
         if(e.url === "#contacto") {
           e.contact = true;
         }
