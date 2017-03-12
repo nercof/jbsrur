@@ -202,10 +202,11 @@
         },
       })
       .state(STATE.NOD, {
-        url: '/:id',
+        url: '/:slug',
         params: {
           data: null,
           title_view: 'TITULO NOVEDAD',
+          id: null
         },
         views: {
           "top@novedades": {
