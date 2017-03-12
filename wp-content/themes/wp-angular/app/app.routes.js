@@ -202,7 +202,7 @@
         },
       })
       .state(STATE.NOD, {
-        url: '/:slug',
+        url: '/:id/:slug',
         params: {
           data: null,
           title_view: 'TITULO NOVEDAD',
@@ -357,7 +357,7 @@
           data: null,
           title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
         },
-        url: '/:id',
+        url: '/:id/:slug',
         views: {
           "detalle@oemprendimientos": {
             templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
@@ -383,9 +383,9 @@
       .state(STATE.NED, { //DOT Notation'NED':'nemprendimientos.detalle',
         params: {
           data: null,
-          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE,
+          title_view: TITULO.NUESTROS_EMPRENDIMIENTOS_DETALLE
         },
-        url: '/:id',
+        url: '/:id/:slug',
         views: {
           "detalle@nemprendimientos": {
             templateUrl: localized.views + "emprendimiento/emprendimiento-detalle.html",
