@@ -31,7 +31,6 @@
             // Generamos el modelo Propiedad
             if (!_.isEmpty($stateParams.data)) {
                 vm.novedad = $stateParams.data;
-                console.log(vm.novedad);
             }
             else {
                 // Buscamos
@@ -42,7 +41,6 @@
                         if (!_.isEmpty(vm.novedad.foto.guid)) {
                             vm.novedad.full = vm.novedad.foto.media_details.sizes.full.source_url;
                         }
-                        console.log(vm.novedad);
                     });
                 });
             }

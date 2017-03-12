@@ -50,7 +50,6 @@
         */
         function create() {
 
-            console.log("SLIDE NOVEDADES", $stateParams.id);
             // Buscamos las novedades.
             typeFactory.getPostsByContentType("novedad").then(function(data) {
                 vm.novedades = data;
@@ -113,7 +112,7 @@
                 if (novedad.id !== parseInt($stateParams.id) ) {
                     if (novedad["wpcf-destacada"] === "1") {
                         destacadas.push(novedad);
-                    }else {
+                    } else {
                         vm.otras.push(novedad);
                     }
                 }
