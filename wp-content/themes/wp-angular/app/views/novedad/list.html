@@ -8,7 +8,7 @@
                         </div>
                     </div>
                     <div class="col-sm-8 col-xs-12 detalle">
-                        <h2>{{otra.title.rendered}}</h2>
+                        <h2><i class="{{ vm.iconos_format[otra['wpcf-tipo-de-novedad']] }}"></i>{{otra.title.rendered}}</h2>
                         <p ng-bind-html="otra['wpcf-encabezado'] | to_trust "></p>
                     </div>
                 </a>

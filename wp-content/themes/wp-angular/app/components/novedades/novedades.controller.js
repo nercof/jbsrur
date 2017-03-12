@@ -5,13 +5,13 @@
     .module('app.core')
     .controller('novedadesController', novedadesController);
 
-    novedadesController.$inject = ['typeFactory', '$scope', 'mediaFactory'];
+    novedadesController.$inject = ['typeFactory', '$scope', 'mediaFactory', '$stateParams'];
 
     /**
     * novedadesController: Gestión de últimos post con category:Novedades.
     *  - @view: content
     */
-    function novedadesController(typeFactory, $scope, mediaFactory) {
+    function novedadesController(typeFactory, $scope, mediaFactory, $stateParams) {
         var vm = this;
         vm.novedades = {};
         vm.slides = [];
@@ -109,10 +109,12 @@
             var destacadas = [];
 
             _.each(novedades, function(novedad, i){
-                if (novedad["wpcf-destacada"] === "1") {
-                    destacadas.push(novedad);
-                }else {
-                    vm.otras.push(novedad);
+                if (novedad.id !== parseInt($stateParams.id) ) {
+                    if (novedad["wpcf-destacada"] === "1") {
+                        destacadas.push(novedad);
+                    } else {
+                        vm.otras.push(novedad);
+                    }
                 }
             });
             return (destacadas);
