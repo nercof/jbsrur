@@ -48,6 +48,7 @@
                         cadena = [];
                         cadena.push(prop.fake_address.toLowerCase());
                         cadena.push(prop.address.toLowerCase());
+                        cadena.push(prop.real_address.toLowerCase());
                         cadena.push(prop.publication_title.toLowerCase());
                         cadena.push(prop.description.toLowerCase());
 
