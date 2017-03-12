@@ -16,6 +16,13 @@
         vm.novedad = {};
         vm.contact_form = {};
         vm.title_view = '';
+        // Cada tipo de post debe tener asociado un icono en la views.
+        vm.iconos_format = {
+            "1":"typcn typcn-camera-outline",
+            "2":"typcn typcn-video-outline",
+            "3": "typcn typcn-calendar-outline",
+            "4": "typcn typcn-lightbulb"
+        };
 
         activate();
 
@@ -24,6 +31,7 @@
             // Generamos el modelo Propiedad
             if (!_.isEmpty($stateParams.data)) {
                 vm.novedad = $stateParams.data;
+                console.log(vm.novedad);
             }
             else {
                 // Buscamos
@@ -34,6 +42,7 @@
                         if (!_.isEmpty(vm.novedad.foto.guid)) {
                             vm.novedad.full = vm.novedad.foto.media_details.sizes.full.source_url;
                         }
+                        console.log(vm.novedad);
                     });
                 });
             }
