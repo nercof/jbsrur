@@ -107,7 +107,6 @@
 
                 // Flujo de contingencia
                 // Objetivo: Sino tenemos nada en la cache vamos a buscar
-
                 if (_.isEmpty(vm.propiedades)) {
                     buscarPropiedadesTokkoAPIWithData(vm.data);
                 }
@@ -139,7 +138,6 @@
         }
 
         $scope.pageChanged = function() {
-            console.log("id paginador:");
             $location.hash('paginador');
             $anchorScroll();
         }
