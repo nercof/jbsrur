@@ -28,6 +28,7 @@
                 },
                 'cache': true
             }).then(function(response){
+                console.log('tokko',response.data)
                 return response.data;
             }).catch(dataServiceError);
         }

@@ -11,12 +11,12 @@
      */
     function tokkoResultController($scope, tokkoFactory, tokkoService, NgMap,
         resourceFactory, $stateParams, $state, $localStorage, STATE) {
+
         var vm = this;
         vm.data = {}
         vm.cache_propiedades_propiedades = {}
         vm.propiedadesPredictive = [];
-        vm.propiedades = {};
-        
+
         // Read and Write
         $scope.$storage = $localStorage;
 
@@ -28,11 +28,12 @@
         vm.attEspeciales = [];
         vm.propSinAttEspeciales = [];
 
-        // Filtros auxiliares pare BE selection UI
+        // models
         vm.property_types_selected = [];
         vm.suite_amount_selected = [];
         vm.zonas_selected = [];
         vm.attEspeciales_selected = [];
+        vm.propSinAttEspeciales = [];
 
         // Variables auxiliares
         vm.spinner = true;
@@ -73,57 +74,27 @@
         //destroyStorage();
 
         /**
-         * activate(): Buscador de propiedades, se instancia desde:
+         * activate(): buscador de propiedades
          *  - predictive search: tokkoController.searchFilter()
-         *    Solo se muestra el listado de propiedades filtradas por el filtro
+         *    solo se muestra el listado de propiedades filtradas por el filtro
          *    predictivo ingresado por el usuario.
          *
          *  - advanced search:tokkoController.searchTokko()
-         *    Primero busca las propiedades de la cache y sino encuentra, se
-         *    utiliza tokkoFactory para leer la API de TOKKO.
+         *    Muestra las propieades filtradas por el form
+         *
+         *  - refresh: muestra las ultimas propiedades filtradas, si el objeto está vacío
+         *    muestra todas.
          */
         function activate(vm) {
+
             // Parámetros de entrada
-            vm.data = $stateParams.data;
-            vm.cache_propiedades = $stateParams.cache;
-            vm.propiedadesPredictive = $stateParams.predictive;
+            vm.allProps = $stateParams.allProps;
+            vm.lastSearch = $stateParams.lastSearch;
+            vm.isSearch = $stateParams.isSearch;
 
-            // Si el estado actual es propiedad.detalle no realizar la búsqueda.
-            if (_.isEqual($state.current.name, STATE.PD) ||
-                _.isEqual($state.current.name, STATE.VE) ||
-                _.isEqual($state.current.name, STATE.AL) ) {
-                vm.propiedades = $scope.$storage.prop_search;
-            }
-            else if (_.isEqual($state.current.name, STATE.PO) &&
-                    !_.isEmpty(vm.propiedadesPredictive)) {
-                vm.propiedades = vm.propiedadesPredictive;
-            }
-            // Si el estado actual es propiedad y tengo datos <F5>
-            else if (_.isEqual($state.current.name, STATE.PO) &&
-                     !_.isEmpty($scope.$storage.prop_search)) {
-                vm.propiedades = $scope.$storage.prop_search;
-            }
-            else {
-                // Filtrar propiedades de acuerdo al <input> usuario.
-                vm.propiedades = filtrarPropiedades(vm.cache_propiedades);
-
-                // Flujo de contingencia
-                // Objetivo: Sino tenemos nada en la cache vamos a buscar
-                if (_.isEmpty(vm.propiedades)) {
-                    buscarPropiedadesTokkoAPIWithData(vm.data);
-                }
-            }
-
-            // Consultamos si es necesario almacenar el resultado de la
-            // busqueda en el storage.
-            isEmptyLocalStoragePropSearchSaveit();
-
-            // Estado del filtrado.
-            if (_.isEmpty(vm.propiedades)) {
-                vm.error = "No se encontraron propiedades.";
-            }
-            else {
-                // Setear vm.currentParentState in all properties
+            if ( !_.isEmpty(vm.lastSearch) ) {
+                //objeto lleno
+                vm.propiedades = vm.lastSearch;
                 setParentState();
 
                 // Create common objet for internal filter
@@ -139,7 +110,8 @@
             }
         }
 
-        $scope.pageChanged = function() {
+        vm.pageChanged = function() {
+            vm.setPagingData(vm.currentPage);
             $location.hash('paginador');
             $anchorScroll();
         }
@@ -234,18 +206,15 @@
         }
 
         /**
-         * Consultamos la API de Tokko para obtener propiedades con los filtros
-         * que el usuario selecciona y son pasados en pData.
+         * Consultamos la API de Tokko para obtener todas propiedades
          *
          * @param {Object} pData - Parametros input AdvancedSearchTokko.
          */
-        function buscarPropiedadesTokkoAPIWithData(pData) {
-
+        function buscarPropiedadesTokkoAPIWithData() {
             // Call factory to search Tokko properties.
-            tokkoFactory.getProperties(pData).then(function(response) {
-                if (response.objects.length > 0) {
-                    vm.propiedades = response.objects;
-                }
+            return tokkoFactory.getPropertyByCity().then(function(response) {
+                console.log(response.objects, 'allProp');
+                return response.objects;
             });
         }
 
