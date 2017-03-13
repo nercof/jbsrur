@@ -15,9 +15,11 @@
         vm.data = {}
         vm.cache_propiedades_propiedades = {}
         vm.propiedadesPredictive = [];
-
+        vm.propiedades = {};
+        
         // Read and Write
         $scope.$storage = $localStorage;
+
         // Filtros auxiliares parte UI
         vm.sortType = 'zona';
         vm.property_types = [];

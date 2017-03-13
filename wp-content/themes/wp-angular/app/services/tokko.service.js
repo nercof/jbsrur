@@ -24,7 +24,7 @@
                 'headers': {
                     'Content-Type': 'application/json',
                     'Authorization': key,
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
                 },
                 'cache': true
             }).then(function(response){

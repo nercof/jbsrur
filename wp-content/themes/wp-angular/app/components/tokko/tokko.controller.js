@@ -64,9 +64,6 @@
                         vm.prop_cache = response.objects;
                         // Vamos a mandar la caché de propiedades al $storage
                         // prop_cache: Todas las propiedades de Córdoba y alrededores
-                        console.log("@PROP.CACHE BY CITY");
-                        //http://tokkobroker.com/api/v1/property/?lang=es_ar&format=json&limit=400&key=8fe7f17376761bada8524d0a75c8937f8a4517b7
-                        console.log(vm.prop_cache);
 
                         $scope.$storage = $localStorage.$default({
                             prop_cache: vm.prop_cache,
@@ -98,7 +95,6 @@
                     // Parsear ruta resultado: Zona + Barrio en vez de full_location
                     parseLocation(vm.prop_cache);
                 });
-
             }// Fin activate
 
             /**
@@ -129,6 +125,7 @@
                 });
                 //console.log(propSinZona);
             }
+
             /**
             * Permite filtrar elementos del tipo
             * "operations": [{  "operation_type": "Rent",
@@ -240,10 +237,10 @@
                         "suite_amount": _.keys(vm.suite_amount),
                         "current_localization_id": barriosOzonas,
                     }
-                    
+
                     // Borramos resultado previo.
                     $scope.$storage.prop_search = {};
-                    
+
                     $state.go('propiedades', {
                         data: obj, cache: vm.prop_cache
                     });

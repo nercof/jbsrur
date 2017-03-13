@@ -48,10 +48,11 @@
                 tokkoFactory.getProperty($scope.id).then(function(data) {
                     vm.propiedad = data;
                     parseAndBuildGallery();
+                    
+            console.log(vm.propiedad);
                 });
 
             }
-
             // Generamos el modelo ContactForm
             typeFactory.getPostByCategoryName("contacto").then(
                 function(data) {
