@@ -5,10 +5,10 @@
         .module('app.core')
         .controller('novedadesDetalleController', novedadesDetalleController);
 
-    novedadesDetalleController.$inject = ['$scope', 'mediaFactory', 'typeFactory', '$state', '$stateParams'];
+    novedadesDetalleController.$inject = ['$scope', 'mediaFactory', 'typeFactory', '$state', '$stateParams', '$anchorScroll'];
 
     /* @ngInject */
-    function novedadesDetalleController($scope, mediaFactory, typeFactory, $state, $stateParams) {
+    function novedadesDetalleController($scope, mediaFactory, typeFactory, $state, $stateParams, $anchorScroll) {
         var vm = this;
         console.log('<< Loading novedadesDetalleController >>');
 
@@ -16,6 +16,15 @@
         vm.novedad = {};
         vm.contact_form = {};
         vm.title_view = '';
+        // Cada tipo de post debe tener asociado un icono en la views.
+        vm.iconos_format = {
+            "1":"typcn typcn-camera-outline",
+            "2":"typcn typcn-video-outline",
+            "3": "typcn typcn-calendar-outline",
+            "4": "typcn typcn-lightbulb"
+        };
+
+        $anchorScroll();
 
         activate();
 

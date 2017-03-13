@@ -1,5 +1,4 @@
-<div ng-if="$state.current.name == 'nemprendimientos' ||
-$state.current.name == 'oemprendimientos'">
+<div ng-if="$state.current.name == 'nemprendimientos' || $state.current.name == 'oemprendimientos'">
     <div class="bg-bordo">
         <div class="container">
             <div ui-view='title'>
@@ -9,36 +8,31 @@ $state.current.name == 'oemprendimientos'">
     </div>
     <div class="bg-grey">
         <div class="col-sm-12 col-xs-12 list container" id="emprendimientos">
-            <div class="col-sm-12 col-xs-12 development" ng-repeat="development in vm.developments">
-                <div ng-show="vm.spinner" class="spinner" ng-if="!vm.developments">
-                    <i class="fa fa-spinner fa-spin"></i>
+            <div class="col-sm-12 col-xs-12 development" id="paginador"
+            dir-paginate="development in vm.developments | itemsPerPage: vm.itemsPerPage"
+            current-page="vm.currentPage" ng-class-odd="'odd'">
+            <div ng-show="vm.spinner" class="spinner" ng-if="!vm.developments">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+            <div ng-if="vm.error">{{vm.error}}</div>
+            <a ui-sref="{{vm.urlEmprendimientos}}.detalle({ slug:development.slug, data: development , id:development.id})" target="_blank">
+                <div class="col-sm-4 col-xs-12 pic" style="background-image: url('{{development.image}}')">
                 </div>
-                <div ng-if="vm.error">{{vm.error}}</div>
-                <a ui-sref="{{vm.urlEmprendimientos}}.detalle({data: development , id:development.id})">
-                    <div class="col-sm-4 col-xs-12 pic" style="background-image: url('{{development.image}}')">
-                    </div>
-                    <div class="col-sm-8 col-xs-12 des">
-                        <h2>{{development.title.rendered}}</h2>
-                        <p ng-bind-html="development['wpcf-encabezado'] | to_trust "></p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-12 col-xs-12" ng-if="vm.totalItems > 10">
-                <!-- Paginador -->
-                <ul uib-pagination
-                    boundary-links=true
-                    total-items="vm.totalItems"
-                    items-per-page="vm.itemsPerPage"
-                    ng-model="vm.currentPage"
-                    ng-change="vm.pageChanged()"
-                    boundary-links="true"
-                    previous-text="&lsaquo;"
-                    next-text="&rsaquo;"
-                    first-text="&laquo;"
-                    last-text="&raquo;">
-                </ul>
-            </div>
+                <div class="col-sm-8 col-xs-12 des">
+                    <h2>{{development.title.rendered}}</h2>
+                    <p ng-bind-html="development['wpcf-encabezado'] | to_trust "></p>
+                </div>
+            </a>
         </div>
+        <div class="col-sm-12 col-xs-12 paginador" ng-if="vm.developments">
+            <!-- Paginador -->
+            <dir-pagination-controls
+            boundary-links="true"
+            ng-if="1 < pages.length || !autoHide"
+            template-url="wp-content/themes/wp-angular/app/views/dirPagination.tpl.html">
+        </dir-pagination-controls>
     </div>
+</div>
+</div>
 </div>
 <div ui-view="detalle" />

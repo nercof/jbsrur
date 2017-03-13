@@ -1,5 +1,5 @@
 <div id="myCarousel" class="carousel slide" uib-carousel interval="6000" active="active" ng-if="medias">
-    <div <div class="item" uib-slide ng-repeat="media in medias" active="active" index="$index">
+    <div <div class="item" uib-slide ng-repeat="media in medias | orderBy: 'orden'" active="active" index="$index">
       <a href="{{media.link}}">
           <img src="{{media.url}}">
       </a>

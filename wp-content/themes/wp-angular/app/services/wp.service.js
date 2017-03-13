@@ -11,8 +11,9 @@
       'getRequest': getRequest
     }
 
-    function getRequest(url, tag, id) {
+    function getRequest(url, tag, id, all) {
       var requestUrl = url + tag + '/' + id;
+      requestUrl = (all) ? requestUrl + '?per_page=100' : requestUrl;
       return $http({
         'url': requestUrl,
         'method': 'GET',

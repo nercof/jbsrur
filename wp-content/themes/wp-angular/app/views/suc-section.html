@@ -10,14 +10,16 @@
                     <h3>{{sucursal.title.rendered}}</h3>
                     <div class="dire"><i class="typcn typcn-location-outline"></i>
                         <a href="maps:{{sucursal['wpcf-direccion']}}"><p>{{sucursal['wpcf-direccion']}}</p></a></div>
-                    <div class="dire"><i class="typcn typcn-phone-outline"></i>
-                        <a href="tel:{{sucursal['wpcf-telefono']}}" rel="nofollow"><p>{{sucursal['wpcf-telefono']}}</p></a>
-                    </div>
-                    <div class="dire"><i class="typcn typcn-mail"></i>
-                        <a href="mailto:{{sucursal['wpcf-email']}}"><p>{{sucursal['wpcf-email']}}</p></a>
+                        <div class="dire"><i class="typcn typcn-phone-outline"></i>
+                            <span itemprop="telephone">
+                                <a href="tel:{{sucursal['wpcf-telefono']}}" rel="nofollow"><p>{{sucursal['wpcf-telefono']}}</p></a>
+                            </span>
+                        </div>
+                        <div class="dire"><i class="typcn typcn-mail"></i>
+                            <a href="mailto:{{sucursal['wpcf-email']}}"><p>{{sucursal['wpcf-email']}}</p></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

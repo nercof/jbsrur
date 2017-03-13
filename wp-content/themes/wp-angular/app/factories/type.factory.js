@@ -27,7 +27,7 @@
     }
 
     function getEmprendimientos() {
-      return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "");
+      return wordpressService.getRequest(BASE_WP_URL, EMP_TAG, "", true);
     }
 
     function getEmprendimientoById(id) {
