@@ -12,12 +12,12 @@
                             <input type="text"
                                 class="form-control"
                                 placeholder=""
-                                ng-model="vm.predictiveSearch"
+                                ng-model="vm.inputString"
                                 ng-trim="false"
-                                ng-disabled="!vm.universoPropiedades"
+                                ng-disabled="!vm.propsPredictive"
                                 typeahead-template-url="wp-content/themes/wp-angular/app/views/tokko-search/typeahead-tpl.html"
                                 typeahead-on-select='vm.onSelect($item)'
-                                uib-typeahead="propiedad as propiedad.fake_address for propiedad in vm.universoPropiedades | filter:$viewValue | save_model:vm | limitTo:5">
+                                uib-typeahead="propiedad as propiedad.fake_address for propiedad in vm.propsPredictive | filter:$viewValue | save_model:vm | limitTo:5">
                         </div><!-- /input-group -->
                     </a>
                 </li>
@@ -39,19 +39,19 @@
                                     <div class="col-sm-6 col-xs-12">
                                         <div class="row">
                                             <div class="col-sm-4 col-xs-12 step step-checkbox">
-                                                <div class="checkbox checkbox-primary" ng-repeat="operacion in vm.tokko_data.op">
+                                                <div class="checkbox checkbox-primary" ng-repeat="operacion in vm.camposForm.op">
                                                     <input type="checkbox" id="{{operacion.name + operacion.id}}" ng-model="vm.operation_types[operacion.id]" ng-change="showTP = !showTP" data-error="Before you wreck yourself" required/>
                                                     <label for="{{operacion.name + operacion.id}}" name="{{operacion.name}}"><span></span> {{operacion.name}} </label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4 col-xs-6 step step-list">
-                                                <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.tokko_data.tp">
+                                                <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.camposForm.tp">
                                                     <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}"  ng-model="vm.property_types[tipo_propiedad.id]">
                                                     <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span  ng-class="{ 'active': vm.operation_types[0] ||  vm.operation_types[1] }" >{{tipo_propiedad.name}}</span></label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4 col-xs-6 step step-list">
-                                                <div class="checkbox checkbox-primary" ng-repeat="dormitorio in vm.tokko_data.do">
+                                                <div class="checkbox checkbox-primary" ng-repeat="dormitorio in vm.camposForm.do">
                                                     <input type="checkbox" id="{{dormitorio.name + dormitorio.id}}+do" ng-model="vm.suite_amount[dormitorio.id]">
                                                     <label for="{{dormitorio.name + dormitorio.id}}+do" name="{{dormitorio.name}}"><span>{{dormitorio.name}}</span></label>
                                                 </div>

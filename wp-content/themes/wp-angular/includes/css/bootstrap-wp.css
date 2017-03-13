@@ -77,6 +77,15 @@ body {
     margin: 0;
     padding: 20px;
     font-size: 1.2em; }
+    body h1.title .breadcrumb {
+      background-color: transparent;
+      margin-bottom: 0; }
+      body h1.title .breadcrumb a {
+        color: #FAF3DD; }
+        body h1.title .breadcrumb a:hover {
+          color: #FAF3DD; }
+      body h1.title .breadcrumb span {
+        color: #FAF3DD; }
   body .carousel a.carousel-control {
     text-shadow: none;
     color: #FAF3DD; }
@@ -120,6 +129,8 @@ body {
         -webkit-transform: scale(1, 1);
         /* Safari */
         transform: scale(1, 1); }
+        body #jbsrur-nav a.menu-item.search {
+          cursor: pointer; }
         body #jbsrur-nav a.menu-item:hover {
           -ms-transform: scale(1.1, 1.1);
           /* IE 9 */
@@ -484,16 +495,16 @@ body {
     body .propiedades .card {
       padding: 0;
       float: none;
-      display: inline-table; }
+      display: inline-table;
+      overflow: hidden; }
       body .propiedades .card .inner-card {
         margin: 10px 20px;
         text-align: center;
         padding-bottom: 5px;
         color: #131515;
         height: 385px;
-        border: 1px solid #EC7E7E; }
-        body .propiedades .card .inner-card a.thum .pic:hover {
-          background-color: rgba(223, 10, 31, 0.5); }
+        border: 1px solid #EC7E7E;
+        overflow: hidden; }
         body .propiedades .card .inner-card h2 {
           color: #FAF3DD;
           background-color: #df0a1f;
@@ -509,11 +520,16 @@ body {
         body .propiedades .card .inner-card a {
           text-decoration: none; }
         body .propiedades .card .inner-card .pic {
-          height: 180px;
-          background-size: cover;
-          background-repeat: no-repeat;
           margin: 0px 0px 20px 0px;
-          background-position: center top; }
+          transition: all;
+          overflow: hidden; }
+          body .propiedades .card .inner-card .pic .img {
+            height: 180px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top; }
+          body .propiedades .card .inner-card .pic:hover .img {
+            transform: scale(1.2); }
         body .propiedades .card .inner-card .line {
           width: 85%;
           height: 1px;
@@ -538,109 +554,173 @@ body {
           display: table;
           width: 100%;
           padding-bottom: 5px; }
-        body .propiedades .card .inner-card .prop-contacto .nav-pills {
-          width: 100%; }
-          body .propiedades .card .inner-card .prop-contacto .nav-pills li {
-            float: none;
-            width: 32%;
-            padding: 0px;
-            display: inline-block;
-            margin: auto; }
-            body .propiedades .card .inner-card .prop-contacto .nav-pills li.active a {
-              color: #FAF3DD;
-              background-color: #df0a1f;
-              margin: 5px 0px; }
-              body .propiedades .card .inner-card .prop-contacto .nav-pills li.active a i {
-                color: #FAF3DD; }
-            body .propiedades .card .inner-card .prop-contacto .nav-pills li.active label {
-              margin: 15px 0px;
-              padding: 5px; }
-            body .propiedades .card .inner-card .prop-contacto .nav-pills li.active:hover a {
-              background-color: #df0a1f; }
-            body .propiedades .card .inner-card .prop-contacto .nav-pills li:hover a {
-              background-color: #EC7E7E; }
+        body .propiedades .card .inner-card .more a {
+          color: #df0a1f;
+          background-color: #FAF3DD;
+          text-align: center; }
+          body .propiedades .card .inner-card .more a i {
+            width: 30px;
+            height: 30px;
+            padding: 0px 5px 5px;
+            margin: auto;
+            border-radius: 50%;
+            border: 2px #FAF3DD solid; }
+          body .propiedades .card .inner-card .more a:hover i {
+            border: 2px #df0a1f solid; }
   body .detalle {
     background-color: #FAF3DD;
     font-family: "Montserrat", sans-serif;
     margin: 0px; }
     body .detalle .col {
       padding: 0; }
+    body .detalle .container {
+      margin-bottom: 30px; }
     body .detalle .carousel {
       background-color: #878478;
       padding-bottom: 2.5em; }
     body .detalle h1 {
       font-style: "Montserrat", sans-serif;
       color: #df0a1f;
-      padding: 10px 20px;
+      padding: 30px 20px 20px;
       font-size: 2.8em;
-      margin-top: 0; }
+      margin-top: 0;
+      text-align: center;
+      margin: 10px 0px 30px; }
       body .detalle h1 .round-border {
         border-radius: 100%;
-        border: 2px #df0a1f solid;
         display: inline-block; }
         body .detalle h1 .round-border i {
           border-radius: 100%;
-          border: 2px #df0a1f solid;
+          border: 0px #df0a1f solid;
           margin: 10px;
-          padding: 0.3em; }
+          padding: 0.3em;
+          color: #FAF3DD;
+          background: #df0a1f;
+          font-size: 1.3em;
+          vertical-align: bottom; }
     body .detalle h1 icon {
       background-image: url("../images/icon-house.png"); }
     body .detalle h2 {
-      font-family: "Lato", sans-serif;
+      font-family: "Montserrat", sans-serif;
       color: #FAF3DD;
       border: 2.2px #90020B solid;
       background-color: #90020B;
       text-align: left;
-      font-size: large;
-      padding: 10px; }
+      padding: 10px;
+      margin: 0;
+      font-size: 1.1em; }
       body .detalle h2 i {
-        border: 1px solid #FAF3DD;
+        border: 2px solid #FAF3DD;
         border-radius: 100%;
         font-size: 22px;
         padding: 2px 4px;
         vertical-align: middle;
         margin: 5px 10px 5px 0px; }
+      body .detalle h2.red {
+        border: 2.2px #df0a1f solid;
+        background-color: #df0a1f; }
     body .detalle .galeria {
-      height: 395px; }
-      body .detalle .galeria img {
-        height: 360px; }
+      height: 395px;
+      margin-bottom: 30px; }
+      body .detalle .galeria a {
+        cursor: pointer; }
+        body .detalle .galeria a .img {
+          height: 360px;
+          width: 100%;
+          background-size: cover;
+          background-position: center; }
     body .detalle .mapa {
       height: 395px; }
-    body .detalle .descripcion pre {
-      font-size: 1.1em;
-      font-family: "Lato", sans-serif;
-      padding: 0em 2em 0em 0em;
-      background-color: transparent;
-      border: none;
-      white-space: pre-wrap;
-      /* css-3 */
-      white-space: -moz-pre-wrap;
-      /* Mozilla, since 1999 */
-      white-space: -pre-wrap;
-      /* Opera 4-6 */
-      white-space: -o-pre-wrap;
-      /* Opera 7 */
-      word-break: break-word; }
+    body .detalle .descripcion {
+      color: #131515; }
+      body .detalle .descripcion pre {
+        font-size: 1em;
+        font-family: "Lato", sans-serif;
+        padding: 1em;
+        background-color: transparent;
+        border: none;
+        white-space: pre-wrap;
+        /* css-3 */
+        white-space: -moz-pre-wrap;
+        /* Mozilla, since 1999 */
+        white-space: -pre-wrap;
+        /* Opera 4-6 */
+        white-space: -o-pre-wrap;
+        /* Opera 7 */
+        word-break: break-word;
+        padding-bottom: 0; }
     body .detalle .referencia {
-      padding: 10px 0; }
+      color: #131515; }
       body .detalle .referencia div {
-        color: #df0a1f;
         padding: 15px;
         font-size: 1.2em; }
-    body .detalle .caracteristicas {
-      background-color: #878478;
-      color: #FAF3DD;
-      width: 100%;
-      margin: auto; }
-      body .detalle .caracteristicas i {
-        padding-right: 10px; }
-      body .detalle .caracteristicas .col-sm-3 {
+      body .detalle .referencia.tel {
+        margin-top: 20px;
+        color: #df0a1f;
+        margin-bottom: 0; }
+      body .detalle .referencia i {
+        border: 2px solid #df0a1f;
+        border-radius: 100%;
+        font-size: 22px;
+        padding: 2px 4px;
+        vertical-align: middle;
+        margin: 5px 10px 5px 0px; }
+    body .detalle .ngTruncateToggleText {
+      font-size: 2em;
+      border-radius: 50%;
+      margin: 10px;
+      color: #df0a1f;
+      border: 2px #df0a1f solid;
+      padding: 0 8px;
+      text-align: center;
+      width: 40px;
+      display: inline-block;
+      cursor: pointer;
+      line-height: normal; }
+      body .detalle .ngTruncateToggleText:hover {
+        color: rgba(223, 10, 31, 0.5);
+        border: 2px rgba(223, 10, 31, 0.5) solid;
+        text-decoration: none; }
+    body .detalle .content-car {
+      margin-top: 20px; }
+      body .detalle .content-car .caracteristicas {
+        background-color: #878478;
         color: #FAF3DD;
-        margin: 10px 10px 10px 0px;
-        display: block;
-        text-align: left;
-        padding: 0;
-        width: 23%; }
+        width: 100%;
+        margin: auto;
+        padding: 10px 20px; }
+        body .detalle .content-car .caracteristicas i {
+          padding-right: 10px; }
+        body .detalle .content-car .caracteristicas .col-sm-6 {
+          margin: 10px 0px;
+          display: inline-block;
+          text-align: left;
+          padding: 0; }
+    body .detalle #contacto {
+      background-color: transparent;
+      padding: 0 15px; }
+      body .detalle #contacto h2 {
+        padding-left: 15px;
+        cursor: pointer;
+        margin: 0; }
+      body .detalle #contacto #jbsrur_contact_form {
+        display: none;
+        background-color: #df0a1f;
+        padding: 15px; }
+        body .detalle #contacto #jbsrur_contact_form.open {
+          display: block; }
+      body .detalle #contacto form {
+        margin-bottom: 40px; }
+        body .detalle #contacto form input, body .detalle #contacto form textarea {
+          padding: 5px;
+          font-size: 1em;
+          letter-spacing: 1px; }
+          body .detalle #contacto form input.wpcf7-submit, body .detalle #contacto form textarea.wpcf7-submit {
+            padding: 20px 15px; }
+      body .detalle #contacto .loaderSpinner {
+        padding: 15px 0px 0px 50px; }
+      body .detalle #contacto .wpcf7-response-output {
+        margin-top: -35px; }
   body #secondFooter {
     background-color: #90020B;
     border-radius: 0; }
@@ -1073,10 +1153,15 @@ body {
             vertical-align: middle;
             font-family: "Lato", sans-serif;
             max-width: 80%; }
+          body #suc-section .list .sucursal .dire a {
+            color: #131515; }
+            body #suc-section .list .sucursal .dire a:hover {
+              color: #90020B; }
   body #emprendimientos {
     background-color: #878478;
     padding: 40px;
-    margin: auto; }
+    margin: auto;
+    float: none; }
     body #emprendimientos .development {
       text-align: center; }
       body #emprendimientos .development h2 {
@@ -1097,7 +1182,8 @@ body {
         float: none;
         display: inline-block;
         z-index: 9;
-        vertical-align: middle; }
+        vertical-align: middle;
+        cursor: pointer; }
         body #emprendimientos .development .pic:before {
           content: "";
           display: none;
@@ -1125,6 +1211,34 @@ body {
         z-index: 0;
         padding: 10px 20px 20px 50px;
         color: #131515; }
+    body #emprendimientos .paginador {
+      text-align: center;
+      background: #90020B;
+      margin: 30px 0; }
+      body #emprendimientos .paginador .pagination {
+        margin: 20px auto; }
+        body #emprendimientos .paginador .pagination li a {
+          background-color: #90020B;
+          color: #FAF3DD;
+          border: 0;
+          font-family: "Lato", sans-serif;
+          font-weight: bold;
+          border-radius: 50%;
+          margin: 0 5px; }
+          body #emprendimientos .paginador .pagination li a:hover {
+            color: #90020B;
+            background-color: rgba(250, 243, 221, 0.8); }
+        body #emprendimientos .paginador .pagination li.disabled a {
+          color: rgba(250, 243, 221, 0.5); }
+          body #emprendimientos .paginador .pagination li.disabled a:hover {
+            color: rgba(250, 243, 221, 0.5);
+            background-color: #90020B; }
+        body #emprendimientos .paginador .pagination li.active a {
+          color: #90020B;
+          background-color: rgba(250, 243, 221, 0.8); }
+        body #emprendimientos .paginador .pagination li.pagination-first a:hover, body #emprendimientos .paginador .pagination li.pagination-prev a:hover, body #emprendimientos .paginador .pagination li.pagination-last a:hover, body #emprendimientos .paginador .pagination li.pagination-next a:hover {
+          background-color: #90020B;
+          color: #FAF3DD; }
   body .detalle-emprendimiento {
     background-color: #FAF3DD;
     font-family: "Montserrat", sans-serif;
@@ -1137,30 +1251,37 @@ body {
     body .detalle-emprendimiento h1 {
       font-style: "Montserrat", sans-serif;
       color: #df0a1f;
-      padding: 20px 20px 10px;
+      padding: 30px 20px 20px;
       font-size: 2.8em;
-      margin-top: 0; }
+      margin-top: 0;
+      text-align: center;
+      margin: 10px 0px 30px; }
       body .detalle-emprendimiento h1 .round-border {
         border-radius: 100%;
-        border: 1px #df0a1f solid;
         display: inline-block; }
         body .detalle-emprendimiento h1 .round-border i {
           border-radius: 100%;
-          border: 1px #df0a1f solid;
+          border: 0px #df0a1f solid;
           margin: 10px;
-          padding: 0.3em; }
+          padding: 0.3em;
+          color: #FAF3DD;
+          background: #df0a1f;
+          font-size: 1.3em;
+          vertical-align: bottom; }
     body .detalle-emprendimiento h1 icon {
       background-image: url("../images/icon-house.png"); }
     body .detalle-emprendimiento h2 {
-      font-family: "Lato", sans-serif;
+      font-family: "Montserrat", sans-serif;
       color: #FAF3DD;
       border: 2.2px #90020B solid;
       background-color: #90020B;
       text-align: left;
-      font-size: large;
       padding: 10px;
-      margin: 0; }
+      margin: 0;
+      font-size: 1.1em; }
       body .detalle-emprendimiento h2 i {
+        border: 0px solid #FAF3DD;
+        border-radius: 100%;
         font-size: 22px;
         padding: 2px 4px;
         vertical-align: middle;
@@ -1168,7 +1289,7 @@ body {
     body .detalle-emprendimiento .desc {
       padding: 20px;
       font-family: "Lato", sans-serif;
-      font-size: 1.1em; }
+      font-size: 1em; }
     body .detalle-emprendimiento .pic {
       height: 450px;
       width: 100%;
@@ -1183,6 +1304,11 @@ body {
         display: inline-block; }
         body .detalle-emprendimiento .gallery .col a {
           cursor: pointer; }
+          body .detalle-emprendimiento .gallery .col a .img {
+            height: 230px;
+            width: 90%;
+            background-size: cover;
+            background-position: center; }
     body .detalle-emprendimiento .emp-detalle {
       padding: 30px 0; }
     body .detalle-emprendimiento .mapa {
@@ -1203,11 +1329,22 @@ body {
       /* Opera 7 */
       word-break: break-word; }
     body .detalle-emprendimiento .referencia {
-      padding: 15px;
-      margin-bottom: 10px;
-      color: #90020B;
-      font-size: 1.2em;
-      border: #90020B 1px solid; }
+      color: #131515;
+      padding: 20px 15px;
+      margin-bottom: 20px; }
+      body .detalle-emprendimiento .referencia div {
+        font-size: 1.2em; }
+      body .detalle-emprendimiento .referencia i {
+        border: 2px solid #df0a1f;
+        border-radius: 100%;
+        font-size: 22px;
+        padding: 2px 4px;
+        vertical-align: middle;
+        margin: 5px 10px 5px 0px; }
+      body .detalle-emprendimiento .referencia.tel {
+        margin-top: 20px;
+        color: #df0a1f;
+        margin-bottom: 0; }
     body .detalle-emprendimiento .caracteristicas {
       background-color: #878478;
       color: #FAF3DD;
@@ -1222,9 +1359,34 @@ body {
         text-align: left;
         padding: 0;
         width: 23%; }
+    body .detalle-emprendimiento #contacto {
+      padding: 0px 15px; }
+      body .detalle-emprendimiento #contacto h2 {
+        cursor: pointer;
+        margin: 0;
+        padding: 0; }
+      body .detalle-emprendimiento #contacto #jbsrur_contact_form {
+        display: none;
+        background-color: #df0a1f;
+        padding: 15px; }
+        body .detalle-emprendimiento #contacto #jbsrur_contact_form.open {
+          display: block; }
+      body .detalle-emprendimiento #contacto form {
+        margin-bottom: 40px; }
+        body .detalle-emprendimiento #contacto form input, body .detalle-emprendimiento #contacto form textarea {
+          padding: 5px;
+          font-size: 1em;
+          letter-spacing: 1px; }
+          body .detalle-emprendimiento #contacto form input.wpcf7-submit, body .detalle-emprendimiento #contacto form textarea.wpcf7-submit {
+            padding: 20px 15px; }
+      body .detalle-emprendimiento #contacto .loaderSpinner {
+        padding: 15px 0px 0px 50px; }
+      body .detalle-emprendimiento #contacto .wpcf7-response-output {
+        margin-top: -35px; }
   body #quienes-somos {
     margin: auto;
-    text-align: center; }
+    text-align: center;
+    margin-bottom: 30px; }
     body #quienes-somos h2 {
       text-align: left;
       color: #FAF3DD;
@@ -1341,18 +1503,46 @@ body {
       border: none; }
     body .detalle-news .content figcaption {
       font-style: italic; }
+  body .pag-contacto h1 {
+    font-family: "Montserrat", sans-serif;
+    color: #df0a1f;
+    padding: 30px 20px 20px;
+    font-size: 2.8em;
+    margin-top: 0;
+    text-align: center;
+    margin: 10px 0px 30px; }
+    body .pag-contacto h1 i {
+      border-radius: 50%;
+      margin: 10px;
+      padding: 0.3em;
+      color: #FAF3DD;
+      background: #df0a1f;
+      font-size: 1.3em;
+      vertical-align: bottom; }
+  body .lightbox-image-container {
+    text-align: center; }
   body .lightbox-nav .close {
     position: absolute;
     right: 0;
     color: #FAF3DD;
     font-size: 3em;
-    opacity: 1; }
+    opacity: 1;
+    outline: 0; }
+    body .lightbox-nav .close:hover {
+      color: rgba(250, 243, 221, 0.5);
+      text-decoration: none; }
+    body .lightbox-nav .close:focus, body .lightbox-nav .close:active {
+      outline: 0; }
   body .lightbox-nav .btn-group {
     position: relative;
     width: 100%;
     display: block; }
-    body .lightbox-nav .btn-group a:hover {
-      text-decoration: none; }
+    body .lightbox-nav .btn-group a {
+      cursor: pointer;
+      color: #FAF3DD; }
+      body .lightbox-nav .btn-group a:hover {
+        color: rgba(250, 243, 221, 0.5);
+        text-decoration: none; }
     body .lightbox-nav .btn-group .typcn-chevron-left {
       position: absolute;
       left: -40px;
@@ -1367,5 +1557,38 @@ body {
       top: 200px; }
   body .modal-body {
     padding: 30px; }
+  body .filtro {
+    background-color: #90020B;
+    color: #FAF3DD;
+    margin-bottom: 40px;
+    padding-bottom: 20px; }
+    body .filtro h2 {
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.5em;
+      padding: 1em;
+      padding-bottom: 0;
+      font-weight: bold; }
+    body .filtro .checkbox {
+      display: block;
+      margin: 10px 5px; }
+      body .filtro .checkbox input[type="checkbox"] {
+        display: none; }
+        body .filtro .checkbox input[type="checkbox"] + label span {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          margin: -1px 15px 0 0;
+          vertical-align: middle;
+          background-image: url("../images/checkbox.png");
+          cursor: pointer; }
+          body .filtro .checkbox input[type="checkbox"] + label span:hover {
+            background-image: url("../images/checkbox-active-bordo.png"); }
+        body .filtro .checkbox input[type="checkbox"]:checked + label span {
+          background-image: url("../images/checkbox-active-bordo.png"); }
+      body .filtro .checkbox label {
+        vertical-align: middle;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */

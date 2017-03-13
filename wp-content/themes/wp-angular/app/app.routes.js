@@ -263,9 +263,9 @@
       .state(STATE.PO, {
         // Resultado de Buscador de Propiedades.
         params: {
-          data: null,
-          cache: null,
-          predictive: null, // Lista propiedades filtradas por el predictiveSearch
+          allProps: null,
+          lastSearch: null, // Lista propiedades filtradas por el predictiveSearch
+          isSearch:false
         },
         url: '/' + STATE.PO,
         views: {
