@@ -57,9 +57,6 @@
                     filtered = all_prop;
                 }
 
-                // Almaceno el estado anterior.
-                //preFiltered = filtered;
-
                 if (!_.isEmpty(domiActive)) {
                     // Dormitorios
                     filtered = _.filter(filtered, function(propiedad) {
@@ -67,29 +64,14 @@
                             return propiedad.suite_amount == pdorm;
                         });
                     });
-
-                    // Nada para filtrar con Tipo de Propiedad
-                    //if (_.isEmpty(filtered)) {
-                    //    filtered = preFiltered;
-                    //}else {
-                    //    preFiltered = filtered;
-                    //}
                 }
                 if (!_.isEmpty(attEspActive)) {
                     // Atributos Especiales.
                     filtered = _.filter(filtered, function(propiedad) {
-                    console.log('attEspActive', attEspActive);
-                    console.log('propiedad.tags', propiedad.tags);
-                    
                         return _.some(attEspActive, function(attEsp) {
                             return _.where(propiedad.tags, {'id': parseInt(attEsp)}).length > 0 ;
                         });
                     });
-
-                    // Nada para filtrar con Tipo de Propiedad
-                    //if (_.isEmpty(filtered)) {
-                    //    filtered = preFiltered;
-                    //}
                 }
             }
 
