@@ -99,7 +99,7 @@
                         $scope.$storage.$apply();*/
                     });
                 }
-            } 
+            }
         }
 
         vm.pageChanged = function() {

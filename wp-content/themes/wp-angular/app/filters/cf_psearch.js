@@ -39,10 +39,6 @@
             domiActive      = parseTrue(vm.suite_amount_selected);
             attEspActive    = parseTrue(vm.attEspeciales_selected);
 
-            //console.log(typeActive);
-            //console.log(domiActive);
-            //console.log(attEspActive);
-
             // Sino hay nada para filtrar
             if (_.isEmpty(typeActive) && _.isEmpty(domiActive) && _.isEmpty(attEspActive)) {
                 filtered = all_prop;
@@ -82,6 +78,9 @@
                 if (!_.isEmpty(attEspActive)) {
                     // Atributos Especiales.
                     filtered = _.filter(filtered, function(propiedad) {
+                    console.log('attEspActive', attEspActive);
+                    console.log('propiedad.tags', propiedad.tags);
+                    
                         return _.some(attEspActive, function(attEsp) {
                             return _.where(propiedad.tags, {'id': parseInt(attEsp)}).length > 0 ;
                         });
