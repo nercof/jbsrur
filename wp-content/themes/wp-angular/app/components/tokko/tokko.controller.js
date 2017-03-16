@@ -140,9 +140,7 @@
             }
 
             // Borramos resultado previo.
-            //console.log('from', vm.prop_cache);
             vm.prop_search = filtrarPropiedades(vm.prop_cache, filtros);
-            //console.log('goto', vm.prop_search);
 
             saveCache();
             goToResultPage();
@@ -215,16 +213,20 @@
         }
 
         function saveCache() {
+            console.log('Guardando en caché...');
             //guardar en localStorage
             $scope.$storage = $localStorage.$default({
                 prop_cache: vm.prop_cache,
                 prop_search: vm.prop_search,
                 barriosXzona: vm.barriosXzona
             });
+            $localStorage.prop_search = vm.prop_search;
+            $localStorage.prop_cache  = vm.prop_cache; 
             $scope.$storage.$apply();
         }
 
         function goToResultPage(){
+            console.log('Go to resultPage...');
             $state.go('propiedades', {
                 allProps: vm.prop_cache,
                 lastSearch: vm.prop_search,

@@ -9,7 +9,6 @@
 
     /* @ngInject */
     function tokkoService($http, $log, TOKKO_KEY) {
-        
         var data = {
             'getRequest': getRequest
         };
@@ -28,7 +27,6 @@
                 },
                 'cache': true
             }).then(function(response){
-                console.log('tokko',response.data)
                 return response.data;
             }).catch(dataServiceError);
         }

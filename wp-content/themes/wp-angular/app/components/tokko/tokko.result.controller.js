@@ -22,7 +22,7 @@
         vm.zonas = [];
         vm.attEspeciales = [];
 
-        // models
+        // Models
         vm.property_types_selected = [];
         vm.suite_amount_selected = [];
         vm.zonas_selected = [];
@@ -52,56 +52,59 @@
          *    muestra todas.
          */
         function activate(vm) {
-
             // Parámetros de entrada
             vm.allProps = $stateParams.allProps;
             vm.lastSearch = $stateParams.lastSearch;
             vm.isSearch = $stateParams.isSearch;
-
+                
             if ( !_.isEmpty(vm.lastSearch) ) {
-                //objeto lleno
+                // Objeto lleno
                 vm.propiedades = vm.lastSearch;
-                setParentState();
-                createCommonObjectFilter();
-
-                // Variables auxiliares para el paginador.
-                vm.totalItems = vm.propiedades.length;
-
-                // Iniciamos las propiedades filtradas para la paginacion inicial.
-                vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
-                console.log('objeto lleno', vm.propiedades);
+                setStateObjectFilterPaginationList();
             }
             else if (vm.isSearch){
-                //objeto vacio y viene del buscador
+                // Objeto vacio y viene del buscador
                 vm.error = "No se encontraron propiedades";
-                console.log('no se encontraron');
+                console.log("No se encontraron propiedades");
             } else if (!vm.isSearch){
                 //objeto vacio y no viene del buscador: buscar en cache
                 vm.propiedades = $scope.$storage.prop_search;
-                console.log('objeto vacio y no viene del buscador', vm.propiedades)
                 if ( _.isEmpty(vm.propiedades ) ) {
                     //objeto vacio y cache vacía: traer todas las propiedades
                     buscarPropiedadesTokkoAPIWithData().then(function(response){
                         console.log('objeto vacio y cache vacía',response);
                         vm.propiedades = response;
-                        /*setParentState();
-                        createCommonObjectFilter();
-
-                        // Variables auxiliares para el paginador.
-                        vm.totalItems = vm.propiedades.length;
-
-                        // Iniciamos las propiedades filtradas para la paginacion inicial.
-                        vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);*/
-                        //guardar en localStorage
-                        /*$scope.$storage = $localStorage.$default({
-                            prop_search: vm.prop_search
-                        });
-                        $scope.$storage.$apply();*/
+                        
+                        // Guardando en cache. 
+                        $localStorage.prop_search = vm.prop_search;
+                        
+                        setStateObjectFilterPaginationList();
                     });
+                }else{
+                    // User press <F5> button.
+                    setStateObjectFilterPaginationList();
                 }
             }
         }
 
+        /**
+         * Permite encapsular las funciones auxiliares necesarias
+         * para el tratamiento de la ui.
+         *  1. Set parent <state>.
+         *  2. Crear objetos comunes para el filter interno.
+         *  3. Crear objetos comunes para el paginador.
+         */
+        function setStateObjectFilterPaginationList(){
+            setParentState();
+            createCommonObjectFilter();
+
+            // Variables auxiliares para el paginador.
+            vm.totalItems = vm.propiedades.length;
+
+            // Iniciamos las propiedades filtradas para la paginacion inicial.
+            vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+        }
+        
         vm.pageChanged = function() {
             vm.setPagingData(vm.currentPage);
             $location.hash('paginador');
