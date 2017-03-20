@@ -2,442 +2,376 @@
     'use strict';
 
     angular
-    .module('app.core')
-    .controller('tokkoController', tokkoController);
+        .module('app.core')
+        .controller('tokkoController', tokkoController);
 
     function tokkoController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $state, $localStorage, $filter) {
+            resourceFactory, $state, $localStorage, $filter) {
 
-            console.log('Load tokko.controller.js');
-            var vm = this;
-            vm.titleForm = "Encuentre su propiedad:";
-            // Re-modeling
-            vm.codigoPropiedad = '';
+        console.log('Load tokko.controller.js');
+        var vm = this;
+        vm.titleForm = "Encuentre su propiedad:";
 
-            //variables para el localStorage
-            $scope.$storage = $localStorage;
-            vm.prop_cache = $localStorage.prop_cache; // todas las propiedades
-            vm.prop_search = $localStorage.prop_search; //ultima búsqueda
+        //variables para el localStorage
+        $scope.$storage = $localStorage;
+        vm.prop_cache = $localStorage.prop_cache; // todas las propiedades
+        vm.prop_search = $localStorage.prop_search; //ultima búsqueda
 
-            //inicio variables Buscador Avanzado
-            vm.barriosXzona = {}; // JSON con los barrios y zonas
-            vm.barrios = []; // JSON con barrios
-            vm.camposForm = {}; //JSON con la configuracion de los campos de tokko para el form
+        //inicio variables Buscador Avanzado
+        vm.barriosXzona = $localStorage.barriosXzona; // JSON con los barrios y zonas
+        vm.barrios = []; // JSON con barrios
+        vm.camposForm = {}; //JSON con la configuracion de los campos de tokko para el form
 
-            // modelos de los campos del form
-            vm.property_types = [];
-            vm.operation_types = [];
-            vm.suite_amount = [];
-            vm.current_localization_id = [];
-            vm.zonas = [];
-            vm.localization_barrio_id = [];
-            //fin variables Buscador Avanzado
+        // modelos de los campos del form
+        vm.property_types = [];
+        vm.operation_types = [];
+        vm.suite_amount = [];
+        vm.current_localization_id = [];
+        vm.localization_barrio_id = [];
+        //fin variables Buscador Avanzado
 
-            //inicio variables Buscador Predictivo
-            vm.predictiveResult = []; //resultado del buscador, se llena en el filter save_model
-            vm.propsPredictive= [];// propiedades con los campos seleccionados para el buscador predictivo       
+        //inicio variables Buscador Predictivo
+        vm.predictiveResult = []; //resultado del buscador, se llena en el filter save_model
+        vm.propsPredictive= [];// propiedades con los campos seleccionados para el buscador predictivo
 
-            activate(vm);
-            //getBarriosXZonaArray(vm);
+        activate(vm);
 
-            function activate(vm) {
-                // 3. Universo de palabras conocidos y sus correspondiente valor.
-                //vm.universo = resourceFactory.query_universo({id: 'universo.json'});
-
-                // traer todas las propiedades
-                tokkoFactory.getPropertyByCity().then(function(response) {
-                    vm.prop_cache = response.objects;
-                    console.log("@PROP.CACHE BY CITY");
-                    console.log(vm.prop_cache);
-
-                    // parsear tipos de operaciones
-                    parseOperationTypes(vm.prop_cache);
-
-                    //guardar en localStorage
-                    $scope.$storage = $localStorage.$default({
-                        prop_cache: vm.prop_cache,
-                    });
-                }
-
-                    // hacer una copia de todas las propiedades con los campos para la busqueda predictiva
-                    _.each(vm.prop_cache, function (prop) {
-                        var campos = _.pick(prop, 'id', 'address',
-                        'description', 'fake_address', 'publication_title',
-                        'type', 'operations_types', 'location');
-                        campos.type = campos.type.name;
-                        campos.barrio = campos.location.name;
-                        vm.propsPredictive.push(campos);
-                    });
-
-                    //  get barrios de Córdoba y zonas
-                    vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
+        function activate(vm) {
+            //  get barrios de Córdoba y zonas
+            if (_.isEmpty(vm.barriosXzona)){
+                console.log('Cargando barriosXzona...');
+                vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
                         function(data){
                             vm.barrios = data.to.barrios; //todos los barrios sin zonas
-                            // Parsear barrio y zona
-                            vm.prop_cache = parseLocation();
-                            console.log('parsed', vm.prop_cache)
-                    });
-
-                // @TODO: Comment f(x)
-                _.each(vm.prop_cache, function (propiedad) {
-                    var obj = _.pick(propiedad, 'id', 'address',
-                    'description', 'fake_address', 'publication_title',
-                    'type', 'operations_types', 'location');
-                    obj.type = obj.type.name;
-                    obj.barrio = obj.location.name;
-                    vm.universoPropiedades.push(obj);
-                });
-
-                // get config para armar los campos del Advanced Search
-                vm.camposForm = resourceFactory.query({id: 'tokko.data.json'});
-
-                    // Parsear ruta resultado: Zona + Barrio en vez de full_location
-                    parseLocation(vm.prop_cache);
-                });
-            }// Fin activate
-
-            /**
-            * Setea la direccion a mostrar en el catalogo
-            *
-            * @param {}
-            */
-            function parseLocation(propiedades) {
-                var nombreZona = {};
-                var propSinZona = [];
-
-                _.each(propiedades, function (propiedad) {
-                    nombreZona = _.find(vm.barrios, function (barrio) {
-                        return _.isEqual(barrio.name, propiedad.location.name);
-                    });
-
-                    if (_.isEmpty(nombreZona)) {
-                        propSinZona.push({id: propiedad.id, barrio: propiedad.barrio});
-                        propiedad.zona = false;
-                    }
-                    else if (nombreZona.zona == propiedad.location.name) {
-                        propiedad.zona = false;
-                    }
-                    else {
-                        propiedad.zona = nombreZona.zona;
-                    }
-                    propiedad.barrio = propiedad.location.name;
-                });
-                //console.log(propSinZona);
-            }
-            /**
-            * Permite filtrar elementos del tipo
-            * "operations": [{  "operation_type": "Rent",
-            *                    "prices": [{
-            *                        "currency": "ARS",
-            *                        "period": 0,
-            *                        "price": 500
-            *                    }]
-            *                }],
-            * "operationsParsed":["Rent", "Sales"]
-            */
-            function parsedOperationTypes(pPropiedades) {
-                // Por cada propiedad
-                _.each(pPropiedades, function(propiedad) {
-                    propiedad.operationsParsed = [];
-                    propiedad.operations_types = "";
-
-                    // Por cada tipo de propiedad
-                    _.each(propiedad.operations, function (operation) {
-                        propiedad.operationsParsed.push(operation.operation_type);
-                        propiedad.operations_types += operation.operation_type + ' ';
-                    });
-                });
+                        });
             }
 
-            /**
-            * searchLocation() permite obtener las propiedades
-            * asociadas al id pasado por referencia.
-            *
-            * Para Tokko ese valor es current_localization_id.
-            */
-            vm.searchLocation = function() {
-                tokkoFactory.getLocation(this.ciudad.id).then(function(response) {
-                    vm.tokko_location = response.divisions;
-                });
-            }
+            // traer todas las propiedades
+            tokkoFactory.getPropertyByCity().then(function(response) {
+                vm.prop_cache = response.objects;
 
-            /**
-            * onSelect() evento que se llama al seleccionar
-            * una propiedad en el buscador predictivo
-            */
-            vm.onSelect = function(item) {
-                $state.go('propiedades.detalle', { id: item.id });
-            }
+                // Parsear tipos de operaciones
+                parseOperationTypes(vm.prop_cache);
 
-            vm.openTab = function(id) {
-              angular.element('#searchForm .tab-pane').removeClass('active');
-              angular.element('#searchForm ' + id).addClass('active');
-            };
+                // Parsear barrio y zona
+                parseLocation();
 
-            /**
-            * searchFilter() metodo que se llama al hacer click en el botón Buscar
-            * del buscador predictivo
-            */
-            vm.searchFilter = function (){
-                vm.prop_search = vm.predictiveResult;
+                // Guardar en localstorage
                 saveCache();
-                goToResultPage();
+
+                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
+                _.each(vm.prop_cache, function (prop) {
+                    var campos = _.pick(prop, 'id', 'address',
+                            'description', 'fake_address', 'publication_title',
+                            'type', 'operations_types', 'location');
+                    campos.type = campos.type.name;
+                    campos.barrio = campos.location.name;
+                    vm.propsPredictive.push(campos);
+                });
+
+            });
+
+            // get config para armar los campos del Advanced Search
+            vm.camposForm = resourceFactory.query({id: 'tokko.data.json'});
+
+        }// Fin activate
+
+        /**
+         * searchLocation() permite obtener las propiedades
+         * asociadas al id pasado por referencia.
+         *
+         * Para Tokko ese valor es current_localization_id.
+         */
+        vm.searchLocation = function() {
+            tokkoFactory.getLocation(this.ciudad.id).then(function(response) {
+                vm.tokko_location = response.divisions;
+            });
+        }
+
+        /**
+         * onSelect() evento que se llama al seleccionar
+         * una propiedad en el buscador predictivo
+         */
+        vm.onSelect = function(item) {
+            $state.go('propiedades.detalle', { id: item.id });
+        }
+
+        vm.openTab = function(id) {
+            angular.element('#searchForm .tab-pane').removeClass('active');
+            angular.element('#searchForm ' + id).addClass('active');
+        };
+
+        /**
+         * searchFilter() metodo que se llama al hacer click en el botón Buscar
+         * del buscador predictivo
+         */
+        vm.searchFilter = function (){
+            vm.prop_search = vm.predictiveResult;
+            saveCache();
+            goToResultPage();
+        }
+
+        /**
+         * searchTokko() metodo que se llama al hacer click en el botón Buscar
+         * del avancedSearch
+         */
+
+        vm.searchTokko = function() {
+            // Variable para contener los id de barrio a excluir
+            var barriosOzonas = [];
+
+            // Si no tenemos valores en vm.localization_barrio_id es
+            // porque el usuario solo selecciona Zona sin excluir Barrio
+            if (_.isEmpty(_.keys(vm.localization_barrio_id)) && vm.zona) {
+                _.each(vm.zona.barrios, function (barrio){
+                    barriosOzonas.push(barrio.id);
+                });
+            }
+            else {
+                barriosOzonas = _.keys(vm.localization_barrio_id);
             }
 
-            /**
-            * searchTokko() metodo que se llama al hacer click en el botón Buscar
-            * del avancedSearch
-            */
+            // Parameters by user
+            var filtros = {
+                "operation_types": _.keys(vm.operation_types),
+                "property_types": _.keys(vm.property_types),
+                "suite_amount": _.keys(vm.suite_amount),
+                "current_localization_id": barriosOzonas,
+            }
 
-            vm.searchTokko = function() {           
-                // Variable para contener los id de barrio a excluir
-                var barriosOzonas = [];
+            // Borramos resultado previo.
+            vm.prop_search = filtrarPropiedades(vm.prop_cache, filtros);
 
-                // Si no tenemos valores en vm.localization_barrio_id es
-                // porque el usuario solo selecciona Zona sin excluir Barrio
-                if (_.isEmpty(_.keys(vm.localization_barrio_id)) && vm.zona) {
-                    _.each(vm.zona.barrios, function (barrio){
-                        barriosOzonas.push(barrio.id);
-                    });
+            saveCache();
+            goToResultPage();
+        }
+
+        /**
+         * seleccionarBarrio() selecciona automáticamente el barrio
+         * cuando la zona tiene un solo barrio
+         * @zona: object. objeto zona.
+         */
+        vm.seleccionarBarrio = function (zona){
+            // Permite centralizar la selección de {n} barrios por zona.
+            vm.zona = zona;
+
+            // Inicializamos la lista de barrios a seleccionar.
+            vm.localization_barrio_id = [];
+            if(zona.unBarrio) {
+                angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input').trigger('click').attr('checked',true);
+            }
+        }
+
+        /**
+         * Formatear zona y barrios
+         *
+         * @param {}
+         */
+        function parseLocation() {
+            var objBarrio = {};
+            var propSinBarrio = [];
+
+            _.each(vm.prop_cache, function (propiedad) {
+                objBarrio = _.find(vm.barrios, function (barrio) {
+                    return barrio.name.toLowerCase() == propiedad.location.name.toLowerCase();
+                });
+
+                // Caso: Barrio mal cargado desde API-Tokko
+                if (_.isEmpty(objBarrio)) {
+                    propiedad.zona = false;
+                    propiedad.barrio = propiedad.location.name; // Le ponemos el barrio de la propiedad.
+                    propSinBarrio.push({id: propiedad.id, barrio: propiedad.barrio});
+                }
+                // Caso: Zona: Nva. Córdoba = Barrio :> Nva. Córdoba
+                else if (objBarrio.name.toLowerCase() == propiedad.location.name.toLowerCase()) {
+                    propiedad.zona = false;
+                    propiedad.barrio = objBarrio.name;
                 }
                 else {
-                    barriosOzonas = _.keys(vm.localization_barrio_id);
+                    propiedad.zona = objBarrio.zona;
+                    propiedad.barrio = objBarrio.name;
                 }
+            });
+            //console.log('prop sin barrio', propSinBarrio);
+        }
 
-                // Parameters by user
-                var filtros = {
-                    "operation_types": _.keys(vm.operation_types),
-                    "property_types": _.keys(vm.property_types),
-                    "suite_amount": _.keys(vm.suite_amount),
-                    "current_localization_id": barriosOzonas,
-                }
-                
-                // Borramos resultado previo.
-                vm.prop_search = filtrarPropiedades(vm.prop_cache, filtros);
-                console.log('goto',vm.prop_search);
-                
-                saveCache();
-                goToResultPage(); 
-            }
+        /**
+         * Formatear operation types ejemplo
+         * "operationsParsed":["Rent", "Sales"]
+         */
+        function parseOperationTypes(allprops) {
+            // Por cada propiedad
+            _.each(allprops, function(prop) {
+                prop.operationsParsed = []; //array de operaciones
+                prop.operations_types = ""; //string de operciones
 
-            /**
-            * seleccionarBarrio() selecciona automáticamente el barrio
-            * cuando la zona tiene un solo barrio
-            * @zona: object. objeto zona.
-            */
-            vm.seleccionarBarrio = function (zona){
-                // Permite centralizar la selección de {n} barrios por zona.
-                vm.zona = zona;
-
-                // Inicializamos la lista de barrios a seleccionar.
-                vm.localization_barrio_id = [];
-                if(zona.unBarrio) {
-                    angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input').trigger('click').attr('checked',true);
-                }
-            }
-
-            /**
-            * Formatear zona y barrios
-            *
-            * @param {}
-            */
-            function parseLocation() {
-                var objBarrio = {};
-                var propSinBarrio = [];
-
-                _.each(vm.prop_cache, function (propiedad) {
-                    objBarrio = _.find(vm.barrios, function (barrio) {
-                        return barrio.name == propiedad.location.name;
-                    });
-
-                    if (_.isEmpty(objBarrio)) {
-                        propSinBarrio.push({id: propiedad.id, barrio: propiedad.barrio});
-                        propiedad.zona = false;
-                        propiedad.barrio = false;
-                    }
-                    else if (objBarrio.zona == propiedad.location.name) {
-                        propiedad.zona = false;
-                    }
-                    else {
-                        propiedad.zona = objBarrio.zona;
-                        propiedad.barrio = objBarrio.name;
-                    }
+                _.each(prop.operations, function (operation) {
+                    prop.operationsParsed.push(operation.operation_type);
+                    prop.operations_types += operation.operation_type + ' ';
                 });
-                console.log('prop sin barrio', propSinBarrio);
-                return vm.prop_cache;
+            });
+        }
+
+        function saveCache() {
+            console.log('Guardando en caché...');
+            //guardar en localStorage
+            $scope.$storage = $localStorage.$default({
+                prop_cache: vm.prop_cache,
+                prop_search: vm.prop_search,
+                barriosXzona: vm.barriosXzona
+            });
+            $localStorage.prop_search = vm.prop_search;
+            $localStorage.prop_cache  = vm.prop_cache; 
+            $scope.$storage.$apply();
+        }
+
+        function goToResultPage(){
+            console.log('Go to resultPage...');
+            $state.go('propiedades', {
+                allProps: vm.prop_cache,
+                lastSearch: vm.prop_search,
+                isSearch: true
+            });
+        }
+
+        /*
+         * Modificamos el paso por parametros.
+         *   @allProps: vm.prop_cache
+         */
+        function filtrarPropiedades(allProps, filters) {
+            var filterProps = [];
+            if (!_.isEmpty(allProps) && !_.isEmpty(filters)) {
+                // filtrar por tipo de Operacion
+                filterProps = filterOperationTypes(allProps, filters.operation_types);
+                // filtrar por tipo de propiedad
+                filterProps = filterPropertyTypes(filterProps, filters.property_types);
+                // filtrar por dormitorios: suite_amount
+                filterProps = filterSuiteAmount(filterProps, filters.suite_amount);
+                // filtrar por zonas-barrios
+                filterProps = filterCurrentLocationId(filterProps, filters.current_localization_id);
+
+                return filterProps;
             }
+        } // fin filtrarPropiedades()
 
-            /**
-            * Formatear operation types ejemplo
-            * "operationsParsed":["Rent", "Sales"]
-            */
-            function parseOperationTypes(allprops) {
-                // Por cada propiedad
-                _.each(allprops, function(prop) {
-                    prop.operationsParsed = []; //array de operaciones
-                    prop.operations_types = ""; //string de operciones
-
-                    _.each(prop.operations, function (operation) {
-                        prop.operationsParsed.push(operation.operation_type);
-                        prop.operations_types += operation.operation_type + ' ';
-                    });
-                });
-            }
-
-            function saveCache() {
-                //guardar en localStorage
-                $scope.$storage = $localStorage.$default({
-                    prop_cache: vm.prop_cache,
-                    prop_search: vm.prop_search
-                });
-                $scope.$storage.$apply();
-            }
-
-            function goToResultPage(){
-                $state.go('propiedades', {
-                    allProps: vm.prop_cache, 
-                    lastSearch: vm.prop_search, 
-                    isSearch: true
-                });
-            } 
-
-            function filtrarPropiedades(allProps, filters) {
-                var filterProps = [];
-
-                if (!_.isEmpty(allProps) && !_.isEmpty(filters)) {
-
-                    // filtrar por tipo de Operacion
-                    filterProps = filterOperationTypes(allProps, filters.operation_types);
-                    // filtrar por tipo de propiedad
-                    filterProps = filterPropertyTypes(filterProps, filters.property_types);
-                    // filtrar por dormitorios: suite_amount
-                    filterProps = filterSuiteAmount(filterProps, filters.suite_amount);
-                    // filtrar por zonas-barrios
-                    filterProps = filterCurrentLocationId(filterProps, filters.current_localization_id);
-
-                    console.log(filterProps, 'filtrar prop');
-                    return filterProps;
-                }
-            } // fin filtrarPropiedades()
-
-            /**
-             * Filtrar propiedades por id de Location.
-             *
-             * Si pCurrentLocalizationId [0] indica <Todos> por lo cual no filtramos.
-             *
-             * @param {Object} pListaPropiedades: Propiedades a filtrar
-             * @param {Object} pCurrentLocalizationId: Barrios seleccionados x user.
-             */
-            function filterCurrentLocationId(allProps, id) {
-                // Zona/Barrio: 0: Todos
-                if (_.isEmpty(id) ||
+        /**
+         * Filtrar propiedades por id de Location.
+         *
+         * Si pCurrentLocalizationId [0] indica <Todos> por lo cual no filtramos.
+         *
+         * @param {Object} pListaPropiedades: Propiedades a filtrar
+         * @param {Object} pCurrentLocalizationId: Barrios seleccionados x user.
+         */
+        function filterCurrentLocationId(allProps, id) {
+            // Zona/Barrio: 0: Todos
+            if (_.isEmpty(id) ||
                     _.contains(_.values(id), "0")) {
-                    // Si el current_localization_id es {0: Todos} NO FILTRAR.
-                    return allProps;
-                }
-                else {
-                    var filtrado = [];
-                    filtrado = _.filter(allProps, function(prop) {
-                        return _.some(_.values(id), function(location) {
-                            return prop.location.id == location;
-                        });
-                    });
-                    return filtrado;
-                }
+                // Si el current_localization_id es {0: Todos} NO FILTRAR.
+                return allProps;
             }
+            else {
+                var filtrado = [];
+                filtrado = _.filter(allProps, function(prop) {
+                    return _.some(_.values(id), function(location) {
+                        return prop.location.id == location;
+                    });
+                });
+                return filtrado;
+            }
+        }
 
-            /**
-             * Filtrar propiedades por cantidad de dormitorios.
-             *
-             * Si pSuiteAmount [0] indica <Todos> por lo cual no filtramos.
-             *
-             * @param {Object} pListaPropiedades: Propiedades a filtrar
-             * @param {Object} pSuiteAmount: Dormitorios seleccionados x user.
-             */
-            function filterSuiteAmount(allProps, id) {
+        /**
+         * Filtrar propiedades por cantidad de dormitorios.
+         *
+         * Si pSuiteAmount [0] indica <Todos> por lo cual no filtramos.
+         *
+         * @param {Object} pListaPropiedades: Propiedades a filtrar
+         * @param {Object} pSuiteAmount: Dormitorios seleccionados x user.
+         */
+        function filterSuiteAmount(allProps, id) {
 
-                // Si el suite_amount es {0: Todos} NO FILTRAR.
-                if (_.isEmpty(id) ||
+            // Si el suite_amount es {0: Todos} NO FILTRAR.
+            if (_.isEmpty(id) ||
                     _.contains(_.values(id), "0")) {
-                    return allProps;
-                }
-                else {
-                    var filtrado = [];
-                    filtrado = _.filter(allProps, function(prop) {
-                        return _.some(_.values(id), function(pdorm) {
-                            return prop.suite_amount == pdorm;
-                        });
+                return allProps;
+            }
+            else {
+                var filtrado = [];
+                filtrado = _.filter(allProps, function(prop) {
+                    return _.some(_.values(id), function(pdorm) {
+                        return prop.suite_amount == pdorm;
                     });
-                    return filtrado;
-                }
+                });
+                return filtrado;
             }
 
-            /**
-             * Filtrar propiedades por tipo de propiedad.
-             * {Todos | Terreno | Departamento | Casa | Oficina  | Local | Campo}
-             *
-             * Si pPropertyTypes [0] indica <Todas> por lo cual no filtramos.
-             *
-             * @param {Object} pListaPropiedades: Propiedades a filtrar
-             * @param {Object} pPropertyTypes: Tipos de propiedad seleccionadas x user.
-             */
-            function filterPropertyTypes(allProps, id) {
-                // Si el tipo_propiedad es {0: Todos} NO FILTRAR.
-                if (_.isEmpty(id) ||
+        }
+
+        /**
+         * Filtrar propiedades por tipo de propiedad.
+         * {Todos | Terreno | Departamento | Casa | Oficina  | Local | Campo}
+         *
+         * Si pPropertyTypes [0] indica <Todas> por lo cual no filtramos.
+         *
+         * @param {Object} pListaPropiedades: Propiedades a filtrar
+         * @param {Object} pPropertyTypes: Tipos de propiedad seleccionadas x user.
+         */
+        function filterPropertyTypes(allProps, id) {
+            // Si el tipo_propiedad es {0: Todos} NO FILTRAR.
+            if (_.isEmpty(id) ||
                     _.contains(_.values(id), "0")) {
-                    return allProps;
+                return allProps;
+            }
+            else {
+                var filtrado = [];
+                // Se filtra por los tipos seleccionados
+                filtrado = _.filter(allProps, function(prop) {
+                    return _.some(_.values(id), function(ptype) {
+                        return prop.type.id == ptype;
+                    });
+                });
+                return filtrado;
+            }
+
+        }
+
+        /**
+         * Filtrar propiedades por tipo de operacion {Venta|Alquiler}.
+         *
+         * Si pOperationTypes [0] indica <Todas> por lo cual no filtramos.
+         *
+         * @param {Object} pListaPropiedades: Propiedades a filtrar
+         * @param {Object} pOperationTypes: Tipos de operacion seleccionadas x user.
+         */
+        function filterOperationTypes(allProps, id) {
+
+            // Caso 1.1: Filtrar por tipo de Operacion ()
+            if (_.isEmpty(id) || id.length == 2) {
+                // Tipo de Operacion: 0,2: Todos/Ambos
+                // Caso 1.1: Filtrar por tipo de Operacion (Todos)
+                return allProps;
+            }
+            else if (id.length == 1) {
+                var type;
+                var filtrado = [];
+
+                // Parseamos el tipo de operacion
+                if (_.values(id) == 1) {
+                    type = "Venta";
                 }
                 else {
-                    var filtrado = [];
-                    // Se filtra por los tipos seleccionados
-                    filtrado = _.filter(allProps, function(prop) {
-                        return _.some(_.values(id), function(ptype) {
-                            return prop.type.id == ptype;
-                        });
+                    type = "Alquiler";
+                }
+
+                // Filtramos por tipo de Operacion
+                filtrado = _.filter(allProps, function(prop) {
+                    return _.some(prop.operations, function(oper) {
+                        return oper.operation_type == type;
                     });
+                });
 
-                    return filtrado;
-                }
-
+                return filtrado;
             }
-
-            /**
-             * Filtrar propiedades por tipo de operacion {Venta|Alquiler}.
-             *
-             * Si pOperationTypes [0] indica <Todas> por lo cual no filtramos.
-             *
-             * @param {Object} pListaPropiedades: Propiedades a filtrar
-             * @param {Object} pOperationTypes: Tipos de operacion seleccionadas x user.
-             */
-            function filterOperationTypes(allProps, id) {
-
-                // Caso 1.1: Filtrar por tipo de Operacion ()
-                if (_.isEmpty(id) || id.length == 2) {
-                    // Tipo de Operacion: 0,2: Todos/Ambos
-                    // Caso 1.1: Filtrar por tipo de Operacion (Todos)
-                    return allProps;
-                }
-                else if (id.length == 1) {
-                    var type;
-                    var filtrado = [];
-
-                    // Parseamos el tipo de operacion
-                    if (_.values(id) == 1) {
-                        type = "Venta";
-                    }
-                    else {
-                        type = "Alquiler";
-                    }
-
-                    // Filtramos por tipo de Operacion
-                    filtrado = _.filter(allProps, function(prop) {
-                        return _.some(prop.operations, function(oper) {
-                            return oper.operation_type == type;
-                        });
-                    });
-
-                    return filtrado;
-                }
-            }
-        }; // Cierre tokkoController
-    }());
+        }
+    }; // Cierre tokkoController
+}());
