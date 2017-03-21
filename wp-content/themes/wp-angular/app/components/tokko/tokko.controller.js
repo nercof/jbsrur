@@ -63,9 +63,10 @@
                 _.each(vm.prop_cache, function (prop) {
                     var campos = _.pick(prop, 'id', 'address',
                             'description', 'fake_address', 'publication_title',
-                            'type', 'operations_types', 'location');
+                            'type', 'operations_types');
                     campos.type = campos.type.name;
-                    campos.barrio = campos.location.name;
+                    campos.barrio = prop.location.name;
+                    campos.location = prop.location.full_location;
                     vm.propsPredictive.push(campos);
                 });
 

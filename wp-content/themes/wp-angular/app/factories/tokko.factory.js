@@ -269,8 +269,7 @@
         price_from: 0,
         price_to: 9999999,
         operation_types: [1, 2],
-        property_types: [1, 2, 3, 4, 5, 6, 7],
-        currency: "ARS",
+        property_types: [1, 2, 3, 4, 5, 6, 7, 10],
         filters: [],
         with_tags: [],
         without_tags: []
