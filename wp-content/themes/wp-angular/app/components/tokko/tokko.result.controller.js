@@ -74,10 +74,10 @@
                     buscarPropiedadesTokkoAPIWithData().then(function(response){
                         console.log('objeto vacio y cache vacía',response);
                         vm.propiedades = response;
-                        
-                        // Guardando en cache. 
+
+                        // Guardando en cache.
                         $localStorage.prop_search = vm.prop_search;
-                        
+
                         setStateObjectFilterPaginationList();
                     });
                 }else{
@@ -104,7 +104,7 @@
             // Iniciamos las propiedades filtradas para la paginacion inicial.
             vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
         }
-        
+
         vm.pageChanged = function() {
             vm.setPagingData(vm.currentPage);
             $location.hash('paginador');
@@ -128,6 +128,8 @@
                     return attEspecial.show == true;
                 });
             });
+            // Inicializamos zonas a mostrar
+            vm.zonas = [];
 
             // Recorro las propiedades del catalogo
             _.each(vm.propiedades, function(propiedad) {
