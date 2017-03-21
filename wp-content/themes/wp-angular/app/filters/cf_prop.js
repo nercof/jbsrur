@@ -8,7 +8,7 @@
      */
     angular
         .module('app.core')
-        .filter('cf_psearch', cf_psearch);
+        .filter('cf_prop', cf_psearch);
 
     function cf_psearch() {
         return filterProps;
