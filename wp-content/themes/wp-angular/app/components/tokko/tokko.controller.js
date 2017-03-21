@@ -44,6 +44,8 @@
                         function(data){
                             vm.barrios = data.to.barrios; //todos los barrios sin zonas
                         });
+            }else{
+                vm.barrios = vm.barriosXzona.to.barrios;
             }
 
             // traer todas las propiedades
@@ -183,7 +185,7 @@
                     propSinBarrio.push({id: propiedad.id, barrio: propiedad.barrio});
                 }
                 // Caso: Zona: Nva. Córdoba = Barrio :> Nva. Córdoba
-                else if (objBarrio.name.toLowerCase() == propiedad.location.name.toLowerCase()) {
+                else if (objBarrio.zona.toLowerCase() == propiedad.location.name.toLowerCase()) {
                     propiedad.zona = false;
                     propiedad.barrio = objBarrio.name;
                 }
@@ -192,7 +194,7 @@
                     propiedad.barrio = objBarrio.name;
                 }
             });
-            //console.log('prop sin barrio', propSinBarrio);
+            //console.log('prop sin zona', propSinBarrio);
         }
 
         /**
@@ -221,7 +223,7 @@
                 barriosXzona: vm.barriosXzona
             });
             $localStorage.prop_search = vm.prop_search;
-            $localStorage.prop_cache  = vm.prop_cache; 
+            $localStorage.prop_cache  = vm.prop_cache;
             $scope.$storage.$apply();
         }
 
