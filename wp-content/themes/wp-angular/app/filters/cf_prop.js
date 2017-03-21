@@ -8,7 +8,7 @@
      */
     angular
         .module('app.core')
-        .filter('cf_psearch', cf_psearch);
+        .filter('cf_prop', cf_psearch);
 
     function cf_psearch() {
         return filterProps;
@@ -39,10 +39,6 @@
             domiActive      = parseTrue(vm.suite_amount_selected);
             attEspActive    = parseTrue(vm.attEspeciales_selected);
 
-            //console.log(typeActive);
-            //console.log(domiActive);
-            //console.log(attEspActive);
-
             // Sino hay nada para filtrar
             if (_.isEmpty(typeActive) && _.isEmpty(domiActive) && _.isEmpty(attEspActive)) {
                 filtered = all_prop;
@@ -61,9 +57,6 @@
                     filtered = all_prop;
                 }
 
-                // Almaceno el estado anterior.
-                //preFiltered = filtered;
-
                 if (!_.isEmpty(domiActive)) {
                     // Dormitorios
                     filtered = _.filter(filtered, function(propiedad) {
@@ -71,13 +64,6 @@
                             return propiedad.suite_amount == pdorm;
                         });
                     });
-
-                    // Nada para filtrar con Tipo de Propiedad
-                    //if (_.isEmpty(filtered)) {
-                    //    filtered = preFiltered;
-                    //}else {
-                    //    preFiltered = filtered;
-                    //}
                 }
                 if (!_.isEmpty(attEspActive)) {
                     // Atributos Especiales.
@@ -86,11 +72,6 @@
                             return _.where(propiedad.tags, {'id': parseInt(attEsp)}).length > 0 ;
                         });
                     });
-
-                    // Nada para filtrar con Tipo de Propiedad
-                    //if (_.isEmpty(filtered)) {
-                    //    filtered = preFiltered;
-                    //}
                 }
             }
 

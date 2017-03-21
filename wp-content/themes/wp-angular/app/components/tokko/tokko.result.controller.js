@@ -13,54 +13,24 @@
         resourceFactory, $stateParams, $state, $localStorage, STATE) {
 
         var vm = this;
-        vm.data = {}
-        vm.cache_propiedades_propiedades = {}
-        vm.propiedadesPredictive = [];
 
-        // Read and Write
         $scope.$storage = $localStorage;
 
         // Filtros auxiliares parte UI
-        vm.sortType = 'zona';
         vm.property_types = [];
         vm.suite_amount = [];
         vm.zonas = [];
         vm.attEspeciales = [];
-        vm.propSinAttEspeciales = [];
 
-        // models
+        // Models
         vm.property_types_selected = [];
         vm.suite_amount_selected = [];
         vm.zonas_selected = [];
         vm.attEspeciales_selected = [];
         vm.propSinAttEspeciales = [];
 
-        // Variables auxiliares
-        vm.spinner = true;
-        vm.state = true;
         vm.error = false;
 
-        vm.tabsContacto = [{
-            "titulo": "Telefono",
-            "href": "tel:+543514608800",
-            "text": "(0351) 4608800",
-            "type": "tel",
-            "icon": "typcn typcn-phone-outline"
-        }, {
-            "titulo": "Correo",
-            "href": "mailto:centro@jbsrur.com.ar",
-            "text": "centro@jbsrur.com.ar",
-            "type": "email",
-            "icon": "typcn typcn-mail"
-        }, {
-            "titulo": "Ver Más",
-            "href": "#",
-            "type": "link",
-            "icon": "typcn typcn-plus",
-            "isLink": true
-        }];
-
-        //
         // Empleadas para la paginacion de propiedades.
         vm.totalItems = false;
         vm.currentPage = 1;
@@ -68,10 +38,6 @@
 
         // Activamos el controlador
         activate(vm);
-
-        // Eliminar el resultado de la busqueda.
-        // @FIXME: ¿dónde?
-        //destroyStorage();
 
         /**
          * activate(): buscador de propiedades
@@ -86,28 +52,57 @@
          *    muestra todas.
          */
         function activate(vm) {
-
             // Parámetros de entrada
             vm.allProps = $stateParams.allProps;
             vm.lastSearch = $stateParams.lastSearch;
             vm.isSearch = $stateParams.isSearch;
 
             if ( !_.isEmpty(vm.lastSearch) ) {
-                //objeto lleno
+                // Objeto lleno
                 vm.propiedades = vm.lastSearch;
-                setParentState();
-
-                // Create common objet for internal filter
-                // { property_types | suite_amount | localization_barrio_id }
-                createCommonObjectFilter();
-
-                // Variables auxiliares para el paginador.
-                vm.totalItems = vm.propiedades.length;
-                vm.spinner = false;
-
-                // Iniciamos las propiedades filtradas para la paginacion inicial.
-                vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+                setStateObjectFilterPaginationList();
             }
+            else if (vm.isSearch){
+                // Objeto vacio y viene del buscador
+                vm.error = "No se encontraron propiedades";
+                console.log("No se encontraron propiedades");
+            } else if (!vm.isSearch){
+                //objeto vacio y no viene del buscador: buscar en cache
+                vm.propiedades = $scope.$storage.prop_search;
+                if ( _.isEmpty(vm.propiedades ) ) {
+                    //objeto vacio y cache vacía: traer todas las propiedades
+                    buscarPropiedadesTokkoAPIWithData().then(function(response){
+                        console.log('objeto vacio y cache vacía',response);
+                        vm.propiedades = response;
+
+                        // Guardando en cache.
+                        $localStorage.prop_search = vm.prop_search;
+
+                        setStateObjectFilterPaginationList();
+                    });
+                }else{
+                    // User press <F5> button.
+                    setStateObjectFilterPaginationList();
+                }
+            }
+        }
+
+        /**
+         * Permite encapsular las funciones auxiliares necesarias
+         * para el tratamiento de la ui.
+         *  1. Set parent <state>.
+         *  2. Crear objetos comunes para el filter interno.
+         *  3. Crear objetos comunes para el paginador.
+         */
+        function setStateObjectFilterPaginationList(){
+            setParentState();
+            createCommonObjectFilter();
+
+            // Variables auxiliares para el paginador.
+            vm.totalItems = vm.propiedades.length;
+
+            // Iniciamos las propiedades filtradas para la paginacion inicial.
+            vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
         }
 
         vm.pageChanged = function() {
@@ -133,6 +128,8 @@
                     return attEspecial.show == true;
                 });
             });
+            // Inicializamos zonas a mostrar
+            vm.zonas = [];
 
             // Recorro las propiedades del catalogo
             _.each(vm.propiedades, function(propiedad) {
@@ -174,14 +171,6 @@
             // Ordenamos
             vm.suite_amount = _.sortBy(vm.suite_amount, 'id');
         }
-        /**
-        * F(x) que permite eliminar los filtros unchecked para que no quede el
-        * arreglo de la forma [2: false, 3: true] y siempre tengamos los true
-        *
-        */
-        vm.unchecked = function(){
-            console.log("unchecked()");
-        }
 
         /**
          * Overwrite parentState for all properties
@@ -193,22 +182,10 @@
             });
          }
 
-        /**
-         *
-         * @param {int} page - <description>
-         */
-        function destroyStorage() {
-            // In controller
-            $scope.$on('$destroy', function iVeBeenDismissed() {
-                delete $scope.$storage.prop_search;
-                delete $localStorage.prop_search;
-            });
-        }
 
         /**
          * Consultamos la API de Tokko para obtener todas propiedades
          *
-         * @param {Object} pData - Parametros input AdvancedSearchTokko.
          */
         function buscarPropiedadesTokkoAPIWithData() {
             // Call factory to search Tokko properties.
@@ -216,174 +193,6 @@
                 console.log(response.objects, 'allProp');
                 return response.objects;
             });
-        }
-
-        /**
-         * description
-         *
-         */
-        function isEmptyLocalStoragePropSearchSaveit() {
-            /*
-            $scope.$storage.prop_search =
-                $scope.$storage = $localStorage.$default({
-                    prop_search: vm.propiedades,
-                });
-            */
-            //$localStorage.prop_search = (_.isEmpty($localStorage.prop_search)) ? vm.propiedades : $localStorage.prop_search;
-            $scope.$storage.prop_search = vm.propiedades;
-            $scope.$storage.$apply();
-        }
-
-        /**
-         * Objetivo: Filtrado en cascada.
-         *
-         * Se toma como punto de partida $localStorage.prop_cache
-         * para filtrar, pero por cada criterio de busqueda ingresado
-         * se filtrara desde vm.propiedades.
-         */
-        function filtrarPropiedades(pListaPropiedades) {
-            //console.log("Searching properties: << filtrarPropiedades() >>");
-            var resultFiltrado = [];
-
-            if (!_.isEmpty(pListaPropiedades) && !_.isEmpty(vm.data)) {
-
-                // Caso 1.1: Filtrar por tipo de Operacion ()
-                resultFiltrado = filterOperationTypes(pListaPropiedades, vm.data.operation_types);
-
-                // Caso 2: Filtrar por tipo de propiedad
-                resultFiltrado = filterPropertyTypes(resultFiltrado, vm.data.property_types);
-
-                // Caso 3: Filtrar por dormitorios: suite_amount
-                resultFiltrado = filterSuiteAmount(resultFiltrado, vm.data.suite_amount);
-
-                // Caso 4: Filtrar por zonas-barrios
-                resultFiltrado = filterCurrentLocationId(resultFiltrado, vm.data.current_localization_id);
-
-                vm.spinner = false;
-
-                return resultFiltrado;
-            } // else Advanced search with
-        } // fin filtrarPropiedades()
-
-
-        /**
-         * Filtrar propiedades por id de Location.
-         *
-         * Si pCurrentLocalizationId [0] indica <Todos> por lo cual no filtramos.
-         *
-         * @param {Object} pListaPropiedades: Propiedades a filtrar
-         * @param {Object} pCurrentLocalizationId: Barrios seleccionados x user.
-         */
-        function filterCurrentLocationId(pListaPropiedades, pCurrentLocalizationId) {
-            // Zona/Barrio: 0: Todos
-            if (_.isEmpty(pCurrentLocalizationId) ||
-                _.contains(_.values(pCurrentLocalizationId), "0")) {
-                // Si el current_localization_id es {0: Todos} NO FILTRAR.
-                return pListaPropiedades;
-            }
-            else {
-                var filtrado = [];
-                filtrado = _.filter(pListaPropiedades, function(prop) {
-                    return _.some(_.values(pCurrentLocalizationId), function(plocation) {
-                        return prop.location.id == plocation;
-                    });
-                });
-                return filtrado;
-            }
-        }
-
-        /**
-         * Filtrar propiedades por cantidad de dormitorios.
-         *
-         * Si pSuiteAmount [0] indica <Todos> por lo cual no filtramos.
-         *
-         * @param {Object} pListaPropiedades: Propiedades a filtrar
-         * @param {Object} pSuiteAmount: Dormitorios seleccionados x user.
-         */
-        function filterSuiteAmount(pListaPropiedades, pSuiteAmount) {
-
-            // Si el suite_amount es {0: Todos} NO FILTRAR.
-            if (_.isEmpty(pSuiteAmount) ||
-                _.contains(_.values(pSuiteAmount), "0")) {
-                return pListaPropiedades;
-            }
-            else {
-                var filtrado = [];
-                filtrado = _.filter(pListaPropiedades, function(prop) {
-                    return _.some(_.values(pSuiteAmount), function(pdorm) {
-                        return prop.suite_amount == pdorm;
-                    });
-                });
-                return filtrado;
-            }
-        }
-
-        /**
-         * Filtrar propiedades por tipo de propiedad.
-         * {Todos | Terreno | Departamento | Casa | Oficina  | Local | Campo}
-         *
-         * Si pPropertyTypes [0] indica <Todas> por lo cual no filtramos.
-         *
-         * @param {Object} pListaPropiedades: Propiedades a filtrar
-         * @param {Object} pPropertyTypes: Tipos de propiedad seleccionadas x user.
-         */
-        function filterPropertyTypes(pListaPropiedades, pPropertyTypes) {
-            // Si el tipo_propiedad es {0: Todos} NO FILTRAR.
-            if (_.isEmpty(pPropertyTypes) ||
-                _.contains(_.values(pPropertyTypes), "0")) {
-                return pListaPropiedades;
-            }
-            else {
-                var filtrado = [];
-                // Se filtra por los tipos seleccionados
-                filtrado = _.filter(pListaPropiedades, function(prop) {
-                    return _.some(_.values(pPropertyTypes), function(ptype) {
-                        return prop.type.id == ptype;
-                    });
-                });
-
-                return filtrado;
-            }
-
-        }
-
-        /**
-         * Filtrar propiedades por tipo de operacion {Venta|Alquiler}.
-         *
-         * Si pOperationTypes [0] indica <Todas> por lo cual no filtramos.
-         *
-         * @param {Object} pListaPropiedades: Propiedades a filtrar
-         * @param {Object} pOperationTypes: Tipos de operacion seleccionadas x user.
-         */
-        function filterOperationTypes(pListaPropiedades, pOperationTypes) {
-
-            // Caso 1.1: Filtrar por tipo de Operacion ()
-            if (_.isEmpty(pOperationTypes) || pOperationTypes.length == 2) {
-                // Tipo de Operacion: 0,2: Todos/Ambos
-                // Caso 1.1: Filtrar por tipo de Operacion (Todos)
-                return pListaPropiedades;
-            }
-            else if (pOperationTypes.length == 1) {
-                var type;
-                var filtrado = [];
-
-                // Parseamos el tipo de operacion
-                if (_.values(pOperationTypes) == 1) {
-                    type = "Venta";
-                }
-                else {
-                    type = "Alquiler";
-                }
-
-                // Filtramos por tipo de Operacion
-                filtrado = _.filter(pListaPropiedades, function(prop) {
-                    return _.some(prop.operations, function(oper) {
-                        return oper.operation_type == type;
-                    });
-                });
-
-                return filtrado;
-            }
         }
 
         /**
@@ -396,12 +205,5 @@
             vm.properties = vm.propiedades.slice((page - 1) * vm.itemsPerPage, page * vm.itemsPerPage);
         }
 
-        /**
-         * Funcion guia para cambiar la pagina seleccionada.
-         *
-         */
-        vm.pageChanged = function() {
-            vm.setPagingData(vm.currentPage);
-        }
     } // Fin controller
 })();
