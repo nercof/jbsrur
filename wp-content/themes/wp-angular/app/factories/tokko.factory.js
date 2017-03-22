@@ -350,8 +350,18 @@
           return "Oficina";
         case 7:
           return "Local";
+        case 8:
+          return "Edificio Comercial";
         case 9:
           return "Campo";
+        case 10:
+          return "Cochera";
+        case 12:
+          return "Nave Industrial";
+        case 13:
+          return "PH";
+        case 14:
+          return "Depósito";
         default:
           return "Todos";
       }
