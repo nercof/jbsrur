@@ -48,8 +48,6 @@
                 tokkoFactory.getProperty($scope.id).then(function(data) {
                     vm.propiedad = data;
                     parseAndBuildGallery();
-                    
-            console.log(vm.propiedad);
                 });
 
             }
