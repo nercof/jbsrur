@@ -16,7 +16,7 @@
         $scope.$storage = $localStorage;
         vm.prop_cache = $localStorage.prop_cache; // todas las propiedades
         vm.prop_search = $localStorage.prop_search; //ultima búsqueda
-        
+
         //inicio variables Buscador Avanzado
         vm.barriosXzona = $localStorage.barriosXzona; // JSON con los barrios y zonas
         vm.barrios = []; // JSON con barrios
