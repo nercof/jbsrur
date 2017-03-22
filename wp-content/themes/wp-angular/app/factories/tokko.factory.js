@@ -25,6 +25,7 @@
   // GET /api/v1/property/search
 
   function dataFactory(tokkoService,
+    resourceFactory,
     BASE_TOKKO,
     TOKKO_KEY,
     TOKKO_LANG,
@@ -63,6 +64,7 @@
       'getDevelopmentsTokkoAPIById': getDevelopmentsTokkoAPIById,
       'getNamePropertyTypes': getNamePropertyTypes,
       'getNameDormitorios': getNameDormitorios,
+      'getPropertiesByCountry':getPropertiesByCountry,
     }
 
     // Model Schema to search in Tokko.
@@ -269,8 +271,7 @@
         price_from: 0,
         price_to: 9999999,
         operation_types: [1, 2],
-        property_types: [1, 2, 3, 4, 5, 6, 7],
-        currency: "ARS",
+        property_types: [1, 2, 3, 4, 5, 6, 7, 10],
         filters: [],
         with_tags: [],
         without_tags: []
@@ -281,6 +282,17 @@
       url = url.replace('tokko_query', aux);
 
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
+    }
+
+    /**
+    * Permite obtener las propiedades de todo el pais
+    */
+    function getPropertiesByCountry(){
+      //tokkobroker.com/api/v1/property/search/?order_by=price&order=desc&format=json&key=8fe7f17376761bada8524d0a75c8937f8a4517b7&lang=es_ar&offset=4&limit=450&data={"current_localization_id":0,"current_localization_type":"country","price_from":1,"price_to":999999999999,"operation_types":[1,2,3],"property_types":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],"currency":"ANY","filters":[]}
+        return resourceFactory.query({id: 'allprops.json'},
+               function(data){
+                  return data; //todos los barrios sin zonas
+      });
     }
 
     /**
@@ -338,8 +350,18 @@
           return "Oficina";
         case 7:
           return "Local";
+        case 8:
+          return "Edificio Comercial";
         case 9:
           return "Campo";
+        case 10:
+          return "Cochera";
+        case 12:
+          return "Nave Industrial";
+        case 13:
+          return "PH";
+        case 14:
+          return "Depósito";
         default:
           return "Todos";
       }

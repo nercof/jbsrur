@@ -51,7 +51,6 @@
                 });
 
             }
-
             // Generamos el modelo ContactForm
             typeFactory.getPostByCategoryName("contacto").then(
                 function(data) {

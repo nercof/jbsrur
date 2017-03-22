@@ -9,7 +9,7 @@
         return filterPropiedades;
 
         function filterPropiedades(model, vm) {
-            vm.propiedadesPredictive = model;
+            vm.predictiveResult = model;
 
             return model;
         }

@@ -21,7 +21,6 @@
         <div ng-if="vm.error">{{vm.error}}</div>
         <div class="filtro">
           <h2>Filtrar propiedades:</h2>
-          <p class="hide">Sort Type: {{ vm.sortType }}</p>
           <div class="row">
             <div class="col-sm-4 col-xs-6 step step-list">
               <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.property_types">
@@ -43,7 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 card" id="paginador" dir-paginate="propiedad in vm.propiedades | cf_psearch:vm | itemsPerPage: vm.itemsPerPage" current-page="vm.currentPage" ng-class-odd="'odd'">
+        <div class="col-md-3 card" id="paginador" dir-paginate="propiedad in vm.propiedades | cf_prop:vm | itemsPerPage: vm.itemsPerPage" current-page="vm.currentPage" ng-class-odd="'odd'">
           <div ng-if="vm.propiedades" class="inner-card">
             <a ui-sref="propiedades.detalle({data: propiedad , id:propiedad.id})" target="_blank" class="thumb">
               <h2 ng-text-truncate="propiedad.fake_address"

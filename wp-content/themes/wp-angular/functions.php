@@ -303,8 +303,8 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'core', 'factories' ));
 
                 wp_enqueue_script(
-                'cf_psearch',
-                get_stylesheet_directory_uri() . '/app/filters/cf_psearch.js',
+                'cf_prop',
+                get_stylesheet_directory_uri() . '/app/filters/cf_prop.js',
                 array( 'core', 'factories' ));
 
                 wp_enqueue_script(
