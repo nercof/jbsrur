@@ -49,29 +49,36 @@
             }
 
             // traer todas las propiedades
-            tokkoFactory.getPropertyByCity().then(function(response) {
-                vm.prop_cache = response.objects;
+            tokkoFactory.getPropertiesByCountry().$promise.then(function(response) {
+                //vm.prop_cache = response.objects;
+                vm.prop_cache = [];
+
+                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
+                _.each(response.objects, function (prop) {
+                    var propsPredictive = _.pick(prop, 'id', 'address',
+                            'description', 'fake_address', 'publication_title',
+                            'type', 'operations_types', 'location');
+                    propsPredictive.type = propsPredictive.type.name;
+                    propsPredictive.barrio = propsPredictive.location.name;
+                    vm.propsPredictive.push(propsPredictive);
+
+                    // Buscador global
+                    var propsGlobal =  _.pick(prop, 'id', 'address',
+                            'description', 'fake_address', 'publication_title',
+                            'type', 'operations_types', 'location', 
+                            'suite_amount', 'type', 'operations', 'photos');
+                    vm.prop_cache.push(propsGlobal);
+                });
 
                 // Parsear tipos de operaciones
                 parseOperationTypes(vm.prop_cache);
 
                 // Parsear barrio y zona
                 parseLocation();
-
+   
                 // Guardar en localstorage
                 saveCache();
-
-                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
-                _.each(vm.prop_cache, function (prop) {
-                    var campos = _.pick(prop, 'id', 'address',
-                            'description', 'fake_address', 'publication_title',
-                            'type', 'operations_types');
-                    campos.type = campos.type.name;
-                    campos.barrio = prop.location.name;
-                    campos.location = prop.location.full_location;
-                    vm.propsPredictive.push(campos);
-                });
-
+                                
             });
 
             // get config para armar los campos del Advanced Search
@@ -79,6 +86,7 @@
 
         }// Fin activate
 
+                
         /**
          * searchLocation() permite obtener las propiedades
          * asociadas al id pasado por referencia.
