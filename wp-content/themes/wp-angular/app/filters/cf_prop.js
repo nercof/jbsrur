@@ -32,26 +32,45 @@
             var typeActive = [];
             var domiActive = [];
             var attEspActive = [];
+            var zonasActive = [];
             var preFiltered = [];
 
             // Permite filtrar los que esten con estado false.
-            typeActive      = parseTrue(vm.property_types_selected);
-            domiActive      = parseTrue(vm.suite_amount_selected);
-            attEspActive    = parseTrue(vm.attEspeciales_selected);
+            typeActive = parseTrue(vm.property_types_selected);
+            domiActive = parseTrue(vm.suite_amount_selected);
+            attEspActive = parseTrue(vm.attEspeciales_selected);
+            zonasActive = parseTrue(vm.zonas_selected);
 
             // Sino hay nada para filtrar
-            if (_.isEmpty(typeActive) && _.isEmpty(domiActive) && _.isEmpty(attEspActive)) {
+            if (_.isEmpty(typeActive) && _.isEmpty(domiActive) &&
+                _.isEmpty(attEspActive) && _.isEmpty(zonasActive)) {
                 filtered = all_prop;
             }
             else {
-                // Tendremos que empezar a filtrar por lo seleccionado
-                // Tipo de Propiedad
-                filtered = _.filter(all_prop, function(propiedad) {
-                    return _.some(typeActive, function(ptype) {
-                        return propiedad.type.id == ptype;
+                if (!_.isEmpty(zonasActive)) {
+                    // Tendremos que empezar a filtrar por lo seleccionado
+                    // Tipo de Propiedad
+                    filtered = _.filter(all_prop, function(propiedad) {
+                        return _.some(zonasActive, function(zona) {
+                            return (propiedad.zona == zona || //xZona
+                                propiedad.barrio == zona); //xNuevaCórdoba
+                        });
                     });
-                });
+                }
+                // Nada para filtrar con Zonas
+                if (_.isEmpty(filtered)) {
+                    filtered = all_prop;
+                }
 
+                // Tendremos que empezar a filtrar por lo seleccionado
+                if (!_.isEmpty(typeActive)) {
+                    // Tipo de Propiedad
+                    filtered = _.filter(filtered, function(propiedad) {
+                        return _.some(typeActive, function(ptype) {
+                            return propiedad.type.id == ptype;
+                        });
+                    });
+                }
                 // Nada para filtrar con Tipo de Propiedad
                 if (_.isEmpty(filtered)) {
                     filtered = all_prop;
@@ -65,16 +84,25 @@
                         });
                     });
                 }
+                
+                // Nada para filtrar por cantidad de dormitorios
+                if (_.isEmpty(filtered)) {
+                    filtered = all_prop;
+                }
+                
                 if (!_.isEmpty(attEspActive)) {
                     // Atributos Especiales.
                     filtered = _.filter(filtered, function(propiedad) {
                         return _.some(attEspActive, function(attEsp) {
-                            return _.where(propiedad.tags, {'id': parseInt(attEsp)}).length > 0 ;
+                            return _.where(propiedad.tags, {
+                                'id': parseInt(attEsp)
+                            }).length > 0;
                         });
                     });
+                
                 }
             }
-
+            
             return filtered;
         }
 

@@ -21,6 +21,7 @@
         vm.suite_amount = [];
         vm.zonas = [];
         vm.attEspeciales = [];
+        vm.attEspecialesHabilitados = [];
 
         // Models
         vm.property_types_selected = [];
@@ -57,22 +58,23 @@
             vm.lastSearch = $stateParams.lastSearch;
             vm.isSearch = $stateParams.isSearch;
 
-            if ( !_.isEmpty(vm.lastSearch) ) {
+            if (!_.isEmpty(vm.lastSearch)) {
                 // Objeto lleno
                 vm.propiedades = vm.lastSearch;
                 setStateObjectFilterPaginationList();
             }
-            else if (vm.isSearch){
+            else if (vm.isSearch) {
                 // Objeto vacio y viene del buscador
                 vm.error = "No se encontraron propiedades";
                 console.log("No se encontraron propiedades");
-            } else if (!vm.isSearch){
+            }
+            else if (!vm.isSearch) {
                 //objeto vacio y no viene del buscador: buscar en cache
                 vm.propiedades = $scope.$storage.prop_search;
-                if ( _.isEmpty(vm.propiedades ) ) {
+                if (_.isEmpty(vm.propiedades)) {
                     //objeto vacio y cache vacía: traer todas las propiedades
-                    buscarPropiedadesTokkoAPIWithData().then(function(response){
-                        console.log('objeto vacio y cache vacía',response);
+                    buscarPropiedadesTokkoAPIWithData().then(function(response) {
+                        console.log('objeto vacio y cache vacía', response);
                         vm.propiedades = response;
 
                         // Guardando en cache.
@@ -80,7 +82,8 @@
 
                         setStateObjectFilterPaginationList();
                     });
-                }else{
+                }
+                else {
                     // User press <F5> button.
                     setStateObjectFilterPaginationList();
                 }
@@ -94,7 +97,7 @@
          *  2. Crear objetos comunes para el filter interno.
          *  3. Crear objetos comunes para el paginador.
          */
-        function setStateObjectFilterPaginationList(){
+        function setStateObjectFilterPaginationList() {
             setParentState();
             createCommonObjectFilter();
 
@@ -112,22 +115,14 @@
         }
 
         /**
-        * Permite generar los objetos auxiliares para filtrar el resultado
-        * desde el catalogo resultado por los campos:
-        *
-        * { property_types | suite_amount | localization_barrio_id }
-        *
-        * @param {}
-        */
+         * Permite generar los objetos auxiliares para filtrar el resultado
+         * desde el catalogo resultado por los campos:
+         *
+         * { property_types | suite_amount | localization_barrio_id }
+         *
+         * @param {}
+         */
         function createCommonObjectFilter() {
-            // Atributos Especiales { Baño | patio | cochera | ...}
-            // tags = { Patio | Balcón | Lavadero | Terraza  }
-            resourceFactory.query_array({id: 'att-especiales-filtro.json'},
-            function(data){
-                vm.attEspeciales = _.filter(data, function(attEspecial){
-                    return attEspecial.show == true;
-                });
-            });
             // Inicializamos zonas a mostrar
             vm.zonas = [];
 
@@ -135,8 +130,8 @@
             _.each(vm.propiedades, function(propiedad) {
                 // Tipos de Propiedad
                 if (!_.where(vm.property_types, {
-                    'id': propiedad.type.id
-                }).length) {
+                        'id': propiedad.type.id
+                    }).length) {
                     vm.property_types.push({
                         id: propiedad.type.id,
                         name: tokkoFactory.getNamePropertyTypes(propiedad.type.id)
@@ -145,10 +140,10 @@
 
                 // Dormitorios
                 if (!_.where(vm.suite_amount, {
-                    'id': propiedad.suite_amount
-                }).length) {
+                        'id': propiedad.suite_amount
+                    }).length) {
                     var nombre = tokkoFactory.getNameDormitorios(propiedad.suite_amount);
-                    if(propiedad.suite_amount > 0 && !_.isEqual(nombre, "Todos")){
+                    if (propiedad.suite_amount > 0 && !_.isEqual(nombre, "Todos")) {
                         vm.suite_amount.push({
                             id: propiedad.suite_amount,
                             name: nombre
@@ -157,30 +152,78 @@
                     }
                 }
 
-                // Zonas
-                if (!_.contains(vm.zonas, propiedad.zona)) {
+                // Zonas: Si es Nueva Córdoba, poner el barrio. 
+                if (!_.contains(vm.zonas, propiedad.zona) && propiedad.zona) {
                     vm.zonas.push(propiedad.zona);
+                }
+                else if (!_.contains(vm.zonas, propiedad.barrio) && 
+                            propiedad.zona == false) {
+                    vm.zonas.push(propiedad.barrio);
+                }
+                else{
+                    //Propiedades sin zonas.
+                    //console.log(propiedad);
                 }
 
                 // Atributos Especiales { Baño | patio | cochera | ...}
                 // Para identificar las propiedades sin attEspeciales
-                if(_.isEmpty(propiedad.tags)){
+                if (_.isEmpty(propiedad.tags)) {
                     vm.propSinAttEspeciales.push(propiedad);
                 }
-            });
+                else {
+                    // Verificamos que los atributos en true esten en las prop.
+                    vm.attEspeciales.push(propiedad.tags);
+                }
+            }); // Fin each
+            
+            
+            createAttEspecialesObjectFilter();
+
             // Ordenamos
             vm.suite_amount = _.sortBy(vm.suite_amount, 'id');
+            console.log(vm.zonas);
+            vm.zonas = _.sortBy(vm.zonas, 'name'); 
         }
+        
+        /**
+         * 
+         * 
+         *
+         */
+        function createAttEspecialesObjectFilter() {
+            console.log('creando filter att especiales');
+            // Atributos Especiales { Baño | patio | cochera | ...}
+            // tags = { Patio | Balcón | Lavadero | Terraza  }
+            resourceFactory.query_array({
+                    id: 'att-especiales-filtro.json'
+                },
+                function(data) {
+                    vm.attEspecialesHabilitados = _.filter(data, function(attEspecial) {
+                        return attEspecial.show == true;
+                    });
+                }).$promise.then(function(response) {
 
+                // Sive para [[a, b], [c], [d]] -> [a,b,c,d]
+                var allAtt = [].concat.apply([], vm.attEspeciales)
+
+                // Verificar si el att pertenece a alguna propiedad
+                vm.attEspeciales = _.filter(vm.attEspecialesHabilitados, function(attHabilitado) {
+                    return _.some(allAtt, function(attProp) {
+                        return attProp.id == attHabilitado.id;
+                    });
+                });
+            }); // Fin .$promise.then(function(response) 
+        }
+        
         /**
          * Overwrite parentState for all properties
          */
-         function setParentState(){
+        function setParentState() {
             // Recorro las propiedades del catalogo
             _.each(vm.propiedades, function(propiedad) {
                 propiedad.parentState = 'propiedades';
             });
-         }
+        }
 
 
         /**
