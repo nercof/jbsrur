@@ -50,18 +50,12 @@
 
             // traer todas las propiedades
             tokkoFactory.getPropertiesByCountry().$promise.then(function(response) {
-                //vm.prop_cache = response.objects;
+                var allProps = response.objects; // .json completo de propiedades
                 vm.prop_cache = [];
 
-                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
-                _.each(response.objects, function (prop) {
-                    var propsPredictive = _.pick(prop, 'id', 'address',
-                            'description', 'fake_address', 'publication_title',
-                            'type', 'operations_types', 'location');
-                    propsPredictive.type = propsPredictive.type.name;
-                    propsPredictive.barrio = propsPredictive.location.name;
-                    vm.propsPredictive.push(propsPredictive);
 
+                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
+                _.each(allProps, function (prop) {
                     // Buscador global
                     var propsGlobal =  _.pick(prop, 'id', 'address',
                             'description', 'fake_address', 'publication_title',
@@ -75,7 +69,17 @@
 
                 // Parsear barrio y zona
                 parseLocation();
-   
+
+                                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
+                _.each(vm.prop_cache, function (prop) {
+                    var propsPredictive = _.pick(prop, 'id', 'address',
+                            'description', 'fake_address', 'publication_title',
+                            'type', 'operations_types', 'location');
+                    propsPredictive.type = propsPredictive.type.name;
+                    propsPredictive.barrio = propsPredictive.location.name;
+                    vm.propsPredictive.push(propsPredictive);
+                });
+                   
                 // Guardar en localstorage
                 saveCache();
                                 
