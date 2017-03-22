@@ -59,7 +59,7 @@
                     // Buscador global
                     var propsGlobal =  _.pick(prop, 'id', 'address',
                             'description', 'fake_address', 'publication_title',
-                            'type', 'operations_types', 'location', 
+                            'type', 'operations_types', 'location', 'tags', 
                             'suite_amount', 'type', 'operations', 'photos');
                     vm.prop_cache.push(propsGlobal);
                 });

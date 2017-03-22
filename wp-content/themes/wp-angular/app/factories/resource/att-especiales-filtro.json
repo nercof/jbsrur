@@ -47,7 +47,7 @@
     {
         "id": "12",
         "name": "Cocina",
-        "show": false
+        "show": true
     },
     {
         "id": "13",
@@ -67,7 +67,7 @@
     {
         "id": "22",
         "name": "Living comedor",
-        "show": false
+        "show": true
     },
     {
         "id": "23",
