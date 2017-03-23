@@ -14,7 +14,6 @@
 
         //variables para el localStorage
         $scope.$storage = $localStorage;
-        vm.prop_cache = $localStorage.prop_cache; // todas las propiedades
         vm.prop_search = $localStorage.prop_search; //ultima búsqueda
 
         //inicio variables Buscador Avanzado
@@ -79,9 +78,6 @@
                     propsPredictive.barrio = propsPredictive.location.name;
                     vm.propsPredictive.push(propsPredictive);
                 });
-                   
-                // Guardar en localstorage
-                saveCache();
                                 
             });
 
@@ -138,9 +134,14 @@
             // Si no tenemos valores en vm.localization_barrio_id es
             // porque el usuario solo selecciona Zona sin excluir Barrio
             if (_.isEmpty(_.keys(vm.localization_barrio_id)) && vm.zona) {
-                _.each(vm.zona.barrios, function (barrio){
-                    barriosOzonas.push(barrio.id);
-                });
+                
+                if (vm.zona.id == 0){
+                    barriosOzonas = vm.zona;
+                } else {
+                    _.each(vm.zona.barrios, function (barrio){
+                        barriosOzonas.push(barrio.id);
+                    });
+                }
             }
             else {
                 barriosOzonas = _.keys(vm.localization_barrio_id);
@@ -153,12 +154,37 @@
                 "suite_amount": _.keys(vm.suite_amount),
                 "current_localization_id": barriosOzonas,
             }
+            if (_.isEmpty(filtros.property_types) || _.contains(_.values(filtros.property_types), "0") &&
+                _.isEmpty(filtros.suite_amount) || _.contains(_.values(filtros.suite_amount), "0") &&
+                _.isEmpty(filtros.current_localization_id) || _.contains(_.values(filtros.current_localization_id), "0")){
+                if(_.values(vm.operation_types).length == 2 || _.values(vm.operation_types).length == 0){   
+                    vm.prop_search = vm.prop_cache;
+                    goToResultPage();    
+                }
+                else{
+                    goToCatalogPage();
+                }
+            } else {
+                // Borramos resultado previo.
+                vm.prop_search = filtrarPropiedades(vm.prop_cache, filtros);
+                saveCache();
+                goToResultPage();
+            }
+        }
 
-            // Borramos resultado previo.
-            vm.prop_search = filtrarPropiedades(vm.prop_cache, filtros);
+        function goToCatalogPage(){
+            console.log("Go to goToCatalogPage...");
+            var state;
+            var filtrado = [];
 
-            saveCache();
-            goToResultPage();
+            // Parseamos el tipo de operacion
+            if (_.keys(vm.operation_types) == 1) {
+                state = "ventas";
+            }
+            else {
+                state = "alquileres";
+            }
+            $state.go(state);            
         }
 
         /**
@@ -228,15 +254,13 @@
         }
 
         function saveCache() {
-            console.log('Guardando en caché...');
+            console.log('Guardando en caché...', vm.prop_search);
             //guardar en localStorage
             $scope.$storage = $localStorage.$default({
-                prop_cache: vm.prop_cache,
                 prop_search: vm.prop_search,
                 barriosXzona: vm.barriosXzona
             });
             $localStorage.prop_search = vm.prop_search;
-            $localStorage.prop_cache  = vm.prop_cache;
             $scope.$storage.$apply();
         }
 
@@ -279,8 +303,7 @@
          */
         function filterCurrentLocationId(allProps, id) {
             // Zona/Barrio: 0: Todos
-            if (_.isEmpty(id) ||
-                    _.contains(_.values(id), "0")) {
+            if (_.isEmpty(id) || _.contains(_.values(id), "0")) {
                 // Si el current_localization_id es {0: Todos} NO FILTRAR.
                 return allProps;
             }

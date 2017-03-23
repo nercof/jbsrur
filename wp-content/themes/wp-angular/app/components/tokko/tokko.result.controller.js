@@ -10,7 +10,7 @@
      *  - @view: tokko-search-result
      */
     function tokkoResultController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state, $localStorage, STATE) {
+        resourceFactory, $stateParams, $state, $localStorage, STATE, TYPE) {
 
         var vm = this;
 
@@ -38,7 +38,7 @@
         vm.itemsPerPage = 16;
 
         // Activamos el controlador
-        activate(vm);
+        activate(vm, TYPE);
 
         /**
          * activate(): buscador de propiedades
@@ -52,14 +52,26 @@
          *  - refresh: muestra las ultimas propiedades filtradas, si el objeto está vacío
          *    muestra todas.
          */
-        function activate(vm) {
+        function activate(vm, opType) {
             // Parámetros de entrada
             vm.allProps = $stateParams.allProps;
             vm.lastSearch = $stateParams.lastSearch;
             vm.isSearch = $stateParams.isSearch;
+            vm.type = $stateParams.type;
 
-            if (!_.isEmpty(vm.lastSearch)) {
-                // Objeto lleno
+            //  get barrios de Córdoba y zonas
+            if (_.isEmpty(vm.barriosXzona)){
+                console.log('Cargando barriosXzona...');
+                vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
+                        function(data){
+                            vm.barrios = data.to.barrios; //todos los barrios sin zonas
+                        });
+            }else{
+                vm.barrios = vm.barriosXzona.to.barrios;
+            }
+
+            if (!_.isEmpty(vm.lastSearch) && !_.isEmpty(vm.allProps) && !vm.type ) {
+                // Objeto lleno y es /propiedades
                 vm.propiedades = vm.lastSearch;
                 setStateObjectFilterPaginationList();
             }
@@ -69,14 +81,15 @@
                 console.log("No se encontraron propiedades");
             }
             else if (!vm.isSearch) {
-                //objeto vacio y no viene del buscador: buscar en cache
-                vm.propiedades = $scope.$storage.prop_search;
+                //objeto vacio (no viene del buscador) o alquiler ventas: buscar en cache
+                vm.propiedades = (vm.type) ? [] : $scope.$storage.prop_search;
+
                 if (_.isEmpty(vm.propiedades)) {
                     //objeto vacio y cache vacía: traer todas las propiedades
                     buscarPropiedadesTokkoAPIWithData().then(function(response) {
                         console.log('objeto vacio y cache vacía', response);
                         vm.propiedades = response;
-
+                        parseLocation();
                         // Guardando en cache.
                         $localStorage.prop_search = vm.prop_search;
 
@@ -85,9 +98,44 @@
                 }
                 else {
                     // User press <F5> button.
+                    if(vm.type) {
+                        vm.propiedades = _.filter($scope.$storage.prop_cache , function(prop) {
+                            return _.some(prop.operations, function(oper) {
+                                return oper.operation_type == vm.type;
+                            });
+                        });
+                    }
                     setStateObjectFilterPaginationList();
                 }
             }
+        }
+
+        function parseLocation() {
+            var objBarrio = {};
+            var propSinBarrio = [];
+
+            _.each(vm.propiedades, function (propiedad) {
+                objBarrio = _.find(vm.barrios, function (barrio) {
+                    return barrio.name.toLowerCase() == propiedad.location.name.toLowerCase();
+                });
+
+                // Caso: Barrio mal cargado desde API-Tokko
+                if (_.isEmpty(objBarrio)) {
+                    propiedad.zona = false;
+                    propiedad.barrio = propiedad.location.name; // Le ponemos el barrio de la propiedad.
+                    propSinBarrio.push({id: propiedad.id, barrio: propiedad.barrio});
+                }
+                // Caso: Zona: Nva. Córdoba = Barrio :> Nva. Córdoba
+                else if (objBarrio.zona.toLowerCase() == propiedad.location.name.toLowerCase()) {
+                    propiedad.zona = false;
+                    propiedad.barrio = objBarrio.name;
+                }
+                else {
+                    propiedad.zona = objBarrio.zona;
+                    propiedad.barrio = objBarrio.name;
+                }
+            });
+            //console.log('prop sin zona', propSinBarrio);
         }
 
         /**
@@ -181,7 +229,6 @@
 
             // Ordenamos
             vm.suite_amount = _.sortBy(vm.suite_amount, 'id');
-            console.log(vm.zonas);
             vm.zonas = _.sortBy(vm.zonas, 'name'); 
         }
         
@@ -232,9 +279,17 @@
          */
         function buscarPropiedadesTokkoAPIWithData() {
             // Call factory to search Tokko properties.
-            return tokkoFactory.getPropertyByCity().then(function(response) {
-                console.log(response.objects, 'allProp');
-                return response.objects;
+            return tokkoFactory.getPropertiesByCountry().$promise.then(function(response) {
+                if(vm.type) {
+                    return _.filter(response.objects, function(prop) {
+                        return _.some(prop.operations, function(oper) {
+                            return oper.operation_type == vm.type;
+                        });
+                    });
+                } else {
+                    return response.objects;
+                }
+                
             });
         }
 

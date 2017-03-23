@@ -75,13 +75,15 @@
       .state(STATE.VE, {
         url: '/' + STATE.VE,
         params: {
-          title_view: TITULO.CATALOGO_VENTA,
-          type: TYPE.VE
+          type: TYPE.VE,
+          allProps: null,
+          lastSearch: null,
+          isSearch:false
         },
         views: {
           "content": {
             templateUrl: localized.tokko + "tokko-search-result.html",
-            controller: 'catalogController as vm',
+            controller: 'tokkoResultController as vm',
           },
           "suc-section": {
             templateUrl: localized.tokko + "tokko-search-input.html",
@@ -100,13 +102,15 @@
       .state(STATE.AL, {
         url: '/' + STATE.AL,
         params: {
-          title_view: TITULO.CATALOGO_ALQUILER,
-          type: TYPE.AL
+          type: TYPE.AL,
+          allProps: null,
+          lastSearch: null,
+          isSearch:false
         },
         views: {
           "content": {
             templateUrl: localized.tokko + "tokko-search-result.html",
-            controller: 'catalogController as vm',
+            controller: 'tokkoResultController as vm',
           },
           "suc-section": {
             templateUrl: localized.tokko + "tokko-search-input.html",
@@ -265,7 +269,8 @@
         params: {
           allProps: null,
           lastSearch: null, // Lista propiedades filtradas por el predictiveSearch
-          isSearch:false
+          isSearch:false,
+          type: null
         },
         url: '/' + STATE.PO,
         views: {
