@@ -351,6 +351,16 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 'typeFactory',
                 get_stylesheet_directory_uri() . '/app/factories/type.factory.js',
                 array( 'factories', 'wp-service' ));
+                
+                wp_enqueue_script(
+                'parsePropertyFactory',
+                get_stylesheet_directory_uri() . '/app/factories/parse.property.factory.js',
+                array( 'factories', 'wp-service' ));
+
+                wp_enqueue_script(
+                'barriosFactory',
+                get_stylesheet_directory_uri() . '/app/factories/barrios.factory.js',
+                array( 'factories', 'wp-service' ));
 
                 wp_enqueue_script(
                 'mediaFactory',
