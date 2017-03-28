@@ -115,7 +115,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
 
                 // load bootstrap wp js
                 /*wp_enqueue_script( '_tk-bootstrapwp', get_template_directory_uri() . '/includes/js/bootstrap-wp.js', array('jquery') );*/
-
+                
                 //Load angular
                 wp_enqueue_script('libs', get_template_directory_uri() .'/build/libs.min.js');
 
@@ -159,11 +159,15 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'angular-utils-pagination',
                 get_template_directory_uri() .'/app/services/dirPagination.js');*/
+                
+                wp_enqueue_script(
+                'ng-text-truncate',
+                get_template_directory_uri() .'/includes/js/ng-text-truncate.js');
 
                 wp_enqueue_script(
                 'app',
                 get_stylesheet_directory_uri() . '/build/app.js',
-                array( 'libs'));
+                array( 'libs', 'ng-text-truncate'));
 
                 /*wp_enqueue_script(
                 'routes',
