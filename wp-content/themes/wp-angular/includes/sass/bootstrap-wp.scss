@@ -87,8 +87,11 @@ body {
             .carousel-control {
                   width: 50px;
             }
-            img {
+            .img {
+                  height: 550px;
                   width: 100%;
+                  background-size: cover;
+                  background-position: center;
             }
             .carousel-inner {
                   border-bottom: 10px solid $red;
