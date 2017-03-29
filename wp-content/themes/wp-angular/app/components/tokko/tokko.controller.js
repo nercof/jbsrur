@@ -21,6 +21,7 @@
         vm.barrios = []; // JSON con barrios
         vm.camposForm = {}; //JSON con la configuracion de los campos de tokko para el form
         vm.prop_cache = []; //resultado propiedades Tokko API parseadas
+        vm.user_filter = {}; //JSON con la seleccion del buscador avanzado. 
 
         // modelos de los campos del form
         vm.property_types = [];
@@ -36,6 +37,10 @@
 
         activate(vm);
 
+        /**
+        *
+        *
+        */
         function activate(vm) {
             //  get barrios de Córdoba y zonas
             getBarriosCordoba();
@@ -111,12 +116,12 @@
             goToResultPage();
         }
 
-        /**
-         * searchTokko() metodo que se llama al hacer click en el botón Buscar
-         * del avancedSearch
-         */
-
-        vm.searchTokko = function() {
+        /*
+        *
+        *
+        */
+        function getUserFilters() {
+            // body...
             // Variable para contener los id de barrio a excluir
             var barriosOzonas = [];
 
@@ -137,28 +142,65 @@
             }
 
             // Parameters by user
-            var filtros = {
+            vm.user_filter = {
                 "operation_types": _.keys(vm.operation_types),
                 "property_types": _.keys(vm.property_types),
                 "suite_amount": _.keys(vm.suite_amount),
                 "current_localization_id": barriosOzonas,
             }
-            if (_.isEmpty(filtros.property_types) || _.contains(_.values(filtros.property_types), "0") &&
-                _.isEmpty(filtros.suite_amount) || _.contains(_.values(filtros.suite_amount), "0") &&
-                _.isEmpty(filtros.current_localization_id) || _.contains(_.values(filtros.current_localization_id), "0")){
-                if(_.values(vm.operation_types).length == 2 || _.values(vm.operation_types).length == 0){   
+        }
+
+        /**
+        * Devuelve true|false 
+        * 0:Todos
+        */
+        function sinFiltros(argument) {
+            // Consultamos que selecciono el usuario.
+            if ((_.isEmpty(vm.user_filter.property_types) || 
+                _.contains(_.values(vm.user_filter.property_types), "0")) &&                
+                // Dormitorios
+                (_.isEmpty(vm.user_filter.suite_amount) || 
+                _.contains(_.values(vm.user_filter.suite_amount), "0")) &&
+                // Zonas
+                (_.isEmpty(vm.user_filter.current_localization_id) || 
+                _.contains(_.values(vm.user_filter.current_localization_id), "0"))
+                ){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        
+
+        /**
+         * searchTokko() metodo que se llama al hacer click en el botón Buscar
+         * del avancedSearch
+         */
+        vm.searchTokko = function() {
+            
+            // Filtros de usuario. 
+            getUserFilters();
+
+            // ¿Cual es el camino a tomar?
+            if (sinFiltros()){
+                // El usuario selecciono Ventas AND Alquileres
+                if( _.values(vm.user_filter.operation_types).length == 2 || 
+                    _.values(vm.user_filter.operation_types).length == 0){   
                     vm.prop_search = vm.prop_cache;
                     goToResultPage();    
                 }
+                // El usuario selecciono Ventas OR Alquileres
                 else{
                     goToCatalogPage();
                 }
             } else {
                 // Borramos resultado previo.
-                vm.prop_search = filtrarPropiedades(vm.prop_cache, filtros);
+                vm.prop_search = filtrarPropiedades(vm.prop_cache, vm.user_filter);
                 saveCache();
                 goToResultPage();
             }
+
         }
 
         function goToCatalogPage(){
