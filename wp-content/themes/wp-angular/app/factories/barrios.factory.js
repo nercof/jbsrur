@@ -15,7 +15,6 @@
          * 
          */
         function getBarriosCatalogados() {
-            console.log('Cargando barriosXzona...');
             return resourceFactory.query({
                     id: 'barrios_cba.json'
                 },
