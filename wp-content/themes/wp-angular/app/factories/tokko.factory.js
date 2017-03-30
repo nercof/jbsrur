@@ -65,6 +65,7 @@
       'getNamePropertyTypes': getNamePropertyTypes,
       'getNameDormitorios': getNameDormitorios,
       'getPropertiesByCountry':getPropertiesByCountry,
+      'getPropertiesByOperationType': getPropertiesByOperationType
     }
 
     // Model Schema to search in Tokko.
@@ -295,6 +296,26 @@
       });
     }
 
+    /**
+    * Permite obtener las propiedades de todo el pais x tipo de operacion
+    * 1 - Venta
+    * 2 - Alquiler
+    */
+    function getPropertiesByOperationType(type){
+        
+        if (type == "Venta") {
+          return resourceFactory.query({id: 'propsVenta.json'},
+               function(data){
+                  return data; 
+                });
+        } else {
+         return resourceFactory.query({id: 'propsAlquiler.json'},
+               function(data){
+                  return data; 
+      }); 
+        }      
+        
+    }
     /**
      * Permite buscar los <Emprendimientos> registrados en TOKKO API. Test url:
      * http://tokkobroker.com/api/playground#!/developments/development-list_get_0

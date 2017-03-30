@@ -27,22 +27,23 @@
          * @prop_predi: array. todas las propiedades Predictive Search.
          * @barrios: object.json completo de barrios de cordoba.
          */
-        function parseAllProperties(allProps, prop_cache, prop_predi, barrios, prop_ventas, prop_alquil) {
+        function parseAllProperties(allProps, prop_cache, prop_predi, barrios) {
             
 
             // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
             _.each(allProps, function (propiedad) {
                 // Parsear objeto propiedad - Advanced search
                 propiedad = parseAttPropsAdvancedSearch(propiedad);
-                parseOperationTypes(propiedad, prop_ventas, prop_alquil);
+                parseOperationTypes(propiedad);
                 parseLocation(propiedad, barrios); // Parsear barrio y zona
 
                 prop_cache.push(propiedad);
 
                 // Parsear objeto propiedad - Predictive search
                 // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
-                prop_predi.push(parseAttPropsPredictiveSearch(propiedad));
-
+                if (prop_predi) {
+                    prop_predi.push(parseAttPropsPredictiveSearch(propiedad));    
+                } 
             });
         }
 
@@ -116,14 +117,6 @@
             // Una propiedad puede tener {n} operaciones 
             _.each(propiedad.operations, function (operation) {
                 propiedad.operationsParsed.push(operation.operation_type);
-                
-                // Consultamos que tabla completar.
-                if (operation.operation_type == "Venta") {
-                    prop_ventas.push(propiedad);
-                } else {
-                    prop_alquil.push(propiedad);
-                }
-
                 propiedad.operations_types += operation.operation_type + ' ';
             });           
         }
@@ -136,7 +129,7 @@
                     });
             });
         }
-        
+
         return data;
     }
 }());

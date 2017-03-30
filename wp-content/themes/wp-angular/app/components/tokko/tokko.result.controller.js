@@ -86,10 +86,18 @@
 
                 if (_.isEmpty(vm.propiedades)) {
                     //objeto vacio y cache vacía: traer todas las propiedades
-                    buscarPropiedadesTokkoAPIWithData().then(function(response) {                        
-                        vm.propiedades = response;
-                        parseLocation();
-                        
+                    buscarPropiedadesTokkoAPIWithData().$promise.then(function(response) {                        
+                        vm.propiedades = response.objects;
+
+                        // Consultamos si venimos del catalogo.
+                        if(vm.type) {
+                            parsePropertyFactory.parseAllProperties(
+                                response.objects,   // .json completo de propiedades
+                                vm.propiedades,
+                                null,               // No necesitamos el predictivo.
+                                vm.barrios);
+                        }
+
                         // Guardando en cache.
                         $localStorage.prop_search = vm.prop_search;
 
@@ -102,6 +110,7 @@
                         vm.propiedades = parsePropertyFactory.filtrarPorOperacion(
                             $scope.$storage.prop_cache, vm.type);
                     }
+                    console.log(vm.propiedades);
                     setStateObjectFilterPaginationList();
                 }
             }
@@ -173,6 +182,7 @@
 
             // Recorro las propiedades del catalogo
             _.each(vm.propiedades, function(propiedad) {
+
                 // Tipos de Propiedad
                 if (!_.where(vm.property_types, {
                         'id': propiedad.type.id
@@ -275,17 +285,11 @@
          */
         function buscarPropiedadesTokkoAPIWithData() {
             // Call factory to search Tokko properties.
-            return tokkoFactory.getPropertiesByCountry().$promise.then(function(response) {
-                if(vm.type) {
-                    return _.filter(response.objects, function(prop) {
-                        return _.some(prop.operations, function(oper) {
-                            return oper.operation_type == vm.type;
-                        });
-                    });
-                } else {
-                    return response.objects;
-                }                
-            });
+            if(vm.type) {
+                return tokkoFactory.getPropertiesByOperationType(vm.type);                
+            } else {
+                return tokkoFactory.getPropertiesByCountry();
+            }
         }
 
         /**

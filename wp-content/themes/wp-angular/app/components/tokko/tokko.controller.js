@@ -57,9 +57,7 @@
                     response.objects,   // .json completo de propiedades
                     vm.prop_cache,      
                     vm.propsPredictive, 
-                    vm.barrios,
-                    vm.prop_ventas,
-                    vm.prop_alquil);            
+                    vm.barrios);            
             });     
 
         }// Fin activate
