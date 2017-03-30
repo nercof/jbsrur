@@ -208,7 +208,7 @@
         * Tener en cuenta vm.prop_ventas || vm.prop_alquil
         */
         function goToCatalogPage(){
-            console.log("Go to goToCatalogPage...");
+            //console.log("Go to goToCatalogPage...");
             var state;
 
             // Parseamos el tipo de operacion
@@ -240,7 +240,7 @@
         }        
 
         function saveCache() {
-            console.log('Guardando en caché...', vm.prop_search);
+            //console.log('Guardando en caché...', vm.prop_search);
             //guardar en localStorage
             $scope.$storage = $localStorage.$default({
                 prop_search: vm.prop_search,

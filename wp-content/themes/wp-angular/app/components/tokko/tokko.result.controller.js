@@ -96,7 +96,6 @@
                                 vm.propiedades,
                                 null,               // No necesitamos el predictivo.
                                 vm.barrios);
-                            console.log(vm.propiedades);
                         }
 
                         // Guardando en cache.
