@@ -47,51 +47,31 @@ if ( ! function_exists( '_tk_setup' ) ) :
 
         add_filter( 'esc_html', 'rename_post_formats' );
 
-        //rename Aside in posts list table
-        function live_rename_formats() {
-            global $current_screen;
 
-            if ( $current_screen->id == 'edit-post' ) { ?>
-                <script type="text/javascript">
-                jQuery('document').ready(function() {
+        /**
+        * Setup the WordPress core custom background feature.
+        */
+        add_theme_support( 'custom-background', apply_filters( '_tk_custom_background_args', array(
+            'default-color' => 'ffffff',
+            'default-image' => '',
+        ) ) );
 
-                    jQuery("span.post-state-format").each(function() {
-                        if ( jQuery(this).text() == "Aside" )
-                        jQuery(this).text("Tip");
-                    });
+        /**
+        * Make theme available for translation
+        * Translations can be filed in the /languages/ directory
+        * If you're building a theme based on _tk, use a find and replace
+        * to change '_tk' to the name of your theme in all the template files
+        */
+        load_theme_textdomain( '_tk', get_template_directory() . '/languages' );
 
-                });
-                </script>
-                <?php }
-            }
-            add_action('admin_head', 'live_rename_formats');
+        /**
+        * This theme uses wp_nav_menu() in one location.
+        */
+        register_nav_menus( array(
+            'primary'  => __( 'Header bottom menu', '_tk' ),
+            ) );
 
-
-
-            /**
-            * Setup the WordPress core custom background feature.
-            */
-            add_theme_support( 'custom-background', apply_filters( '_tk_custom_background_args', array(
-                'default-color' => 'ffffff',
-                'default-image' => '',
-            ) ) );
-
-            /**
-            * Make theme available for translation
-            * Translations can be filed in the /languages/ directory
-            * If you're building a theme based on _tk, use a find and replace
-            * to change '_tk' to the name of your theme in all the template files
-            */
-            load_theme_textdomain( '_tk', get_template_directory() . '/languages' );
-
-            /**
-            * This theme uses wp_nav_menu() in one location.
-            */
-            register_nav_menus( array(
-                'primary'  => __( 'Header bottom menu', '_tk' ),
-                ) );
-
-            }
+        }
         endif; // _tk_setup
         add_action( 'after_setup_theme', '_tk_setup' );
 
@@ -123,8 +103,10 @@ if ( ! function_exists( '_tk_setup' ) ) :
 
                 // load Font Awesome css
                 wp_enqueue_style( '_tk-font-awesome', get_template_directory_uri() . '/includes/css/font-awesome.min.css', false, '4.1.0' );
+
                 // load arquitecture-font
                 wp_enqueue_style( '_tk-arquitecture-font', get_template_directory_uri() . '/includes/css/arquitecture-font.css');
+
                 // load _tk styles
                 wp_enqueue_style( '_tk-style', get_stylesheet_uri() );
 
@@ -132,16 +114,15 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script('_tk-bootstrapjs', get_template_directory_uri().'/includes/resources/bootstrap/js/bootstrap.min.js', array('jquery') );
 
                 // load bootstrap wp js
-                wp_enqueue_script( '_tk-bootstrapwp', get_template_directory_uri() . '/includes/js/bootstrap-wp.js', array('jquery') );
-
+                /*wp_enqueue_script( '_tk-bootstrapwp', get_template_directory_uri() . '/includes/js/bootstrap-wp.js', array('jquery') );*/
+                
                 //Load angular
-                wp_enqueue_script('angularjs', get_template_directory_uri() .'/node_modules/angular/angular.min.js');
+                wp_enqueue_script('libs', get_template_directory_uri() .'/build/libs.min.js');
 
-                wp_enqueue_script('contact', 'http://www.jbsrur.com.ar/wp-content/plugins/contact-form-7/includes/js/scripts.js');
 
-                wp_enqueue_script(
+                /*wp_enqueue_script(
                 'angular-ui-router',
-                get_template_directory_uri() .'/node_modules/angular-ui-router/release/angular-ui-router.js');
+                get_template_directory_uri() .'/node_modules/angular-ui-router/release/angular-ui-router.min.js');
 
                 wp_enqueue_script(
                 'angular-ui-bt',
@@ -156,38 +137,39 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 get_template_directory_uri() .'/node_modules/underscore/underscore-min.js');
 
                 wp_enqueue_script(
+                'ng-map',
+                get_template_directory_uri() .'/node_modules/ngmap/build/scripts/ng-map.min.js');
+
+                wp_enqueue_script(
+                'angular-resource',
+                get_template_directory_uri() .'/node_modules/angular-resource/angular-resource.min.js');
+
+                wp_enqueue_script(
+                'angular-bootstrap-lightbox',
+                get_template_directory_uri() .'/node_modules/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.js');
+
+                wp_enqueue_script(
+                'ngstorage',
+                get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.min.js');
+
+                wp_enqueue_script(
+                'angular-breadcrumb',
+                get_template_directory_uri() .'/node_modules/angular-breadcrumb/dist/angular-breadcrumb.min.js');
+
+                wp_enqueue_script(
+                'angular-utils-pagination',
+                get_template_directory_uri() .'/app/services/dirPagination.js');*/
+                
+                wp_enqueue_script(
                 'ng-text-truncate',
                 get_template_directory_uri() .'/includes/js/ng-text-truncate.js');
 
                 wp_enqueue_script(
-                'ng-map',
-                get_template_directory_uri() .'/node_modules/ngmap/build/scripts/ng-map.js');
-
-                wp_enqueue_script(
-                'angular-resource',
-                get_template_directory_uri() .'/node_modules/angular-resource/angular-resource.js');
-
-                wp_enqueue_script(
-                'angular-bootstrap-lightbox',
-                get_template_directory_uri() .'/node_modules/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js');
-
-                wp_enqueue_script(
-                'ngstorage',
-                get_template_directory_uri() .'/node_modules/ngstorage/ngStorage.js');
-
-                wp_enqueue_script(
-                'angular-breadcrumb',
-                get_template_directory_uri() .'/node_modules/angular-breadcrumb/dist/angular-breadcrumb.js');
-
-                wp_enqueue_script(
                 'app',
-                get_stylesheet_directory_uri() . '/app/app.js',
-                array( 'angularjs', 'angular-ui-router', 'underscore',  'ng-map',
-                'angular-resource', 'ngstorage', 'angular-ui-bt', 'angular-ui-bt-tpls',
-                'angular-bootstrap-lightbox', 'angular-utils-pagination',
-                'angular-breadcrumb'));
+                get_stylesheet_directory_uri() . '/build/app.js',
+                array( 'libs', 'ng-text-truncate'));
 
-                wp_enqueue_script(
+                /*wp_enqueue_script(
                 'routes',
                 get_stylesheet_directory_uri() . '/app/app.routes.js',
                 array( 'app' ));
@@ -195,7 +177,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'core',
                 get_stylesheet_directory_uri() . '/app/app.core.js',
-                array( 'app' ));
+                array( 'app', 'angular-utils-pagination' ));
 
                 wp_enqueue_script(
                 'config',
@@ -203,94 +185,104 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'app' ));
 
                 wp_enqueue_script(
+                'services',
+                get_stylesheet_directory_uri() . '/app/app.services.js',
+                array( 'app' ));
+
+                wp_enqueue_script(
+                'factories',
+                get_stylesheet_directory_uri() . '/app/app.factories.js',
+                array( 'app' ));*/
+
+                wp_enqueue_script(
                 'menu-header',
                 get_stylesheet_directory_uri() . '/app/components/menu-header/menu-header.controller.js',
-                array( 'core' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'main',
                 get_stylesheet_directory_uri() . '/app/components/main/main.controller.js',
-                array( 'core' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'tokko',
                 get_stylesheet_directory_uri() . '/app/components/tokko/tokko.controller.js',
-                array( 'core' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'slider',
                 get_stylesheet_directory_uri() . '/app/components/slider/slider.controller.js',
-                array( 'core', 'factories' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'tokkoResult',
                 get_stylesheet_directory_uri() . '/app/components/tokko/tokko.result.controller.js',
-                array( 'core', 'factories' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'tokkoDetails',
                 get_stylesheet_directory_uri() . '/app/components/tokko/tokko.details.controller.js',
-                array( 'core', 'factories' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'emprendimiento',
                 get_stylesheet_directory_uri() . '/app/components/emprendimiento/emprendimiento.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'emprendimiento.detalle',
                 get_stylesheet_directory_uri() . '/app/components/emprendimiento/emprendimiento.details.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'secondFooter',
                 get_stylesheet_directory_uri() . '/app/components/footer/second.footer.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'mainFooter',
                 get_stylesheet_directory_uri() . '/app/components/footer/main.footer.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'novedades',
                 get_stylesheet_directory_uri() . '/app/components/novedades/novedades.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'novedades.detalle',
                 get_stylesheet_directory_uri() . '/app/components/novedades/novedades.details.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'catalog',
                 get_stylesheet_directory_uri() . '/app/components/catalog/catalogController.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'nav-section',
                 get_stylesheet_directory_uri() . '/app/components/nav-section/nav-section.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'social-section',
                 get_stylesheet_directory_uri() . '/app/components/social-section/social-section.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'suc-section',
                 get_stylesheet_directory_uri() . '/app/components/suc-section/suc-section.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'contact-section',
                 get_stylesheet_directory_uri() . '/app/components/contact/contact.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'quienes-somos',
                 get_stylesheet_directory_uri() . '/app/components/quienes-somos/quienes.somos.controller.js',
-                array( 'core', 'factories'));
+                array( 'app'));
 
                 wp_enqueue_script(
                 'admProp',
@@ -300,82 +292,57 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'to_trust',
                 get_stylesheet_directory_uri() . '/app/filters/to_trust.js',
-                array( 'core', 'factories' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'cf_prop',
                 get_stylesheet_directory_uri() . '/app/filters/cf_prop.js',
-                array( 'core', 'factories' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'resume',
                 get_stylesheet_directory_uri() . '/app/filters/resume.js',
-                array( 'core', 'factories' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'save_storage',
                 get_stylesheet_directory_uri() . '/app/filters/save_model.js',
-                array( 'core', 'factories' ));
-
-                wp_enqueue_script(
-                'services',
-                get_stylesheet_directory_uri() . '/app/app.services.js',
                 array( 'app' ));
 
                 wp_enqueue_script(
                 'wp-service',
                 get_stylesheet_directory_uri() . '/app/services/wp.service.js',
-                array( 'services' ));
+                array( 'app' ));
 
                 wp_enqueue_script(
                 'tokko-service',
                 get_stylesheet_directory_uri() . '/app/services/tokko.service.js',
-                array( 'services' ));
-
-                wp_enqueue_script(
-                'angular-utils-pagination',
-                get_template_directory_uri() .'/app/services/dirPagination.js');
-
-
-                wp_enqueue_script(
-                'factories',
-                get_stylesheet_directory_uri() . '/app/app.factories.js',
                 array( 'app' ));
 
                 wp_enqueue_script(
                 'menuFactory',
                 get_stylesheet_directory_uri() . '/app/factories/menu.factory.js',
-                array( 'factories', 'wp-service' ));
+                array( 'app', 'wp-service' ));
 
                 wp_enqueue_script(
                 'typeFactory',
                 get_stylesheet_directory_uri() . '/app/factories/type.factory.js',
-                array( 'factories', 'wp-service' ));
-                
-                wp_enqueue_script(
-                'parsePropertyFactory',
-                get_stylesheet_directory_uri() . '/app/factories/parse.property.factory.js',
-                array( 'factories', 'wp-service' ));
-
-                wp_enqueue_script(
-                'barriosFactory',
-                get_stylesheet_directory_uri() . '/app/factories/barrios.factory.js',
-                array( 'factories', 'wp-service' ));
+                array( 'app', 'wp-service' ));
 
                 wp_enqueue_script(
                 'mediaFactory',
                 get_stylesheet_directory_uri() . '/app/factories/media.factory.js',
-                array( 'factories', 'wp-service' ));
+                array( 'app', 'wp-service' ));
 
                 wp_enqueue_script(
                 'tokkoFactory',
                 get_stylesheet_directory_uri() . '/app/factories/tokko.factory.js',
-                array( 'factories', 'wp-service' ));
+                array( 'app', 'wp-service' ));
 
                 wp_enqueue_script(
                 'resourceFactory',
                 get_stylesheet_directory_uri() . '/app/factories/resource.factory.js',
-                array( 'factories', 'tokko-service' , 'tokkoFactory'));
+                array( 'app', 'tokko-service' , 'tokkoFactory'));
 
                 wp_enqueue_script( '_tk-skip-link-focus-fix', get_template_directory_uri() . '/includes/js/skip-link-focus-fix.js', array(), '20130115', true );
 

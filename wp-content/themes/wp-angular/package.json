@@ -25,6 +25,9 @@
   },
   "devDependencies": {
     "angular-underscore": "0.0.3",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "grunt": "~1.0.1",
+    "grunt-contrib-uglify": "~2.2.0",
+    "grunt-contrib-concat": "~1.0.1"
   }
 }
