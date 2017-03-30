@@ -340,6 +340,16 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'app', 'wp-service' ));
 
                 wp_enqueue_script(
+                'parsePropertyFactory',
+                get_stylesheet_directory_uri() . '/app/factories/parse.property.factory.js',
+                array( 'app', 'wp-service' ));
+
+                wp_enqueue_script(
+                'barriosFactory',
+                get_stylesheet_directory_uri() . '/app/factories/barrios.factory.js',
+                array( 'app', 'wp-service' ));
+
+                wp_enqueue_script(
                 'resourceFactory',
                 get_stylesheet_directory_uri() . '/app/factories/resource.factory.js',
                 array( 'app', 'tokko-service' , 'tokkoFactory'));
