@@ -87,7 +87,7 @@
                 if (_.isEmpty(vm.propiedades)) {
                     //objeto vacio y cache vacía: traer todas las propiedades
                     buscarPropiedadesTokkoAPIWithData().$promise.then(function(response) {                        
-                        vm.propiedades = response.objects;
+                        //vm.propiedades = response.objects;
 
                         // Consultamos si venimos del catalogo.
                         if(vm.type) {
@@ -96,6 +96,7 @@
                                 vm.propiedades,
                                 null,               // No necesitamos el predictivo.
                                 vm.barrios);
+                            console.log(vm.propiedades);
                         }
 
                         // Guardando en cache.
@@ -114,34 +115,6 @@
                     setStateObjectFilterPaginationList();
                 }
             }
-        }
-
-        function parseLocation() {
-            var objBarrio = {};
-            var propSinBarrio = [];
-
-            _.each(vm.propiedades, function (propiedad) {
-                objBarrio = _.find(vm.barrios, function (barrio) {
-                    return barrio.name.toLowerCase() == propiedad.location.name.toLowerCase();
-                });
-
-                // Caso: Barrio mal cargado desde API-Tokko
-                if (_.isEmpty(objBarrio)) {
-                    propiedad.zona = false;
-                    propiedad.barrio = propiedad.location.name; // Le ponemos el barrio de la propiedad.
-                    propSinBarrio.push({id: propiedad.id, barrio: propiedad.barrio});
-                }
-                // Caso: Zona: Nva. Córdoba = Barrio :> Nva. Córdoba
-                else if (objBarrio.zona.toLowerCase() == propiedad.location.name.toLowerCase()) {
-                    propiedad.zona = false;
-                    propiedad.barrio = objBarrio.name;
-                }
-                else {
-                    propiedad.zona = objBarrio.zona;
-                    propiedad.barrio = objBarrio.name;
-                }
-            });
-            //console.log('prop sin zona', propSinBarrio);
         }
 
         /**
