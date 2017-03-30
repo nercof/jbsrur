@@ -11,7 +11,7 @@
      */
     function tokkoResultController($scope, tokkoFactory, tokkoService, NgMap,
         resourceFactory, $stateParams, $state, $localStorage, STATE, TYPE,
-        parsePropertyFactory) {
+        parsePropertyFactory, barriosFactory) {
 
         var vm = this;
 
@@ -62,10 +62,15 @@
 
             //  get barrios de Córdoba y zonas
             if (_.isEmpty(vm.barriosXzona)){
-                vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
-                        function(data){
-                            vm.barrios = data.to.barrios; //todos los barrios sin zonas
-                        });
+                vm.barriosXzona = barriosFactory.getBarriosCatalogados().$promise.then(
+                    function (response) {
+                        // body...
+                        vm.barriosXzona = response;                                            
+                        vm.barrios = vm.barriosXzona.to.barrios;
+
+                        // Guardamos en la caché
+                        $localStorage.barriosXzona = response;
+                    });
             }else{
                 vm.barrios = vm.barriosXzona.to.barrios;
             }
