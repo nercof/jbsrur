@@ -79,7 +79,6 @@
             else if (vm.isSearch) {
                 // Objeto vacio y viene del buscador
                 vm.error = "No se encontraron propiedades";
-                console.log("No se encontraron propiedades");
             }
             else if (!vm.isSearch) {
                 //objeto vacio (no viene del buscador) o alquiler ventas: buscar en cache
@@ -87,10 +86,10 @@
 
                 if (_.isEmpty(vm.propiedades)) {
                     //objeto vacio y cache vacía: traer todas las propiedades
-                    buscarPropiedadesTokkoAPIWithData().then(function(response) {
-                        console.log('objeto vacio y cache vacía', response);
+                    buscarPropiedadesTokkoAPIWithData().then(function(response) {                        
                         vm.propiedades = response;
                         parseLocation();
+                        
                         // Guardando en cache.
                         $localStorage.prop_search = vm.prop_search;
 
@@ -236,7 +235,6 @@
          *
          */
         function createAttEspecialesObjectFilter() {
-            console.log('creando filter att especiales');
             // Atributos Especiales { Baño | patio | cochera | ...}
             // tags = { Patio | Balcón | Lavadero | Terraza  }
             resourceFactory.query_array({
@@ -286,8 +284,7 @@
                     });
                 } else {
                     return response.objects;
-                }
-                
+                }                
             });
         }
 
