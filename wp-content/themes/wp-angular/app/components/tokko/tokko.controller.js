@@ -22,6 +22,8 @@
         vm.camposForm = {}; //JSON con la configuracion de los campos de tokko para el form
         vm.prop_cache = []; //resultado propiedades Tokko API parseadas
         vm.user_filter = {}; //JSON con la seleccion del buscador avanzado. 
+        vm.prop_ventas = []; //Array con las propiedades en venta.
+        vm.prop_alquil = []; //Array con las propiedades en alquiler.
 
         // modelos de los campos del form
         vm.property_types = [];
@@ -55,7 +57,9 @@
                     response.objects,   // .json completo de propiedades
                     vm.prop_cache,      
                     vm.propsPredictive, 
-                    vm.barrios);            
+                    vm.barrios,
+                    vm.prop_ventas,
+                    vm.prop_alquil);            
             });     
 
         }// Fin activate
@@ -203,19 +207,23 @@
 
         }
 
+        /**
+        * Tener en cuenta vm.prop_ventas || vm.prop_alquil
+        */
         function goToCatalogPage(){
             console.log("Go to goToCatalogPage...");
             var state;
-            var filtrado = [];
 
             // Parseamos el tipo de operacion
             if (_.keys(vm.operation_types) == 1) {
                 state = "ventas";
+                //$state.go(state,{ propiedades: vm.prop_ventas});
             }
             else {
                 state = "alquileres";
+                //$state.go(state,{ propiedades: vm.prop_alquil});
             }
-            $state.go(state);            
+            $state.go(state);
         }
 
         /**

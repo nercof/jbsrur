@@ -26,14 +26,14 @@
          * @prop_predi: array. todas las propiedades Predictive Search.
          * @barrios: object.json completo de barrios de cordoba.
          */
-        function parseAllProperties(allProps, prop_cache, prop_predi, barrios) {
+        function parseAllProperties(allProps, prop_cache, prop_predi, barrios, prop_ventas, prop_alquil) {
             
 
             // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
             _.each(allProps, function (propiedad) {
                 // Parsear objeto propiedad - Advanced search
                 propiedad = parseAttPropsAdvancedSearch(propiedad);
-                parseOperationTypes(propiedad);
+                parseOperationTypes(propiedad, prop_ventas, prop_alquil);
                 parseLocation(propiedad, barrios); // Parsear barrio y zona
 
                 prop_cache.push(propiedad);
@@ -108,13 +108,21 @@
          * Formatear operation types ejemplo
          * "operationsParsed":["Rent", "Sales"]
          */
-        function parseOperationTypes(propiedad) {
+        function parseOperationTypes(propiedad, prop_ventas, prop_alquil) {
             propiedad.operationsParsed = []; //array de operaciones
             propiedad.operations_types = ""; //string de operciones
 
             // Una propiedad puede tener {n} operaciones 
             _.each(propiedad.operations, function (operation) {
                 propiedad.operationsParsed.push(operation.operation_type);
+                
+                // Consultamos que tabla completar.
+                if (operation.operation_type == "Venta") {
+                    prop_ventas.push(propiedad);
+                } else {
+                    prop_alquil.push(propiedad);
+                }
+
                 propiedad.operations_types += operation.operation_type + ' ';
             });           
         }
