@@ -11,7 +11,8 @@
             'parseAttPropsPredictiveSearch': parseAttPropsPredictiveSearch,
             'parseAllProperties': parseAllProperties,
             'parseOperationTypes': parseOperationTypes,
-            'parseLocation': parseLocation
+            'parseLocation': parseLocation,
+            'filtrarPorOperacion': filtrarPorOperacion 
         }
 
         /**
@@ -127,6 +128,15 @@
             });           
         }
 
+        function filtrarPorOperacion(allProps, type) {
+            // body...
+            return _.filter(allProps , function(prop) {
+                return _.some(prop.operations, function(oper) {
+                    return oper.operation_type == type;
+                    });
+            });
+        }
+        
         return data;
     }
 }());

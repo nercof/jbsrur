@@ -121,8 +121,7 @@
         }
 
         /*
-        *
-        *
+        * Completar filtros de usuario.
         */
         function getUserFilters() {
             // body...
@@ -155,7 +154,7 @@
         }
 
         /**
-        * Devuelve true|false 
+        * Devuelve true|false en relacion a los parametros introducidos por el usuario.
         * 0:Todos
         */
         function sinFiltros(argument) {

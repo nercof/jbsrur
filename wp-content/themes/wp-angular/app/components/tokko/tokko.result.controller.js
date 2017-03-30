@@ -10,7 +10,8 @@
      *  - @view: tokko-search-result
      */
     function tokkoResultController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state, $localStorage, STATE, TYPE) {
+        resourceFactory, $stateParams, $state, $localStorage, STATE, TYPE,
+        parsePropertyFactory) {
 
         var vm = this;
 
@@ -99,11 +100,8 @@
                 else {
                     // User press <F5> button.
                     if(vm.type) {
-                        vm.propiedades = _.filter($scope.$storage.prop_cache , function(prop) {
-                            return _.some(prop.operations, function(oper) {
-                                return oper.operation_type == vm.type;
-                            });
-                        });
+                        vm.propiedades = parsePropertyFactory.filtrarPorOperacion(
+                            $scope.$storage.prop_cache, vm.type);
                     }
                     setStateObjectFilterPaginationList();
                 }
