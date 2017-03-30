@@ -62,7 +62,6 @@
 
             //  get barrios de Córdoba y zonas
             if (_.isEmpty(vm.barriosXzona)){
-                console.log('Cargando barriosXzona...');
                 vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
                         function(data){
                             vm.barrios = data.to.barrios; //todos los barrios sin zonas

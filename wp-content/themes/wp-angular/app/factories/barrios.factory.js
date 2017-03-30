@@ -19,7 +19,6 @@
                     id: 'barrios_cba.json'
                 },
                 function(data) {
-                    //return data.to.barrios; //todos los barrios sin zonas
                     return data; //todos los barrios sin zonas
                 });
         }

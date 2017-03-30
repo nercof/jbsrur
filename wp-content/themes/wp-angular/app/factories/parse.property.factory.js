@@ -29,7 +29,6 @@
          */
         function parseAllProperties(allProps, prop_cache, prop_predi, barrios) {
             
-
             // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
             _.each(allProps, function (propiedad) {
                 // Parsear objeto propiedad - Advanced search

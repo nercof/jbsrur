@@ -75,8 +75,15 @@
          */
         function getBarriosCordoba() {
             if (_.isEmpty(vm.barriosXzona)) {
-                vm.barriosXzona = barriosFactory.getBarriosCatalogados();
-                vm.barrios = vm.barriosXzona.to.barrios;
+                vm.barriosXzona = barriosFactory.getBarriosCatalogados().$promise.then(
+                    function (response) {
+                        // body...
+                        vm.barriosXzona = response;                                            
+                        vm.barrios = vm.barriosXzona.to.barrios;
+
+                        // Guardamos en la caché
+                        $localStorage.barriosXzona = response;
+                    });
             }
             else {
                 vm.barrios = vm.barriosXzona.to.barrios;
