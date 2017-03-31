@@ -9,7 +9,7 @@
     </div>
   </div>
 </div>
-<div class="row bg-white ng-scope" ng-if="$state.current.name == 'propiedades'
+<div class="bg-white ng-scope" ng-if="$state.current.name == 'propiedades'
   || $state.current.name == 'alquileres'
   || $state.current.name == 'ventas'">
   <div class="container">
@@ -21,7 +21,7 @@
         <div ng-if="vm.error">{{vm.error}}</div>
         <div class="filtro">
           <h2>Filtrar propiedades:</h2>
-          <div class="row">
+          <div class="bg-bordo">
             <div class="col-sm-3 col-xs-4 step step-list">
               <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.property_types">
                 <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}" ng-change="vm.unchecked()" ng-model="vm.property_types_selected[tipo_propiedad.id]">

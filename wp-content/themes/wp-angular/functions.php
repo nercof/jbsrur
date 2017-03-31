@@ -196,11 +196,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 array( 'app' ));
 
                 wp_enqueue_script(
-                'main',
-                get_stylesheet_directory_uri() . '/app/components/main/main.controller.js',
-                array( 'app' ));
-
-                wp_enqueue_script(
                 'tokko',
                 get_stylesheet_directory_uri() . '/app/components/tokko/tokko.controller.js',
                 array( 'app' ));
@@ -248,11 +243,6 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 wp_enqueue_script(
                 'novedades.detalle',
                 get_stylesheet_directory_uri() . '/app/components/novedades/novedades.details.controller.js',
-                array( 'app'));
-
-                wp_enqueue_script(
-                'catalog',
-                get_stylesheet_directory_uri() . '/app/components/catalog/catalogController.js',
                 array( 'app'));
 
                 wp_enqueue_script(
