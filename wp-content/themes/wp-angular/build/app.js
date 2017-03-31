@@ -13,6 +13,7 @@
         'app.core',
         'app.services',
         'app.factories',
+        'ngTextTruncate',
         'ngStorage',
         'ncy-angular-breadcrumb'
     ])
