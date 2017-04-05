@@ -36,6 +36,7 @@
         activate(vm);
 
         function activate(vm) {
+            openTab('advanced-search');
             //  get barrios de Córdoba y zonas
             if (_.isEmpty(vm.barriosXzona)){
                 console.log('Cargando barriosXzona...');
@@ -107,9 +108,11 @@
             $state.go('propiedades.detalle', { id: item.id });
         }
 
-        vm.openTab = function(id) {
+        function openTab(id){
             angular.element('#searchForm .tab-pane').removeClass('active');
-            angular.element('#searchForm ' + id).addClass('active');
+            angular.element('#searchForm .tab-pane#' + id).addClass('active');
+            angular.element('#searchForm .search-tab').removeClass('active');
+            angular.element('#searchForm .search-tab.' + id).addClass('active');
         };
 
         /**

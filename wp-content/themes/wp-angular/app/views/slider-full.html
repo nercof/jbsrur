@@ -1,5 +1,8 @@
-<div id="myCarousel" class="carousel slide" uib-carousel interval="6000" active="active" ng-if="medias">
-    <div class="item" uib-slide ng-repeat="media in medias | orderBy: 'orden'" active="active" index="$index">
+<div id="myCarousel" class="carousel slide" uib-carousel interval="6000" active="active" >
+	<div ng-show="spinner" class="spinner">
+		<i class="fa fa-spinner fa-spin"></i>
+	</div>
+    <div class="item" ng-hide="spinner" uib-slide ng-repeat="media in medias | orderBy: 'orden'" active="active" index="$index">
       <a href="{{media.link}}">
           <div class="img" style="background-image: url('{{media.url}}')"></div>
       </a>

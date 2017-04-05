@@ -23,13 +23,13 @@
           <h2>Filtrar propiedades:</h2>
           <div class="bg-bordo">
             <div class="col-sm-3 col-xs-4 step step-list">
-              <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.property_types">
+              <div class="checkbox checkbox-primary" ng-repeat="tipo_propiedad in vm.property_types | orderBy:tipo_propiedad">
                 <input type="checkbox" id="{{tipo_propiedad.name + tipo_propiedad.id}}" ng-change="vm.unchecked()" ng-model="vm.property_types_selected[tipo_propiedad.id]">
                 <label for="{{tipo_propiedad.name + tipo_propiedad.id}}" name="{{tipo_propiedad.name}}"><span></span>{{tipo_propiedad.name}}</label>
               </div>
             </div>
             <div class="col-sm-3 col-xs-4 step step-list">
-              <div class="checkbox checkbox-primary" ng-repeat="zona in vm.zonas">
+              <div class="checkbox checkbox-primary" ng-repeat="zona in vm.zonas  | orderBy:zona:true">
                 <input type="checkbox" id="{{zona}}" ng-change="vm.unchecked()" ng-model="vm.zonas_selected[zona]">
                 <label for="{{zona}}" name="{{zona}}"><span></span>{{zona}}</label>
               </div>
@@ -40,7 +40,7 @@
                 <label for="{{dormitorio.name + dormitorio.id}}+do" name="{{dormitorio.name}}"><span></span>{{dormitorio.name}}</label>
               </div>
             </div>
-            <div class="col-sm-3 col-xs-4 step step-list">
+            <div class="col-sm-3 col-xs-4 step step-list hide">
               <div class="checkbox checkbox-primary" ng-repeat="atributo in vm.attEspeciales">
                 <input type="checkbox" id="{{atributo.name + atributo.id}}" ng-change="vm.unchecked()" ng-model="vm.attEspeciales_selected[atributo.id]">
                 <label for="{{atributo.name + atributo.id}}" name="{{atributo.name}}"><span></span>{{atributo.name}}</label>

@@ -52,17 +52,16 @@ $pink: #EC7E7E;
 //$bordo: #90030C;
 $bordo: #90020B;
 //$grey: #735753;
-$grey: #878478;
-$grey-a: rgba(115, 87, 83, 0.8);
+$grey: #B1B695;
+$grey-a: rgba(195, 195, 195, 0.8);
 $black: #131515;
 
 body {
       font-family: $font-normal;
-      background-image: url('../images/bg.png');
       font-size: 10px;
 
       #masthead {
-            height: 5px;
+            height: 0px;
       }
       .bg-white {
             background-color: $white;
@@ -84,6 +83,10 @@ body {
       }
       #myCarousel {
             cycle: true;
+            height: 550px;
+            background-color:$white;
+            border-bottom: 10px solid $red;
+            box-sizing: content-box;
             .carousel-control {
                   width: 50px;
             }
@@ -94,7 +97,6 @@ body {
                   background-position: center;
             }
             .carousel-inner {
-                  border-bottom: 10px solid $red;
             }
             .caption {
                   background-color: $white-ab;
@@ -108,6 +110,23 @@ body {
                   top: 50px;
                   left: 50px;
                   padding: 20px 30px;
+            }
+            .spinner {
+                      margin: auto;
+                      height: 550px;
+                      vertical-align: middle;
+                      display: block;
+                      width: 100%;
+                      text-align: center;
+                      padding-top: 20%;
+                      background-image: url('http://www.jbsrur.com.ar/wp-content/uploads/2016/11/JBSRUR-Inmobiliaria-Slider-01-1.jpg');
+                      background-size: cover;
+                      background-position: center;
+                      opacity: 0.5;
+                      i {
+                            font-size: 5em;
+                            color: $red;
+                      }
             }
       }
       h1 {
@@ -139,6 +158,7 @@ body {
             a.carousel-control {
                   text-shadow: none;
                   color: $white;
+
                   &.right,
                   &.left {
                         background-image: none;
@@ -649,13 +669,7 @@ body {
             padding: 20px 30px;
             font-family: $font-normal;
 
-            .spinner {
-                  text-align: center;
-                  i {
-                        font-size: 2em;
-                        color: $pink;
-                  }
-            }
+            
             .paginador {
                   text-align: center;
                   background: $bordo;
@@ -903,9 +917,14 @@ body {
             }
             .referencia {
                   color: $black;
+                  padding: 15px;
                   div {
-                        padding: 15px;
-                        font-size: 1.2em;
+                        font-size: 1.2em;                    
+                        display: inline-block;
+
+                        &.phone {
+                            padding-left: 54px;
+                        }
                   }
                   &.tel {
                         margin-top: 20px;
@@ -916,9 +935,10 @@ body {
                         border: 2px solid $red;
                         border-radius: 100%;
                         font-size: 22px;
-                        padding: 2px 4px;
+                        padding: 2px 6px;
                         vertical-align: middle;
                         margin: 5px 10px 5px 0px;
+                        display: inline-block;
                   }
             }
             .ngTruncateToggleText {
@@ -943,7 +963,7 @@ body {
                   margin-top: 20px;
                   .caracteristicas {
                         background-color: $grey;
-                        color: $white;
+                        color: $bordo;
                         width: 100%;
                         margin: auto;
                         padding: 10px 20px;
@@ -1363,7 +1383,9 @@ body {
       }
 
       #social-section {
-            background-color: $white;
+            background-color: $bordo;
+            border-bottom: 10px $grey solid;
+
             ul {
                   text-align: center;
                   display: block;
@@ -1384,28 +1406,13 @@ body {
                                     padding: 0;
                                     border-radius: 50%;
                                     margin: auto;
-                                    background-color: $grey;
-                                    color: $white;
+                                    background-color: $white;
+                                    color: $bordo;
                                     width: 1.5em;
                                     height: 1.5em;
                                     &.typcn {
                                           &:hover {
-                                                background-color: $red;
-                                          }
-                                    }
-                                    &.typcn-social-facebook {
-                                          &:hover {
-                                                background-color: #40599C;
-                                          }
-                                    }
-                                    &.typcn-social-twitter {
-                                          &:hover {
-                                                background-color: #1da1f2;
-                                          }
-                                    }
-                                    &.typcn-social-google-plus {
-                                          &:hover {
-                                                background-color: #db4437;
+                                                background-color: $grey;
                                           }
                                     }
                               }
@@ -1795,23 +1802,28 @@ body {
             }
             .referencia {
                   color: $black;
-                  padding: 20px 15px;
-                  margin-bottom: 20px;
+                  padding: 15px;
                   div {
-                     font-size: 1.2em;
-                  }
-                  i {
-                      border: 2px solid $red;
-                      border-radius: 100%;
-                      font-size: 22px;
-                      padding: 2px 4px;
-                      vertical-align: middle;
-                      margin: 5px 10px 5px 0px;
+                        font-size: 1.2em;                    
+                        display: inline-block;
+
+                        &.phone {
+                              padding-left: 54px;
+                        }
                   }
                   &.tel {
-                      margin-top: 20px;
-                      color: $red;
-                      margin-bottom: 0;
+                        margin-top: 20px;
+                        color:$red;
+                        margin-bottom: 0;
+                  }
+                  i {
+                        border: 2px solid $red;
+                        border-radius: 100%;
+                        font-size: 22px;
+                        padding: 2px 6px;
+                        vertical-align: middle;
+                        margin: 5px 10px 5px 0px;
+                        display: inline-block;
                   }
             }
             .caracteristicas {
@@ -2102,6 +2114,8 @@ body {
             .step {
                   display: inline-block;
                   float: none;
+                  padding: 0;
+                  vertical-align: top;
             }
             .checkbox {
                 display: block;
@@ -2133,4 +2147,11 @@ body {
 
             }
       }
+      .spinner {
+                  text-align: center;
+                  i {
+                        font-size: 2em;
+                        color: $pink;
+                  }
+            }
 }
