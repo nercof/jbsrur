@@ -33,16 +33,15 @@
 /* JBSRUR */
 body {
   font-family: "Lato", sans-serif;
-  background-image: url("../images/bg.png");
   font-size: 10px; }
   body #masthead {
-    height: 5px; }
+    height: 0px; }
   body .bg-white {
     background-color: #FAF3DD; }
   body .bg-bordo {
     background-color: #90020B; }
   body .bg-grey {
-    background-color: #878478; }
+    background-color: #B1B695; }
   body .bg-red {
     background-color: #df0a1f; }
   body .site-navigation {
@@ -50,13 +49,18 @@ body {
     body .site-navigation .container {
       padding-bottom: 0; }
   body #myCarousel {
-    cycle: true; }
+    cycle: true;
+    height: 550px;
+    background-color: #FAF3DD;
+    border-bottom: 10px solid #df0a1f;
+    box-sizing: content-box; }
     body #myCarousel .carousel-control {
       width: 50px; }
-    body #myCarousel img {
-      width: 100%; }
-    body #myCarousel .carousel-inner {
-      border-bottom: 10px solid #df0a1f; }
+    body #myCarousel .img {
+      height: 550px;
+      width: 100%;
+      background-size: cover;
+      background-position: center; }
     body #myCarousel .caption {
       background-color: rgba(250, 243, 221, 0.5);
       color: #df0a1f;
@@ -69,6 +73,21 @@ body {
       top: 50px;
       left: 50px;
       padding: 20px 30px; }
+    body #myCarousel .spinner {
+      margin: auto;
+      height: 550px;
+      vertical-align: middle;
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding-top: 20%;
+      background-image: url("http://www.jbsrur.com.ar/wp-content/uploads/2016/11/JBSRUR-Inmobiliaria-Slider-01-1.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5; }
+      body #myCarousel .spinner i {
+        font-size: 5em;
+        color: #df0a1f; }
   body h1.title {
     background-color: #90020B;
     font-family: "Montserrat", sans-serif;
@@ -286,17 +305,17 @@ body {
                 body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .address {
                   display: block;
                   font-weight: bold;
-                  color: #878478; }
+                  color: #B1B695; }
                   body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .address strong {
                     font-weight: 900; }
                 body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .description {
                   white-space: normal;
                   display: block;
-                  color: #878478;
+                  color: #B1B695;
                   padding: 5px 0;
                   font-size: 0.9em; }
                 body #searchForm ul.nav-pills li.global-search .input-group .dropdown-menu li a .tag {
-                  background-color: #878478;
+                  background-color: #B1B695;
                   color: #FAF3DD;
                   border-radius: 10px;
                   padding: 2px 5px 2px 5px;
@@ -459,11 +478,6 @@ body {
     background-color: #FAF3DD;
     padding: 20px 30px;
     font-family: "Lato", sans-serif; }
-    body .propiedades .spinner {
-      text-align: center; }
-      body .propiedades .spinner i {
-        font-size: 2em;
-        color: #EC7E7E; }
     body .propiedades .paginador {
       text-align: center;
       background: #90020B;
@@ -576,7 +590,7 @@ body {
     body .detalle .container {
       margin-bottom: 30px; }
     body .detalle .carousel {
-      background-color: #878478;
+      background-color: #B1B695;
       padding-bottom: 2.5em; }
     body .detalle h1 {
       font-style: "Montserrat", sans-serif;
@@ -650,10 +664,13 @@ body {
         word-break: break-word;
         padding-bottom: 0; }
     body .detalle .referencia {
-      color: #131515; }
+      color: #131515;
+      padding: 15px; }
       body .detalle .referencia div {
-        padding: 15px;
-        font-size: 1.2em; }
+        font-size: 1.2em;
+        display: inline-block; }
+        body .detalle .referencia div.phone {
+          padding-left: 54px; }
       body .detalle .referencia.tel {
         margin-top: 20px;
         color: #df0a1f;
@@ -662,9 +679,10 @@ body {
         border: 2px solid #df0a1f;
         border-radius: 100%;
         font-size: 22px;
-        padding: 2px 4px;
+        padding: 2px 6px;
         vertical-align: middle;
-        margin: 5px 10px 5px 0px; }
+        margin: 5px 10px 5px 0px;
+        display: inline-block; }
     body .detalle .ngTruncateToggleText {
       font-size: 2em;
       border-radius: 50%;
@@ -684,8 +702,8 @@ body {
     body .detalle .content-car {
       margin-top: 20px; }
       body .detalle .content-car .caracteristicas {
-        background-color: #878478;
-        color: #FAF3DD;
+        background-color: #B1B695;
+        color: #90020B;
         width: 100%;
         margin: auto;
         padding: 10px 20px; }
@@ -826,7 +844,7 @@ body {
               background-color: #FAF3DD;
               border: 3px solid #df0a1f; }
   body #news-section {
-    background-color: #878478;
+    background-color: #B1B695;
     padding-top: 20px; }
     body #news-section h2 {
       text-align: center;
@@ -861,7 +879,7 @@ body {
           width: 100%;
           margin-bottom: 20px;
           text-align: left;
-          background-color: rgba(115, 87, 83, 0.8);
+          background-color: rgba(195, 195, 195, 0.8);
           color: #FAF3DD; }
           body #news-section .galeria .new .caption h3 {
             width: 90%;
@@ -1003,7 +1021,8 @@ body {
       font-family: "Lato", sans-serif;
       margin: -10px 0px 10px; }
   body #social-section {
-    background-color: #FAF3DD; }
+    background-color: #90020B;
+    border-bottom: 10px #B1B695 solid; }
     body #social-section ul {
       text-align: center;
       display: block;
@@ -1023,18 +1042,12 @@ body {
             padding: 0;
             border-radius: 50%;
             margin: auto;
-            background-color: #878478;
-            color: #FAF3DD;
+            background-color: #FAF3DD;
+            color: #90020B;
             width: 1.5em;
             height: 1.5em; }
             body #social-section ul li a i.typcn:hover {
-              background-color: #df0a1f; }
-            body #social-section ul li a i.typcn-social-facebook:hover {
-              background-color: #40599C; }
-            body #social-section ul li a i.typcn-social-twitter:hover {
-              background-color: #1da1f2; }
-            body #social-section ul li a i.typcn-social-google-plus:hover {
-              background-color: #db4437; }
+              background-color: #B1B695; }
           body #social-section ul li a span {
             display: block;
             padding-top: 15px; }
@@ -1158,7 +1171,7 @@ body {
             body #suc-section .list .sucursal .dire a:hover {
               color: #90020B; }
   body #emprendimientos {
-    background-color: #878478;
+    background-color: #B1B695;
     padding: 40px;
     margin: auto;
     float: none; }
@@ -1246,7 +1259,7 @@ body {
     body .detalle-emprendimiento .col {
       padding: 0; }
     body .detalle-emprendimiento .carousel {
-      background-color: #878478;
+      background-color: #B1B695;
       padding-bottom: 2.5em; }
     body .detalle-emprendimiento h1 {
       font-style: "Montserrat", sans-serif;
@@ -1330,23 +1343,26 @@ body {
       word-break: break-word; }
     body .detalle-emprendimiento .referencia {
       color: #131515;
-      padding: 20px 15px;
-      margin-bottom: 20px; }
+      padding: 15px; }
       body .detalle-emprendimiento .referencia div {
-        font-size: 1.2em; }
-      body .detalle-emprendimiento .referencia i {
-        border: 2px solid #df0a1f;
-        border-radius: 100%;
-        font-size: 22px;
-        padding: 2px 4px;
-        vertical-align: middle;
-        margin: 5px 10px 5px 0px; }
+        font-size: 1.2em;
+        display: inline-block; }
+        body .detalle-emprendimiento .referencia div.phone {
+          padding-left: 54px; }
       body .detalle-emprendimiento .referencia.tel {
         margin-top: 20px;
         color: #df0a1f;
         margin-bottom: 0; }
+      body .detalle-emprendimiento .referencia i {
+        border: 2px solid #df0a1f;
+        border-radius: 100%;
+        font-size: 22px;
+        padding: 2px 6px;
+        vertical-align: middle;
+        margin: 5px 10px 5px 0px;
+        display: inline-block; }
     body .detalle-emprendimiento .caracteristicas {
-      background-color: #878478;
+      background-color: #B1B695;
       color: #FAF3DD;
       width: 100%;
       margin: auto; }
@@ -1569,6 +1585,11 @@ body {
       padding: 1em;
       padding-bottom: 0;
       font-weight: bold; }
+    body .filtro .step {
+      display: inline-block;
+      float: none;
+      padding: 0;
+      vertical-align: top; }
     body .filtro .checkbox {
       display: block;
       margin: 10px 5px; }
@@ -1590,5 +1611,10 @@ body {
         vertical-align: middle;
         cursor: pointer;
         font-family: "Montserrat", sans-serif; }
+  body .spinner {
+    text-align: center; }
+    body .spinner i {
+      font-size: 2em;
+      color: #EC7E7E; }
 
 /*# sourceMappingURL=bootstrap-wp.css.map */
