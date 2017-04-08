@@ -6,7 +6,7 @@
         .controller('tokkoController', tokkoController);
 
     function tokkoController($scope, tokkoFactory, tokkoService, NgMap,
-            resourceFactory, $state, $localStorage, $filter) {
+            resourceFactory, $state, $localStorage, $filter, parsePropertyFactory, barriosFactory) {
 
         console.log('Load tokko.controller.js');
         var vm = this;
@@ -20,6 +20,10 @@
         vm.barriosXzona = $localStorage.barriosXzona; // JSON con los barrios y zonas
         vm.barrios = []; // JSON con barrios
         vm.camposForm = {}; //JSON con la configuracion de los campos de tokko para el form
+        vm.prop_cache = []; //resultado propiedades Tokko API parseadas
+        vm.user_filter = {}; //JSON con la seleccion del buscador avanzado. 
+        vm.prop_ventas = []; //Array con las propiedades en venta.
+        vm.prop_alquil = []; //Array con las propiedades en alquiler.
 
         // modelos de los campos del form
         vm.property_types = [];
@@ -35,59 +39,58 @@
 
         activate(vm);
 
+        /**
+        *
+        *
+        */
         function activate(vm) {
             openTab('advanced-search');
             //  get barrios de Córdoba y zonas
-            if (_.isEmpty(vm.barriosXzona)){
-                console.log('Cargando barriosXzona...');
-                vm.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
-                        function(data){
-                            vm.barrios = data.to.barrios; //todos los barrios sin zonas
-                        });
-            }else{
-                vm.barrios = vm.barriosXzona.to.barrios;
-            }
+            getBarriosCordoba();
+            
+            // get config para armar los campos del Advanced Search
+            getFieldsAdvancedSearch();
 
             // traer todas las propiedades
             tokkoFactory.getPropertiesByCountry().$promise.then(function(response) {
-                var allProps = response.objects; // .json completo de propiedades
-                vm.prop_cache = [];
-
-
-                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
-                _.each(allProps, function (prop) {
-                    // Buscador global
-                    var propsGlobal =  _.pick(prop, 'id', 'address',
-                            'description', 'fake_address', 'publication_title',
-                            'type', 'operations_types', 'location', 'tags', 
-                            'suite_amount', 'type', 'operations', 'photos');
-                    vm.prop_cache.push(propsGlobal);
-                });
-
-                // Parsear tipos de operaciones
-                parseOperationTypes(vm.prop_cache);
-
-                // Parsear barrio y zona
-                parseLocation();
-
-                                // Hacer una copia de todas las propiedades con los campos para la busqueda predictiva
-                _.each(vm.prop_cache, function (prop) {
-                    var propsPredictive = _.pick(prop, 'id', 'address',
-                            'description', 'fake_address', 'publication_title',
-                            'type', 'operations_types', 'location');
-                    propsPredictive.type = propsPredictive.type.name;
-                    propsPredictive.barrio = propsPredictive.location.name;
-                    vm.propsPredictive.push(propsPredictive);
-                });
-                                
-            });
-
-            // get config para armar los campos del Advanced Search
-            vm.camposForm = resourceFactory.query({id: 'tokko.data.json'});
+                
+                parsePropertyFactory.parseAllProperties(
+                    response.objects,   // .json completo de propiedades
+                    vm.prop_cache,      
+                    vm.propsPredictive, 
+                    vm.barrios);            
+            });     
 
         }// Fin activate
 
-                
+        /**
+        * Obtener campos form avanzado desde el .json
+        */
+        function getFieldsAdvancedSearch() {
+            // body...
+            vm.camposForm = resourceFactory.query({id: 'tokko.data.json'});
+        }
+
+        /**
+         * Obtener BarriosCordoba desde el .json
+         */
+        function getBarriosCordoba() {
+            if (_.isEmpty(vm.barriosXzona)) {
+                vm.barriosXzona = barriosFactory.getBarriosCatalogados().$promise.then(
+                    function (response) {
+                        // body...
+                        vm.barriosXzona = response;                                            
+                        vm.barrios = vm.barriosXzona.to.barrios;
+
+                        // Guardamos en la caché
+                        $localStorage.barriosXzona = response;
+                    });
+            }
+            else {
+                vm.barrios = vm.barriosXzona.to.barrios;
+            }
+        }
+
         /**
          * searchLocation() permite obtener las propiedades
          * asociadas al id pasado por referencia.
@@ -125,12 +128,11 @@
             goToResultPage();
         }
 
-        /**
-         * searchTokko() metodo que se llama al hacer click en el botón Buscar
-         * del avancedSearch
-         */
-
-        vm.searchTokko = function() {
+        /*
+        * Completar filtros de usuario.
+        */
+        function getUserFilters() {
+            // body...
             // Variable para contener los id de barrio a excluir
             var barriosOzonas = [];
 
@@ -151,43 +153,84 @@
             }
 
             // Parameters by user
-            var filtros = {
+            vm.user_filter = {
                 "operation_types": _.keys(vm.operation_types),
                 "property_types": _.keys(vm.property_types),
                 "suite_amount": _.keys(vm.suite_amount),
                 "current_localization_id": barriosOzonas,
             }
-            if (_.isEmpty(filtros.property_types) || _.contains(_.values(filtros.property_types), "0") &&
-                _.isEmpty(filtros.suite_amount) || _.contains(_.values(filtros.suite_amount), "0") &&
-                _.isEmpty(filtros.current_localization_id) || _.contains(_.values(filtros.current_localization_id), "0")){
-                if(_.values(vm.operation_types).length == 2 || _.values(vm.operation_types).length == 0){   
+        }
+
+        /**
+        * Devuelve true|false en relacion a los parametros introducidos por el usuario.
+        * 0:Todos
+        */
+        function sinFiltros(argument) {
+            // Consultamos que selecciono el usuario.
+            if ((_.isEmpty(vm.user_filter.property_types) || 
+                _.contains(_.values(vm.user_filter.property_types), "0")) &&                
+                // Dormitorios
+                (_.isEmpty(vm.user_filter.suite_amount) || 
+                _.contains(_.values(vm.user_filter.suite_amount), "0")) &&
+                // Zonas
+                (_.isEmpty(vm.user_filter.current_localization_id) || 
+                _.contains(_.values(vm.user_filter.current_localization_id), "0"))
+                ){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        
+
+        /**
+         * searchTokko() metodo que se llama al hacer click en el botón Buscar
+         * del avancedSearch
+         */
+        vm.searchTokko = function() {
+            
+            // Filtros de usuario. 
+            getUserFilters();
+
+            // ¿Cual es el camino a tomar?
+            if (sinFiltros()){
+                // El usuario selecciono Ventas AND Alquileres
+                if( _.values(vm.user_filter.operation_types).length == 2 || 
+                    _.values(vm.user_filter.operation_types).length == 0){   
                     vm.prop_search = vm.prop_cache;
                     goToResultPage();    
                 }
+                // El usuario selecciono Ventas OR Alquileres
                 else{
                     goToCatalogPage();
                 }
             } else {
                 // Borramos resultado previo.
-                vm.prop_search = filtrarPropiedades(vm.prop_cache, filtros);
+                vm.prop_search = filtrarPropiedades(vm.prop_cache, vm.user_filter);
                 saveCache();
                 goToResultPage();
             }
+
         }
 
+        /**
+        * Tener en cuenta vm.prop_ventas || vm.prop_alquil
+        */
         function goToCatalogPage(){
-            console.log("Go to goToCatalogPage...");
+            //console.log("Go to goToCatalogPage...");
             var state;
-            var filtrado = [];
 
             // Parseamos el tipo de operacion
             if (_.keys(vm.operation_types) == 1) {
                 state = "ventas";
+                //$state.go(state,{ propiedades: vm.prop_ventas});
             }
             else {
                 state = "alquileres";
+                //$state.go(state,{ propiedades: vm.prop_alquil});
             }
-            $state.go(state);            
+            $state.go(state);
         }
 
         /**
@@ -204,60 +247,10 @@
             if(zona.unBarrio) {
                 angular.element('.conteiner-barrios .' + zona.barrios[0].id + ' input').trigger('click').attr('checked',true);
             }
-        }
-
-        /**
-         * Formatear zona y barrios
-         *
-         * @param {}
-         */
-        function parseLocation() {
-            var objBarrio = {};
-            var propSinBarrio = [];
-
-            _.each(vm.prop_cache, function (propiedad) {
-                objBarrio = _.find(vm.barrios, function (barrio) {
-                    return barrio.name.toLowerCase() == propiedad.location.name.toLowerCase();
-                });
-
-                // Caso: Barrio mal cargado desde API-Tokko
-                if (_.isEmpty(objBarrio)) {
-                    propiedad.zona = false;
-                    propiedad.barrio = propiedad.location.name; // Le ponemos el barrio de la propiedad.
-                    propSinBarrio.push({id: propiedad.id, barrio: propiedad.barrio});
-                }
-                // Caso: Zona: Nva. Córdoba = Barrio :> Nva. Córdoba
-                else if (objBarrio.zona.toLowerCase() == propiedad.location.name.toLowerCase()) {
-                    propiedad.zona = false;
-                    propiedad.barrio = objBarrio.name;
-                }
-                else {
-                    propiedad.zona = objBarrio.zona;
-                    propiedad.barrio = objBarrio.name;
-                }
-            });
-            //console.log('prop sin zona', propSinBarrio);
-        }
-
-        /**
-         * Formatear operation types ejemplo
-         * "operationsParsed":["Rent", "Sales"]
-         */
-        function parseOperationTypes(allprops) {
-            // Por cada propiedad
-            _.each(allprops, function(prop) {
-                prop.operationsParsed = []; //array de operaciones
-                prop.operations_types = ""; //string de operciones
-
-                _.each(prop.operations, function (operation) {
-                    prop.operationsParsed.push(operation.operation_type);
-                    prop.operations_types += operation.operation_type + ' ';
-                });
-            });
-        }
+        }        
 
         function saveCache() {
-            console.log('Guardando en caché...', vm.prop_search);
+            //console.log('Guardando en caché...', vm.prop_search);
             //guardar en localStorage
             $scope.$storage = $localStorage.$default({
                 prop_search: vm.prop_search,

@@ -10,7 +10,8 @@
      *  - @view: tokko-search-result
      */
     function tokkoResultController($scope, tokkoFactory, tokkoService, NgMap,
-        resourceFactory, $stateParams, $state, $localStorage, STATE, TYPE) {
+        resourceFactory, $stateParams, $state, $localStorage, STATE, TYPE,
+        parsePropertyFactory, barriosFactory) {
 
         var catalogo = this;
 
@@ -60,12 +61,17 @@
             catalogo.type = $stateParams.type;
 
             //  get barrios de Córdoba y zonas
-            if (_.isEmpty(catalogo.barriosXzona)){
-                console.log('Cargando barriosXzona...');
-                catalogo.barriosXzona = resourceFactory.query({id: 'barrios_cba.json'},
-                        function(data){
-                            catalogo.barrios = data.to.barrios; //todos los barrios sin zonas
-                        });
+            if (_.isEmpty(vm.barriosXzona)){
+                vm.barriosXzona = barriosFactory.getBarriosCatalogados().$promise.then(
+                    function (response) {
+                        // body...
+                        vm.barriosXzona = response;                                            
+                        vm.barrios = vm.barriosXzona.to.barrios;
+
+                        // Guardamos en la caché
+                        $localStorage.barriosXzona = response;
+                    });
+
             }else{
                 catalogo.barrios = catalogo.barriosXzona.to.barrios;
             }
@@ -77,8 +83,7 @@
             }
             else if (catalogo.isSearch) {
                 // Objeto vacio y viene del buscador
-                catalogo.error = "No se encontraron propiedades";
-                console.log("No se encontraron propiedades");
+                vm.error = "No se encontraron propiedades";
             }
             else if (!catalogo.isSearch) {
                 //objeto vacio (no viene del buscador) o alquiler ventas: buscar en cache
@@ -86,9 +91,17 @@
 
                 if (_.isEmpty(catalogo.propiedades)) {
                     //objeto vacio y cache vacía: traer todas las propiedades
-                    buscarPropiedadesTokkoAPIWithData().then(function(response) {
-                        catalogo.propiedades = response;
-                        parseLocation();
+                    buscarPropiedadesTokkoAPIWithData().$promise.then(function(response) {                        
+                        //vm.propiedades = response.objects;
+
+                        // Consultamos si venimos del catalogo.
+                        if(vm.type) {
+                            parsePropertyFactory.parseAllProperties(
+                                response.objects,   // .json completo de propiedades
+                                vm.propiedades,
+                                null,               // No necesitamos el predictivo.
+                                vm.barrios);
+                        }
                         // Guardando en cache.
                         $localStorage.prop_search = catalogo.prop_search;
 
@@ -98,44 +111,14 @@
                 }
                 else {
                     // User press <F5> button.
-                    if(catalogo.type) {
-                        catalogo.propiedades = _.filter($scope.$storage.prop_cache , function(prop) {
-                            return _.some(prop.operations, function(oper) {
-                                return oper.operation_type == catalogo.type;
-                            });
-                        });
+                    if(vm.type) {
+                        vm.propiedades = parsePropertyFactory.filtrarPorOperacion(
+                            $scope.$storage.prop_cache, vm.type);
                     }
+                    console.log(vm.propiedades);
                     setStateObjectFilterPaginationList();
                 }
             }
-        }
-
-        function parseLocation() {
-            var objBarrio = {};
-            var propSinBarrio = [];
-
-            _.each(catalogo.propiedades, function (propiedad) {
-                objBarrio = _.find(catalogo.barrios, function (barrio) {
-                    return barrio.name.toLowerCase() == propiedad.location.name.toLowerCase();
-                });
-
-                // Caso: Barrio mal cargado desde API-Tokko
-                if (_.isEmpty(objBarrio)) {
-                    propiedad.zona = false;
-                    propiedad.barrio = propiedad.location.name; // Le ponemos el barrio de la propiedad.
-                    propSinBarrio.push({id: propiedad.id, barrio: propiedad.barrio});
-                }
-                // Caso: Zona: Nva. Córdoba = Barrio :> Nva. Córdoba
-                else if (objBarrio.zona.toLowerCase() == propiedad.location.name.toLowerCase()) {
-                    propiedad.zona = false;
-                    propiedad.barrio = objBarrio.name;
-                }
-                else {
-                    propiedad.zona = objBarrio.zona;
-                    propiedad.barrio = objBarrio.name;
-                }
-            });
-            //console.log('prop sin zona', propSinBarrio);
         }
 
         /**
@@ -175,7 +158,8 @@
             catalogo.zonas = [];
 
             // Recorro las propiedades del catalogo
-            _.each(catalogo.propiedades, function(propiedad) {
+            _.each(vm.propiedades, function(propiedad) {
+
                 // Tipos de Propiedad
                 /*if (!_.where(catalogo.tiposProp, {
                         'id': propiedad.type.id
@@ -242,7 +226,6 @@
          *
          */
         function createAttEspecialesObjectFilter() {
-            console.log('creando filter att especiales');
             // Atributos Especiales { Baño | patio | cochera | ...}
             // tags = { Patio | Balcón | Lavadero | Terraza  }
             resourceFactory.query_array({
@@ -283,18 +266,11 @@
          */
         function buscarPropiedadesTokkoAPIWithData() {
             // Call factory to search Tokko properties.
-            return tokkoFactory.getPropertiesByCountry().$promise.then(function(response) {
-                if(catalogo.type) {
-                    return _.filter(response.objects, function(prop) {
-                        return _.some(prop.operations, function(oper) {
-                            return oper.operation_type == catalogo.type;
-                        });
-                    });
-                } else {
-                    return response.objects;
-                }
-                
-            });
+            if(vm.type) {
+                return tokkoFactory.getPropertiesByOperationType(vm.type);                
+            } else {
+                return tokkoFactory.getPropertiesByCountry();
+            }
         }
 
         /**
