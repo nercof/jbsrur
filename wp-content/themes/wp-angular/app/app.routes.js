@@ -29,21 +29,13 @@
             templateUrl: localized.views + "nav-section.html",
             controller: 'navSectionController'
           },
-          "content": {
-            templateUrl: localized.views + "novedad/section.html",
-            controller: 'novedadesController as vm'
-          },
           "social-section": {
-            templateUrl: localized.views + "social-section.html",
-            controller: 'socialSectionController as vm'
-          },
-          "contact-section": {
-            templateUrl: localized.views + "contact-section.html",
-            controller: 'contactController as vm'
-          },
-          "suc-section": {
             templateUrl: localized.views + "suc-section.html",
             controller: 'sucSectionController as vm'
+          },
+          "suc-section": {
+            templateUrl: localized.views + "social-section.html",
+            controller: 'socialSectionController as vm'
           }
         },
         ncyBreadcrumb: {

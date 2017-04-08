@@ -117,7 +117,7 @@ if ( ! function_exists( '_tk_setup' ) ) :
                 /*wp_enqueue_script( '_tk-bootstrapwp', get_template_directory_uri() . '/includes/js/bootstrap-wp.js', array('jquery') );*/
                 
                 //Load angular
-                wp_enqueue_script('libs', get_template_directory_uri() .'/build/libs.min.js');
+                wp_enqueue_script('libs', get_template_directory_uri() .'/build/libs.js');
 
 
                 /*wp_enqueue_script(

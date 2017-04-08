@@ -56,11 +56,9 @@
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12 referencia tel" ng-if="vm.propiedad.branch.phone">
-                <div><a href="tel:{{vm.propiedad.branch.phone}}" rel="nofollow"><i class="typcn typcn-phone"></a></i>
-                 Centro de atención: {{vm.propiedad.branch.name}}
-                  <span ng-if="vm.propiedad.branch.phone && vm.propiedad.branch.name"> - </span>
-                  {{vm.propiedad.branch.phone}}
-                </div>
+                <i class="typcn typcn-phone"></i> <div> Centro de atención: {{vm.propiedad.branch.name}} </div>
+                <div class="phone" ng-if="vm.propiedad.branch.phone">
+                    {{vm.propiedad.branch.phone}}</div>
             </div>
             <div class="col-sm-6 col-xs-12" id="contacto">
                 <h2 ng-click="openForm()"><i class="typcn typcn-user"></i>Contacto</h2>

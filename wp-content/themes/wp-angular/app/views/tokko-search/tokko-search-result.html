@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="col-sm-3 col-xs-4 step step-list">
-              <div class="checkbox checkbox-primary" ng-repeat="zona in vm.zonas">
+              <div class="checkbox checkbox-primary" ng-repeat="zona in vm.zonas  | orderBy:zona:true">
                 <input type="checkbox" id="{{zona}}" ng-change="vm.unchecked()" ng-model="vm.sZonas[zona]">
                 <label for="{{zona}}" name="{{zona}}"><span></span>{{zona}}</label>
               </div>
@@ -41,7 +41,7 @@
                 <label for="{{dormitorio.name + dormitorio.id}}" name="{{dormitorio.name}}"><span></span>{{dormitorio.name}}</label>
               </div>
             </div>
-            <div class="col-sm-3 col-xs-4 step step-list">
+            <div class="col-sm-3 col-xs-4 step step-list hide">
               <div class="checkbox checkbox-primary" ng-repeat="atributo in vm.attEspeciales">
                 <input type="checkbox" id="{{atributo.name + atributo.id}}" ng-change="vm.unchecked()" ng-model="vm.sAttEsp[atributo.id]">
                 <label for="{{atributo.name + atributo.id}}" name="{{atributo.name}}"><span></span>{{atributo.name}}</label>

@@ -19,6 +19,7 @@
 
             $scope.posts = posts;
             $scope.medias = [];
+            $scope.spinner = true;
 
             _.each(mediasIds, function (mediasId, i) {
                 mediaFactory.getMedia(mediasId).then(function (data) {
@@ -39,6 +40,10 @@
                     slider.orden = slider.orden[1].split('.');
                     slider.orden = slider.orden[0];
                     $scope.medias.push(slider);
+                    if (mediasIds.length == $scope.medias.length)
+                    {
+                        $scope.spinner = false;
+                    }
                 });
             });
         });

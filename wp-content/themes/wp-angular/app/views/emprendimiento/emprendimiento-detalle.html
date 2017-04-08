@@ -32,10 +32,9 @@
                         <marker position="{{vm.emprendimiento.geo_lat}}, {{vm.emprendimiento.geo_long}}"></marker>
                     </ng-map>
                     <div class="col-sm-12 col-xs-12 referencia tel" ng-if="vm.emprendimiento.suc_nombre && vm.emprendimiento.suc_telefo">
-                        <div><a href="tel:{{vm.emprendimiento.suc_telefo}}"><i class="typcn typcn-phone"></i></a> Centro de atención: {{vm.emprendimiento.suc_nombre}}
-                          <span ng-if="vm.emprendimiento.suc_telefo && vm.emprendimiento.suc_nombre"> - </span>
-                          {{vm.emprendimiento.suc_telefo}}
-                        </div>
+                        <i class="typcn typcn-phone"></i> <div> Centro de atención: {{vm.emprendimiento.suc_nombre}} </div>
+                        <div class="phone" ng-if="vm.emprendimiento.suc_telefo">
+                        {{vm.emprendimiento.suc_telefo}}</div>
                     </div>
                     <div class="col-sm-12 col-xs-12" id="contacto">
                       <h2 ng-click="openForm()"><i class="typcn typcn-user"></i>Contacto</h2>
