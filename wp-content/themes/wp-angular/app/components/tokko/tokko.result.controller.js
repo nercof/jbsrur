@@ -13,33 +13,33 @@
         resourceFactory, $stateParams, $state, $localStorage, STATE, TYPE,
         parsePropertyFactory, barriosFactory) {
 
-        var vm = this;
+        var catalogo = this;
 
         $scope.$storage = $localStorage;
 
         // Filtros auxiliares parte UI
-        vm.property_types = [];
-        vm.suite_amount = [];
-        vm.zonas = [];
-        vm.attEspeciales = [];
-        vm.attEspecialesHabilitados = [];
+        catalogo.tiposProp = []; // Tipo de propiedad
+        catalogo.suite_amount = [];
+        catalogo.zonas = [];
+        catalogo.attEspeciales = [];
+        catalogo.attEspecialesHabilitados = [];
 
         // Models
-        vm.property_types_selected = [];
-        vm.suite_amount_selected = [];
-        vm.zonas_selected = [];
-        vm.attEspeciales_selected = [];
-        vm.propSinAttEspeciales = [];
+        catalogo.spTypes = []; // Tipo de propiedad seleccionada
+        catalogo.sDormit = []; // Cantidad de dormitorios
+        catalogo.sZonas  = []; // Zonas
+        catalogo.sAttEsp = []; // Atributos especiales
+        catalogo.propSinAttEspeciales = [];
 
-        vm.error = false;
+        catalogo.error = false;
 
         // Empleadas para la paginacion de propiedades.
-        vm.totalItems = false;
-        vm.currentPage = 1;
-        vm.itemsPerPage = 16;
+        catalogo.totalItems = false;
+        catalogo.currentPage = 1;
+        catalogo.itemsPerPage = 16;
 
         // Activamos el controlador
-        activate(vm, TYPE);
+        activate(catalogo, TYPE);
 
         /**
          * activate(): buscador de propiedades
@@ -55,10 +55,10 @@
          */
         function activate(vm, opType) {
             // Parámetros de entrada
-            vm.allProps = $stateParams.allProps;
-            vm.lastSearch = $stateParams.lastSearch;
-            vm.isSearch = $stateParams.isSearch;
-            vm.type = $stateParams.type;
+            catalogo.allProps = $stateParams.allProps;
+            catalogo.lastSearch = $stateParams.lastSearch;
+            catalogo.isSearch = $stateParams.isSearch;
+            catalogo.type = $stateParams.type;
 
             //  get barrios de Córdoba y zonas
             if (_.isEmpty(vm.barriosXzona)){
@@ -71,24 +71,25 @@
                         // Guardamos en la caché
                         $localStorage.barriosXzona = response;
                     });
+
             }else{
-                vm.barrios = vm.barriosXzona.to.barrios;
+                catalogo.barrios = catalogo.barriosXzona.to.barrios;
             }
 
-            if (!_.isEmpty(vm.lastSearch) && !_.isEmpty(vm.allProps) && !vm.type ) {
+            if (!_.isEmpty(catalogo.lastSearch) && !_.isEmpty(catalogo.allProps) && !catalogo.type ) {
                 // Objeto lleno y es /propiedades
-                vm.propiedades = vm.lastSearch;
+                catalogo.propiedades = catalogo.lastSearch;
                 setStateObjectFilterPaginationList();
             }
-            else if (vm.isSearch) {
+            else if (catalogo.isSearch) {
                 // Objeto vacio y viene del buscador
                 vm.error = "No se encontraron propiedades";
             }
-            else if (!vm.isSearch) {
+            else if (!catalogo.isSearch) {
                 //objeto vacio (no viene del buscador) o alquiler ventas: buscar en cache
-                vm.propiedades = (vm.type) ? [] : $scope.$storage.prop_search;
+                catalogo.propiedades = (catalogo.type) ? [] : $scope.$storage.prop_search;
 
-                if (_.isEmpty(vm.propiedades)) {
+                if (_.isEmpty(catalogo.propiedades)) {
                     //objeto vacio y cache vacía: traer todas las propiedades
                     buscarPropiedadesTokkoAPIWithData().$promise.then(function(response) {                        
                         //vm.propiedades = response.objects;
@@ -101,11 +102,11 @@
                                 null,               // No necesitamos el predictivo.
                                 vm.barrios);
                         }
-
                         // Guardando en cache.
-                        $localStorage.prop_search = vm.prop_search;
+                        $localStorage.prop_search = catalogo.prop_search;
 
                         setStateObjectFilterPaginationList();
+                        console.log(catalogo);
                     });
                 }
                 else {
@@ -132,14 +133,14 @@
             createCommonObjectFilter();
 
             // Variables auxiliares para el paginador.
-            vm.totalItems = vm.propiedades.length;
+            catalogo.totalItems = catalogo.propiedades.length;
 
             // Iniciamos las propiedades filtradas para la paginacion inicial.
-            vm.properties = vm.propiedades.slice(0 * vm.itemsPerPage, 1 * vm.itemsPerPage);
+            catalogo.properties = catalogo.propiedades.slice(0 * catalogo.itemsPerPage, 1 * catalogo.itemsPerPage);
         }
 
-        vm.pageChanged = function() {
-            vm.setPagingData(vm.currentPage);
+        catalogo.pageChanged = function() {
+            catalogo.setPagingData(catalogo.currentPage);
             $location.hash('paginador');
             $anchorScroll();
         }
@@ -148,34 +149,36 @@
          * Permite generar los objetos auxiliares para filtrar el resultado
          * desde el catalogo resultado por los campos:
          *
-         * { property_types | suite_amount | localization_barrio_id }
+         * { tiposProp | suite_amount | localization_barrio_id }
          *
          * @param {}
          */
         function createCommonObjectFilter() {
             // Inicializamos zonas a mostrar
-            vm.zonas = [];
+            catalogo.zonas = [];
 
             // Recorro las propiedades del catalogo
             _.each(vm.propiedades, function(propiedad) {
 
                 // Tipos de Propiedad
-                if (!_.where(vm.property_types, {
+                /*if (!_.where(catalogo.tiposProp, {
                         'id': propiedad.type.id
                     }).length) {
-                    vm.property_types.push({
+                    catalogo.tiposProp.push({
                         id: propiedad.type.id,
                         name: tokkoFactory.getNamePropertyTypes(propiedad.type.id)
                     });
+                }*/
+                if (!_.contains(catalogo.tiposProp, propiedad.type.name)) {
+                    catalogo.tiposProp.push(propiedad.type.name);
                 }
-
                 // Dormitorios
-                if (!_.where(vm.suite_amount, {
+                if (!_.where(catalogo.suite_amount, {
                         'id': propiedad.suite_amount
                     }).length) {
                     var nombre = tokkoFactory.getNameDormitorios(propiedad.suite_amount);
                     if (propiedad.suite_amount > 0 && !_.isEqual(nombre, "Todos")) {
-                        vm.suite_amount.push({
+                        catalogo.suite_amount.push({
                             id: propiedad.suite_amount,
                             name: nombre
                         });
@@ -184,12 +187,12 @@
                 }
 
                 // Zonas: Si es Nueva Córdoba, poner el barrio. 
-                if (!_.contains(vm.zonas, propiedad.zona) && propiedad.zona) {
-                    vm.zonas.push(propiedad.zona);
+                if (!_.contains(catalogo.zonas, propiedad.zona) && propiedad.zona) {
+                    catalogo.zonas.push(propiedad.zona);
                 }
-                else if (!_.contains(vm.zonas, propiedad.barrio) && 
+                else if (!_.contains(catalogo.zonas, propiedad.barrio) && 
                             propiedad.zona == false) {
-                    vm.zonas.push(propiedad.barrio);
+                    catalogo.zonas.push(propiedad.barrio);
                 }
                 else{
                     //Propiedades sin zonas.
@@ -199,11 +202,11 @@
                 // Atributos Especiales { Baño | patio | cochera | ...}
                 // Para identificar las propiedades sin attEspeciales
                 if (_.isEmpty(propiedad.tags)) {
-                    vm.propSinAttEspeciales.push(propiedad);
+                    catalogo.propSinAttEspeciales.push(propiedad);
                 }
                 else {
                     // Verificamos que los atributos en true esten en las prop.
-                    vm.attEspeciales.push(propiedad.tags);
+                    catalogo.attEspeciales.push(propiedad.tags);
                 }
             }); // Fin each
             
@@ -211,8 +214,10 @@
             createAttEspecialesObjectFilter();
 
             // Ordenamos
-            vm.suite_amount = _.sortBy(vm.suite_amount, 'id');
-            vm.zonas = _.sortBy(vm.zonas, 'name'); 
+            catalogo.suite_amount = _.sortBy(catalogo.suite_amount, 'id');
+            catalogo.zonas = _.sortBy(catalogo.zonas, 'name'); 
+            console.log(catalogo.zonas);
+            console.log(catalogo.tiposProp);
         }
         
         /**
@@ -227,16 +232,16 @@
                     id: 'att-especiales-filtro.json'
                 },
                 function(data) {
-                    vm.attEspecialesHabilitados = _.filter(data, function(attEspecial) {
+                    catalogo.attEspecialesHabilitados = _.filter(data, function(attEspecial) {
                         return attEspecial.show == true;
                     });
                 }).$promise.then(function(response) {
 
                 // Sive para [[a, b], [c], [d]] -> [a,b,c,d]
-                var allAtt = [].concat.apply([], vm.attEspeciales)
+                var allAtt = [].concat.apply([], catalogo.attEspeciales)
 
                 // Verificar si el att pertenece a alguna propiedad
-                vm.attEspeciales = _.filter(vm.attEspecialesHabilitados, function(attHabilitado) {
+                catalogo.attEspeciales = _.filter(catalogo.attEspecialesHabilitados, function(attHabilitado) {
                     return _.some(allAtt, function(attProp) {
                         return attProp.id == attHabilitado.id;
                     });
@@ -249,7 +254,7 @@
          */
         function setParentState() {
             // Recorro las propiedades del catalogo
-            _.each(vm.propiedades, function(propiedad) {
+            _.each(catalogo.propiedades, function(propiedad) {
                 propiedad.parentState = 'propiedades';
             });
         }
@@ -274,8 +279,8 @@
          *
          * @param {int} page - Pagina actual
          */
-        vm.setPagingData = function(page) {
-            vm.properties = vm.propiedades.slice((page - 1) * vm.itemsPerPage, page * vm.itemsPerPage);
+        catalogo.setPagingData = function(page) {
+            catalogo.properties = catalogo.propiedades.slice((page - 1) * catalogo.itemsPerPage, page * catalogo.itemsPerPage);
         }
 
     } // Fin controller

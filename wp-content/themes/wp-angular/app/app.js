@@ -14,6 +14,7 @@
         'app.services',
         'app.factories',
         'ngStorage',
+        'ngTextTruncate',
         'ncy-angular-breadcrumb'
     ])
 

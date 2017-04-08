@@ -26,7 +26,7 @@
          *
          *    Se me ocurre ejecutar createCommonObjectFilter() en cada paginacion
          */
-        function filterProps(all_prop, vm) {
+        function filterProps(all_prop, model) {
             // Variables a utilizar.
             var filtered = []; // Todas las propiedades.
             var typeActive = [];
@@ -34,13 +34,19 @@
             var attEspActive = [];
             var zonasActive = [];
             var preFiltered = [];
-
-            // Permite filtrar los que esten con estado false.
-            typeActive = parseTrue(vm.property_types_selected);
-            domiActive = parseTrue(vm.suite_amount_selected);
-            attEspActive = parseTrue(vm.attEspeciales_selected);
-            zonasActive = parseTrue(vm.zonas_selected);
-
+                    
+            // Permite filtrar los Models que esten con estado false.
+            typeActive   = parseTrue(model.spTypes); // Tipo de propiedad
+            zonasActive  = parseTrue(model.sZonas);  // Zonas
+            domiActive   = parseTrue(model.sDormit); // Cantidad de dormitorios {X}    
+            attEspActive = parseTrue(model.sAttEsp); // Atributos especiales    {X}
+            
+            //console.log(model);
+            console.log(domiActive);
+            console.log(attEspActive);
+            console.log(zonasActive);
+            console.log(typeActive);
+            
             // Sino hay nada para filtrar
             if (_.isEmpty(typeActive) && _.isEmpty(domiActive) &&
                 _.isEmpty(attEspActive) && _.isEmpty(zonasActive)) {
@@ -67,7 +73,7 @@
                     // Tipo de Propiedad
                     filtered = _.filter(filtered, function(propiedad) {
                         return _.some(typeActive, function(ptype) {
-                            return propiedad.type.id == ptype;
+                            return propiedad.type.name == ptype;
                         });
                     });
                 }
