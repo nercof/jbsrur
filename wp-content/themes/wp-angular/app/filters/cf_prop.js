@@ -40,13 +40,7 @@
             zonasActive  = parseTrue(model.sZonas);  // Zonas
             domiActive   = parseTrue(model.sDormit); // Cantidad de dormitorios {X}    
             attEspActive = parseTrue(model.sAttEsp); // Atributos especiales    {X}
-            
-            //console.log(model);
-            console.log(domiActive);
-            console.log(attEspActive);
-            console.log(zonasActive);
-            console.log(typeActive);
-            
+
             // Sino hay nada para filtrar
             if (_.isEmpty(typeActive) && _.isEmpty(domiActive) &&
                 _.isEmpty(attEspActive) && _.isEmpty(zonasActive)) {

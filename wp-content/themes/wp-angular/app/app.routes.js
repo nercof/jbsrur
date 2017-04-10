@@ -90,6 +90,7 @@
           label: TITULO.CATALOGO_VENTA,
           parent: STATE.HO,
         },
+        reloadOnSearch: false,
       })
       .state(STATE.AL, {
         url: '/' + STATE.AL,
@@ -99,6 +100,7 @@
           lastSearch: null,
           isSearch:false
         },
+        reloadOnSearch: false,
         views: {
           "content": {
             templateUrl: localized.tokko + "tokko-search-result.html",
@@ -116,7 +118,7 @@
         ncyBreadcrumb: {
           label: TITULO.CATALOGO_ALQUILER,
           parent: STATE.HO,
-        },
+        }
       })
       .state(STATE.NE, {
         url: '/' + 'emprendimientos-propios',
