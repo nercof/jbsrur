@@ -42,15 +42,26 @@
             if (!_.isEmpty($scope.data)) {
                 vm.propiedad = $scope.data;
                 parseAndBuildGallery();
+                getContacForm();
             }
             else {
                 // Buscamos la propiedad en TOKKO
                 tokkoFactory.getProperty($scope.id).then(function(data) {
-                    vm.propiedad = data;
-                    parseAndBuildGallery();
+                    vm.propiedad = data;           
+                    if (!_.isEmpty(vm.propiedad)) {                        
+                        parseAndBuildGallery();
+                        getContacForm();    
+                    }                    
                 });
-
             }
+        } // Fin create()
+
+        /**
+         * getContacForm() 
+         *   Get Contact Form page from WP-API and put angular element.
+         *
+         */
+        function getContacForm(){
             // Generamos el modelo ContactForm
             typeFactory.getPostByCategoryName("contacto").then(
                 function(data) {
@@ -66,8 +77,7 @@
                     angular.element('#jbsrur_contact_form form').attr("name", "contactForm");
                     angular.element('#jbsrur_contact_form input[type="email"]').attr("ng-model", "contactForm.email");
                 });
-
-        } // Fin create()
+        }
 
         function parseAndBuildGallery() {
             vm.propiedad.tags = (vm.propiedad.tags.length === 0) ? false : vm.propiedad.tags;

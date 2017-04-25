@@ -185,10 +185,17 @@
       return tokkoService.getRequest(BASE_TOKKO, url, TOKKO_KEY);
     }
 
+
     function getProperty(id) {
+      /*
       return getPropertys(id).then(function(data) {
         return data;
       });
+      */
+      // traer todas las propiedades
+      return getPropertiesByCountry().$promise.then(function(response) {        
+          return _.find(response.objects, function(prop){return prop.id == id;});        
+      }); 
     }
 
     function getPropertys(id) {
