@@ -20,6 +20,9 @@
         $scope.data = $scope.$resolve.$stateParams.data;
         $scope.id   = $scope.$resolve.$stateParams.id;
 
+        // Mensaje de error
+        vm.error = false;
+
         create();
 
         /**
@@ -51,7 +54,11 @@
                     if (!_.isEmpty(vm.propiedad)) {                        
                         parseAndBuildGallery();
                         getContacForm();    
-                    }                    
+                    }
+                    else{
+                        // Objeto vacio y viene del buscador
+                        vm.error = "Error: Propiedad no encontrada";
+                    }
                 });
             }
         } // Fin create()
